@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en" data-theme="midnight">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Pei An Chen's engineering portfolio: wearable biosensing, embedded systems, microfluidics, imaging platforms, FPGA, and research instrumentation.">
+  <meta name="theme-color" content="#07110f">
+  <meta property="og:title" content="Pei An Chen | Engineering Portfolio">
+  <meta property="og:description" content="Building verifiable cross-layer engineering systems from sensors and firmware to apps and research data.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://chen861019.github.io/peian-chen/en/">
+  <title>Pei An Chen | Engineering Portfolio</title>
+  <link rel="canonical" href="https://chen861019.github.io/peian-chen/en/">
+  <link rel="alternate" hreflang="zh-Hant" href="https://chen861019.github.io/peian-chen/">
+  <link rel="alternate" hreflang="en" href="https://chen861019.github.io/peian-chen/en/">
+  <link rel="alternate" hreflang="x-default" href="https://chen861019.github.io/peian-chen/">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <script src="../site.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="scroll-meter" aria-hidden="true"><span id="scroll-progress"></span></div>
+  <div class="ambient-grid" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <a class="brand" href="#top" aria-label="Back to top">
+      <span class="brand-mark">PA</span>
+      <span class="brand-copy"><strong>PEIAN.LAB</strong><small>ENGINEERING SYSTEMS</small></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+      <span></span><span></span><span></span><span class="sr-only">Open menu</span>
+    </button>
+    <nav class="primary-nav" id="primary-nav" aria-label="Primary navigation">
+      <a href="#systems">Systems</a>
+      <a href="#projects">Projects</a>
+      <a href="#research">Research</a>
+      <a href="#profile">Profile</a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <a class="language-switch" href="../" lang="zh-Hant" hreflang="zh-Hant" aria-label="切換至中文版">中文</a>
+      <button class="theme-toggle" type="button" aria-label="Toggle light or dark theme" aria-pressed="false">
+        <span class="theme-toggle__track"><span class="theme-toggle__knob"></span></span>
+        <span class="theme-toggle__label">MODE</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero section-shell" aria-labelledby="hero-title">
+      <div class="hero-copy reveal">
+        <div class="eyebrow"><span class="status-dot"></span> SYSTEMS ONLINE <span id="taipei-time">UTC+08:00</span></div>
+        <p class="hero-kicker">EMBEDDED BIOMEDICAL SENSING / FPGA / RESEARCH INSTRUMENTATION</p>
+        <h1 id="hero-title">Turning real-world signals<br><span>into working systems.</span></h1>
+        <p class="hero-lead">I am Pei An Chen, a Ph.D. candidate in Electrical Engineering at National Yang Ming Chiao Tung University. I connect sensors and actuators with low-power firmware, BLE, edge AI, Android, cloud infrastructure, and analysis workflows to build research tools that can be measured, verified, and continuously improved.</p>
+        <div class="hero-actions">
+          <a class="button button--primary" href="#projects">EXPLORE PROJECTS <span aria-hidden="true">↘</span></a>
+          <a class="button button--ghost" href="https://github.com/chen861019" target="_blank" rel="noreferrer">GitHub / chen861019</a>
+        </div>
+        <dl class="hero-stats" aria-label="Portfolio statistics">
+          <div><dt>25</dt><dd>REPOSITORIES MAPPED</dd></div>
+          <div><dt>06</dt><dd>ENGINEERING DOMAINS</dd></div>
+          <div><dt>04</dt><dd>SYSTEM LAYERS</dd></div>
+        </dl>
+      </div>
+
+      <div class="hero-visual reveal" data-delay="1">
+        <div class="portrait-frame">
+          <div class="portrait-coordinates"><span>25.03 N</span><span>121.56 E</span></div>
+          <img src="../img/peian-chen.jpg" alt="Pei An Chen presenting research work" width="704" height="704">
+          <div class="scan-line" aria-hidden="true"></div>
+          <div class="portrait-caption"><span>SUBJECT_01</span><strong>PEI AN CHEN</strong></div>
+        </div>
+        <div class="telemetry-card telemetry-card--a"><span>CORE</span><strong>EMBEDDED</strong><small>nRF / ESP32 / Zephyr</small></div>
+        <div class="telemetry-card telemetry-card--b"><span>LINK</span><strong>BLE + CLOUD</strong><small>Android / Firebase</small></div>
+      </div>
+    </section>
+
+    <section class="signal-strip" aria-label="Technology stack">
+      <div class="signal-strip__track">
+        <span>VERILOG</span><i></i><span>ZEPHYR</span><i></i><span>NORDIC nRF</span><i></i><span>ESP32</span><i></i><span>KOTLIN</span><i></i><span>JETPACK COMPOSE</span><i></i><span>PYTHON</span><i></i><span>FIREBASE</span><i></i><span>QUARTUS</span><i></i><span>MICROFLUIDICS</span>
+      </div>
+    </section>
+
+    <section class="systems section-shell" id="systems" aria-labelledby="systems-title">
+      <div class="section-heading reveal">
+        <p class="section-index">01 / SYSTEM ARCHITECTURE</p>
+        <h2 id="systems-title">Not isolated demos.<br>Complete signal chains.</h2>
+        <p>Each project starts with a physical quantity, moves through hardware, firmware, connectivity, and application layers, and ends as traceable research data.</p>
+      </div>
+
+      <div class="architecture-grid reveal" data-delay="1">
+        <article class="layer-card" data-layer="01">
+          <span class="layer-card__index">LAYER 01</span>
+          <h3>SENSE</h3>
+          <p>Temperature, pressure, electrochemical current, images, angle, and velocity feedback.</p>
+          <ul><li>MLX90614</li><li>EmStat Pico</li><li>OV5640</li></ul>
+        </article>
+        <article class="layer-card" data-layer="02">
+          <span class="layer-card__index">LAYER 02</span>
+          <h3>CONTROL</h3>
+          <p>Sampling schedules, low-power state machines, motor control loops, and FPGA RTL.</p>
+          <ul><li>nRF54L15</li><li>ESP32</li><li>Verilog</li></ul>
+        </article>
+        <article class="layer-card" data-layer="03">
+          <span class="layer-card__index">LAYER 03</span>
+          <h3>CONNECT</h3>
+          <p>BLE device identity, offline history, synchronization watermarks, and HPS-FPGA interfaces.</p>
+          <ul><li>BLE</li><li>Room</li><li>Qsys</li></ul>
+        </article>
+        <article class="layer-card" data-layer="04">
+          <span class="layer-card__index">LAYER 04</span>
+          <h3>INTERPRET</h3>
+          <p>Android and Wear OS interaction, cloud data, image analysis, and research dashboards.</p>
+          <ul><li>Compose</li><li>Firebase</li><li>Python</li></ul>
+        </article>
+      </div>
+
+      <div class="system-map reveal" aria-label="Map of six engineering domains">
+        <div class="map-lines" aria-hidden="true">
+          <svg viewBox="0 0 1000 460" preserveAspectRatio="none">
+            <path d="M500 230 L170 90 M500 230 L500 55 M500 230 L830 90 M500 230 L170 370 M500 230 L500 405 M500 230 L830 370"></path>
+          </svg>
+        </div>
+        <div class="map-core"><small>PEIAN.LAB</small><strong>SYSTEM<br>ENGINEERING</strong><span>PHYSICAL → DIGITAL</span></div>
+        <div class="map-node map-node--1"><span>01</span><strong>WEARABLE</strong><small>Biosensing</small></div>
+        <div class="map-node map-node--2"><span>02</span><strong>EMBEDDED</strong><small>Low power</small></div>
+        <div class="map-node map-node--3"><span>03</span><strong>FPGA</strong><small>Digital systems</small></div>
+        <div class="map-node map-node--4"><span>04</span><strong>MICROFLUIDIC</strong><small>Flow control</small></div>
+        <div class="map-node map-node--5"><span>05</span><strong>IMAGING</strong><small>Bio analysis</small></div>
+        <div class="map-node map-node--6"><span>06</span><strong>MOTION</strong><small>Microgravity</small></div>
+      </div>
+    </section>
+
+    <section class="projects section-shell" id="projects" aria-labelledby="projects-title">
+      <div class="section-heading section-heading--row reveal">
+        <div><p class="section-index">02 / SELECTED WORK</p><h2 id="projects-title">Engineering project matrix</h2></div>
+        <p>Public repositories link directly to source. Research-system cards show cross-project integration without exposing private code.</p>
+      </div>
+      <div class="project-toolbar reveal" role="group" aria-label="Filter projects by category">
+        <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">ALL SYSTEMS</button>
+        <button class="filter-button" type="button" data-filter="bio" aria-pressed="false">BIOSENSING</button>
+        <button class="filter-button" type="button" data-filter="embedded" aria-pressed="false">EMBEDDED</button>
+        <button class="filter-button" type="button" data-filter="fpga" aria-pressed="false">FPGA</button>
+        <button class="filter-button" type="button" data-filter="research" aria-pressed="false">RESEARCH</button>
+      </div>
+
+      <div class="project-grid" id="project-grid">
+        <article class="project-card project-card--feature reveal" data-category="bio embedded">
+          <div class="project-card__top"><span class="project-number">P.01</span><span class="project-state">PUBLIC / ACTIVE</span></div>
+          <div><p class="project-domain">WEARABLE BIOSENSING</p><h3>ThermoPatch</h3><p>A multi-node BLE skin-temperature system integrating real-time Android visualization, Firebase synchronization, device management, and OTA updates.</p></div>
+          <ul class="tag-list"><li>Kotlin</li><li>BLE</li><li>Firebase</li><li>nRF52840</li></ul>
+          <a class="project-link" href="https://github.com/chen861019/ThermoPatch" target="_blank" rel="noreferrer" aria-label="View ThermoPatch on GitHub">VIEW SOURCE <span>↗</span></a>
+        </article>
+
+        <article class="project-card reveal" data-category="research embedded" data-delay="1">
+          <div class="project-card__top"><span class="project-number">P.02</span><span class="project-state">PUBLIC / FIELD</span></div>
+          <div><p class="project-domain">BIOLOGICAL IMAGING</p><h3>SpaceCellCam</h3><p>High-resolution, LED-assisted time-lapse imaging with ESP32-S3 and OV5640, extended into image analysis and motion-quantification workflows.</p></div>
+          <ul class="tag-list"><li>ESP32-S3</li><li>OV5640</li><li>Python</li></ul>
+          <a class="project-link" href="https://github.com/chen861019/SpaceCellCam" target="_blank" rel="noreferrer" aria-label="View SpaceCellCam on GitHub">VIEW SOURCE <span>↗</span></a>
+        </article>
+
+        <article class="project-card reveal" data-category="fpga" data-delay="2">
+          <div class="project-card__top"><span class="project-number">P.03</span><span class="project-state">PUBLIC / RTL</span></div>
+          <div><p class="project-domain">RELIABILITY LOGIC</p><h3>Space BMC Core</h3><p>A Verilog-2001 heartbeat-monitoring and timeout-control core with a cycle-accurate automated testbench and recovery-boundary verification.</p></div>
+          <ul class="tag-list"><li>Verilog</li><li>Questa</li><li>DE10</li></ul>
+          <a class="project-link" href="https://github.com/chen861019/Space-BMC-Core-SEMC" target="_blank" rel="noreferrer" aria-label="View Space BMC Core on GitHub">VIEW SOURCE <span>↗</span></a>
+        </article>
+
+        <article class="project-card reveal" data-category="embedded bio">
+          <div class="project-card__top"><span class="project-number">P.04</span><span class="project-state">PUBLIC / ZEPHYR</span></div>
+          <div><p class="project-domain">LOW-POWER SENSING</p><h3>nRF54L15 × MLX90614</h3><p>Infrared-temperature firmware, I²C integration, and low-power analysis establishing a hardware baseline for next-generation wearable nodes.</p></div>
+          <ul class="tag-list"><li>C</li><li>Zephyr</li><li>nRF54L15</li></ul>
+          <a class="project-link" href="https://github.com/chen861019/nRF54L15_MLX90614" target="_blank" rel="noreferrer" aria-label="View nRF54L15 MLX90614 on GitHub">VIEW SOURCE <span>↗</span></a>
+        </article>
+
+        <article class="project-card reveal" data-category="fpga" data-delay="1">
+          <div class="project-card__top"><span class="project-number">P.05</span><span class="project-state">PRIVATE / LAB ARCHIVE</span></div>
+          <div><p class="project-domain">DIGITAL SYSTEM DESIGN</p><h3>NYCU-AFPGA</h3><p>Eight documented labs covering combinational logic, FSMs, RAM, a simple processor, and DE1-SoC HPS/Qsys integration.</p></div>
+          <ul class="tag-list"><li>Verilog</li><li>Quartus</li><li>Qsys</li></ul>
+          <a class="project-link" href="https://github.com/chen861019/NYCU-AFPGA-Labs" target="_blank" rel="noreferrer" aria-label="View NYCU AFPGA on GitHub">VIEW PROJECT <span>↗</span></a>
+        </article>
+
+        <article class="project-card reveal" data-category="bio embedded" data-delay="2">
+          <div class="project-card__top"><span class="project-number">P.06</span><span class="project-state">PUBLIC / WEAR OS</span></div>
+          <div><p class="project-domain">PHYSIOLOGICAL DATA</p><h3>Galaxy Watch Sensor Monitor</h3><p>Samsung Watch skin-temperature acquisition and a research data pipeline, with a PPG extension interface and explicit non-medical-use boundaries.</p></div>
+          <ul class="tag-list"><li>Kotlin</li><li>Wear OS</li><li>Sensor SDK</li></ul>
+          <a class="project-link" href="https://github.com/chen861019/GalaxyWatchSensorMonitor" target="_blank" rel="noreferrer" aria-label="View Galaxy Watch Sensor Monitor on GitHub">VIEW SOURCE <span>↗</span></a>
+        </article>
+
+        <article class="project-card project-card--system reveal" data-category="research bio">
+          <div class="project-card__top"><span class="project-number">S.01</span><span class="project-state">RESEARCH SYSTEM</span></div>
+          <div><p class="project-domain">ELECTROCHEMISTRY</p><h3>Portable Sweat Analysis</h3><p>A portable research instrument integrating electrochemical measurement, a one-button workflow, TFT status feedback, measurement scripts, and SD logging.</p></div>
+          <ul class="tag-list"><li>EmStat Pico</li><li>CA</li><li>SD Logging</li></ul>
+        </article>
+
+        <article class="project-card project-card--system reveal" data-category="research embedded" data-delay="1">
+          <div class="project-card__top"><span class="project-number">S.02</span><span class="project-state">RESEARCH SYSTEM</span></div>
+          <div><p class="project-domain">MICROFLUIDIC CONTROL</p><h3>Smart Stop-Flow</h3><p>A portable reaction platform combining smartphone illumination and imaging, dual pumps, microvalves, a PDMS pressure chamber, and a chip observation area.</p></div>
+          <ul class="tag-list"><li>Micropumps</li><li>Valves</li><li>Android</li></ul>
+        </article>
+
+        <article class="project-card project-card--system reveal" data-category="research embedded" data-delay="2">
+          <div class="project-card__top"><span class="project-number">S.03</span><span class="project-state">CONTROL SYSTEM</span></div>
+          <div><p class="project-domain">REDUCED-GRAVITY MOTION</p><h3>Dual-Axis Gravity Controller</h3><p>Dual-axis continuous-rotation servo control using angle feedback, velocity estimation, feedforward, and PID to create partial-gravity motion conditions.</p></div>
+          <ul class="tag-list"><li>ESP32-C3</li><li>Feedback 360</li><li>PID</li></ul>
+        </article>
+      </div>
+      <p class="filter-result" aria-live="polite"><span id="visible-count">9</span> systems visible</p>
+    </section>
+
+    <section class="research section-shell" id="research" aria-labelledby="research-title">
+      <div class="section-heading reveal">
+        <p class="section-index">03 / RESEARCH TRACK</p>
+        <h2 id="research-title">Advancing prototypes<br>into demonstrable evidence.</h2>
+        <p>Research outcomes are more than circuit diagrams: they are operable systems, reproducible workflows, and technical communication adapted to different audiences.</p>
+      </div>
+      <div class="milestone-layout">
+        <div class="milestone-rail reveal">
+          <article><time>2025</time><div><span>INTERNATIONAL EXCHANGE</span><h3>International research presentations</h3><p>Research exchange at Texas A&amp;M University and a poster presentation at the RIES–CEFMS Joint Symposium, Hokkaido University.</p></div></article>
+          <article><time>2024</time><div><span>EXHIBITION + CONFERENCE</span><h3>CES and interdisciplinary symposia</h3><p>Exhibited at the CES 2024 TTA Taiwan Tech Pavilion; delivered an oral presentation at the DMS–CEFMS Joint Symposium and a poster at ICSS.</p></div></article>
+          <article><time>2023</time><div><span>RESEARCH RECOGNITION</span><h3>Biomimetic microfluidic platform</h3><p>A microfluidic research platform centered on thermal and flow behavior, recognized with the Future Tech Award and extended with image-based motion analysis.</p></div></article>
+          <article><time>2017–19</time><div><span>ENGINEERING FOUNDATION</span><h3>Robotics and AIoT implementation</h3><p>Built a foundation in control, sensing, and integration through autonomous vehicles, machine vision, mBot, and AIoT competitions.</p></div></article>
+        </div>
+        <aside class="research-console reveal" data-delay="1">
+          <div class="console-head"><span>RESEARCH.LOG</span><span class="console-lights"><i></i><i></i><i></i></span></div>
+          <pre aria-label="Research method summary"><code><span class="code-key">while</span> (question.isOpen()) {
+  observe(<span class="code-value">physical_signal</span>);
+  prototype(<span class="code-value">hardware</span>);
+  integrate(<span class="code-value">firmware, app</span>);
+  verify(<span class="code-value">evidence</span>);
+  document(<span class="code-value">limits</span>);
+}</code></pre>
+          <dl><div><dt>INPUT</dt><dd>Physical constraints</dd></div><div><dt>OUTPUT</dt><dd>Reproducible evidence</dd></div><div><dt>METHOD</dt><dd>Iterate across layers</dd></div></dl>
+        </aside>
+      </div>
+      <div class="research-platforms reveal" aria-labelledby="platforms-title">
+        <div class="research-subhead">
+          <p class="section-index">PLATFORM ARCHIVE</p>
+          <h3 id="platforms-title">Research archive, fully retained</h3>
+          <p>The three research themes from the original site are reorganized here while preserving each system's purpose, implementation, and technology.</p>
+        </div>
+        <div class="platform-grid">
+          <article>
+            <span>01 / MOTION CONTROL</span>
+            <h4>Microgravity Simulation Platform</h4>
+            <p>Microgravity Simulation System Platform</p>
+            <ul>
+              <li>Developed a dual-axis Random Positioning Machine for microgravity simulation experiments.</li>
+              <li>Designed an embedded control system for multi-axis motion.</li>
+              <li>Integrated sensors, imaging modules, and real-time data acquisition.</li>
+            </ul>
+            <small>Embedded systems / Motion control / Sensor integration</small>
+          </article>
+          <article>
+            <span>02 / CONNECTED DEVICE</span>
+            <h4>Wearable IoT Device Platform</h4>
+            <p>Wearable IoT Device Development Platform</p>
+            <ul>
+              <li>Built an nRF52840 wearable sensing device with BLE communication.</li>
+              <li>Created a mobile application and cloud database for IoT data management.</li>
+              <li>Implemented an LVGL interface for real-time on-device data and control.</li>
+            </ul>
+            <small>Embedded systems / BLE / IoT architecture / LVGL</small>
+          </article>
+          <article>
+            <span>03 / BIOENGINEERING</span>
+            <h4>Biomimetic Microfluidic Bioengineering Platform</h4>
+            <p>Biomimetic Microfluidic Bioengineering Platform</p>
+            <ul>
+              <li>Designed a microfluidic sorting platform based on thermotaxis and rheotaxis.</li>
+              <li>Developed temperature-gradient control and image-based motion analysis.</li>
+              <li>Implemented automated data acquisition and analysis.</li>
+            </ul>
+            <small>Microfluidics / Thermal control / Imaging analysis</small>
+          </article>
+        </div>
+      </div>
+      <div class="evidence-archive reveal" data-delay="1" aria-labelledby="archive-title">
+        <div class="archive-heading">
+          <p class="section-index">PUBLICATION + RECOGNITION</p>
+          <h3 id="archive-title">Publications and recognition</h3>
+        </div>
+        <div class="publication-panel">
+          <span>JOURNAL RECORD</span>
+          <h4>Journal record</h4>
+          <ul><li>Biosensors &amp; Bioelectronics</li><li>Sensors and Actuators A</li></ul>
+          <p>The original site records journal names only; article titles, author order, and publication status are therefore not inferred here.</p>
+        </div>
+        <div class="achievement-list">
+          <article><time>2024</time><div><h4>CES × TTA Taiwan Tech Pavilion</h4><p>Exhibited at the Consumer Electronics Show in the United States.</p></div><strong>EXHIBITION</strong></article>
+          <article><time>2023</time><div><h4>Future Tech Award</h4><p>Recognition for the biomimetic microfluidic bioengineering platform.</p></div><strong>AWARD</strong></article>
+          <article><time>2023</time><div><h4>FITI Innovation &amp; Entrepreneurship Program</h4><p>Innovative research and entrepreneurship proposal.</p></div><strong>FINALIST</strong></article>
+          <article><time>2021</time><div><h4>Biomedical Innovation Concept Competition</h4><p>Biomedical engineering concept proposal.</p></div><strong>HONORABLE</strong></article>
+          <details>
+            <summary><span>2017—2019</span><strong>Expand early robotics and AIoT competition records</strong></summary>
+            <ul>
+              <li><b>2019 First Place</b> Technology and Microcomputer Applications Competition — AIoT Intelligent Robotics</li>
+              <li><b>2019 Second Place</b> Technology and Microcomputer Applications Competition — Line-Following Autonomous Vehicle</li>
+              <li><b>2019 First Place</b> Asian Intelligent Robot Contest — Moving Mountains</li>
+              <li><b>2019 Honorable Mention</b> Technology and Microcomputer Applications Competition — Machine-Vision Racing</li>
+              <li><b>2019 Finalist</b> Tokyo Electron Technology Innovation Robotics Competition — National Steel Arena Final</li>
+              <li><b>2019 Selected Entry</b> Programming and Information Applications Competition — Intelligent Image Color Recognition</li>
+              <li><b>2018 First Place</b> Student Community Achievement Showcase — IoT Intelligent Control Community</li>
+              <li><b>2017 Honorable Mention</b> Asian Intelligent Robot Contest — mBot Walking</li>
+              <li><b>2017 Honorable Mention</b> National Interactive Robot Competition — Line-Following Autonomous Vehicle</li>
+            </ul>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="profile section-shell" id="profile" aria-labelledby="profile-title">
+      <div class="section-heading section-heading--row reveal">
+        <div><p class="section-index">04 / PROFILE</p><h2 id="profile-title">Cross-disciplinary training.<br>Applied R&amp;D focus.</h2></div>
+        <p>From biomechatronics and biomedical engineering to electrical engineering, my research path consistently centers on sensing, control, digital design, and hardware-software integration.</p>
+      </div>
+      <div class="profile-grid">
+        <article class="profile-intro reveal">
+          <p class="profile-label">CURRENT FOCUS</p>
+          <h3>Embedded systems × FPGA × intelligent sensing</h3>
+          <p>I focus on embedded firmware, FPGA and RTL, sensing platforms, IoT architecture, and TinyML, using a system-level perspective to manage interfaces among hardware, connectivity, applications, and research data.</p>
+          <dl class="profile-meta">
+            <div><dt>LOCATION</dt><dd>Taiwan / UTC+08</dd></div>
+            <div><dt>LANGUAGES</dt><dd>Chinese / English / Japanese (basic)</dd></div>
+            <div><dt>INTERESTS</dt><dd>Embedded R&amp;D / Digital IC &amp; FPGA / Edge AI</dd></div>
+          </dl>
+        </article>
+        <div class="education-stack reveal" data-delay="1" aria-label="Education">
+          <article><time>2022—2026</time><span>Ph.D. Candidate</span><h3>Electrical Engineering</h3><p>National Yang Ming Chiao Tung University</p></article>
+          <article><time>2020—2022</time><span>Master</span><h3>Biomedical Engineering</h3><p>National Yang Ming Chiao Tung University</p></article>
+          <article><time>2016—2020</time><span>Bachelor</span><h3>Biomechatronic Engineering</h3><p>National Ilan University</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="capabilities section-shell" id="capabilities" aria-labelledby="capabilities-title">
+      <div class="section-heading section-heading--row reveal">
+        <div><p class="section-index">05 / CAPABILITIES</p><h2 id="capabilities-title">Cross-layer capabilities</h2></div>
+        <p>These are not isolated tool lists. They represent practical work spanning hardware, user-facing applications, and research data.</p>
+      </div>
+      <div class="capability-board reveal">
+        <div class="capability-row"><span class="capability-code">HW.01</span><h3>Embedded Hardware</h3><p>nRF52840 / nRF54L15 / ESP32 / Raspberry Pi / sensors / pumps / valves / motor feedback</p><span class="capability-level">SYSTEM</span></div>
+        <div class="capability-row"><span class="capability-code">FW.02</span><h3>Firmware &amp; Edge AI</h3><p>C / C++ / Zephyr / Arduino / PlatformIO / LVGL / TinyML / low-power state machines</p><span class="capability-level">CORE</span></div>
+        <div class="capability-row"><span class="capability-code">RTL.03</span><h3>Digital Design</h3><p>Verilog / Quartus / Qsys / FSM / memory / processor / self-checking simulation</p><span class="capability-level">RTL</span></div>
+        <div class="capability-row"><span class="capability-code">APP.04</span><h3>Mobile &amp; Cloud</h3><p>Kotlin / Jetpack Compose / Wear OS / Room / Firebase / Health Connect</p><span class="capability-level">PRODUCT</span></div>
+        <div class="capability-row"><span class="capability-code">DATA.05</span><h3>Analysis &amp; Imaging</h3><p>Python / OpenCV / LabVIEW / feature extraction / segmentation / Flask / research dashboards</p><span class="capability-level">DATA</span></div>
+        <div class="capability-row"><span class="capability-code">LAB.06</span><h3>Research Integration</h3><p>microfluidics / electrochemistry / biosignals / mechanical &amp; CAD design / evidence tracking</p><span class="capability-level">LAB</span></div>
+      </div>
+    </section>
+
+    <section class="contact section-shell" id="contact" aria-labelledby="contact-title">
+      <div class="contact-panel reveal">
+        <p class="section-index">06 / CONNECTION</p>
+        <h2 id="contact-title">Hardware, data,<br>and an open problem?</h2>
+        <p>Explore GitHub for implementations, verification records, and current limitations. Engineering collaboration starts with a concrete problem and a measurable goal.</p>
+        <div class="contact-actions">
+          <a class="button button--primary" href="https://github.com/chen861019" target="_blank" rel="noreferrer">OPEN GITHUB <span>↗</span></a>
+          <button class="button button--ghost copy-handle" type="button" data-copy="github.com/chen861019">COPY HANDLE</button>
+          <a class="button button--ghost" href="mailto:chen861019@gmail.com">EMAIL / GMAIL</a>
+        </div>
+        <div class="contact-status"><span class="status-dot"></span><span>TAIWAN / UTC+08:00</span><span>BUILDING ACROSS HARDWARE + SOFTWARE</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>© 2026 PEI AN CHEN</span>
+    <span>ENGINEERED WITH MEASURABLE EVIDENCE</span>
+    <a href="#top">BACK TO TOP ↑</a>
+  </footer>
+  <div class="toast" role="status" aria-live="polite">GitHub handle copied</div>
+</body>
+</html>
