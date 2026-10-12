@@ -17,4 +17,4 @@ Then open `http://localhost:8000`.
 - `site/site.js`: theme, filtering, navigation, reveal, clock, and clipboard interactions
 - `.github/workflows/deploy.yml`: static GitHub Pages deployment
 
-Live site: <https://chen861019.github.io/peian-chen/>
+Live site: <https://peianchen.github.io/peian-chen/>

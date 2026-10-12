@@ -145,6 +145,6 @@ copyButton?.addEventListener("click", async () => {
       copyButton.textContent = "COPY HANDLE";
     }, 1800);
   } catch {
-    window.location.href = "https://github.com/chen861019";
+    window.location.href = "https://github.com/peianchen";
   }
 });
