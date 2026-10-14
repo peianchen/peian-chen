@@ -1,6 +1,6 @@
 # Pei An Chen - Engineering Portfolio
 
-Personal engineering portfolio for embedded biomedical sensing, FPGA, research instrumentation, and cross-layer system integration.
+Personal engineering portfolio for embedded biomedical sensing, FPGA, medical image analysis, research instrumentation, and cross-layer system integration.
 
 ## Local preview
 

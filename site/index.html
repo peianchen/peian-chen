@@ -140,13 +140,14 @@
     <section class="projects section-shell" id="projects" aria-labelledby="projects-title">
       <div class="section-heading section-heading--row reveal">
         <div><p class="section-index">02 / SELECTED WORK</p><h2 id="projects-title">工程專案矩陣</h2></div>
-        <p>公開 repository 可直接查看；研究系統卡片呈現跨專案的整合能力，不公開私有程式碼。</p>
+        <p>從感測與嵌入式系統到數位邏輯、醫學影像分析，整理各專案的功能、實作與結果。</p>
       </div>
       <div class="project-toolbar reveal" role="group" aria-label="專案分類篩選">
         <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">ALL SYSTEMS</button>
         <button class="filter-button" type="button" data-filter="bio" aria-pressed="false">BIOSENSING</button>
         <button class="filter-button" type="button" data-filter="embedded" aria-pressed="false">EMBEDDED</button>
         <button class="filter-button" type="button" data-filter="fpga" aria-pressed="false">FPGA</button>
+        <button class="filter-button" type="button" data-filter="imaging" aria-pressed="false">AI / IMAGING</button>
         <button class="filter-button" type="button" data-filter="research" aria-pressed="false">RESEARCH</button>
       </div>
 
@@ -193,6 +194,13 @@
           <a class="project-link" href="https://github.com/peianchen/GalaxyWatchSensorMonitor" target="_blank" rel="noreferrer" aria-label="在 GitHub 查看 Galaxy Watch Sensor Monitor">VIEW SOURCE <span>↗</span></a>
         </article>
 
+        <article class="project-card reveal" id="medical-imaging" data-category="research imaging">
+          <div class="project-card__top"><span class="project-number">P.07</span><span class="project-state">PUBLIC / COURSEWORK</span></div>
+          <div><p class="project-domain">MEDICAL IMAGE ANALYSIS</p><h3>醫學影像深度學習</h3><p>五份作業涵蓋 SPECT 與 MRI 分類、超音波頸動脈分割、胸腔 X 光異常區域偵測，整理前處理、PyTorch 模型、訓練結果與分析。公開程式與彙整圖表，不含病患資料。</p></div>
+          <ul class="tag-list"><li>PyTorch</li><li>MRI / SPECT</li><li>U-Net</li><li>Faster R-CNN</li></ul>
+          <a class="project-link" href="https://github.com/peianchen/NYCU-Deep-Learning-Medical-Image-Analysis" target="_blank" rel="noreferrer" aria-label="查看醫學影像深度學習專案的程式與說明">VIEW PROJECT <span aria-hidden="true">↗</span></a>
+        </article>
+
         <article class="project-card project-card--system reveal" data-category="research bio">
           <div class="project-card__top"><span class="project-number">S.01</span><span class="project-state">RESEARCH SYSTEM</span></div>
           <div><p class="project-domain">ELECTROCHEMISTRY</p><h3>Portable Sweat Analysis</h3><p>把電化學量測、單鍵流程、TFT 狀態回饋、量測腳本與 SD 紀錄整合成可攜式研究儀器。</p></div>
@@ -211,7 +219,7 @@
           <ul class="tag-list"><li>ESP32-C3</li><li>Feedback 360</li><li>PID</li></ul>
         </article>
       </div>
-      <p class="filter-result" aria-live="polite"><span id="visible-count">9</span> systems visible</p>
+      <p class="filter-result" aria-live="polite"><span id="visible-count">10</span> systems visible</p>
     </section>
 
     <section class="research section-shell" id="research" aria-labelledby="research-title">
