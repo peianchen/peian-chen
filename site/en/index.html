@@ -58,7 +58,7 @@
         <p class="hero-kicker">EMBEDDED BIOMEDICAL SENSING / FPGA / RESEARCH INSTRUMENTATION</p>
         <h1 id="hero-title">Embedded biosensing.<br><span>Research systems.</span></h1>
         <p class="hero-lead">I am Pei An Chen, an Electrical Engineering Ph.D. student at National Yang Ming Chiao Tung University. I develop device firmware, communication interfaces, applications, and data workflows around experimental measurement and control needs, with work in wearable sensing, microfluidic instruments, and FPGA systems.</p>
-        <p class="hero-note">My current focus is low-power sensing, multi-device BLE integration, and Verilog logic design. This site brings together public code, research platforms, and implementation records.</p>
+        <p class="hero-note">I independently develop my doctoral and recent R&amp;D projects, with responsibility for requirements, architecture, firmware and applications, integration, and test documentation according to each project's scope. Completed work and ongoing development are identified separately.</p>
         <div class="hero-actions">
           <a class="button button--primary" href="#projects">EXPLORE PROJECTS <span aria-hidden="true">↘</span></a>
           <a class="button button--ghost" href="https://github.com/peianchen" target="_blank" rel="noreferrer">GitHub / peianchen</a>
@@ -235,27 +235,54 @@
 
         <article class="project-card project-card--system reveal" data-category="research bio">
           <div class="project-card__top"><span class="project-number">S.01</span><span class="project-state">RESEARCH SYSTEM</span></div>
-          <div><p class="project-domain">ELECTROCHEMISTRY</p><h3>Portable Sweat Analysis</h3><p>A portable research instrument integrating electrochemical measurement, a one-button workflow, TFT status feedback, measurement scripts, and SD logging.</p></div>
+          <div><p class="project-domain">ELECTROCHEMISTRY</p><h3>ECsnap Electrochemical Instrument</h3><p>An EmStat Pico, MCU, TFT, and microSD instrument with a single-button workflow for stabilization, chronoamperometry, status feedback, and CSV recording.</p></div>
           <ul class="tag-list"><li>EmStat Pico</li><li>CA</li><li>SD Logging</li></ul>
-          <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>Bring electrochemical measurements into a portable operating and data-recording workflow.</dd></div><div><dt>Approach</dt><dd>Integrate EmStat Pico, chronoamperometry scripts, TFT status feedback, and SD storage across setup, measurement, and export.</dd></div><div><dt>Scope</dt><dd>Interface and logging checks are separate from sensor characterization. Detection limits, selectivity, and sample performance require experimental evidence.</dd></div></dl></details>
+          <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>Make electrochemical current measurements easier to operate and record in a portable research instrument.</dd></div><div><dt>Approach</dt><dd>Parse MethodSCRIPT/UART responses in C/C++, use RAM-buffered batch writes and shared-SPI management to coordinate TFT and SD activity, and migrate the firmware from SAMD21 to nRF52840.</dd></div><div><dt>Scope</dt><dd>Research code is private. Current acquisition and concentration conversion are separate tasks; complete analyte calibration and diagnostic performance are not claimed.</dd></div></dl></details>
         </article>
 
         <article class="project-card project-card--system reveal" data-category="research embedded" data-delay="1">
           <div class="project-card__top"><span class="project-number">S.02</span><span class="project-state">RESEARCH SYSTEM</span></div>
-          <div><p class="project-domain">MICROFLUIDIC CONTROL</p><h3>Smart Stop-Flow</h3><p>A portable reaction platform combining smartphone illumination and imaging, dual pumps, microvalves, a PDMS pressure chamber, and a chip observation area.</p></div>
+          <div><p class="project-domain">MICROFLUIDIC CONTROL</p><h3>Smart Stop-Flow</h3><p>An in-development microfluidic prototype connecting ESP32-S3 pump/valve control, Android methods, phone imaging, ROI analysis, and experiment records.</p></div>
           <ul class="tag-list"><li>Micropumps</li><li>Valves</li><li>Android</li></ul>
-          <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>Connect microfluidic delivery, stopping, and observation in a portable reaction and imaging platform.</dd></div><div><dt>Approach</dt><dd>Integrate dual pumps, valves, a PDMS pressure chamber, and chip observation with Android control and smartphone illumination/imaging.</dd></div><div><dt>Scope</dt><dd>Control commands, mechanical simulation, and wet-fluid tests are separate evidence. Running software does not establish that the fluid has completely stopped.</dd></div></dl></details>
+          <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>Align sample delivery, stop-flow observation, and stored records on one experimental timeline.</dd></div><div><dt>Approach</dt><dd>Use state machines for precharge, delivery, flushing, and fault stops. Android coordinates BLE/Serial, illumination, video, and frame analysis; Room stores method snapshots, events, and media indexes, alongside KiCad, SolidWorks, and COMSOL design inputs.</dd></div><div><dt>Scope</dt><dd>Private and in development. Flow, ratios, and physical stopping times require wet calibration. Awards for the biomimetic platform are not attributed to this project.</dd></div></dl></details>
         </article>
 
         <article class="project-card project-card--system reveal" data-category="research embedded" data-delay="2">
           <div class="project-card__top"><span class="project-number">S.03</span><span class="project-state">CONTROL SYSTEM</span></div>
           <div><p class="project-domain">REDUCED-GRAVITY MOTION</p><h3>Dual-Axis Gravity Controller</h3><p>Dual-axis continuous-rotation servo control using angle feedback, velocity estimation, feedforward, and PID to study motion that changes the gravity-vector direction over time.</p></div>
           <ul class="tag-list"><li>ESP32-C3</li><li>Feedback 360</li><li>PID</li></ul>
-          <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>Control dual-axis rotation angles and speeds for research involving time-averaged gravity-vector orientation.</dd></div><div><dt>Approach</dt><dd>Read servo angle feedback with ESP32-C3, estimate velocity, and apply feedforward compensation and PID control.</dd></div><div><dt>Scope</dt><dd>Rotation is not true weightlessness. Sample position, rotation speed, and centrifugal acceleration affect the experimental conditions.</dd></div></dl></details>
+          <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>Control dual-axis rotation for research involving time-averaged gravity-vector orientation.</dd></div><div><dt>Approach</dt><dd>Independently integrate motor feedback, angle/velocity estimation, PID/feedforward, scheduling, and startup zero checks. Microgravity and partial-gravity control are related versions, not separate duplicate achievements.</dd></div><div><dt>Scope</dt><dd>Research code is private. Rotation is not true weightlessness, and control settings do not establish measured gravity conditions.</dd></div></dl></details>
+        </article>
+        <article class="project-card project-card--system reveal" id="pressible" data-category="research bio embedded">
+          <div class="project-card__top"><span class="project-number">S.04</span><span class="project-state">RESEARCH / PRIVATE CODE</span></div>
+          <div><p class="project-domain">WEARABLE SWEAT PRESSURE</p><h3>PressiBLE Sweat-Pressure Platform</h3><p>An nRF52840, BLE, and Android workflow connecting sweat-pressure-related signals, temperature, live trends, and CSV records for wearable sensing research.</p></div>
+          <ul class="tag-list"><li>nRF52840</li><li>BLE</li><li>Android</li><li>Calibration</li></ul>
+          <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>Connect sweat-pressure-related measurements to an observable, exportable phone data workflow.</dd></div><div><dt>Approach</dt><dd>Independently develop sensing firmware, BLE control/data formats, timing, signal validity, and baseline normalization, with trends, Firebase, Nordic DFU, and optional Health Connect integration.</dd></div><div><dt>Scope</dt><dd>Code is private. Pressure categories require calibration for the patch, sweat, and test conditions; working communication does not establish sensing performance.</dd></div></dl></details>
+        </article>
+
+        <article class="project-card project-card--system reveal" id="space-payload" data-category="research embedded">
+          <div class="project-card__top"><span class="project-number">S.05</span><span class="project-state">IN DEVELOPMENT</span></div>
+          <div><p class="project-domain">SPACE MICROFLUIDICS</p><h3>Space Microfluidic Payload</h3><p>Sample-processing and payload-integration development for a planned space experiment, covering requirements, subsystem interfaces, pump/valve sequencing, and chip/mechanical CAD.</p></div>
+          <ul class="tag-list"><li>System Interfaces</li><li>Fluid Sequencing</li><li>CAD</li></ul>
+          <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>Separate ground preparation, sample containment, and mission-data requirements into a prototype design baseline.</dd></div><div><dt>Approach</dt><dd>Independently develop architecture/interface documents, fluid-control test code, chip/mechanical integration, and verification plans, distinguishing ground equipment from flight-side requirements by version.</dd></div><div><dt>Scope</dt><dd>Private and in development. No completed launch, orbital operation, or vibration/environmental qualification is claimed. Mission details and design parameters are not disclosed.</dd></div></dl></details>
+        </article>
+
+        <article class="project-card project-card--system reveal" id="bioimage-analysis" data-category="research imaging">
+          <div class="project-card__top"><span class="project-number">S.06</span><span class="project-state">RESEARCH WORKFLOW</span></div>
+          <div><p class="project-domain">BIOLOGICAL IMAGE ANALYSIS</p><h3>Bioimage &amp; Motion Analysis</h3><p>Python, OpenCV, and PyQt5 tools for preprocessing, segmentation, registration, and motion analysis, extending experimental images into an operable analysis workflow.</p></div>
+          <ul class="tag-list"><li>Python</li><li>OpenCV</li><li>PyQt5</li></ul>
+          <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>Organize experimental images, observe biological motion, and compare analysis outputs.</dd></div><div><dt>Approach</dt><dd>Connect preprocessing, segmentation, image registration, motion quantification, and a user interface, checking behavior against manual annotation and output comparisons.</dd></div><div><dt>Scope</dt><dd>This research workflow is separate from the public SpaceCellCam capture firmware. Unpublished images and research code are not provided.</dd></div></dl></details>
+        </article>
+
+        <article class="project-card project-card--system reveal" id="pva-pump" data-category="research bio">
+          <div class="project-card__top"><span class="project-number">S.07</span><span class="project-state">MASTER'S RESEARCH / 2022</span></div>
+          <div><p class="project-domain">PASSIVE MICROFLUIDICS</p><h3>Passive PVA Sponge Pump</h3><p>Master's research combining finger-initiated loading, PVA sponge capillarity, height differences, and PDMS packaging to study electricity-free microfluidic pumping.</p></div>
+          <ul class="tag-list"><li>PVA</li><li>PDMS</li><li>Capillary Flow</li></ul>
+          <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>Reduce dependence on large external electric pumps and assess a portable fluid-driving prototype.</dd></div><div><dt>Approach</dt><dd>Build the pump and packaging, compare sponge preparation/geometry and channel/height conditions, observe and measure flow, and integrate with an existing laboratory sorting chip.</dd></div><div><dt>Scope</dt><dd>A prototype and master's thesis were completed. This resume-based summary adds no flow-rate or clinical-benefit claims and does not attribute later biomimetic-platform awards to this study.</dd></div></dl></details>
         </article>
       </div>
       <p class="search-empty" hidden>No projects match. Try another keyword or switch to ALL SYSTEMS.</p>
-      <p class="filter-result" role="status" aria-live="polite" aria-atomic="true">Matching projects: <span id="visible-count">12</span></p>
+      <p class="filter-result" role="status" aria-live="polite" aria-atomic="true">Matching projects: <span id="visible-count">16</span></p>
     </section>
 
     <section class="research section-shell" id="research" aria-labelledby="research-title">
@@ -370,6 +397,7 @@
           <h3>Embedded systems × FPGA × intelligent sensing</h3>
           <p>My training began in biomechatronic engineering at National Ilan University, followed by a biomedical engineering master's degree and doctoral study in electrical engineering at NYCU. This path connects biological experiments with sensing, control, and hardware-software development.</p>
           <p>I work across Nordic nRF, ESP32, Raspberry Pi, Android/Wear OS, and FPGA platforms. Beyond acquiring data, I address offline storage, device identity, synchronization, and fault records so experimental workflows are easier to operate and trace.</p>
+          <p>The later ThermoPatch V2 platform uses Room for local history and per-device sync progress. BLE retrieval and Firebase upload are separated, with pending queues, background retries, and round-robin device sync. V2 and sweat-pressure research code remain private; only their purpose and engineering work are described here.</p>
           <p>My current focus is low-power wearable sensing, multi-device BLE data workflows, and Verilog RTL, with continuing study of edge computing and TinyML. I document design choices alongside test conditions, simulation results, and unfinished work.</p>
           <dl class="profile-meta">
             <div><dt>LOCATION</dt><dd>Taiwan / UTC+08</dd></div>
@@ -378,9 +406,17 @@
           </dl>
         </article>
         <div class="education-stack reveal" data-delay="1" aria-label="Education">
-          <article><time>2022—Present</time><span>Ph.D. Student</span><h3>Electrical Engineering</h3><p>National Yang Ming Chiao Tung University</p></article>
+          <article><time>2022—Present</time><span>Ph.D. Student</span><h3>Electrical Engineering</h3><p>National Yang Ming Chiao Tung University<br>Expected completion: June 2027</p></article>
           <article><time>2020—2022</time><span>Master</span><h3>Biomedical Engineering</h3><p>National Yang Ming Chiao Tung University</p></article>
           <article><time>2016—2020</time><span>Bachelor</span><h3>Biomechatronic Engineering</h3><p>National Ilan University</p></article>
+        </div>
+      </div>
+      <div class="research-platforms reveal" aria-labelledby="early-work-title">
+        <div class="research-subhead"><p class="section-index">EARLY WORK / 2019–2020</p><h3 id="early-work-title">From mechatronics to image analysis</h3><p>Undergraduate projects and coursework establishing a foundation in communication, control, and data processing for later research instruments.</p></div>
+        <div class="platform-grid">
+          <article><span>01 / ROBOTICS</span><h4>Wireless Robotic-Arm Carrier</h4><p>A tracked chassis, robotic arm, gripper, and unloading mechanism.</p><ul><li>Arduino Mega/Nano, NRF24L01, SPI, PWM, and servo control.</li><li>Operator inputs, joint/end-effector control, and material-handling sequences.</li><li>Finalist award in the 2019 TEL national Steel Arena final, not first place.</li></ul><small>Mechatronics / Wireless control / 2019</small></article>
+          <article><span>02 / EMBEDDED VISION</span><h4>Raspberry Pi Video Car &amp; Color Tracking</h4><p>Two distinct implementations: a browser-controlled video car and a color-tracking system.</p><ul><li>The video car uses Python/Flask, a webcam, GPIO, and L298N for viewing and vehicle control.</li><li>Color tracking uses OpenCV thresholding and centroid localization, sending color/position to Arduino UNO.</li><li>Recognition was future work in the video-car version; it is not conflated with the separate color-tracking implementation.</li></ul><small>Raspberry Pi / OpenCV / Control</small></article>
+          <article><span>03 / COURSEWORK</span><h4>Rice-Variety CNN Classification</h4><p>A 2020 coursework pipeline for four rice-image categories.</p><ul><li>Labeling, OpenCV preprocessing, normalization, and train/test splitting.</li><li>Compare training, test, and additional-sample behavior to discuss generalization gaps.</li><li>Results are historical coursework records, not fresh training or deployed-system performance.</li></ul><small>Python / CNN / Generalization</small></article>
         </div>
       </div>
     </section>
@@ -399,6 +435,8 @@
         <div class="capability-row"><span class="capability-code">WEB.06</span><h3>Interfaces &amp; visualization</h3><p>JavaScript, HTML/CSS, Node.js, Flask, MapLibre GL JS, and PyQt5; research dashboards, interactive maps, and operating interfaces.</p><span class="capability-level">WEB / DATA</span></div>
         <div class="capability-row"><span class="capability-code">DATA.07</span><h3>Computing &amp; imaging</h3><p>Python, NumPy, pandas, SciPy, Matplotlib, OpenCV, scikit-image, PyTorch, and LabVIEW for signal, image, and coursework-model analysis.</p><span class="capability-level">ANALYSIS</span></div>
         <div class="capability-row"><span class="capability-code">LAB.08</span><h3>Instruments &amp; control</h3><p>Wearable sensing, electrochemistry, microfluidics, imaging, and PID multi-axis control; debugging with Git, GCC, Gradle, serial logs, and Logcat.</p><span class="capability-level">RESEARCH</span></div>
+        <div class="capability-row"><span class="capability-code">OS.09</span><h3>Embedded Linux applications</h3><p>Raspberry Pi sensors, GPIO/I²C/SPI/UART, and cameras, with startup automation and background services. Application/device integration, not kernel or driver development.</p><span class="capability-level">LINUX</span></div>
+        <div class="capability-row"><span class="capability-code">CAD.10</span><h3>Mechanical design &amp; analysis</h3><p>SolidWorks mechanical/microfluidic integration and COMSOL design analysis; simulation, prototype construction, and physical validation are recorded separately.</p><span class="capability-level">DESIGN</span></div>
       </div>
     </section>
 

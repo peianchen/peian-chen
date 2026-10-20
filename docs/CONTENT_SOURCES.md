@@ -1,8 +1,9 @@
 # Website content references
 
 Reviewed on 2026-10-20. The Chinese and English pages paraphrase the owner's public
-GitHub profile and project documentation. Reading a README is not a fresh build,
-training run, hardware measurement, or independent validation of its results.
+GitHub profile, project documentation, and professional sections of the owner's
+104 resume. Reading these sources is not a fresh build, training run, hardware
+measurement, or independent validation of results.
 
 | Reference | Website use |
 | --- | --- |
@@ -15,10 +16,30 @@ training run, hardware measurement, or independent validation of its results.
 | [Taipei Bus Live](https://github.com/peianchen/taipei-bus-live/blob/6d9db5e534f29c82f8af1fa187779a9b900081b5/README.md) | Beta status, official snapshots, route matching, clustering, stop estimates, shared caching and capped extrapolation. |
 
 The prior research, course, awards and journal-name records are retained. No new
-publication titles, employment history, graduation date, or performance claims
-were inferred. Doctoral study remains open-ended rather than inventing a finish
-date. AFPGA remains private by the owner's latest choice.
+publication titles, employment history, or performance claims were inferred.
+AFPGA remains private by the owner's latest choice.
 
-The existing 104 preview required sign-in during this update. Current 104 content
-was not read or imported. No private contact details, salary, identity numbers,
-or other account-only information are included in the site update.
+## 104 professional-content review
+
+After the initial GitHub-only revision, the owner supplied the 104 resume-list
+link. The current resume was read through the existing signed-in Edge session on
+2026-10-20. Only public-appropriate professional content was paraphrased:
+
+- Independent engineering responsibility and expected doctoral completion in
+  June 2027, explicitly described as expected rather than completed.
+- ThermoPatch V2 local history and separated device/cloud synchronization;
+  PressiBLE sensing, baseline normalization and phone-data workflow.
+- ECsnap MethodSCRIPT/UART parsing, buffered storage, shared SPI and MCU migration.
+- SmartStopFlow controller/app records, CAD integration and validation limits.
+- Development-stage space microfluidic payload, without mission details,
+  design parameters, private code or flight-qualification claims.
+- Biological image/motion analysis, separately from public capture firmware.
+- Completed PVA sponge-pump prototype/thesis and undergraduate robotics,
+  Raspberry Pi, color-tracking and rice-CNN coursework summaries.
+- Embedded Linux application/device integration (not kernel/driver work),
+  SolidWorks and COMSOL design work.
+
+No 104 form, resume, or visibility setting was changed. Raw resume content,
+screenshots, private contact details, salary, identity numbers, residence and
+job-search settings were not copied into the repository or public site. Private
+research descriptions are not links to private source code or unpublished data.

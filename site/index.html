@@ -58,7 +58,7 @@
         <p class="hero-kicker">EMBEDDED BIOMEDICAL SENSING / FPGA / RESEARCH INSTRUMENTATION</p>
         <h1 id="hero-title">嵌入式生醫感測，<br><span>研究系統開發。</span></h1>
         <p class="hero-lead">我是陳沛安，目前就讀國立陽明交通大學電機工程博士班。我從實驗中的量測與控制需求出發，開發感測裝置韌體、通訊介面、操作軟體與資料處理流程，研究方向涵蓋穿戴式感測、微流體儀器及 FPGA 數位系統。</p>
-        <p class="hero-note">目前持續投入低功耗感測、BLE 多裝置整合與 Verilog 邏輯設計。這裡整理公開程式、研究平台與實作紀錄。</p>
+        <p class="hero-note">博士與近期研發專案由我獨立開發，依專案範圍負責需求、架構、韌體與操作軟體、系統整合及測試文件；現有成果與開發中項目分別說明。</p>
         <div class="hero-actions">
           <a class="button button--primary" href="#projects">探索工程專案 <span aria-hidden="true">↘</span></a>
           <a class="button button--ghost" href="https://github.com/peianchen" target="_blank" rel="noreferrer">GitHub / peianchen</a>
@@ -235,27 +235,54 @@
 
         <article class="project-card project-card--system reveal" data-category="research bio">
           <div class="project-card__top"><span class="project-number">S.01</span><span class="project-state">RESEARCH SYSTEM</span></div>
-          <div><p class="project-domain">ELECTROCHEMISTRY</p><h3>Portable Sweat Analysis</h3><p>把電化學量測、單鍵流程、TFT 狀態回饋、量測腳本與 SD 紀錄整合成可攜式研究儀器。</p></div>
+          <div><p class="project-domain">ELECTROCHEMISTRY</p><h3>ECsnap 電化學儀器</h3><p>整合 EmStat Pico、微控制器、TFT 與 microSD，以單鍵流程完成穩定等待、計時安培量測、狀態回饋與 CSV 資料保存。</p></div>
           <ul class="tag-list"><li>EmStat Pico</li><li>CA</li><li>SD Logging</li></ul>
-          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>將電化學量測流程整合為可攜式操作與資料紀錄介面。</dd></div><div><dt>實作</dt><dd>整合 EmStat Pico、計時安培量測腳本、TFT 狀態提示與 SD 儲存，串起設定、量測及匯出流程。</dd></div><div><dt>範圍</dt><dd>介面及資料紀錄可與感測器分析分開驗證；檢出極限、選擇性與樣本表現需以實驗資料說明。</dd></div></dl></details>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>把電化學電流量測轉成便於操作及保存資料的可攜式研究儀器。</dd></div><div><dt>實作</dt><dd>以 C／C++ 解析 MethodSCRIPT／UART 回傳，使用 RAM 緩衝批次寫入及 SPI 共用管理，協調 TFT 更新與 SD 儲存，並進行 SAMD21 至 nRF52840 的平台移植。</dd></div><div><dt>範圍</dt><dd>研究程式未公開。電流擷取與濃度換算分開處理，分析物校正及醫療診斷效能未視為已完成。</dd></div></dl></details>
         </article>
 
         <article class="project-card project-card--system reveal" data-category="research embedded" data-delay="1">
           <div class="project-card__top"><span class="project-number">S.02</span><span class="project-state">RESEARCH SYSTEM</span></div>
-          <div><p class="project-domain">MICROFLUIDIC CONTROL</p><h3>Smart Stop-Flow</h3><p>整合手機照明與取像、雙幫浦、微閥、PDMS 壓力腔及晶片觀測區的可攜式反應平台。</p></div>
+          <div><p class="project-domain">MICROFLUIDIC CONTROL</p><h3>Smart Stop-Flow</h3><p>開發中的微流體整合原型，串接 ESP32-S3 幫浦／微閥控制、Android 方法設定、手機取像、ROI 分析與實驗紀錄。</p></div>
           <ul class="tag-list"><li>Micropumps</li><li>Valves</li><li>Android</li></ul>
-          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>串接微流體輸送、停止與觀測流程，研究可攜式反應與取像平台。</dd></div><div><dt>實作</dt><dd>整合雙幫浦、閥件、PDMS 壓力腔與晶片觀測區，搭配 Android 操作及手機照明取像。</dd></div><div><dt>範圍</dt><dd>控制指令、機構模擬與濕式流體測試分開判讀；軟體可運行不等於實際流體已完全停止。</dd></div></dl></details>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>讓進樣控制、停流觀察與資料保存能對應同一段實驗時間序列。</dd></div><div><dt>實作</dt><dd>以狀態機安排預壓、進樣、清洗及異常停止；手機整合 BLE／Serial、照明錄影與逐幀分析，以 Room 保存方法快照、控制事件和媒體索引，另整合 KiCad、SolidWorks 與 COMSOL 設計資料。</dd></div><div><dt>範圍</dt><dd>未公開、開發中。流量、配比及實際停流時間仍需濕式校正；仿生微流體平台的獎項不移用為本專案成果。</dd></div></dl></details>
         </article>
 
         <article class="project-card project-card--system reveal" data-category="research embedded" data-delay="2">
           <div class="project-card__top"><span class="project-number">S.03</span><span class="project-state">CONTROL SYSTEM</span></div>
           <div><p class="project-domain">REDUCED-GRAVITY MOTION</p><h3>Dual-Axis Gravity Controller</h3><p>以角度回授、速度估測、feedforward 與 PID 控制雙軸連續旋轉伺服，研究重力向量方向隨時間變化的運動控制。</p></div>
           <ul class="tag-list"><li>ESP32-C3</li><li>Feedback 360</li><li>PID</li></ul>
-          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>控制雙軸旋轉的角度與速度，供重力向量時間平均相關研究使用。</dd></div><div><dt>實作</dt><dd>以 ESP32-C3 讀取伺服角度回授，進行速度估測、前饋補償與 PID 控制。</dd></div><div><dt>範圍</dt><dd>旋轉運動不等同真正失重；樣本位置、轉速及離心加速度都會影響實驗條件。</dd></div></dl></details>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>控制雙軸旋轉的角度與速度，供重力向量時間平均相關研究使用。</dd></div><div><dt>實作</dt><dd>獨立整合馬達回授、角度／速度解算、PID／前饋、運動排程與開機零點確認。微重力與部分重力控制為相關版本，並非重複計算的獨立成果。</dd></div><div><dt>範圍</dt><dd>研究程式未公開；旋轉不等同真正失重，控制設定不代表已實測達成特定重力條件。</dd></div></dl></details>
+        </article>
+        <article class="project-card project-card--system reveal" id="pressible" data-category="research bio embedded">
+          <div class="project-card__top"><span class="project-number">S.04</span><span class="project-state">RESEARCH / PRIVATE CODE</span></div>
+          <div><p class="project-domain">WEARABLE SWEAT PRESSURE</p><h3>PressiBLE 汗液壓力平台</h3><p>以 nRF52840、BLE 與 Android 串接汗壓相關電訊號、溫度、即時趨勢與 CSV 紀錄，研究穿戴式感測資料的判讀與保存。</p></div>
+          <ul class="tag-list"><li>nRF52840</li><li>BLE</li><li>Android</li><li>Calibration</li></ul>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>把汗液壓力相關量測串接至可觀察、匯出與追蹤的手機資料流程。</dd></div><div><dt>實作</dt><dd>獨立開發感測韌體、BLE 控制及資料格式，處理量測時序、有效訊號與 baseline 正規化，串接趨勢顯示、Firebase、Nordic DFU 與選用的 Health Connect。</dd></div><div><dt>範圍</dt><dd>程式未公開。汗壓分級仍須依貼片、汗液與實驗條件校正，通訊正常不等於感測性能已驗證。</dd></div></dl></details>
+        </article>
+
+        <article class="project-card project-card--system reveal" id="space-payload" data-category="research embedded">
+          <div class="project-card__top"><span class="project-number">S.05</span><span class="project-state">IN DEVELOPMENT</span></div>
+          <div><p class="project-domain">SPACE MICROFLUIDICS</p><h3>太空微流體 Payload</h3><p>面向預計太空實驗的樣品處理與載荷整合開發，整理系統需求、子系統介面、幫浦／微閥序列控制及晶片／機構 CAD。</p></div>
+          <ul class="tag-list"><li>System Interfaces</li><li>Fluid Sequencing</li><li>CAD</li></ul>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>分層規劃地面準備、樣品承載與任務資料需求，建立可供原型整合的設計基線。</dd></div><div><dt>實作</dt><dd>獨立負責架構與介面文件、流體控制測試程式、晶片／機構整合及驗證規劃，依版本區分地面控制設備與飛行端需求。</dd></div><div><dt>範圍</dt><dd>未公開、開發中；未宣稱完成發射、在軌操作或振動／環境資格驗證，不公開任務細節與設計參數。</dd></div></dl></details>
+        </article>
+
+        <article class="project-card project-card--system reveal" id="bioimage-analysis" data-category="research imaging">
+          <div class="project-card__top"><span class="project-number">S.06</span><span class="project-state">RESEARCH WORKFLOW</span></div>
+          <div><p class="project-domain">BIOLOGICAL IMAGE ANALYSIS</p><h3>生物影像與運動分析</h3><p>以 Python、OpenCV 與 PyQt5 建立影像前處理、分割、配準和運動分析工具，將實驗取像延伸至可操作的分析流程。</p></div>
+          <ul class="tag-list"><li>Python</li><li>OpenCV</li><li>PyQt5</li></ul>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>協助生物實驗整理影像、觀察運動行為並比對分析結果。</dd></div><div><dt>實作</dt><dd>串接前處理、分割、影像配準、運動量化與操作介面，透過人工標註和結果比對檢查分析行為。</dd></div><div><dt>範圍</dt><dd>這是研究分析工具介紹，不等同公開 SpaceCellCam 取像韌體內建功能；不提供未發表影像或研究程式。</dd></div></dl></details>
+        </article>
+
+        <article class="project-card project-card--system reveal" id="pva-pump" data-category="research bio">
+          <div class="project-card__top"><span class="project-number">S.07</span><span class="project-state">MASTER'S RESEARCH / 2022</span></div>
+          <div><p class="project-domain">PASSIVE MICROFLUIDICS</p><h3>被動式 PVA 海綿幫浦</h3><p>碩士研究結合手指啟動進樣、PVA 海綿毛細作用、高度差與 PDMS 封裝，研究不需電力驅動的微流體輸送方案。</p></div>
+          <ul class="tag-list"><li>PVA</li><li>PDMS</li><li>Capillary Flow</li></ul>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>降低微流體系統對大型外接電動幫浦的依賴，評估便攜式流體驅動原型。</dd></div><div><dt>實作</dt><dd>製作海綿幫浦與封裝，比較海綿處理、尺寸形狀、流道幾何及高度條件；建立流場觀察、流量量測，並與實驗室既有分選晶片整合。</dd></div><div><dt>範圍</dt><dd>已完成原型與碩士論文；此處依履歷摘要介紹，不新增流量或臨床效益宣稱，也不將後續仿生平台獎項歸於此研究。</dd></div></dl></details>
         </article>
       </div>
       <p class="search-empty" hidden>找不到符合條件的專案。試試其他關鍵字，或切回 ALL SYSTEMS。</p>
-      <p class="filter-result" role="status" aria-live="polite" aria-atomic="true">符合條件的專案：<span id="visible-count">12</span></p>
+      <p class="filter-result" role="status" aria-live="polite" aria-atomic="true">符合條件的專案：<span id="visible-count">16</span></p>
     </section>
 
     <section class="research section-shell" id="research" aria-labelledby="research-title">
@@ -370,6 +397,7 @@
           <h3>Embedded systems × FPGA × intelligent sensing</h3>
           <p>我從宜蘭大學生物機電工程，進入陽明交通大學生醫工程碩士班，再延伸至電機工程博士研究。這條路徑讓我同時接觸生物實驗需求、感測控制與軟硬體開發。</p>
           <p>實作涵蓋 Nordic nRF、ESP32、Raspberry Pi、Android／Wear OS 與 FPGA。除了讓裝置取得資料，我也處理離線保存、裝置識別、資料同步與異常紀錄，讓實驗流程更容易操作和追蹤。</p>
+          <p>ThermoPatch 的後續 V2 平台進一步以 Room 保存本機歷史和各裝置同步進度，將 BLE 取回資料與 Firebase 上傳分開，處理待傳佇列、背景重試和多裝置輪流同步。V2 與汗壓研究程式未公開，網站僅介紹用途與工程工作。</p>
           <p>目前聚焦低功耗穿戴式感測、BLE 多裝置資料流程及 Verilog RTL，並持續研究邊緣運算與 TinyML。設計選擇會連同測試條件、模擬結果和未完成項目一起記錄。</p>
           <dl class="profile-meta">
             <div><dt>LOCATION</dt><dd>Taiwan / UTC+08</dd></div>
@@ -378,9 +406,17 @@
           </dl>
         </article>
         <div class="education-stack reveal" data-delay="1" aria-label="教育背景">
-          <article><time>2022—至今</time><span>博士班 / Ph.D. Student</span><h3>電機工程</h3><p>國立陽明交通大學</p></article>
+          <article><time>2022—至今</time><span>博士班 / Ph.D. Student</span><h3>電機工程</h3><p>國立陽明交通大學<br>預計 2027 年 6 月畢業</p></article>
           <article><time>2020—2022</time><span>碩士 / Master's Degree</span><h3>生醫工程</h3><p>國立陽明交通大學</p></article>
           <article><time>2016—2020</time><span>學士 / Bachelor's Degree</span><h3>生物機電工程</h3><p>國立宜蘭大學</p></article>
+        </div>
+      </div>
+      <div class="research-platforms reveal" aria-labelledby="early-work-title">
+        <div class="research-subhead"><p class="section-index">EARLY WORK / 2019–2020</p><h3 id="early-work-title">從機電控制到影像分析</h3><p>大學專題與課程實作，建立後續研究裝置開發所需的通訊、控制與資料處理基礎。</p></div>
+        <div class="platform-grid">
+          <article><span>01 / ROBOTICS</span><h4>無線機械手臂搬運載具</h4><p>整合履帶底盤、機械手臂、夾爪與卸貨機構。</p><ul><li>Arduino Mega／Nano、NRF24L01、SPI、PWM 與伺服控制。</li><li>建立操作介面、關節／末端座標控制及搬運動作流程。</li><li>2019 TEL 鋼鐵擂台全國總決賽入圍獎，非冠軍。</li></ul><small>Mechatronics / Wireless control / 2019</small></article>
+          <article><span>02 / EMBEDDED VISION</span><h4>Raspberry Pi 視訊車與辨色追蹤</h4><p>兩項不同實作：網頁遙控視訊車，以及影像辨色追蹤系統。</p><ul><li>視訊車使用 Python／Flask、Webcam、GPIO 與 L298N，完成影像觀看與車體控制。</li><li>辨色系統以 OpenCV 二值化與輪廓中心定位，傳送色彩／位置至 Arduino UNO 控車。</li><li>視訊車的影像辨識屬該版後續規劃，不與另一項辨色實作混為一談。</li></ul><small>Raspberry Pi / OpenCV / Control</small></article>
+          <article><span>03 / COURSEWORK</span><h4>稻米品種 CNN 分類</h4><p>2020 年課程以四類稻米影像建立分類流程。</p><ul><li>整理標註、OpenCV 前處理、正規化與訓練／測試切分。</li><li>比較訓練、測試及額外樣本表現，分析泛化落差。</li><li>結果為歷史課程紀錄，未在本次網站更新重新訓練或作為部署效能宣稱。</li></ul><small>Python / CNN / Generalization</small></article>
         </div>
       </div>
     </section>
@@ -399,6 +435,8 @@
         <div class="capability-row"><span class="capability-code">WEB.06</span><h3>資料介面與視覺化</h3><p>JavaScript、HTML／CSS、Node.js、Flask、MapLibre GL JS、PyQt5；開發研究儀表板、互動地圖與操作介面。</p><span class="capability-level">WEB / DATA</span></div>
         <div class="capability-row"><span class="capability-code">DATA.07</span><h3>科學運算與影像</h3><p>Python、NumPy、pandas、SciPy、Matplotlib、OpenCV、scikit-image、PyTorch 與 LabVIEW；訊號、影像及課程模型分析。</p><span class="capability-level">ANALYSIS</span></div>
         <div class="capability-row"><span class="capability-code">LAB.08</span><h3>研究儀器與控制</h3><p>穿戴式感測、電化學、微流體、影像擷取與 PID 多軸控制；搭配 Git、GCC、Gradle、串列紀錄及 Logcat 追蹤問題。</p><span class="capability-level">RESEARCH</span></div>
+        <div class="capability-row"><span class="capability-code">OS.09</span><h3>Embedded Linux 應用</h3><p>Raspberry Pi 感測器、GPIO／I²C／SPI／UART 與相機整合，設定開機自動執行及背景服務；範圍為應用與裝置整合，不是核心或驅動開發。</p><span class="capability-level">LINUX</span></div>
+        <div class="capability-row"><span class="capability-code">CAD.10</span><h3>機構與設計分析</h3><p>使用 SolidWorks 整合機構與微流體設計，搭配 COMSOL 分析設計條件；模擬、原型製作與物理驗證分別記錄。</p><span class="capability-level">DESIGN</span></div>
       </div>
     </section>
 
