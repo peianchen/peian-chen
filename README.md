@@ -22,11 +22,14 @@ Live site: <https://peianchen.github.io/peian-chen/>
 
 ## Content
 
-The bilingual pages cover eleven engineering, research, and course projects.
+The bilingual pages cover twelve engineering, research, and course projects.
 Each project includes an expandable purpose, implementation approach, and scope.
 Public repositories have direct links; private research/code is described without
 changing repository permissions. Historical results are not presented as fresh
 validation or clinical evidence.
+
+Copy is cross-checked against the public GitHub profile and implementation
+READMEs. See [content sources](docs/CONTENT_SOURCES.md) for the reference scope.
 
 The current portrait is the owner-supplied `site/img/peian-chen-campus-2026.jpg`.
 Both languages use CSS framing to focus on the person and link to the full photo.

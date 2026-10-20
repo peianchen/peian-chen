@@ -41,15 +41,21 @@ def main():
         page = Page()
         page.feed(source)
         assert not [key for key, count in Counter(page.ids).items() if count > 1]
-        assert page.cards == page.details == 11, relative
-        assert {"medical-imaging", "data-structures", "project-search"} <= set(page.ids)
-        assert {"all", "imaging", "algorithms", "research"} <= set(page.filters)
+        assert page.cards == page.details == 12, relative
+        assert {"medical-imaging", "data-structures", "taipei-bus", "project-search"} <= set(page.ids)
+        assert {"all", "imaging", "algorithms", "web", "research"} <= set(page.filters)
         assert len(page.filters) == len(set(page.filters))
-        assert re.search(r'id="visible-count">11<', source)
+        assert re.search(r'id="visible-count">12<', source)
         assert not re.search(r"INTERVIEW_GUIDE|面試|展現能力|REPOSITORIES MAPPED", source)
         assert not any("NYCU-AFPGA-Labs" in link for link in page.links)
         assert "mailto:chen861019@gmail.com" in page.links
         assert any("NYCU-Data-Structures-Graph-Algorithms" in link for link in page.links)
+        assert "https://github.com/peianchen/taipei-bus-live" in page.links
+        assert "Ph.D. Student" in source and "Ph.D. Candidate" not in source
+        assert "KiCad" in source and "Zephyr RTOS" in source
+        assert source.count('class="capability-row"') == 8
+        assert "Recovery FSM" in source and "System ON idle" in source
+        assert not re.search(r"recovery-boundary verification|監測與恢復流程", source)
         assert source.count("<h1 ") == 1
         assert "2019" in source and "Biosensors &amp; Bioelectronics" in source
         parsed[path.resolve()] = page
