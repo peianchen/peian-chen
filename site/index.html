@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="陳沛安的工程作品集：穿戴式生醫感測、嵌入式系統、微流體、影像平台、FPGA 與研究儀器。">
-  <meta name="theme-color" content="#07110f">
+  <meta name="theme-color" content="#060d1c">
   <meta property="og:title" content="Pei An Chen | Engineering Portfolio">
   <meta property="og:description" content="從感測器、韌體、App 到研究資料，打造可驗證的跨層工程系統。">
   <meta property="og:type" content="website">
@@ -38,8 +38,8 @@
       <a href="#systems">系統</a>
       <a href="#projects">專案</a>
       <a href="#research">研究</a>
-      <a href="#profile">履歷</a>
-      <a href="#capabilities">能力</a>
+      <a href="#profile">關於我</a>
+      <a href="#capabilities">技術</a>
       <a href="#contact">聯絡</a>
     </nav>
     <div class="header-actions">
@@ -57,25 +57,27 @@
         <div class="eyebrow"><span class="status-dot"></span> SYSTEMS ONLINE <span id="taipei-time">UTC+08:00</span></div>
         <p class="hero-kicker">EMBEDDED BIOMEDICAL SENSING / FPGA / RESEARCH INSTRUMENTATION</p>
         <h1 id="hero-title">把真實世界的訊號，<br><span>做成可用的系統。</span></h1>
-        <p class="hero-lead">我是陳沛安，陽明交通大學電機工程博士候選人。我從感測器與致動器出發，串起低功耗韌體、BLE、Edge AI、Android、雲端與分析流程，打造能被測量、驗證與持續改進的研究工具。</p>
+        <p class="hero-lead">我是陳沛安，陽明交通大學電機工程博士候選人。我的研究與實作圍繞嵌入式生醫感測、研究儀器與數位系統：從感測器讀值、韌體控制與 BLE 通訊，到 Android 操作介面及資料分析，讓硬體與軟體在同一條流程中協作。</p>
+        <p class="hero-note">這裡記錄研究平台、開源實作與課程專案，包含設計思路、實作方法，以及已知限制。</p>
         <div class="hero-actions">
           <a class="button button--primary" href="#projects">探索工程專案 <span aria-hidden="true">↘</span></a>
           <a class="button button--ghost" href="https://github.com/peianchen" target="_blank" rel="noreferrer">GitHub / peianchen</a>
         </div>
-        <dl class="hero-stats" aria-label="作品集統計">
-          <div><dt>25</dt><dd>REPOSITORIES MAPPED</dd></div>
-          <div><dt>06</dt><dd>ENGINEERING DOMAINS</dd></div>
-          <div><dt>04</dt><dd>SYSTEM LAYERS</dd></div>
+        <dl class="hero-stats" aria-label="網站內容導覽">
+          <div><dt>BUILD</dt><dd>DEVICES + SOFTWARE</dd></div>
+          <div><dt>STUDY</dt><dd>MODELS + ALGORITHMS</dd></div>
+          <div><dt>RECORD</dt><dd>METHODS + RESULTS</dd></div>
         </dl>
       </div>
 
       <div class="hero-visual reveal" data-delay="1">
         <div class="portrait-frame">
-          <div class="portrait-coordinates"><span>25.03 N</span><span>121.56 E</span></div>
-          <img src="./img/peian-chen.jpg" alt="陳沛安於研究成果展示場合的個人照片" width="704" height="704">
+          <div class="portrait-coordinates"><span>TAIWAN</span><span>RESEARCH + ENGINEERING</span></div>
+          <div class="portrait-crop"><img src="./img/peian-chen-campus-2026.jpg" alt="陳沛安穿著學位服，於陽明交通大學電機學院前留影" width="1560" height="2080" fetchpriority="high"></div>
           <div class="scan-line" aria-hidden="true"></div>
-          <div class="portrait-caption"><span>SUBJECT_01</span><strong>PEI AN CHEN</strong></div>
+          <div class="portrait-caption"><span>陳沛安</span><strong>PEI AN CHEN</strong></div>
         </div>
+        <a class="portrait-full" href="./img/peian-chen-campus-2026.jpg" target="_blank" rel="noreferrer">查看完整校園照片 <span aria-hidden="true">↗</span></a>
         <div class="telemetry-card telemetry-card--a"><span>CORE</span><strong>EMBEDDED</strong><small>nRF / ESP32 / Zephyr</small></div>
         <div class="telemetry-card telemetry-card--b"><span>LINK</span><strong>BLE + CLOUD</strong><small>Android / Firebase</small></div>
       </div>
@@ -90,8 +92,8 @@
     <section class="systems section-shell" id="systems" aria-labelledby="systems-title">
       <div class="section-heading reveal">
         <p class="section-index">01 / SYSTEM ARCHITECTURE</p>
-        <h2 id="systems-title">不是單點 Demo，<br>而是完整訊號鏈。</h2>
-        <p>每個專案都從物理量開始，經過硬體、韌體、通訊與應用層，最後形成可追溯的研究資料。</p>
+        <h2 id="systems-title">從物理訊號，<br>到可理解的資料。</h2>
+        <p>研究儀器與感測平台通常需要跨越多個介面。以下是我整理系統的四個層次；各專案依實際需求選擇組合，而不是每項實作都包含所有層次。</p>
       </div>
 
       <div class="architecture-grid reveal" data-delay="1">
@@ -142,34 +144,43 @@
         <div><p class="section-index">02 / SELECTED WORK</p><h2 id="projects-title">工程專案矩陣</h2></div>
         <p>從感測與嵌入式系統到數位邏輯、醫學影像分析，整理各專案的功能、實作與結果。</p>
       </div>
+      <div class="project-search reveal">
+        <label for="project-search">尋找專案 <span>SEARCH INDEX</span></label>
+        <div><input id="project-search" type="search" placeholder="搜尋 BLE、FPGA、醫學影像、演算法…" autocomplete="off" aria-controls="project-grid"><button class="search-clear" type="button" hidden>清除搜尋</button></div>
+      </div>
       <div class="project-toolbar reveal" role="group" aria-label="專案分類篩選">
         <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">ALL SYSTEMS</button>
         <button class="filter-button" type="button" data-filter="bio" aria-pressed="false">BIOSENSING</button>
         <button class="filter-button" type="button" data-filter="embedded" aria-pressed="false">EMBEDDED</button>
         <button class="filter-button" type="button" data-filter="fpga" aria-pressed="false">FPGA</button>
         <button class="filter-button" type="button" data-filter="imaging" aria-pressed="false">AI / IMAGING</button>
+        <button class="filter-button" type="button" data-filter="algorithms" aria-pressed="false">ALGORITHMS</button>
         <button class="filter-button" type="button" data-filter="research" aria-pressed="false">RESEARCH</button>
       </div>
+      <p class="project-reading-note">展開卡片可讀取目的、方法與限制。「公開程式」可直接查看 GitHub；研究介紹不代表相關原始碼已公開。軟體測試、模擬結果與實體驗證依各專案紀錄分別說明。</p>
 
       <div class="project-grid" id="project-grid">
         <article class="project-card project-card--feature reveal" data-category="bio embedded">
-          <div class="project-card__top"><span class="project-number">P.01</span><span class="project-state">PUBLIC / ACTIVE</span></div>
+          <div class="project-card__top"><span class="project-number">P.01</span><span class="project-state">PUBLIC / ANDROID</span></div>
           <div><p class="project-domain">WEARABLE BIOSENSING</p><h3>ThermoPatch</h3><p>多節點 BLE 體表溫度系統，整合 Android 即時視覺化、Firebase 同步、裝置管理與 OTA 更新。</p></div>
           <ul class="tag-list"><li>Kotlin</li><li>BLE</li><li>Firebase</li><li>nRF52840</li></ul>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>集中查看多個體表溫度節點的資料，減少逐台操作與分散紀錄。</dd></div><div><dt>實作</dt><dd>以 BLE 連接感測節點，在 Android 顯示讀值、管理裝置並串接 Firebase；OTA 與資料流程以各版本文件為準。</dd></div><div><dt>範圍</dt><dd>此連結是公開版本；不同硬體世代與新版 App 的功能不可直接視為相同。研究用途，不作為臨床診斷工具。</dd></div></dl></details>
           <a class="project-link" href="https://github.com/peianchen/ThermoPatch" target="_blank" rel="noreferrer" aria-label="在 GitHub 查看 ThermoPatch">VIEW SOURCE <span>↗</span></a>
         </article>
 
         <article class="project-card reveal" data-category="research embedded" data-delay="1">
-          <div class="project-card__top"><span class="project-number">P.02</span><span class="project-state">PUBLIC / FIELD</span></div>
+          <div class="project-card__top"><span class="project-number">P.02</span><span class="project-state">PUBLIC / IMAGING</span></div>
           <div><p class="project-domain">BIOLOGICAL IMAGING</p><h3>SpaceCellCam</h3><p>以 ESP32-S3 與 OV5640 建立 LED 輔助高解析定時取像，延伸至影像分析與運動量化流程。</p></div>
           <ul class="tag-list"><li>ESP32-S3</li><li>OV5640</li><li>Python</li></ul>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>建立可排程的影像擷取流程，供生物樣本的影像觀察與後續分析使用。</dd></div><div><dt>實作</dt><dd>以 ESP32-S3、OV5640 與 LED 照明整合取像控制，再以 Python 延伸影像處理與運動量化。</dd></div><div><dt>範圍</dt><dd>影像品質受光學配置、照明及樣本條件影響；專案名稱不代表已完成太空飛行或環境認證。</dd></div></dl></details>
           <a class="project-link" href="https://github.com/peianchen/SpaceCellCam" target="_blank" rel="noreferrer" aria-label="在 GitHub 查看 SpaceCellCam">VIEW SOURCE <span>↗</span></a>
         </article>
 
         <article class="project-card reveal" data-category="fpga" data-delay="2">
           <div class="project-card__top"><span class="project-number">P.03</span><span class="project-state">PUBLIC / RTL</span></div>
-          <div><p class="project-domain">RELIABILITY LOGIC</p><h3>Space BMC Core</h3><p>Verilog-2001 心跳監測與逾時控制核心，搭配 cycle-accurate 自動化 testbench 與恢復邊界驗證。</p></div>
+          <div><p class="project-domain">RELIABILITY LOGIC</p><h3>Space BMC Core</h3><p>Verilog 心跳監測與逾時控制核心，搭配 cycle-accurate 自動化 testbench 與恢復邊界驗證。</p></div>
           <ul class="tag-list"><li>Verilog</li><li>Questa</li><li>DE10</li></ul>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>用數位邏輯偵測心跳訊號停止與逾時事件，研究控制核心的異常處理。</dd></div><div><dt>實作</dt><dd>以 Verilog 描述監測與恢復流程，使用自動化 testbench 檢查計數、狀態轉移與邊界條件。</dd></div><div><dt>範圍</dt><dd>RTL 模擬、綜合、時序與板上測試是不同階段；應以 repository 的個別驗證紀錄判讀，不延伸為太空等級可靠度。</dd></div></dl></details>
           <a class="project-link" href="https://github.com/peianchen/Space-BMC-Core-SEMC" target="_blank" rel="noreferrer" aria-label="在 GitHub 查看 Space BMC Core">VIEW SOURCE <span>↗</span></a>
         </article>
 
@@ -177,6 +188,7 @@
           <div class="project-card__top"><span class="project-number">P.04</span><span class="project-state">PUBLIC / ZEPHYR</span></div>
           <div><p class="project-domain">LOW-POWER SENSING</p><h3>nRF54L15 × MLX90614</h3><p>紅外線溫度感測韌體、I²C 整合與低功耗分析，建立新一代穿戴式節點的硬體基線。</p></div>
           <ul class="tag-list"><li>C</li><li>Zephyr</li><li>nRF54L15</li></ul>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>建立 nRF54L15 與紅外線溫度感測器的整合起點，供後續感測節點開發使用。</dd></div><div><dt>實作</dt><dd>使用 C 與 Zephyr 管理 I²C 讀取、裝置設定與取樣流程，整理硬體連接與低功耗設計考量。</dd></div><div><dt>範圍</dt><dd>編譯成功不代表功耗或溫度精度已驗證；量測結果需附測試板、設定及量測條件。</dd></div></dl></details>
           <a class="project-link" href="https://github.com/peianchen/nRF54L15_MLX90614" target="_blank" rel="noreferrer" aria-label="在 GitHub 查看 nRF54L15 MLX90614">VIEW SOURCE <span>↗</span></a>
         </article>
 
@@ -184,13 +196,15 @@
           <div class="project-card__top"><span class="project-number">P.05</span><span class="project-state">PRIVATE / LAB ARCHIVE</span></div>
           <div><p class="project-domain">DIGITAL SYSTEM DESIGN</p><h3>NYCU-AFPGA</h3><p>從組合邏輯、FSM、RAM、簡易處理器到 DE1-SoC HPS/Qsys 整合的八組詳細實驗文件。</p></div>
           <ul class="tag-list"><li>Verilog</li><li>Quartus</li><li>Qsys</li></ul>
-          <a class="project-link" href="https://github.com/peianchen/NYCU-AFPGA-Labs" target="_blank" rel="noreferrer" aria-label="在 GitHub 查看 NYCU AFPGA">VIEW PROJECT <span>↗</span></a>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>循序理解數位邏輯、記憶體與處理器架構，再延伸至 HPS 與 FPGA 的軟硬體介面。</dd></div><div><dt>實作</dt><dd>以 Verilog、Quartus 與 Qsys 整理八組實驗，對照程式、模擬與原始報告說明設計。</dd></div><div><dt>範圍</dt><dd>目前保留為非公開課程封存；此處提供主題介紹，不提供需要權限的程式連結。</dd></div></dl></details>
+          <p class="project-access">課程內容介紹 / 原始碼未公開</p>
         </article>
 
         <article class="project-card reveal" data-category="bio embedded" data-delay="2">
           <div class="project-card__top"><span class="project-number">P.06</span><span class="project-state">PUBLIC / WEAR OS</span></div>
           <div><p class="project-domain">PHYSIOLOGICAL DATA</p><h3>Galaxy Watch Sensor Monitor</h3><p>Samsung Watch 皮膚溫度擷取與研究型資料流程，保留 PPG 擴充介面與非醫療用途界線。</p></div>
           <ul class="tag-list"><li>Kotlin</li><li>Wear OS</li><li>Sensor SDK</li></ul>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>在 Wear OS 裝置上建立生理感測資料擷取流程，供研究紀錄與資料處理使用。</dd></div><div><dt>實作</dt><dd>以 Kotlin 串接 Samsung Sensor SDK，整理皮膚溫度讀取與裝置端操作，保留 PPG 延伸介面。</dd></div><div><dt>範圍</dt><dd>可用感測功能受手錶型號、SDK 權限與版本限制；保留介面不等於完整訊號分析已實作。</dd></div></dl></details>
           <a class="project-link" href="https://github.com/peianchen/GalaxyWatchSensorMonitor" target="_blank" rel="noreferrer" aria-label="在 GitHub 查看 Galaxy Watch Sensor Monitor">VIEW SOURCE <span>↗</span></a>
         </article>
 
@@ -198,28 +212,41 @@
           <div class="project-card__top"><span class="project-number">P.07</span><span class="project-state">PUBLIC / COURSEWORK</span></div>
           <div><p class="project-domain">MEDICAL IMAGE ANALYSIS</p><h3>醫學影像深度學習</h3><p>五份作業涵蓋 SPECT 與 MRI 分類、超音波頸動脈分割、胸腔 X 光異常區域偵測，整理前處理、PyTorch 模型、訓練結果與分析。公開程式與彙整圖表，不含病患資料。</p></div>
           <ul class="tag-list"><li>PyTorch</li><li>MRI / SPECT</li><li>U-Net</li><li>Faster R-CNN</li></ul>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>比較分類、影像分割與物件偵測如何對應不同的醫學影像任務。</dd></div><div><dt>實作</dt><dd>整理五份作業的前處理、模型、訓練曲線與評估分析，包含 SPECT／MRI、超音波及胸腔 X 光。</dd></div><div><dt>範圍</dt><dd>結果以原作業留下的紀錄為依據，未宣稱重新訓練或臨床驗證；公開內容不含病患資料。</dd></div></dl></details>
           <a class="project-link" href="https://github.com/peianchen/NYCU-Deep-Learning-Medical-Image-Analysis" target="_blank" rel="noreferrer" aria-label="查看醫學影像深度學習專案的程式與說明">VIEW PROJECT <span aria-hidden="true">↗</span></a>
+        </article>
+
+        <article class="project-card reveal" id="data-structures" data-category="algorithms">
+          <div class="project-card__top"><span class="project-number">P.08</span><span class="project-state">PUBLIC / COURSEWORK</span></div>
+          <div><p class="project-domain">DATA STRUCTURES + GRAPHS</p><h3>資料結構與圖論演算法</h3><p>以 C 實作九份作業，從排序、BFS 迷宮搜尋與稀疏矩陣，到 Segment Tree、Huffman、最小生成樹與 Dijkstra，附結果圖片及複雜度分析。</p></div>
+          <ul class="tag-list"><li>C</li><li>BFS</li><li>Huffman</li><li>Graph Algorithms</li></ul>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>理解資料結構如何影響記憶體使用、操作成本與演算法選擇。</dd></div><div><dt>實作</dt><dd>每份作業整理問題、主要程式、歷史結果、複雜度與適用情境，另提供編譯及代表性行為檢查工具。</dd></div><div><dt>範圍</dt><dd>保留舊版程式與已知限制；歷史效能數據不是目前硬體上的新量測，測例通過也不代表完整規格已滿足。</dd></div></dl></details>
+          <a class="project-link" href="https://github.com/peianchen/NYCU-Data-Structures-Graph-Algorithms" target="_blank" rel="noreferrer" aria-label="查看資料結構與圖論演算法的程式與說明">VIEW PROJECT <span aria-hidden="true">↗</span></a>
         </article>
 
         <article class="project-card project-card--system reveal" data-category="research bio">
           <div class="project-card__top"><span class="project-number">S.01</span><span class="project-state">RESEARCH SYSTEM</span></div>
           <div><p class="project-domain">ELECTROCHEMISTRY</p><h3>Portable Sweat Analysis</h3><p>把電化學量測、單鍵流程、TFT 狀態回饋、量測腳本與 SD 紀錄整合成可攜式研究儀器。</p></div>
           <ul class="tag-list"><li>EmStat Pico</li><li>CA</li><li>SD Logging</li></ul>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>將電化學量測流程整合為可攜式操作與資料紀錄介面。</dd></div><div><dt>實作</dt><dd>整合 EmStat Pico、計時安培量測腳本、TFT 狀態提示與 SD 儲存，串起設定、量測及匯出流程。</dd></div><div><dt>範圍</dt><dd>介面及資料紀錄可與感測器分析分開驗證；檢出極限、選擇性與樣本表現需以實驗資料說明。</dd></div></dl></details>
         </article>
 
         <article class="project-card project-card--system reveal" data-category="research embedded" data-delay="1">
           <div class="project-card__top"><span class="project-number">S.02</span><span class="project-state">RESEARCH SYSTEM</span></div>
           <div><p class="project-domain">MICROFLUIDIC CONTROL</p><h3>Smart Stop-Flow</h3><p>整合手機照明與取像、雙幫浦、微閥、PDMS 壓力腔及晶片觀測區的可攜式反應平台。</p></div>
           <ul class="tag-list"><li>Micropumps</li><li>Valves</li><li>Android</li></ul>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>串接微流體輸送、停止與觀測流程，研究可攜式反應與取像平台。</dd></div><div><dt>實作</dt><dd>整合雙幫浦、閥件、PDMS 壓力腔與晶片觀測區，搭配 Android 操作及手機照明取像。</dd></div><div><dt>範圍</dt><dd>控制指令、機構模擬與濕式流體測試分開判讀；軟體可運行不等於實際流體已完全停止。</dd></div></dl></details>
         </article>
 
         <article class="project-card project-card--system reveal" data-category="research embedded" data-delay="2">
           <div class="project-card__top"><span class="project-number">S.03</span><span class="project-state">CONTROL SYSTEM</span></div>
-          <div><p class="project-domain">REDUCED-GRAVITY MOTION</p><h3>Dual-Axis Gravity Controller</h3><p>以角度回授、速度估測、feedforward 與 PID 控制雙軸連續旋轉伺服，建立部分重力運動條件。</p></div>
+          <div><p class="project-domain">REDUCED-GRAVITY MOTION</p><h3>Dual-Axis Gravity Controller</h3><p>以角度回授、速度估測、feedforward 與 PID 控制雙軸連續旋轉伺服，研究重力向量方向隨時間變化的運動控制。</p></div>
           <ul class="tag-list"><li>ESP32-C3</li><li>Feedback 360</li><li>PID</li></ul>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>控制雙軸旋轉的角度與速度，供重力向量時間平均相關研究使用。</dd></div><div><dt>實作</dt><dd>以 ESP32-C3 讀取伺服角度回授，進行速度估測、前饋補償與 PID 控制。</dd></div><div><dt>範圍</dt><dd>旋轉運動不等同真正失重；樣本位置、轉速及離心加速度都會影響實驗條件。</dd></div></dl></details>
         </article>
       </div>
-      <p class="filter-result" aria-live="polite"><span id="visible-count">10</span> systems visible</p>
+      <p class="search-empty" hidden>找不到符合條件的專案。試試其他關鍵字，或切回 ALL SYSTEMS。</p>
+      <p class="filter-result" role="status" aria-live="polite" aria-atomic="true">符合條件的專案：<span id="visible-count">11</span></p>
     </section>
 
     <section class="research section-shell" id="research" aria-labelledby="research-title">
@@ -250,8 +277,8 @@
       <div class="research-platforms reveal" aria-labelledby="platforms-title">
         <div class="research-subhead">
           <p class="section-index">PLATFORM ARCHIVE</p>
-          <h3 id="platforms-title">舊版研究內容完整保留</h3>
-          <p>將原網站的三項研究主軸重新編排，保留系統目的、實作內容與使用技術。</p>
+          <h3 id="platforms-title">研究平台與應用方向</h3>
+          <p>三個持續串接的研究方向：運動控制、穿戴式感測，以及微流體生醫分析。以下整理各平台的目的與組成。</p>
         </div>
         <div class="platform-grid">
           <article>
@@ -298,7 +325,7 @@
           <span>JOURNAL RECORD</span>
           <h4>期刊發表紀錄</h4>
           <ul><li>Biosensors &amp; Bioelectronics</li><li>Sensors and Actuators A</li></ul>
-          <p>原網站僅記錄期刊名稱，因此此處不延伸推測論文題名、作者排序或出版狀態。</p>
+          <p>本頁列出期刊名稱；個別論文題名、作者與出版資訊未在此列示。</p>
         </div>
         <div class="achievement-list">
           <article><time>2024</time><div><h4>CES × TTA 臺灣科技新創館</h4><p>美國消費性電子展參展。</p></div><strong>EXHIBITION</strong></article>
@@ -332,7 +359,8 @@
         <article class="profile-intro reveal">
           <p class="profile-label">CURRENT FOCUS</p>
           <h3>Embedded systems × FPGA × intelligent sensing</h3>
-          <p>專注於嵌入式韌體、FPGA／RTL、感測平台、IoT 架構與 TinyML，並以完整系統觀點處理硬體、通訊、應用程式與研究資料之間的介面。</p>
+          <p>我的背景從生物機電、生醫工程延伸到電機工程，關注感測與控制如何成為可操作的研究工具。實作工作涵蓋嵌入式韌體、FPGA／RTL、行動應用與資料流程，並持續探索邊緣運算與 TinyML。</p>
+          <p>設計時，我會先釐清量測目標與硬體條件，再拆解通訊、狀態管理、操作介面及資料儲存。文件則保留測試條件、結果與未完成項目，方便後續追蹤與修改。</p>
           <dl class="profile-meta">
             <div><dt>LOCATION</dt><dd>Taiwan / UTC+08</dd></div>
             <div><dt>LANGUAGES</dt><dd>Chinese / English / Japanese (basic)</dd></div>
@@ -340,7 +368,7 @@
           </dl>
         </article>
         <div class="education-stack reveal" data-delay="1" aria-label="教育背景">
-          <article><time>2022—2026</time><span>Ph.D. Candidate</span><h3>Electrical Engineering</h3><p>National Yang Ming Chiao Tung University</p></article>
+          <article><time>2022—至今</time><span>Ph.D. Candidate</span><h3>Electrical Engineering</h3><p>National Yang Ming Chiao Tung University</p></article>
           <article><time>2020—2022</time><span>Master</span><h3>Biomedical Engineering</h3><p>National Yang Ming Chiao Tung University</p></article>
           <article><time>2016—2020</time><span>Bachelor</span><h3>Biomechatronic Engineering</h3><p>National Ilan University</p></article>
         </div>
@@ -349,15 +377,15 @@
 
     <section class="capabilities section-shell" id="capabilities" aria-labelledby="capabilities-title">
       <div class="section-heading section-heading--row reveal">
-        <div><p class="section-index">05 / CAPABILITIES</p><h2 id="capabilities-title">跨層技術能力</h2></div>
-        <p>每一列不是孤立的工具清單，而是從硬體端一路連到使用者與研究資料的實際工作範圍。</p>
+        <div><p class="section-index">05 / TECHNICAL PRACTICE</p><h2 id="capabilities-title">技術與實作範圍</h2></div>
+        <p>依系統層次整理使用過的技術與持續研究的方向。各項工具在不同專案中的深度與驗證程度，以專案說明為準。</p>
       </div>
       <div class="capability-board reveal">
         <div class="capability-row"><span class="capability-code">HW.01</span><h3>Embedded Hardware</h3><p>nRF52840 / nRF54L15 / ESP32 / Raspberry Pi / sensors / pumps / valves / motor feedback</p><span class="capability-level">SYSTEM</span></div>
         <div class="capability-row"><span class="capability-code">FW.02</span><h3>Firmware &amp; Edge AI</h3><p>C / C++ / Zephyr / Arduino / PlatformIO / LVGL / TinyML / low-power state machines</p><span class="capability-level">CORE</span></div>
         <div class="capability-row"><span class="capability-code">RTL.03</span><h3>Digital Design</h3><p>Verilog / Quartus / Qsys / FSM / memory / processor / self-checking simulation</p><span class="capability-level">RTL</span></div>
         <div class="capability-row"><span class="capability-code">APP.04</span><h3>Mobile &amp; Cloud</h3><p>Kotlin / Jetpack Compose / Wear OS / Room / Firebase / Health Connect</p><span class="capability-level">PRODUCT</span></div>
-        <div class="capability-row"><span class="capability-code">DATA.05</span><h3>Analysis &amp; Imaging</h3><p>Python / OpenCV / LabVIEW / feature extraction / segmentation / Flask / research dashboards</p><span class="capability-level">DATA</span></div>
+        <div class="capability-row"><span class="capability-code">DATA.05</span><h3>Analysis &amp; Imaging</h3><p>Python / PyTorch / OpenCV / LabVIEW / classification / segmentation / detection / research dashboards</p><span class="capability-level">DATA</span></div>
         <div class="capability-row"><span class="capability-code">LAB.06</span><h3>Research Integration</h3><p>microfluidics / electrochemistry / biosignals / mechanical &amp; CAD design / evidence tracking</p><span class="capability-level">LAB</span></div>
       </div>
     </section>
@@ -366,7 +394,7 @@
       <div class="contact-panel reveal">
         <p class="section-index">06 / CONNECTION</p>
         <h2 id="contact-title">有硬體、有資料、<br>也有尚未解完的問題？</h2>
-        <p>歡迎從 GitHub 查看完整實作、驗證紀錄與目前邊界。工程合作從具體問題與可測量的目標開始。</p>
+        <p>如果你對感測平台、研究儀器、韌體與 App 整合，或本頁的專案有興趣，歡迎透過電子郵件聯絡。公開程式、操作方式與結果紀錄可從 GitHub 閱讀。</p>
         <div class="contact-actions">
           <a class="button button--primary" href="https://github.com/peianchen" target="_blank" rel="noreferrer">OPEN GITHUB <span>↗</span></a>
           <button class="button button--ghost copy-handle" type="button" data-copy="github.com/peianchen">COPY HANDLE</button>

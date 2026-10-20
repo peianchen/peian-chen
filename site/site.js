@@ -9,17 +9,26 @@ const setTheme = (theme) => {
   themeButton?.setAttribute("aria-pressed", String(theme === "blueprint"));
   document.querySelector('meta[name="theme-color"]')?.setAttribute(
     "content",
-    theme === "blueprint" ? "#eaf2ee" : "#07110f",
+    theme === "blueprint" ? "#edf3fc" : "#060d1c",
   );
 };
 
-const savedTheme = localStorage.getItem("portfolio-theme");
+let savedTheme;
+try {
+  savedTheme = localStorage.getItem("portfolio-theme");
+} catch {
+  // Theme switching remains usable when browser storage is unavailable.
+}
 setTheme(savedTheme === "blueprint" ? "blueprint" : "midnight");
 
 themeButton?.addEventListener("click", () => {
   const nextTheme = root.dataset.theme === "midnight" ? "blueprint" : "midnight";
   setTheme(nextTheme);
-  localStorage.setItem("portfolio-theme", nextTheme);
+  try {
+    localStorage.setItem("portfolio-theme", nextTheme);
+  } catch {
+    // Persisting a preference is optional.
+  }
 });
 
 const setMenu = (open) => {
@@ -42,25 +51,51 @@ document.addEventListener("keydown", (event) => {
 const filterButtons = [...document.querySelectorAll(".filter-button")];
 const projectCards = [...document.querySelectorAll(".project-card")];
 const visibleCount = document.querySelector("#visible-count");
+const searchInput = document.querySelector("#project-search");
+const clearSearch = document.querySelector(".search-clear");
+const emptyResult = document.querySelector(".search-empty");
+const projectGrid = document.querySelector("#project-grid");
+const searchIndex = projectCards.map((card) => ({
+  card,
+  text: card.textContent.normalize("NFKC").toLocaleLowerCase(),
+}));
+let activeFilter = "all";
+
+const updateProjects = () => {
+  const query = (searchInput?.value || "").normalize("NFKC").trim().toLocaleLowerCase();
+  const terms = query.split(/\s+/).filter(Boolean);
+  let count = 0;
+  searchIndex.forEach(({ card, text }) => {
+    const categoryMatches = activeFilter === "all" || card.dataset.category.split(" ").includes(activeFilter);
+    const matches = categoryMatches && terms.every((term) => text.includes(term));
+    card.classList.toggle("is-hidden", !matches);
+    if (matches) count += 1;
+  });
+  if (visibleCount) visibleCount.textContent = String(count);
+  projectGrid?.classList.toggle("is-single-result", count === 1);
+  if (emptyResult) emptyResult.hidden = count !== 0;
+  if (clearSearch) clearSearch.hidden = !searchInput?.value;
+};
 
 filterButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    const filter = button.dataset.filter;
+    activeFilter = button.dataset.filter;
     filterButtons.forEach((item) => {
       const active = item === button;
       item.classList.toggle("is-active", active);
       item.setAttribute("aria-pressed", String(active));
     });
 
-    let count = 0;
-    projectCards.forEach((card) => {
-      const matches = filter === "all" || card.dataset.category.split(" ").includes(filter);
-      card.classList.toggle("is-hidden", !matches);
-      if (matches) count += 1;
-    });
-    if (visibleCount) visibleCount.textContent = String(count);
+    updateProjects();
   });
 });
+searchInput?.addEventListener("input", updateProjects);
+clearSearch?.addEventListener("click", () => {
+  if (searchInput) searchInput.value = "";
+  updateProjects();
+  searchInput?.focus();
+});
+updateProjects();
 
 const revealItems = document.querySelectorAll(".reveal");
 if (reduceMotion || !("IntersectionObserver" in window)) {

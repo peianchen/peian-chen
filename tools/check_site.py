@@ -1,0 +1,73 @@
+"""Check bilingual content, project scope, and local static references."""
+
+from collections import Counter
+from html.parser import HTMLParser
+from pathlib import Path
+from urllib.parse import unquote, urlsplit
+import re
+
+
+class Page(HTMLParser):
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.ids = []
+        self.links = []
+        self.cards = 0
+        self.details = 0
+        self.filters = []
+
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        classes = attrs.get("class", "").split()
+        if attrs.get("id"):
+            self.ids.append(attrs["id"])
+        for key in ("href", "src"):
+            if attrs.get(key):
+                self.links.append(attrs[key])
+        if tag == "article" and "project-card" in classes:
+            self.cards += 1
+        if tag == "details" and "project-details" in classes:
+            self.details += 1
+        if tag == "button" and attrs.get("data-filter"):
+            self.filters.append(attrs["data-filter"])
+
+
+def main():
+    root = Path(__file__).resolve().parents[1] / "site"
+    parsed = {}
+    for relative in ("index.html", "en/index.html"):
+        path = root / relative
+        source = path.read_text(encoding="utf-8")
+        page = Page()
+        page.feed(source)
+        assert not [key for key, count in Counter(page.ids).items() if count > 1]
+        assert page.cards == page.details == 11, relative
+        assert {"medical-imaging", "data-structures", "project-search"} <= set(page.ids)
+        assert {"all", "imaging", "algorithms", "research"} <= set(page.filters)
+        assert len(page.filters) == len(set(page.filters))
+        assert re.search(r'id="visible-count">11<', source)
+        assert not re.search(r"INTERVIEW_GUIDE|面試|展現能力|REPOSITORIES MAPPED", source)
+        assert not any("NYCU-AFPGA-Labs" in link for link in page.links)
+        assert "mailto:chen861019@gmail.com" in page.links
+        assert any("NYCU-Data-Structures-Graph-Algorithms" in link for link in page.links)
+        assert source.count("<h1 ") == 1
+        assert "2019" in source and "Biosensors &amp; Bioelectronics" in source
+        parsed[path.resolve()] = page
+    for path, page in parsed.items():
+        checked = 0
+        for link in page.links:
+            parts = urlsplit(link)
+            if parts.scheme or parts.netloc:
+                continue
+            target = (path.parent / unquote(parts.path)).resolve() if parts.path else path
+            if target.is_dir():
+                target /= "index.html"
+            assert target.is_relative_to(root.resolve()) and target.is_file(), link
+            if parts.fragment:
+                assert unquote(parts.fragment) in parsed[target].ids, link
+            checked += 1
+        print(f"{path.relative_to(root)}: {page.cards} cards, {page.details} details, {checked} local links OK")
+
+
+if __name__ == "__main__":
+    main()

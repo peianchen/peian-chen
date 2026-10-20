@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Pei An Chen's engineering portfolio: wearable biosensing, embedded systems, microfluidics, imaging platforms, FPGA, and research instrumentation.">
-  <meta name="theme-color" content="#07110f">
+  <meta name="theme-color" content="#060d1c">
   <meta property="og:title" content="Pei An Chen | Engineering Portfolio">
   <meta property="og:description" content="Building verifiable cross-layer engineering systems from sensors and firmware to apps and research data.">
   <meta property="og:type" content="website">
@@ -39,7 +39,7 @@
       <a href="#projects">Projects</a>
       <a href="#research">Research</a>
       <a href="#profile">Profile</a>
-      <a href="#capabilities">Capabilities</a>
+      <a href="#capabilities">Practice</a>
       <a href="#contact">Contact</a>
     </nav>
     <div class="header-actions">
@@ -57,25 +57,27 @@
         <div class="eyebrow"><span class="status-dot"></span> SYSTEMS ONLINE <span id="taipei-time">UTC+08:00</span></div>
         <p class="hero-kicker">EMBEDDED BIOMEDICAL SENSING / FPGA / RESEARCH INSTRUMENTATION</p>
         <h1 id="hero-title">Turning real-world signals<br><span>into working systems.</span></h1>
-        <p class="hero-lead">I am Pei An Chen, a Ph.D. candidate in Electrical Engineering at National Yang Ming Chiao Tung University. I connect sensors and actuators with low-power firmware, BLE, edge AI, Android, cloud infrastructure, and analysis workflows to build research tools that can be measured, verified, and continuously improved.</p>
+        <p class="hero-lead">I am Pei An Chen, a Ph.D. candidate in Electrical Engineering at National Yang Ming Chiao Tung University. My work centers on embedded biomedical sensing, research instruments, and digital systems: connecting sensor acquisition, firmware control, and BLE with Android interfaces and data analysis.</p>
+        <p class="hero-note">A working record of research platforms, open-source implementations, and coursework, including design decisions, methods, and known limitations.</p>
         <div class="hero-actions">
           <a class="button button--primary" href="#projects">EXPLORE PROJECTS <span aria-hidden="true">↘</span></a>
           <a class="button button--ghost" href="https://github.com/peianchen" target="_blank" rel="noreferrer">GitHub / peianchen</a>
         </div>
-        <dl class="hero-stats" aria-label="Portfolio statistics">
-          <div><dt>25</dt><dd>REPOSITORIES MAPPED</dd></div>
-          <div><dt>06</dt><dd>ENGINEERING DOMAINS</dd></div>
-          <div><dt>04</dt><dd>SYSTEM LAYERS</dd></div>
+        <dl class="hero-stats" aria-label="Website topics">
+          <div><dt>BUILD</dt><dd>DEVICES + SOFTWARE</dd></div>
+          <div><dt>STUDY</dt><dd>MODELS + ALGORITHMS</dd></div>
+          <div><dt>RECORD</dt><dd>METHODS + RESULTS</dd></div>
         </dl>
       </div>
 
       <div class="hero-visual reveal" data-delay="1">
         <div class="portrait-frame">
-          <div class="portrait-coordinates"><span>25.03 N</span><span>121.56 E</span></div>
-          <img src="../img/peian-chen.jpg" alt="Pei An Chen presenting research work" width="704" height="704">
+          <div class="portrait-coordinates"><span>TAIWAN</span><span>RESEARCH + ENGINEERING</span></div>
+          <div class="portrait-crop"><img src="../img/peian-chen-campus-2026.jpg" alt="Pei An Chen in academic dress at NYCU's College of Electrical and Computer Engineering" width="1560" height="2080" fetchpriority="high"></div>
           <div class="scan-line" aria-hidden="true"></div>
-          <div class="portrait-caption"><span>SUBJECT_01</span><strong>PEI AN CHEN</strong></div>
+          <div class="portrait-caption"><span>PROFILE</span><strong>PEI AN CHEN</strong></div>
         </div>
+        <a class="portrait-full" href="../img/peian-chen-campus-2026.jpg" target="_blank" rel="noreferrer">View full campus photo <span aria-hidden="true">↗</span></a>
         <div class="telemetry-card telemetry-card--a"><span>CORE</span><strong>EMBEDDED</strong><small>nRF / ESP32 / Zephyr</small></div>
         <div class="telemetry-card telemetry-card--b"><span>LINK</span><strong>BLE + CLOUD</strong><small>Android / Firebase</small></div>
       </div>
@@ -90,8 +92,8 @@
     <section class="systems section-shell" id="systems" aria-labelledby="systems-title">
       <div class="section-heading reveal">
         <p class="section-index">01 / SYSTEM ARCHITECTURE</p>
-        <h2 id="systems-title">Not isolated demos.<br>Complete signal chains.</h2>
-        <p>Each project starts with a physical quantity, moves through hardware, firmware, connectivity, and application layers, and ends as traceable research data.</p>
+        <h2 id="systems-title">From physical signals<br>to interpretable data.</h2>
+        <p>Research instruments and sensing platforms span several interfaces. These four layers describe how I organize a system; individual projects use the layers they actually need.</p>
       </div>
 
       <div class="architecture-grid reveal" data-delay="1">
@@ -142,34 +144,43 @@
         <div><p class="section-index">02 / SELECTED WORK</p><h2 id="projects-title">Engineering project matrix</h2></div>
         <p>Project functions, implementations, and results across sensing, embedded systems, digital logic, and medical image analysis.</p>
       </div>
+      <div class="project-search reveal">
+        <label for="project-search">Find a project <span>SEARCH INDEX</span></label>
+        <div><input id="project-search" type="search" placeholder="Search BLE, FPGA, imaging, algorithms…" autocomplete="off" aria-controls="project-grid"><button class="search-clear" type="button" hidden>Clear search</button></div>
+      </div>
       <div class="project-toolbar reveal" role="group" aria-label="Filter projects by category">
         <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">ALL SYSTEMS</button>
         <button class="filter-button" type="button" data-filter="bio" aria-pressed="false">BIOSENSING</button>
         <button class="filter-button" type="button" data-filter="embedded" aria-pressed="false">EMBEDDED</button>
         <button class="filter-button" type="button" data-filter="fpga" aria-pressed="false">FPGA</button>
         <button class="filter-button" type="button" data-filter="imaging" aria-pressed="false">AI / IMAGING</button>
+        <button class="filter-button" type="button" data-filter="algorithms" aria-pressed="false">ALGORITHMS</button>
         <button class="filter-button" type="button" data-filter="research" aria-pressed="false">RESEARCH</button>
       </div>
 
+      <p class="project-reading-note">Expand a card for its purpose, approach, and scope. Public source links open GitHub; a research summary does not imply source availability. Software tests, simulation, and physical validation are documented separately in each project.</p>
       <div class="project-grid" id="project-grid">
         <article class="project-card project-card--feature reveal" data-category="bio embedded">
-          <div class="project-card__top"><span class="project-number">P.01</span><span class="project-state">PUBLIC / ACTIVE</span></div>
+          <div class="project-card__top"><span class="project-number">P.01</span><span class="project-state">PUBLIC / ANDROID</span></div>
           <div><p class="project-domain">WEARABLE BIOSENSING</p><h3>ThermoPatch</h3><p>A multi-node BLE skin-temperature system integrating real-time Android visualization, Firebase synchronization, device management, and OTA updates.</p></div>
           <ul class="tag-list"><li>Kotlin</li><li>BLE</li><li>Firebase</li><li>nRF52840</li></ul>
+          <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>View multiple surface-temperature nodes in one place instead of operating and recording each device separately.</dd></div><div><dt>Approach</dt><dd>Connect sensing nodes over BLE, display readings and manage devices in Android, and integrate Firebase. OTA and data behavior depend on the documented version.</dd></div><div><dt>Scope</dt><dd>This link is the public version, not a claim of feature parity with later hardware or apps. Intended for research, not clinical diagnosis.</dd></div></dl></details>
           <a class="project-link" href="https://github.com/peianchen/ThermoPatch" target="_blank" rel="noreferrer" aria-label="View ThermoPatch on GitHub">VIEW SOURCE <span>↗</span></a>
         </article>
 
         <article class="project-card reveal" data-category="research embedded" data-delay="1">
-          <div class="project-card__top"><span class="project-number">P.02</span><span class="project-state">PUBLIC / FIELD</span></div>
+          <div class="project-card__top"><span class="project-number">P.02</span><span class="project-state">PUBLIC / IMAGING</span></div>
           <div><p class="project-domain">BIOLOGICAL IMAGING</p><h3>SpaceCellCam</h3><p>High-resolution, LED-assisted time-lapse imaging with ESP32-S3 and OV5640, extended into image analysis and motion-quantification workflows.</p></div>
           <ul class="tag-list"><li>ESP32-S3</li><li>OV5640</li><li>Python</li></ul>
+          <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>Provide scheduled image acquisition for observing biological samples and supporting downstream analysis.</dd></div><div><dt>Approach</dt><dd>Combine ESP32-S3, OV5640, and LED illumination for capture control, with Python workflows for image processing and motion quantification.</dd></div><div><dt>Scope</dt><dd>Image quality depends on optics, lighting, and sample conditions. The name does not imply completed spaceflight or environmental qualification.</dd></div></dl></details>
           <a class="project-link" href="https://github.com/peianchen/SpaceCellCam" target="_blank" rel="noreferrer" aria-label="View SpaceCellCam on GitHub">VIEW SOURCE <span>↗</span></a>
         </article>
 
         <article class="project-card reveal" data-category="fpga" data-delay="2">
           <div class="project-card__top"><span class="project-number">P.03</span><span class="project-state">PUBLIC / RTL</span></div>
-          <div><p class="project-domain">RELIABILITY LOGIC</p><h3>Space BMC Core</h3><p>A Verilog-2001 heartbeat-monitoring and timeout-control core with a cycle-accurate automated testbench and recovery-boundary verification.</p></div>
+          <div><p class="project-domain">RELIABILITY LOGIC</p><h3>Space BMC Core</h3><p>A Verilog heartbeat-monitoring and timeout-control core with a cycle-accurate automated testbench and recovery-boundary verification.</p></div>
           <ul class="tag-list"><li>Verilog</li><li>Questa</li><li>DE10</li></ul>
+          <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>Detect missing heartbeat signals and timeout events with digital logic to study fault-handling behavior.</dd></div><div><dt>Approach</dt><dd>Describe monitoring and recovery in Verilog, using automated testbenches for counters, state transitions, and boundary conditions.</dd></div><div><dt>Scope</dt><dd>RTL simulation, synthesis, timing checks, and board tests are distinct stages. Consult the individual verification records; they do not establish space-grade reliability.</dd></div></dl></details>
           <a class="project-link" href="https://github.com/peianchen/Space-BMC-Core-SEMC" target="_blank" rel="noreferrer" aria-label="View Space BMC Core on GitHub">VIEW SOURCE <span>↗</span></a>
         </article>
 
@@ -177,6 +188,7 @@
           <div class="project-card__top"><span class="project-number">P.04</span><span class="project-state">PUBLIC / ZEPHYR</span></div>
           <div><p class="project-domain">LOW-POWER SENSING</p><h3>nRF54L15 × MLX90614</h3><p>Infrared-temperature firmware, I²C integration, and low-power analysis establishing a hardware baseline for next-generation wearable nodes.</p></div>
           <ul class="tag-list"><li>C</li><li>Zephyr</li><li>nRF54L15</li></ul>
+          <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>Establish an nRF54L15 and infrared temperature-sensor integration baseline for sensing-node development.</dd></div><div><dt>Approach</dt><dd>Use C and Zephyr for I²C reads, device configuration, and sampling, with connection notes and low-power design considerations.</dd></div><div><dt>Scope</dt><dd>A successful build does not establish power consumption or temperature accuracy. Measurements require a specified board, configuration, and test conditions.</dd></div></dl></details>
           <a class="project-link" href="https://github.com/peianchen/nRF54L15_MLX90614" target="_blank" rel="noreferrer" aria-label="View nRF54L15 MLX90614 on GitHub">VIEW SOURCE <span>↗</span></a>
         </article>
 
@@ -184,13 +196,15 @@
           <div class="project-card__top"><span class="project-number">P.05</span><span class="project-state">PRIVATE / LAB ARCHIVE</span></div>
           <div><p class="project-domain">DIGITAL SYSTEM DESIGN</p><h3>NYCU-AFPGA</h3><p>Eight documented labs covering combinational logic, FSMs, RAM, a simple processor, and DE1-SoC HPS/Qsys integration.</p></div>
           <ul class="tag-list"><li>Verilog</li><li>Quartus</li><li>Qsys</li></ul>
-          <a class="project-link" href="https://github.com/peianchen/NYCU-AFPGA-Labs" target="_blank" rel="noreferrer" aria-label="View NYCU AFPGA on GitHub">VIEW PROJECT <span>↗</span></a>
+          <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>Study digital logic, memory, and processor architecture before exploring HPS-to-FPGA hardware-software interfaces.</dd></div><div><dt>Approach</dt><dd>Document eight lab groups using Verilog, Quartus, and Qsys, cross-referencing source code, simulation, and original reports.</dd></div><div><dt>Scope</dt><dd>The course archive is currently private. This page describes its topics without presenting a permission-gated source link.</dd></div></dl></details>
+          <p class="project-access">Course summary / source not public</p>
         </article>
 
         <article class="project-card reveal" data-category="bio embedded" data-delay="2">
           <div class="project-card__top"><span class="project-number">P.06</span><span class="project-state">PUBLIC / WEAR OS</span></div>
           <div><p class="project-domain">PHYSIOLOGICAL DATA</p><h3>Galaxy Watch Sensor Monitor</h3><p>Samsung Watch skin-temperature acquisition and a research data pipeline, with a PPG extension interface and explicit non-medical-use boundaries.</p></div>
           <ul class="tag-list"><li>Kotlin</li><li>Wear OS</li><li>Sensor SDK</li></ul>
+          <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>Acquire physiological sensor data on Wear OS for research recording and processing workflows.</dd></div><div><dt>Approach</dt><dd>Use Kotlin and Samsung Sensor SDK for skin-temperature acquisition and watch-side interaction, retaining interfaces for PPG extensions.</dd></div><div><dt>Scope</dt><dd>Available functions depend on watch model, SDK permissions, and versions. An extension interface does not imply a complete signal-analysis implementation.</dd></div></dl></details>
           <a class="project-link" href="https://github.com/peianchen/GalaxyWatchSensorMonitor" target="_blank" rel="noreferrer" aria-label="View Galaxy Watch Sensor Monitor on GitHub">VIEW SOURCE <span>↗</span></a>
         </article>
 
@@ -198,28 +212,41 @@
           <div class="project-card__top"><span class="project-number">P.07</span><span class="project-state">PUBLIC / COURSEWORK</span></div>
           <div><p class="project-domain">MEDICAL IMAGE ANALYSIS</p><h3>Deep Learning for Medical Imaging</h3><p>Five assignments covering SPECT and MRI classification, carotid ultrasound segmentation, and chest X-ray abnormality detection, with preprocessing, PyTorch models, training results, and analysis. Public code and aggregate figures; no patient data.</p></div>
           <ul class="tag-list"><li>PyTorch</li><li>MRI / SPECT</li><li>U-Net</li><li>Faster R-CNN</li></ul>
+          <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>Explore how classification, segmentation, and object detection address different medical-imaging tasks.</dd></div><div><dt>Approach</dt><dd>Organize preprocessing, models, training curves, and evaluations from five assignments covering SPECT/MRI, ultrasound, and chest X-rays.</dd></div><div><dt>Scope</dt><dd>Results are based on retained coursework records, not a claim of fresh training or clinical validation. Public material contains no patient data.</dd></div></dl></details>
           <a class="project-link" href="https://github.com/peianchen/NYCU-Deep-Learning-Medical-Image-Analysis" target="_blank" rel="noreferrer" aria-label="View medical imaging project code and documentation">VIEW PROJECT <span aria-hidden="true">↗</span></a>
+        </article>
+
+        <article class="project-card reveal" id="data-structures" data-category="algorithms">
+          <div class="project-card__top"><span class="project-number">P.08</span><span class="project-state">PUBLIC / COURSEWORK</span></div>
+          <div><p class="project-domain">DATA STRUCTURES + GRAPHS</p><h3>Data Structures &amp; Graph Algorithms</h3><p>Nine C assignments covering sorting, BFS maze search, sparse matrices, segment trees, Huffman coding, minimum spanning trees, and Dijkstra, with report figures and complexity analysis.</p></div>
+          <ul class="tag-list"><li>C</li><li>BFS</li><li>Huffman</li><li>Graph Algorithms</li></ul>
+          <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>Understand how data structures affect memory usage, operation costs, and algorithm choices.</dd></div><div><dt>Approach</dt><dd>Document each problem, main implementation, historical results, complexity, and use cases, with compilation and representative behavior checks.</dd></div><div><dt>Scope</dt><dd>Earlier code and known limitations remain visible. Historical timings are not new measurements, and passing samples does not establish complete specification coverage.</dd></div></dl></details>
+          <a class="project-link" href="https://github.com/peianchen/NYCU-Data-Structures-Graph-Algorithms" target="_blank" rel="noreferrer" aria-label="View data structures and graph algorithms code and documentation">VIEW PROJECT <span aria-hidden="true">↗</span></a>
         </article>
 
         <article class="project-card project-card--system reveal" data-category="research bio">
           <div class="project-card__top"><span class="project-number">S.01</span><span class="project-state">RESEARCH SYSTEM</span></div>
           <div><p class="project-domain">ELECTROCHEMISTRY</p><h3>Portable Sweat Analysis</h3><p>A portable research instrument integrating electrochemical measurement, a one-button workflow, TFT status feedback, measurement scripts, and SD logging.</p></div>
           <ul class="tag-list"><li>EmStat Pico</li><li>CA</li><li>SD Logging</li></ul>
+          <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>Bring electrochemical measurements into a portable operating and data-recording workflow.</dd></div><div><dt>Approach</dt><dd>Integrate EmStat Pico, chronoamperometry scripts, TFT status feedback, and SD storage across setup, measurement, and export.</dd></div><div><dt>Scope</dt><dd>Interface and logging checks are separate from sensor characterization. Detection limits, selectivity, and sample performance require experimental evidence.</dd></div></dl></details>
         </article>
 
         <article class="project-card project-card--system reveal" data-category="research embedded" data-delay="1">
           <div class="project-card__top"><span class="project-number">S.02</span><span class="project-state">RESEARCH SYSTEM</span></div>
           <div><p class="project-domain">MICROFLUIDIC CONTROL</p><h3>Smart Stop-Flow</h3><p>A portable reaction platform combining smartphone illumination and imaging, dual pumps, microvalves, a PDMS pressure chamber, and a chip observation area.</p></div>
           <ul class="tag-list"><li>Micropumps</li><li>Valves</li><li>Android</li></ul>
+          <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>Connect microfluidic delivery, stopping, and observation in a portable reaction and imaging platform.</dd></div><div><dt>Approach</dt><dd>Integrate dual pumps, valves, a PDMS pressure chamber, and chip observation with Android control and smartphone illumination/imaging.</dd></div><div><dt>Scope</dt><dd>Control commands, mechanical simulation, and wet-fluid tests are separate evidence. Running software does not establish that the fluid has completely stopped.</dd></div></dl></details>
         </article>
 
         <article class="project-card project-card--system reveal" data-category="research embedded" data-delay="2">
           <div class="project-card__top"><span class="project-number">S.03</span><span class="project-state">CONTROL SYSTEM</span></div>
-          <div><p class="project-domain">REDUCED-GRAVITY MOTION</p><h3>Dual-Axis Gravity Controller</h3><p>Dual-axis continuous-rotation servo control using angle feedback, velocity estimation, feedforward, and PID to create partial-gravity motion conditions.</p></div>
+          <div><p class="project-domain">REDUCED-GRAVITY MOTION</p><h3>Dual-Axis Gravity Controller</h3><p>Dual-axis continuous-rotation servo control using angle feedback, velocity estimation, feedforward, and PID to study motion that changes the gravity-vector direction over time.</p></div>
           <ul class="tag-list"><li>ESP32-C3</li><li>Feedback 360</li><li>PID</li></ul>
+          <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>Control dual-axis rotation angles and speeds for research involving time-averaged gravity-vector orientation.</dd></div><div><dt>Approach</dt><dd>Read servo angle feedback with ESP32-C3, estimate velocity, and apply feedforward compensation and PID control.</dd></div><div><dt>Scope</dt><dd>Rotation is not true weightlessness. Sample position, rotation speed, and centrifugal acceleration affect the experimental conditions.</dd></div></dl></details>
         </article>
       </div>
-      <p class="filter-result" aria-live="polite"><span id="visible-count">10</span> systems visible</p>
+      <p class="search-empty" hidden>No projects match. Try another keyword or switch to ALL SYSTEMS.</p>
+      <p class="filter-result" role="status" aria-live="polite" aria-atomic="true">Matching projects: <span id="visible-count">11</span></p>
     </section>
 
     <section class="research section-shell" id="research" aria-labelledby="research-title">
@@ -250,8 +277,8 @@
       <div class="research-platforms reveal" aria-labelledby="platforms-title">
         <div class="research-subhead">
           <p class="section-index">PLATFORM ARCHIVE</p>
-          <h3 id="platforms-title">Research archive, fully retained</h3>
-          <p>The three research themes from the original site are reorganized here while preserving each system's purpose, implementation, and technology.</p>
+          <h3 id="platforms-title">Research platforms and applications</h3>
+          <p>Three connected research directions: motion control, wearable sensing, and microfluidic bioanalysis. Each platform is outlined by its purpose and components.</p>
         </div>
         <div class="platform-grid">
           <article>
@@ -298,7 +325,7 @@
           <span>JOURNAL RECORD</span>
           <h4>Journal record</h4>
           <ul><li>Biosensors &amp; Bioelectronics</li><li>Sensors and Actuators A</li></ul>
-          <p>The original site records journal names only; article titles, author order, and publication status are therefore not inferred here.</p>
+          <p>Journal names are listed here; individual article titles, authors, and publication details are not listed on this page.</p>
         </div>
         <div class="achievement-list">
           <article><time>2024</time><div><h4>CES × TTA Taiwan Tech Pavilion</h4><p>Exhibited at the Consumer Electronics Show in the United States.</p></div><strong>EXHIBITION</strong></article>
@@ -332,7 +359,8 @@
         <article class="profile-intro reveal">
           <p class="profile-label">CURRENT FOCUS</p>
           <h3>Embedded systems × FPGA × intelligent sensing</h3>
-          <p>I focus on embedded firmware, FPGA and RTL, sensing platforms, IoT architecture, and TinyML, using a system-level perspective to manage interfaces among hardware, connectivity, applications, and research data.</p>
+          <p>My background spans biomechatronics, biomedical engineering, and electrical engineering. I work on turning sensing and control into operable research tools through embedded firmware, FPGA/RTL, mobile applications, and data workflows, while exploring edge computing and TinyML.</p>
+          <p>I start by defining measurement goals and hardware constraints, then break down communication, state management, user interaction, and storage. Documentation keeps test conditions, results, and unfinished work traceable for later revisions.</p>
           <dl class="profile-meta">
             <div><dt>LOCATION</dt><dd>Taiwan / UTC+08</dd></div>
             <div><dt>LANGUAGES</dt><dd>Chinese / English / Japanese (basic)</dd></div>
@@ -340,7 +368,7 @@
           </dl>
         </article>
         <div class="education-stack reveal" data-delay="1" aria-label="Education">
-          <article><time>2022—2026</time><span>Ph.D. Candidate</span><h3>Electrical Engineering</h3><p>National Yang Ming Chiao Tung University</p></article>
+          <article><time>2022—Present</time><span>Ph.D. Candidate</span><h3>Electrical Engineering</h3><p>National Yang Ming Chiao Tung University</p></article>
           <article><time>2020—2022</time><span>Master</span><h3>Biomedical Engineering</h3><p>National Yang Ming Chiao Tung University</p></article>
           <article><time>2016—2020</time><span>Bachelor</span><h3>Biomechatronic Engineering</h3><p>National Ilan University</p></article>
         </div>
@@ -349,15 +377,15 @@
 
     <section class="capabilities section-shell" id="capabilities" aria-labelledby="capabilities-title">
       <div class="section-heading section-heading--row reveal">
-        <div><p class="section-index">05 / CAPABILITIES</p><h2 id="capabilities-title">Cross-layer capabilities</h2></div>
-        <p>These are not isolated tool lists. They represent practical work spanning hardware, user-facing applications, and research data.</p>
+        <div><p class="section-index">05 / TECHNICAL PRACTICE</p><h2 id="capabilities-title">Tools and technical practice</h2></div>
+        <p>Technologies used and areas of continuing study, organized by system layer. Implementation depth and validation vary by project; refer to the project documentation.</p>
       </div>
       <div class="capability-board reveal">
         <div class="capability-row"><span class="capability-code">HW.01</span><h3>Embedded Hardware</h3><p>nRF52840 / nRF54L15 / ESP32 / Raspberry Pi / sensors / pumps / valves / motor feedback</p><span class="capability-level">SYSTEM</span></div>
         <div class="capability-row"><span class="capability-code">FW.02</span><h3>Firmware &amp; Edge AI</h3><p>C / C++ / Zephyr / Arduino / PlatformIO / LVGL / TinyML / low-power state machines</p><span class="capability-level">CORE</span></div>
         <div class="capability-row"><span class="capability-code">RTL.03</span><h3>Digital Design</h3><p>Verilog / Quartus / Qsys / FSM / memory / processor / self-checking simulation</p><span class="capability-level">RTL</span></div>
         <div class="capability-row"><span class="capability-code">APP.04</span><h3>Mobile &amp; Cloud</h3><p>Kotlin / Jetpack Compose / Wear OS / Room / Firebase / Health Connect</p><span class="capability-level">PRODUCT</span></div>
-        <div class="capability-row"><span class="capability-code">DATA.05</span><h3>Analysis &amp; Imaging</h3><p>Python / OpenCV / LabVIEW / feature extraction / segmentation / Flask / research dashboards</p><span class="capability-level">DATA</span></div>
+        <div class="capability-row"><span class="capability-code">DATA.05</span><h3>Analysis &amp; Imaging</h3><p>Python / PyTorch / OpenCV / LabVIEW / classification / segmentation / detection / research dashboards</p><span class="capability-level">DATA</span></div>
         <div class="capability-row"><span class="capability-code">LAB.06</span><h3>Research Integration</h3><p>microfluidics / electrochemistry / biosignals / mechanical &amp; CAD design / evidence tracking</p><span class="capability-level">LAB</span></div>
       </div>
     </section>
@@ -366,7 +394,7 @@
       <div class="contact-panel reveal">
         <p class="section-index">06 / CONNECTION</p>
         <h2 id="contact-title">Hardware, data,<br>and an open problem?</h2>
-        <p>Explore GitHub for implementations, verification records, and current limitations. Engineering collaboration starts with a concrete problem and a measurable goal.</p>
+        <p>For questions about sensing platforms, research instruments, firmware-to-app integration, or a project on this page, get in touch by email. Public code, operating instructions, and result records are available on GitHub.</p>
         <div class="contact-actions">
           <a class="button button--primary" href="https://github.com/peianchen" target="_blank" rel="noreferrer">OPEN GITHUB <span>↗</span></a>
           <button class="button button--ghost copy-handle" type="button" data-copy="github.com/peianchen">COPY HANDLE</button>
