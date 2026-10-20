@@ -42,7 +42,9 @@ def main():
         page.feed(source)
         assert not [key for key, count in Counter(page.ids).items() if count > 1]
         assert page.cards == page.details == 16, relative
-        assert {"medical-imaging", "data-structures", "taipei-bus", "project-search", "pressible", "space-payload", "bioimage-analysis", "pva-pump", "early-work-title"} <= set(page.ids)
+        assert {"medical-imaging", "data-structures", "taipei-bus", "project-search", "pressible", "space-payload", "bioimage-analysis", "pva-pump"} <= set(page.ids)
+        assert "early-work-title" not in page.ids
+        assert not re.search(r"Rice-Variety|稻米品種|Wireless Robotic-Arm Carrier|無線機械手臂搬運載具", source)
         assert {"all", "imaging", "algorithms", "web", "research"} <= set(page.filters)
         assert len(page.filters) == len(set(page.filters))
         assert re.search(r'id="visible-count">16<', source)

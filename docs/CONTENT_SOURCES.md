@@ -34,8 +34,8 @@ link. The current resume was read through the existing signed-in Edge session on
 - Development-stage space microfluidic payload, without mission details,
   design parameters, private code or flight-qualification claims.
 - Biological image/motion analysis, separately from public capture firmware.
-- Completed PVA sponge-pump prototype/thesis and undergraduate robotics,
-  Raspberry Pi, color-tracking and rice-CNN coursework summaries.
+- Completed PVA sponge-pump prototype/thesis. Undergraduate project summaries
+  were excluded after the owner's follow-up; basic bachelor's education remains.
 - Embedded Linux application/device integration (not kernel/driver work),
   SolidWorks and COMSOL design work.
 

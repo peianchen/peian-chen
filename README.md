@@ -22,8 +22,8 @@ Live site: <https://peianchen.github.io/peian-chen/>
 
 ## Content
 
-The bilingual pages cover sixteen engineering, research, and course projects,
-plus undergraduate implementation summaries.
+The bilingual pages cover sixteen engineering, research, and graduate-course
+projects. Undergraduate project summaries are omitted by the owner's preference.
 Each project includes an expandable purpose, implementation approach, and scope.
 Public repositories have direct links; private research/code is described without
 changing repository permissions. Historical results are not presented as fresh
