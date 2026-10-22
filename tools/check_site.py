@@ -1,6 +1,7 @@
 """Check bilingual content, project scope, and local static references."""
 
 from collections import Counter
+from html import escape
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
@@ -85,10 +86,23 @@ def main():
         assert len(project['zh']['analysis']) == len(project['en']['analysis']) >= 3
         for image in project['gallery']:
             assert image['zh']['caption'] and image['en']['caption']
+            assert image['kind'] in {'prototype', 'historical', 'interface', 'analysis', 'simulation'}
+            for lang, folder in [('zh', ''), ('en', 'en')]:
+                rendered = (root / folder / 'projects' / project['slug'] / 'index.html').read_text(encoding='utf-8')
+                assert escape(image[lang]['title']) in rendered
+                assert escape(image[lang]['caption']) in rendered
+                assert image['src'] in rendered
+                if image['kind'] == 'interface':
+                    assert 'result-figure--interface' in rendered
+                    assert ('Application interface' if lang == 'en' else '操作介面') in rendered
     media = json.loads((root.parent / 'content/media-sources.json').read_text(encoding='utf-8'))
     assert {m['asset'] for m in media} == {i['src'] for p in projects for i in p['gallery']}
     for item in media:
-        assert hashlib.sha256((root / item['asset']).read_bytes()).hexdigest() == item['sha256']
+        image_bytes = (root / item['asset']).read_bytes()
+        assert hashlib.sha256(image_bytes).hexdigest() == item['sha256']
+        if item.get('metadata_removed'):
+            assert len(item['source_sha256']) == 64 and item['source_sha256'] != item['sha256']
+            assert b'Exif\x00\x00' not in image_bytes and b'http://ns.adobe.com/xap/' not in image_bytes
     for relative in ('index.html', 'en/index.html'):
         homepage = (root / relative).read_text(encoding='utf-8')
         cards = re.findall(r'<article class="project-card\b.*?</article>', homepage, re.S)

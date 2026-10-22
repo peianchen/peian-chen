@@ -47,5 +47,39 @@
     "sha256": "2ed4c41e473fb379c91e3506198cc77752a906923f2fa21f706b1662e3f14e3f",
     "kind": "historical",
     "project": "afpga"
+  },
+  {
+    "asset": "img/evidence/pressible-archived-electronics.jpg",
+    "source_label": "汗壓.pptx / image28.jpg",
+    "source_context": "Slide 6: Wearable sweat pressure monitoring; interior view",
+    "sha256": "d65ecad90edb98b3aa271599e1b235f0a2f339c2994146b1a56e011a4989c286",
+    "kind": "prototype",
+    "project": "pressible"
+  },
+  {
+    "asset": "img/evidence/pressible-device-interface.png",
+    "source_label": "汗壓測量穿戴式裝置 使用說明書 ver2.docx / image8.png",
+    "source_context": "PressiBLE ver2 manual; device readout interface screenshot",
+    "sha256": "81c3a6f1db8240ad984e957b32172222cb03584885b400b3411586662b697588",
+    "kind": "interface",
+    "project": "pressible"
+  },
+  {
+    "asset": "img/evidence/spacecellcam-archived-integration.jpg",
+    "source_label": "Physarum_Microgravity.pptx / image10.jpeg",
+    "source_context": "Slide 5: Custom-built RPM System; earlier imaging integration",
+    "sha256": "22a6256ecc1cdaf4b7e0f3eaa20225de20acb343d28bbb627c99c745c93b2420",
+    "kind": "historical",
+    "project": "spacecellcam",
+    "metadata_removed": true,
+    "source_sha256": "8b860376ee0bdd986e6ec6f994adcf3ea201f3868fcdf3a5c38c479d4bf0f726"
+  },
+  {
+    "asset": "img/evidence/payload-ground-valve-manifold.jpg",
+    "source_label": "太空生醫簡報.pptx / image16.jpg",
+    "source_context": "Slide 12: Space Microfluidic Payload; ground assembly photograph",
+    "sha256": "8df15f6177b3cb95bc35e00ee2766421bb78a696ff55b896bfa77c1c5a4de96d",
+    "kind": "prototype",
+    "project": "space-payload"
   }
 ]

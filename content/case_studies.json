@@ -268,6 +268,10 @@
         [
           "尚未建立的結論",
           "本頁沒有新增取像實驗，不以程式設定推論實際準時率、功耗、光學品質或長時間資料完整率。"
+        ],
+        [
+          "歷史整合紀錄",
+          "早期簡報照片補充取像模組與樣品旋轉平台的安裝關係。硬體照片與目前公開韌體分開標示，不以舊圖替代新版的功能或功耗測試。"
         ]
       ],
       "reproduce": [
@@ -359,6 +363,10 @@
         [
           "Limits of this review",
           "No new capture experiment was performed for this page. Configuration alone cannot establish achieved timing, power, optical quality or long-run data completeness."
+        ],
+        [
+          "Archived integration record",
+          "An earlier presentation photograph adds physical context for mounting the camera with the rotating sample platform. It is labeled separately from the current public firmware, rather than used as a substitute for current functional or power tests."
         ]
       ],
       "reproduce": [
@@ -405,11 +413,30 @@
     "group": "engineering",
     "card_index": 1,
     "branch": "main",
-    "gallery": [],
+    "gallery": [
+      {
+        "src": "img/evidence/spacecellcam-archived-integration.jpg",
+        "width": 4000,
+        "height": 3000,
+        "kind": "historical",
+        "zh": {
+          "title": "早期機載取像平台整合照片",
+          "caption": "取自 Physarum_Microgravity 簡報的實體平台照片：可見 microSD 取像模組、中央樣品位置與雙軸旋轉機構，說明相機如何隨樣品平台安裝。這是早期硬體整合紀錄，不是目前公開 AF／standby 韌體版本的測試；不能據此推論 10 秒週期、對焦品質、續航或微重力效果。"
+        },
+        "en": {
+          "title": "Archived on-board imaging integration",
+          "caption": "A physical platform photograph from the Physarum_Microgravity presentation shows the microSD imaging module, central sample position and dual-axis mechanism. It illustrates how imaging was mounted with the sample platform. This is an earlier hardware integration record, not a test of the current public AF/standby firmware; it establishes no achieved 10-second timing, focus quality, battery life or microgravity performance."
+        }
+      }
+    ],
     "sources": [
       {
         "label": "Repository / README",
         "url": "https://github.com/peianchen/SpaceCellCam/blob/main/README.md"
+      },
+      {
+        "label": "Owner-provided archived imaging-platform photograph",
+        "url": "https://peianchen.github.io/peian-chen/img/evidence/spacecellcam-archived-integration.jpg"
       }
     ]
   },
@@ -1824,7 +1851,7 @@
         ],
         [
           "操作成果",
-          "裝置與手機流程可用原型照片、操作畫面及序列紀錄對照。"
+          "本頁選入歷史原型開殼照片與使用說明書中的 App 截圖，分別說明電子模組配置及裝置連線／讀值操作；兩者不視為同一受測版本。"
         ],
         [
           "量測意義",
@@ -1902,7 +1929,7 @@
         ],
         [
           "Operating artifacts",
-          "Prototype photographs, application views and serial records illustrate the device-to-phone workflow."
+          "The page includes an archived open-enclosure photograph and a manual-embedded app screenshot, explaining electronics integration and device/readout operations separately. They are not treated as one tested revision."
         ],
         [
           "Measurement meaning",
@@ -1933,11 +1960,48 @@
     "group": "research",
     "card_index": 9,
     "branch": "main",
-    "gallery": [],
+    "gallery": [
+      {
+        "src": "img/evidence/pressible-archived-electronics.jpg",
+        "width": 1893,
+        "height": 1420,
+        "kind": "prototype",
+        "zh": {
+          "title": "汗壓穿戴原型的電子模組",
+          "caption": "原始汗壓簡報第 6 頁的開殼照片，可辨識 XIAO nRF52840、電池、接線與固定結構，呈現感測讀取、無線通訊與供電的實體配置。這是歷史原型，與另一張較新的 App 畫面並非同一受測版本；照片本身不證明汗壓校正、續航或配戴安全性。"
+        },
+        "en": {
+          "title": "Electronics inside the wearable prototype",
+          "caption": "The open-enclosure photograph on slide 6 of the original sweat-pressure presentation shows the XIAO nRF52840, battery, wiring and mounting arrangement. It makes the sensing, wireless and power integration tangible. This archived prototype is not treated as the same tested revision as the newer app view shown here; the photograph does not establish pressure calibration, battery life or wear safety."
+        }
+      },
+      {
+        "src": "img/evidence/pressible-device-interface.png",
+        "width": 1440,
+        "height": 2978,
+        "kind": "interface",
+        "zh": {
+          "title": "裝置連線與讀值的操作介面",
+          "caption": "取自 PressiBLE 使用說明書 ver2 的原始 App 截圖，展示目前裝置、連線清單、電池／充電資訊、溫度、壓力分級與重新量測操作。圖中 28.7 °C、0 kPa 與 100% 只是擷取當下的顯示狀態，不代表校正結果、臨床結論或續航測試。"
+        },
+        "en": {
+          "title": "Device connection and readout interface",
+          "caption": "An original app screenshot embedded in the PressiBLE ver2 user manual shows device selection, connection states, battery/charging information, temperature, pressure categories and a remeasure action. The displayed 28.7 °C, 0 kPa and 100% are snapshot values, not calibration results, clinical conclusions or a battery-life test."
+        }
+      }
+    ],
     "sources": [
       {
         "label": "Public engineering background",
         "url": "https://github.com/peianchen/peianchen/blob/main/docs/ENGINEERING_BACKGROUND.md"
+      },
+      {
+        "label": "Owner-provided prototype photograph / archived presentation",
+        "url": "https://peianchen.github.io/peian-chen/img/evidence/pressible-archived-electronics.jpg"
+      },
+      {
+        "label": "Owner-provided PressiBLE ver2 manual / app screenshot",
+        "url": "https://peianchen.github.io/peian-chen/img/evidence/pressible-device-interface.png"
       }
     ]
   },
@@ -2007,7 +2071,7 @@
         ],
         [
           "展示內容",
-          "公開介紹聚焦系統職責與整合方法，不公開任務細節與設計參數。"
+          "公開介紹選入地面微閥歧管組裝照片，呈現流體介面的實體整合；文獻衛星圖片、任務細節與設計參數不列入展示。"
         ]
       ],
       "analysis": [
@@ -2085,7 +2149,7 @@
         ],
         [
           "Public presentation",
-          "The page presents subsystem responsibilities and integration methods while keeping mission details and design parameters private."
+          "A ground-preparation microvalve manifold photograph illustrates physical fluid-interface integration. Literature satellite figures, mission details and design parameters are excluded."
         ]
       ],
       "analysis": [
@@ -2112,11 +2176,30 @@
     "group": "research",
     "card_index": 10,
     "branch": "main",
-    "gallery": [],
+    "gallery": [
+      {
+        "src": "img/evidence/payload-ground-valve-manifold.jpg",
+        "width": 2009,
+        "height": 1506,
+        "kind": "prototype",
+        "zh": {
+          "title": "地面流體準備用微閥歧管原型",
+          "caption": "取自太空生醫簡報中自身專案的組裝頁，而非前段引用的衛星文獻圖片。照片呈現微閥、歧管與管路接頭的實體整合，供地面流體準備及介面討論；不代表飛行載荷，也不能證明流量、混合比、漏液／耐壓、熱性能或太空環境資格已通過。"
+        },
+        "en": {
+          "title": "Ground-preparation microvalve manifold prototype",
+          "caption": "Selected from the project's own assembly section of the space-biomedical presentation, not its earlier satellite-literature figures. The photograph shows physical integration of microvalves, a manifold and tubing connections for ground preparation and interface discussion. It is not a flight payload and establishes no verified flow, mixing ratio, leakage/pressure rating, thermal performance or space qualification."
+        }
+      }
+    ],
     "sources": [
       {
         "label": "Public engineering background",
         "url": "https://github.com/peianchen/peianchen/blob/main/docs/ENGINEERING_BACKGROUND.md"
+      },
+      {
+        "label": "Owner-provided ground-preparation manifold photograph",
+        "url": "https://peianchen.github.io/peian-chen/img/evidence/payload-ground-valve-manifold.jpg"
       }
     ]
   },

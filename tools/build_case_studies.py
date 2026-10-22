@@ -70,13 +70,15 @@ def render(p,lang):
         'prototype':('原型照片','Prototype photograph'),
         'simulation':('模擬結果','Simulation result'),
         'analysis':('分析輸出','Analysis output'),
+        'interface':('操作介面','Application interface'),
         'historical':('歷史紀錄','Archived result')
     }
     for im in p.get('gallery',[]):
         text=im[lang]
         kind=kinds[im['kind']][1 if en else 0]
         path=prefix+im['src']
-        gallery.append(f'''<figure class="result-figure"><a class="result-image" href="{path}" target="_blank" rel="noreferrer" aria-label="{e(text['title'])} — {'open full size' if en else '開啟原圖'}"><img src="{path}" width="{im['width']}" height="{im['height']}" loading="lazy" decoding="async" alt="{e(text['title'])}"></a><figcaption><lumen-badge variant="outline">{kind}</lumen-badge><h3>{e(text['title'])}</h3><p>{e(text['caption'])}</p><a href="{path}" target="_blank" rel="noreferrer">{'Open full size' if en else '查看原圖'} ↗</a></figcaption></figure>''')
+        image_class=' result-figure--interface' if im['kind']=='interface' else ''
+        gallery.append(f'''<figure class="result-figure{image_class}"><a class="result-image" href="{path}" target="_blank" rel="noreferrer" aria-label="{e(text['title'])} — {'open full size' if en else '開啟原圖'}"><img src="{path}" width="{im['width']}" height="{im['height']}" loading="lazy" decoding="async" alt="{e(text['title'])}"></a><figcaption><lumen-badge variant="outline">{kind}</lumen-badge><h3>{e(text['title'])}</h3><p>{e(text['caption'])}</p><a href="{path}" target="_blank" rel="noreferrer">{'Open full size' if en else '查看原圖'} ↗</a></figcaption></figure>''')
     results=f'<div class="case-note-grid">{notes(c["results"])}</div>'
     if p.get('validation'):
         v=p['validation']
@@ -91,7 +93,7 @@ def render(p,lang):
     section('reproduce','<ol class="case-checklist">'+''.join(f'<li>{e(step)}</li>' for step in c['reproduce'])+'</ol>')
     section('limits',f'<p>{e(c["limits"])}</p>','case-limits')
     source_links=''.join(f'<li><a href="{e(s["url"])}">{e(s["label"])} ↗</a></li>' for s in p['sources'])
-    provenance='Selected photographs and plots retain their original content. Captions identify prototype, archived, analysis or simulation material.' if en else '入選照片與圖表保留原始內容，圖說分別註明原型、歷史紀錄、分析輸出或模擬。'
+    provenance='Selected images retain their visual content. Captions distinguish prototype photographs, application interfaces, archived records, analysis and simulations.' if en else '入選圖像保留原始畫面內容，圖說分別註明原型照片、操作介面、歷史紀錄、分析輸出或模擬。'
     section('sources',f'<ul class="case-sources">{source_links}</ul><p>{provenance}</p>')
 
     candidates=[q for q in PROJECTS if q!=p and q['group']==p['group']]

@@ -193,6 +193,7 @@ lumen-card.architecture-part { padding: var(--space-6); border: 1px solid var(--
 .result-figure:only-child { grid-column: 1 / -1; }
 .result-image { display: flex; align-items: center; justify-content: center; min-height: 200px; border-radius: var(--radius-lg) var(--radius-lg) 0 0; background: hsl(var(--white)); padding: var(--space-4); border-bottom: 1px solid var(--border-color); }
 .result-image img { object-fit: contain; width: 100%; height: auto; max-height: 460px; }
+.result-figure--interface .result-image { background: var(--panel-bg); }
 .result-figure figcaption { padding: var(--space-6); }
 .result-figure figcaption h3 { margin: var(--space-4) 0 var(--space-3); font-size: 19px; line-height: 1.5; }
 .result-figure figcaption p { margin: 0 0 var(--space-4); font-size: 14px; line-height: 1.9; }

@@ -14,10 +14,50 @@ Only source images that remain useful and readable at page size are included.
 | Medical Image Analysis | Two archived digit-classification curves | Training/validation accuracy and loss; historical results |
 | Data Structures | Source-0 shortest-path tree | Archived graph result; original graph remains linked at the source repository |
 | AFPGA | Lab 8 board photograph | Archived LED and seven-segment state, interpreted with HPS source |
+| PressiBLE | Archived open-enclosure photograph | XIAO nRF52840, battery, wiring and mounting; no calibration or battery-life claim |
+| PressiBLE | Device-readout screenshot from the ver2 manual | App interaction and displayed states, not an experiment or clinical conclusion |
+| SpaceCellCam | Archived on-board imaging integration photograph | Physical mounting with a rotating sample platform; not current AF/standby firmware validation |
+| Space Microfluidic Payload | Ground-preparation microvalve manifold photograph | Physical fluid-interface assembly, not flight hardware or qualification |
 
-The source photos and plots are copied without modifying their visual contents.
-`content/media-sources.json` records source labels and SHA-256 hashes. Local full
-paths and complete research documents are kept outside the published repository.
+There are eleven selected images across nine projects. All retain their source
+visual contents. Three of the four newly selected Office images are byte-for-byte
+copies. The camera-platform JPEG contained GPS metadata: its EXIF/XMP/IPTC/comment
+segments were removed without re-encoding the JPEG scan. Decoded pixel equality
+was checked against the source. No GPS metadata is published in that asset.
+
+`content/media-sources.json` records source labels, slide/document context and
+published SHA-256 hashes. It additionally records the source hash for the
+metadata-cleaned JPEG. Full local paths, extracted contact sheets, review manifests
+and complete research documents remain outside the published repository.
+
+## Deeper Office review
+
+The follow-up review searched 144 research Word/PowerPoint packages in the
+owner-provided doctoral folder. Image relationships were mapped to slide text;
+candidate sheets and the final four images were inspected before selection.
+Administrative documents and personal financial/application files were excluded
+from this research-media search.
+
+| Selected source | Context used |
+| --- | --- |
+| Sweat-pressure presentation, slide 6 | Original interior photograph; the nRF52840 marking is visible |
+| PressiBLE user manual ver2 | Embedded device-readout screenshot; document explicitly identifies PressiBLE |
+| Physarum_Microgravity presentation, slides 5 and 7 | Physical RPM photograph and ESP32-S3/OV5640 hardware context; retained as historical integration |
+| Space-biomedical presentation, slide 12 | Own-project manifold assembly, separate from the deck's cited satellite literature |
+
+Chinese and English captions state what each image shows and which conclusions
+it cannot support. The old wearable hardware and newer app view are not presented
+as one matched test revision. No new sensing, imaging or fluid experiment was run.
+
+## Remaining image gaps
+
+Seven pages still have no selected photograph or screenshot: ThermoPatch, Space
+BMC Core, nRF54L15/MLX90614, Galaxy Watch Sensor Monitor, Taipei Bus Live, Smart
+Stop-Flow and Passive PVA Sponge Pump. Their purpose, architecture, workflow,
+results, analysis and scope remain available in both languages. The folder search
+did not identify suitable, reliably attributable result images for these pages.
+Similar-looking apparatus and later sperm-sorting devices are not substituted
+for the Stop-Flow or PVA projects.
 
 ## Not selected
 
@@ -26,12 +66,15 @@ frames, slide backgrounds, logos, other people's portraits, generic illustration
 and generated apparatus renders. A weighted-graph raster with overlapping edge
 labels was also excluded; its clearer shortest-path tree was retained.
 
-The sweat-pressure screenshot contained unrelated phone status information and
-added little result evidence at page scale, so it was not selected. Other research
-projects currently use clear architecture and process explanations, with a note
-that no suitable result photo has been selected. Images are not added just to
-populate a gallery, and explanatory diagrams are not described as experimental
-results.
+The previously reviewed sweat-pressure screenshot with unrelated phone status
+information remains excluded. The newer selection uses the cleaner original
+device view embedded in the manual. Manual photographs matching files labeled as
+generated images, and clean-looking hardware pictures with uncertain provenance,
+were excluded rather than described as physical evidence. An unlabeled-context
+physiological trend and clinical/subject imagery were not published. Borrowed
+satellite figures, breadboard clutter, sideways photos and a thermal image lacking
+defined acceptance criteria were also excluded. Images are not added just to
+populate a gallery; explanatory diagrams are not experimental results.
 
 ## Sources and verification
 
@@ -47,12 +90,12 @@ Public README files were checked through the GitHub connector. Source snapshots:
 - Data structures `9e9d2f7`; archived graph images and verification records.
 - AFPGA curated public checkout; Lab 8 source and archived result image.
 
-The unchanged Taipei Bus snapshot's Node test suite was executed in this review:
+The unchanged Taipei Bus snapshot's Node test suite was executed in the earlier source-review pass:
 61 tests passed, zero failed. This is software evidence, not a measurement of road
 position or arrival accuracy. No device flashing, acquisition experiment, model
 training or new clinical evaluation was performed.
 
-The three owner-provided research images were inspected individually against
+The seven owner-provided research images were inspected individually against
 their documents and captions. No patient images or personal profiles were selected.
 
 ## Maintenance
