@@ -694,7 +694,7 @@
       "BLE CLIENT"
     ],
     "zh": {
-      "title": "nRF54L15 × MLX90614",
+      "title": "保留 BLE 連線的間歇式紅外線量測。",
       "summary": "以 Zephyr／nRF Connect SDK 在 XIAO nRF54L15 上讀取紅外線溫度，透過 BLE 傳送資料，支援每 60 秒取樣及手機要求即時量測。",
       "purpose": "在保留手機連線與操作的條件下，安排間歇取樣及低功耗等待。",
       "decisions": [],
@@ -773,7 +773,7 @@
       "media_note": "本頁以架構、流程與可核對紀錄說明成果；目前未選入足以清楚呈現結果的照片或畫面。"
     },
     "en": {
-      "title": "nRF54L15 × MLX90614",
+      "title": "Intermittent infrared sensing with BLE still reachable.",
       "summary": "Zephyr/nRF Connect SDK infrared-temperature firmware for XIAO nRF54L15, with BLE data delivery, 60-second sampling, and immediate measurements requested from a phone.",
       "purpose": "Schedule intermittent sensing and low-power waiting while retaining phone connectivity and control.",
       "decisions": [],
@@ -879,7 +879,7 @@
       "WEAR OS VIEW"
     ],
     "zh": {
-      "title": "Galaxy Watch Sensor Monitor",
+      "title": "單次皮膚溫度量測，連同狀態一起回報。",
       "summary": "Wear OS／Kotlin 感測 App，透過 Samsung Health Sensor SDK 進行單次皮膚溫度量測，顯示手腕溫度、環境溫度、時間與感測狀態。",
       "purpose": "建立可操作的手錶端量測入口，觀察感測值、回呼與錯誤狀態。",
       "decisions": [],
@@ -958,7 +958,7 @@
       "media_note": "本頁以架構、流程與可核對紀錄說明成果；目前未選入足以清楚呈現結果的照片或畫面。"
     },
     "en": {
-      "title": "Galaxy Watch Sensor Monitor",
+      "title": "One skin-temperature measurement, with its status intact.",
       "summary": "A Wear OS/Kotlin app using Samsung Health Sensor SDK for on-demand skin-temperature measurement, displaying wrist and ambient temperatures, timestamps, and tracker status.",
       "purpose": "Provide a watch-side measurement workflow with visible readings, callbacks, and errors.",
       "decisions": [],
@@ -1075,7 +1075,7 @@
       "MAP + ARRIVALS"
     ],
     "zh": {
-      "title": "台北公車 Live",
+      "title": "從官方車況快照，到可解讀的即時地圖。",
       "summary": "以臺北市官方動態資料建立公車地圖，提供路線與車牌搜尋、標記聚合、站牌到站預估、收藏，以及依路線線形呈現的短時間位置推估。",
       "purpose": "把官方車況快照、路線與站牌資料整合成可互動查詢的地圖。",
       "decisions": [],
@@ -1131,8 +1131,8 @@
           "平順移動是依官方回報建立的短時間推估，回報年齡與推估狀態需與地圖一起閱讀。"
         ],
         [
-          "本次軟體檢查",
-          "公開版本 6d9db5e 的 Node 測試套件重新執行，61 項通過、0 失敗。測試涵蓋資料、軌跡、站序、介面及上游處理，不是道路定位精度量測。"
+          "既有版本檢查紀錄",
+          "公開版本 6d9db5e 保存的 Node 測試結果為 61 項通過、0 失敗。範圍涵蓋資料、軌跡、站序、介面及上游處理；不是本次網站更新重新測試，也不是道路定位精度量測。"
         ]
       ],
       "analysis": [
@@ -1158,7 +1158,7 @@
       "media_note": "本頁以架構、流程與可核對紀錄說明成果；目前未選入足以清楚呈現結果的照片或畫面。"
     },
     "en": {
-      "title": "Taipei Bus Live",
+      "title": "From official snapshots to an interpretable live bus map.",
       "summary": "An interactive map built on official Taipei bus snapshots, with route and vehicle search, marker clustering, stop arrival estimates, favorites, and short-term position estimation along route geometry.",
       "purpose": "Bring official vehicle snapshots, route geometry, and stops into an interactive map.",
       "decisions": [],
@@ -1214,8 +1214,8 @@
           "Smooth movement is a short extrapolation from official reports. Read report age and estimation state alongside the map."
         ],
         [
-          "Software checks in this review",
-          "The Node suite at public revision 6d9db5e was rerun: 61 passed, 0 failed. It covers data, motion, stop order, presentation and upstream handling, not road-position accuracy."
+          "Existing revision check record",
+          "The saved Node test result for public revision 6d9db5e is 61 passed, 0 failed, covering data, motion, stop order, presentation and upstream handling. It was not rerun for this website update and does not measure road-position accuracy."
         ]
       ],
       "analysis": [
@@ -1264,7 +1264,7 @@
       "TFT + CSV"
     ],
     "zh": {
-      "title": "ECsnap 電化學儀器",
+      "title": "單鍵計時安培量測，從儀器控制到 CSV。",
       "summary": "整合 EmStat Pico、微控制器、TFT 與 microSD，以單鍵流程完成穩定等待、計時安培量測、狀態回饋與 CSV 資料保存。",
       "purpose": "把電化學電流量測轉成便於操作及保存資料的可攜式研究儀器。",
       "decisions": [],
@@ -1342,7 +1342,7 @@
       "media_note": "本頁圖像以已核對的架構與輸出說明為主；實際結果照片將於有合適素材時補充。"
     },
     "en": {
-      "title": "ECsnap Electrochemical Instrument",
+      "title": "Single-button chronoamperometry, from instrument control to CSV.",
       "summary": "An EmStat Pico, MCU, TFT, and microSD instrument with a single-button workflow for stabilization, chronoamperometry, status feedback, and CSV recording.",
       "purpose": "Make electrochemical current measurements easier to operate and record in a portable research instrument.",
       "decisions": [],
@@ -1462,7 +1462,7 @@
       "RUN RECORD"
     ],
     "zh": {
-      "title": "Smart Stop-Flow",
+      "title": "串接流體控制、手機取像與實驗紀錄。",
       "summary": "開發中的微流體整合原型，串接 ESP32-S3 幫浦／微閥控制、Android 方法設定、手機取像、ROI 分析與實驗紀錄。",
       "purpose": "讓進樣控制、停流觀察與資料保存能對應同一段實驗時間序列。",
       "decisions": [],
@@ -1540,7 +1540,7 @@
       "media_note": "本頁以架構、流程與可核對紀錄說明成果；目前未選入足以清楚呈現結果的照片或畫面。"
     },
     "en": {
-      "title": "Smart Stop-Flow",
+      "title": "Connecting fluid control, phone imaging and experiment records.",
       "summary": "An in-development microfluidic prototype connecting ESP32-S3 pump/valve control, Android methods, phone imaging, ROI analysis, and experiment records.",
       "purpose": "Align sample delivery, stop-flow observation, and stored records on one experimental timeline.",
       "decisions": [],
@@ -1656,7 +1656,7 @@
       "ANGLE FEEDBACK"
     ],
     "zh": {
-      "title": "Dual-Axis Gravity Controller",
+      "title": "控制雙軸旋轉，分析方向的時間平均。",
       "summary": "以角度回授、速度估測、feedforward 與 PID 控制雙軸連續旋轉伺服，研究重力向量方向隨時間變化的運動控制。",
       "purpose": "控制雙軸旋轉的角度與速度，供重力向量時間平均相關研究使用。",
       "decisions": [],
@@ -1738,7 +1738,7 @@
       "media_note": "本頁圖像以已核對的架構與輸出說明為主；實際結果照片將於有合適素材時補充。"
     },
     "en": {
-      "title": "Dual-Axis Gravity Controller",
+      "title": "Controlling two-axis rotation and analyzing orientation over time.",
       "summary": "Dual-axis continuous-rotation servo control using angle feedback, velocity estimation, feedforward, and PID to study motion that changes the gravity-vector direction over time.",
       "purpose": "Control dual-axis rotation for research involving time-averaged gravity-vector orientation.",
       "decisions": [],
@@ -1862,7 +1862,7 @@
       "CSV + SYNC"
     ],
     "zh": {
-      "title": "PressiBLE 汗液壓力平台",
+      "title": "從汗壓相關電訊號，到可回查的量測紀錄。",
       "summary": "以 nRF52840、BLE 與 Android 串接汗壓相關電訊號、溫度、即時趨勢與 CSV 紀錄，研究穿戴式感測資料的判讀與保存。",
       "purpose": "把汗液壓力相關量測串接至可觀察、匯出與追蹤的手機資料流程。",
       "decisions": [],
@@ -1940,7 +1940,7 @@
       "media_note": "本頁以架構、流程與可核對紀錄說明成果；目前未選入足以清楚呈現結果的照片或畫面。"
     },
     "en": {
-      "title": "PressiBLE Sweat-Pressure Platform",
+      "title": "From pressure-related signals to traceable wearable records.",
       "summary": "An nRF52840, BLE, and Android workflow connecting sweat-pressure-related signals, temperature, live trends, and CSV records for wearable sensing research.",
       "purpose": "Connect sweat-pressure-related measurements to an observable, exportable phone data workflow.",
       "decisions": [],
@@ -2078,7 +2078,7 @@
       "GROUND RECORD"
     ],
     "zh": {
-      "title": "太空微流體 Payload",
+      "title": "把樣品操作需求接到地面載荷原型。",
       "summary": "面向預計太空實驗的樣品處理與載荷整合開發，整理系統需求、子系統介面、幫浦／微閥序列控制及晶片／機構 CAD。",
       "purpose": "分層規劃地面準備、樣品承載與任務資料需求，建立可供原型整合的設計基線。",
       "decisions": [],
@@ -2156,7 +2156,7 @@
       "media_note": "本頁以架構、流程與可核對紀錄說明成果；目前未選入足以清楚呈現結果的照片或畫面。"
     },
     "en": {
-      "title": "Space Microfluidic Payload",
+      "title": "Turning sample-handling requirements into a ground payload prototype.",
       "summary": "Sample-processing and payload-integration development for a planned space experiment, covering requirements, subsystem interfaces, pump/valve sequencing, and chip/mechanical CAD.",
       "purpose": "Separate ground preparation, sample containment, and mission-data requirements into a prototype design baseline.",
       "decisions": [],
@@ -2276,7 +2276,7 @@
       "GUI + METRICS"
     ],
     "zh": {
-      "title": "生物影像與運動分析",
+      "title": "從原始影像，到可檢查的輪廓與運動分析。",
       "summary": "以 Python、OpenCV 與 PyQt5 建立影像前處理、分割、配準和運動分析工具，將實驗取像延伸至可操作的分析流程。",
       "purpose": "協助生物實驗整理影像、觀察運動行為並比對分析結果。",
       "decisions": [],
@@ -2354,7 +2354,7 @@
       "media_note": "本頁圖像以已核對的架構與輸出說明為主；實際結果照片將於有合適素材時補充。"
     },
     "en": {
-      "title": "Bioimage & Motion Analysis",
+      "title": "From source images to inspectable contours and motion analysis.",
       "summary": "Python, OpenCV, and PyQt5 tools for preprocessing, segmentation, registration, and motion analysis, extending experimental images into an operable analysis workflow.",
       "purpose": "Organize experimental images, observe biological motion, and compare analysis outputs.",
       "decisions": [],
@@ -2474,7 +2474,7 @@
       "FLOW OBSERVATION"
     ],
     "zh": {
-      "title": "被動式 PVA 海綿幫浦",
+      "title": "用 PVA 吸液驅動微流道，不依賴電動幫浦。",
       "summary": "碩士研究結合手指啟動進樣、PVA 海綿毛細作用、高度差與 PDMS 封裝，研究不需電力驅動的微流體輸送方案。",
       "purpose": "降低微流體系統對大型外接電動幫浦的依賴，評估便攜式流體驅動原型。",
       "decisions": [],
@@ -2552,7 +2552,7 @@
       "media_note": "本頁以架構、流程與可核對紀錄說明成果；目前未選入足以清楚呈現結果的照片或畫面。"
     },
     "en": {
-      "title": "Passive PVA Sponge Pump",
+      "title": "Driving microfluidic transport with PVA absorption, not an electric pump.",
       "summary": "Master's research combining finger-initiated loading, PVA sponge capillarity, height differences, and PDMS packaging to study electricity-free microfluidic pumping.",
       "purpose": "Reduce dependence on large external electric pumps and assess a portable fluid-driving prototype.",
       "decisions": [],
@@ -2668,7 +2668,7 @@
       "HPS + BOARD"
     ],
     "zh": {
-      "title": "NYCU-AFPGA",
+      "title": "八組實驗，從數位邏輯走到 HPS／FPGA。",
       "summary": "從組合邏輯、FSM、RAM、簡易處理器到 DE1-SoC HPS/Qsys 整合的八組詳細實驗文件。",
       "purpose": "循序理解數位邏輯、記憶體與處理器架構，再延伸至 HPS 與 FPGA 的軟硬體介面。",
       "decisions": [],
@@ -2747,7 +2747,7 @@
       "media_note": "本頁圖像以已核對的架構與輸出說明為主；實際結果照片將於有合適素材時補充。"
     },
     "en": {
-      "title": "NYCU-AFPGA",
+      "title": "Eight labs from digital logic to HPS/FPGA integration.",
       "summary": "Eight documented labs covering combinational logic, FSMs, RAM, a simple processor, and DE1-SoC HPS/Qsys integration.",
       "purpose": "Study digital logic, memory and processors before exploring HPS-to-FPGA interfaces.",
       "decisions": [],
@@ -2864,7 +2864,7 @@
       "METRICS + REVIEW"
     ],
     "zh": {
-      "title": "醫學影像深度學習",
+      "title": "分類、分割與偵測：五份實作與結果判讀。",
       "summary": "五份作業涵蓋 SPECT 與 MRI 分類、超音波頸動脈分割、胸腔 X 光異常區域偵測，整理前處理、PyTorch 模型、訓練結果與分析。公開程式與彙整圖表，不含病患資料。",
       "purpose": "比較分類、影像分割與物件偵測如何對應不同的醫學影像任務。",
       "decisions": [],
@@ -2943,7 +2943,7 @@
       "media_note": "本頁圖像以已核對的架構與輸出說明為主；實際結果照片將於有合適素材時補充。"
     },
     "en": {
-      "title": "Deep Learning for Medical Imaging",
+      "title": "Classification, segmentation and detection: five experiments examined.",
       "summary": "Five assignments covering SPECT and MRI classification, carotid ultrasound segmentation, and chest X-ray abnormality detection, with preprocessing, PyTorch models, training results, and analysis. Public code and aggregate figures; no patient data.",
       "purpose": "Explore how classification, segmentation, and object detection address different medical-imaging tasks.",
       "decisions": [],
@@ -3078,7 +3078,7 @@
       "CHECK + OUTPUT"
     ],
     "zh": {
-      "title": "資料結構與圖論演算法",
+      "title": "九份 C 實作，從資料表示到演算法結果。",
       "summary": "以 C 實作九份作業，從排序、BFS 迷宮搜尋與稀疏矩陣，到 Segment Tree、Huffman、最小生成樹與 Dijkstra，附結果圖片及複雜度分析。",
       "purpose": "理解資料結構如何影響記憶體使用、操作成本與演算法選擇。",
       "decisions": [],
@@ -3157,7 +3157,7 @@
       "media_note": "本頁圖像以已核對的架構與輸出說明為主；實際結果照片將於有合適素材時補充。"
     },
     "en": {
-      "title": "Data Structures & Graph Algorithms",
+      "title": "Nine C assignments, from data representation to algorithm output.",
       "summary": "Nine C assignments covering sorting, BFS maze search, sparse matrices, segment trees, Huffman coding, minimum spanning trees, and Dijkstra, with report figures and complexity analysis.",
       "purpose": "Understand how data structures affect memory usage, operation costs, and algorithm choices.",
       "decisions": [],

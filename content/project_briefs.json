@@ -1,0 +1,574 @@
+{
+  "thermopatch": {
+    "related": ["pressible", "nrf54l15-mlx90614"],
+    "links": [
+      {"zh": "Android 架構與操作說明", "en": "Android architecture and operation", "url": "https://github.com/peianchen/ThermoPatch/blob/main/README.md"},
+      {"zh": "v1.0.1 發行與檢查紀錄", "en": "v1.0.1 release and check record", "url": "https://github.com/peianchen/ThermoPatch/blob/main/releases/v1.0.1/RELEASE_NOTES.md"}
+    ],
+    "zh": {
+      "stage": "穿戴式資料平台 / nRF52840 版本",
+      "card": "把 BLE 溫度感測器對應到六個身體部位，在 Android 顯示讀值與連線狀態，並串接 Firebase 紀錄和指定裝置的 DFU 更新。",
+      "output": "六部位資料介面、BLE 裝置管理、雲端紀錄與 DFU 操作流程。",
+      "evidence": "歷史 App 畫面與 v1.0.1 檢查紀錄；畫面顯示一個部位有值，不代表六點同時量測。",
+      "walkthrough": {
+        "title": "一筆溫度如何對應到正確的身體部位？",
+        "steps": [
+          ["先確認來源", "BluetoothViewModel 處理掃描、GATT 連線與通知；DeviceViewModel 管理裝置與部位對應。藍牙通知的數值必須連同來源裝置處理，才能知道它屬於頭部、胸部或四肢。"],
+          ["分開顯示讀值與連線", "Compose 畫面呈現各部位溫度及裝置狀態。歷史截圖中的頭部為 29.8 °C，其餘部位為 --；這是當時的介面紀錄，缺值不能解讀成 0 °C，也不能推論所有感測器都在連線。"],
+          ["保存資料與維護裝置", "Firebase 負責資料彙整，韌體更新則由 MyDfuService 與 Nordic DFU callback 處理。選擇 ZIP 與目標裝置是另一條操作流程，不能因為能接收溫度就認定更新已驗證成功。"]
+        ],
+        "takeaway": "這個專案的重點是跨裝置資料管理，不只是顯示一個溫度。公開頁對應舊版 nRF52840 Android 專案，不混用後續 ThermoPatchV2／nRF54 的功能或測試結果。"
+      }
+    },
+    "en": {
+      "stage": "Wearable data platform / nRF52840 edition",
+      "card": "Maps BLE temperature sensors to six body locations, shows readings and connection state on Android, and connects Firebase records with device-specific DFU workflows.",
+      "output": "Six-location interface, BLE device management, cloud records and a DFU workflow.",
+      "evidence": "Archived app screen and v1.0.1 checks. One populated location does not establish simultaneous six-point acquisition.",
+      "walkthrough": {
+        "title": "How does a temperature reading reach the correct body location?",
+        "steps": [
+          ["Identify the source", "BluetoothViewModel handles scanning, GATT connections and notifications; DeviceViewModel manages device-to-location mapping. A notification needs its source identity to distinguish the head, chest and limbs."],
+          ["Keep readings separate from connection state", "The Compose interface presents temperature and device state for each location. The archived screen shows 29.8 °C at the head and -- elsewhere. Missing data is not 0 °C, and this screen does not show all sensors connected."],
+          ["Record data and maintain devices", "Firebase handles aggregation. Firmware maintenance follows a separate path through MyDfuService and Nordic DFU callbacks, with an update ZIP and selected target. Receiving temperature data does not establish a successful firmware update."]
+        ],
+        "takeaway": "The engineering focus is multi-device data identity, not just a temperature display. This page describes the older nRF52840 Android project, without importing features or test results from ThermoPatchV2 or nRF54 work."
+      }
+    }
+  },
+  "spacecellcam": {
+    "related": ["space-payload", "bioimage-analysis"],
+    "links": [
+      {"zh": "取像流程、設定與錯誤訊息", "en": "Capture sequence, settings and failure messages", "url": "https://github.com/peianchen/SpaceCellCam/blob/main/README.md"},
+      {"zh": "工程設計說明", "en": "Engineering notes", "url": "https://github.com/peianchen/SpaceCellCam/blob/main/docs/ENGINEERING.md"}
+    ],
+    "zh": {
+      "stage": "生物實驗取像 / 嵌入式韌體",
+      "card": "以 ESP32-S3 與 OV5640 定時拍攝 QSXGA JPEG，串接照明、首次對焦鎖定、感測器待機及 microSD 檔案保存。",
+      "output": "目標 10 秒週期的取像流程、PSRAM 影像緩衝與可追查的 SD 存檔狀態。",
+      "evidence": "公開取像流程與歷史整合照片；週期是設定值，並非本頁新增的長時間實測。",
+      "walkthrough": {
+        "title": "為什麼先讓相機待機，再把照片寫入 SD？",
+        "steps": [
+          ["穩定畫面再取像", "點亮 LED 後等待 300 ms，首次取像進行中央區域 AF，後續沿用鎖定焦點。丟棄一張過渡影格，再取得最終 QSXGA JPEG，避免把恢復中的畫面直接保存。"],
+          ["把影像所有權交給 PSRAM", "取得 JPEG 後先複製到 PSRAM，再歸還相機 frame buffer。OV5640 接著進入 standby，SD 寫入使用的是獨立影像副本，不再占用相機緩衝。"],
+          ["完成檔案再確認保存", "以暫存檔寫入、重新命名及大小核對處理存檔；每 500 張分一個目錄，開機從 SD 恢復編號。write short 或 size mismatch 屬存檔問題，不能只憑拍攝成功就宣稱檔案完整。"]
+        ],
+        "takeaway": "這個順序把照明、相機活躍時間與 SD 延遲分開。它解釋了韌體的資源安排，但實際節能幅度仍需獨立電流量測；ESP32 內部溫度也不能當作鏡頭或感測器溫度。"
+      }
+    },
+    "en": {
+      "stage": "Biological imaging / embedded firmware",
+      "card": "Schedules QSXGA JPEG capture with an ESP32-S3 and OV5640, coordinating illumination, first-frame focus locking, sensor standby and microSD storage.",
+      "output": "A target 10-second capture cycle, PSRAM image buffering and traceable SD save states.",
+      "evidence": "Public capture sequence and an archived integration photograph. The period is a setting, not a new endurance measurement.",
+      "walkthrough": {
+        "title": "Why put the camera in standby before writing the image to SD?",
+        "steps": [
+          ["Stabilize before capture", "After turning on the LED, the firmware waits 300 ms. The first capture runs center-region AF; later captures reuse the focus lock. One transition frame is discarded before taking the final QSXGA JPEG."],
+          ["Transfer image ownership to PSRAM", "The JPEG is copied to PSRAM before the camera frame buffer is returned. The OV5640 then enters standby. SD writing uses the independent copy rather than holding the camera buffer."],
+          ["Verify the saved file", "Storage uses a temporary file, rename and size verification. Images are grouped into 500-file directories, and numbering is recovered from SD at boot. A short write or size mismatch is a storage failure even if capture succeeded."]
+        ],
+        "takeaway": "The sequence separates illumination and camera-active time from SD latency. It explains resource ownership, not a measured energy saving. ESP32 internal temperature is also not a measurement of the lens or image sensor."
+      }
+    }
+  },
+  "space-bmc": {
+    "related": ["spacecellcam", "afpga"],
+    "links": [
+      {"zh": "RTL 介面與驗證入口", "en": "RTL interface and verification entry", "url": "https://github.com/peianchen/Space-BMC-Core-SEMC/blob/main/README.md"}
+    ],
+    "zh": {
+      "stage": "FPGA 可靠度模組 / 功能模擬",
+      "card": "實作可設定週期的 Verilog 心跳逾時監測器，以自我檢查 testbench 核對逾時、心跳清除、明確清除及非同步重置。",
+      "output": "可參數化 heartbeat monitor、15 項邊界檢查與保存的波形。",
+      "evidence": "既有模擬紀錄為 15 checks、0 errors；Recovery FSM 尚未實作。",
+      "walkthrough": {
+        "title": "逾時拉高之後，誰能清除它？",
+        "steps": [
+          ["用週期定義門檻", "heartbeat 與 clear 在時脈上升沿取樣，rst_n 為非同步低有效。預設 25,000,000 cycles 若搭配 50 MHz，門檻換算為 500 ms；這是參數換算，不是硬體測得的延遲。"],
+          ["觀察鎖存與重新計時", "逾時旗標不會自動消失，須由 heartbeat、clear 或 reset 清除並重新開始間隔。保存的測例以 N=5、10 ns 時脈縮短觀察時間，檢查清除後是否重新計滿完整間隔。"],
+          ["逐事件對照波形", "既有波形中，205 ns 逾時、235 ns 由心跳清除；285 ns 再逾時、295 ns 明確清除；345 ns 再逾時、351 ns 非同步重置。這些事件讓旗標的保持與清除行為可以直接追查。"]
+        ],
+        "takeaway": "模組回答的是『多久沒有收到心跳』，不負責重啟整個系統。跨時脈同步、恢復策略與板級失效測試仍屬外部整合工作。"
+      }
+    },
+    "en": {
+      "stage": "FPGA reliability module / functional simulation",
+      "card": "Implements a parameterized Verilog heartbeat timeout monitor with a self-checking testbench for timeout, heartbeat clearing, explicit clearing and asynchronous reset.",
+      "output": "Parameterized heartbeat monitor, 15 boundary checks and archived waveforms.",
+      "evidence": "The saved simulation reports 15 checks and 0 errors. A Recovery FSM is not implemented.",
+      "walkthrough": {
+        "title": "Once timeout is asserted, what clears it?",
+        "steps": [
+          ["Define the threshold in cycles", "Heartbeat and clear are sampled on rising edges; rst_n is asynchronous and active-low. The default 25,000,000 cycles corresponds to 500 ms at 50 MHz. This is a parameter conversion, not measured hardware latency."],
+          ["Check latching and interval restart", "Timeout remains asserted until heartbeat, clear or reset clears it and restarts the interval. The archived test uses N=5 with a 10 ns clock to check that a full interval starts again after clearing."],
+          ["Trace the waveform events", "The saved trace asserts timeout at 205 ns and clears it with heartbeat at 235 ns; asserts again at 285 ns and explicitly clears at 295 ns; then asserts at 345 ns and asynchronously resets at 351 ns. Each event exposes the flag's hold and clear behavior."]
+        ],
+        "takeaway": "This module detects a missing heartbeat; it does not restart the full system. Clock-domain synchronization, recovery policy and board-level fault testing remain integration work."
+      }
+    }
+  },
+  "nrf54l15-mlx90614": {
+    "related": ["thermopatch", "pressible"],
+    "links": [
+      {"zh": "硬體接線與 BLE 介面", "en": "Wiring and BLE interface", "url": "https://github.com/peianchen/nRF54L15_MLX90614/blob/master/README.md"},
+      {"zh": "低功耗預算與分析", "en": "Power budget and analysis", "url": "https://github.com/peianchen/nRF54L15_MLX90614/blob/master/LOW_POWER_ANALYSIS.md"}
+    ],
+    "zh": {
+      "stage": "感測韌體 / XIAO nRF54L15",
+      "card": "在 Zephyr 讀取 MLX90614 物體與環境溫度，以 BLE 傳送讀值；保留 60 秒週期量測，也能由手機要求立即取樣。",
+      "output": "I2C 感測、ASCII 溫度通知、即時取樣命令與 System ON idle 等待策略。",
+      "evidence": "公開 README 提供接線、GATT 規格與即時取樣命令，另附低功耗預算分析。",
+      "walkthrough": {
+        "title": "休眠等待時，手機如何要求再量一次？",
+        "steps": [
+          ["連接感測器", "公開專案以 XIAO nRF54L15 的 i2c22 讀取位址 0x5A 的 MLX90614，SDA 為 P1.10、SCL 為 P1.11。這份接線只適用於此公開板型設定，不代表其他 Raytac 或客製板版本。"],
+          ["交換明確的 BLE 資料", "裝置名稱為 Thermo-MLX，服務 0xFFF0；溫度由 0xFFF1 以 ASCII 攝氏數字傳送，例如 26.34 是格式示例。控制特徵 0xFFF9 接收 sample 或 measure，要求立即取樣，不改變正常 60 秒間隔。"],
+          ["保留可喚醒的通訊路徑", "兩次量測間主執行緒等待 semaphore，讓系統進入 System ON idle，同時保留 BLE。若直接改成 System OFF，手機就無法經原 BLE 連線要求量測；量測版也關閉 UART 與診斷 LED，避免影響功耗觀察。"]
+        ],
+        "takeaway": "設計取捨在於『保持手機可控制』與『降低平均耗電』。電池壽命預算必須和實際電流紀錄分開，不能把理論預算寫成已達成的續航。"
+      }
+    },
+    "en": {
+      "stage": "Sensor firmware / XIAO nRF54L15",
+      "card": "Reads MLX90614 object and ambient temperature in Zephyr and sends readings over BLE, combining a 60-second sampling interval with phone-triggered immediate sampling.",
+      "output": "I2C acquisition, ASCII temperature notifications, sampling commands and System ON idle waits.",
+      "evidence": "The public README documents wiring, the GATT contract and immediate sampling, with a separate power-budget analysis.",
+      "walkthrough": {
+        "title": "How can a phone request a sample while the firmware is waiting?",
+        "steps": [
+          ["Connect the sensor", "The public project uses i2c22 on the XIAO nRF54L15 to read MLX90614 address 0x5A, with SDA on P1.10 and SCL on P1.11. These pins describe this board configuration, not later Raytac or custom-board variants."],
+          ["Use an explicit BLE contract", "Thermo-MLX advertises service 0xFFF0. Characteristic 0xFFF1 sends an ASCII Celsius number; 26.34 is a format example. Control characteristic 0xFFF9 accepts sample or measure for an immediate reading without changing the normal 60-second interval."],
+          ["Keep the control path reachable", "Between samples the main thread waits on a semaphore, allowing System ON idle while BLE remains available. System OFF would remove that phone-control path. The measurement build also disables UART and diagnostic LED activity to avoid contaminating power observations."]
+        ],
+        "takeaway": "The tradeoff is phone reachability versus average power. Battery-budget calculations must remain separate from recorded current measurements and cannot be presented as achieved battery life."
+      }
+    }
+  },
+  "galaxy-watch": {
+    "related": ["thermopatch", "pressible"],
+    "links": [
+      {"zh": "SDK、權限與實機操作", "en": "SDK, permissions and device setup", "url": "https://github.com/peianchen/GalaxyWatchSensorMonitor/blob/master/README.md"},
+      {"zh": "HealthSensorManager 狀態與回呼程式", "en": "HealthSensorManager state and callbacks", "url": "https://github.com/peianchen/GalaxyWatchSensorMonitor/blob/master/app/src/main/java/com/example/galaxywatchsensormonitor/HealthSensorManager.kt"}
+    ],
+    "zh": {
+      "stage": "Wear OS / 單次感測實作",
+      "card": "將 Samsung 皮膚溫度 SDK 接成可操作的手錶 App：按下量測、取得一次回呼、停止 tracker，並顯示溫度與失敗原因。",
+      "output": "單次皮膚／環境溫度量測介面，含權限、tracker 支援與逾時狀態。",
+      "evidence": "歷史畫面顯示 33.7 °C／32.8 °C 與 Tracker stopped；不是連續追蹤或醫療效能證據。",
+      "walkthrough": {
+        "title": "把一次 SDK 回呼變成可理解的量測結果",
+        "steps": [
+          ["先判斷能否開始", "HealthSensorManager 先檢查 BODY_SENSORS 權限、服務連線，以及裝置是否支援 SKIN_TEMPERATURE_ON_DEMAND。缺權限或不支援 tracker 時，介面應顯示原因，而不是一直等待數值。"],
+          ["分辨成功、空資料與錯誤", "收到回呼後取最後一個 DataPoint，解析 STATUS、OBJECT_TEMPERATURE、AMBIENT_TEMPERATURE 與 timestamp。空清單有獨立狀態；異常 STATUS 不會被當成有效溫度，缺值也不補為零。"],
+          ["結束這一次量測", "一次資料回呼後結束 tracker；程式另設 30 秒等待上限，沒有回呼時回報逾時。StateFlow 將讀值、回呼數與狀態提供給介面，使操作結果不只剩下一個數字。"]
+        ],
+        "takeaway": "這是範圍明確的感測整合實作。PPG 僅保留停用的擴充入口，不能把它描述為已完成的多訊號健康監測平台。"
+      }
+    },
+    "en": {
+      "stage": "Wear OS / on-demand sensing",
+      "card": "Turns Samsung's skin-temperature SDK into an operable watch app: start a measurement, receive one callback, stop the tracker and show readings or failure reasons.",
+      "output": "On-demand skin and ambient temperature UI with permission, tracker-support and timeout states.",
+      "evidence": "An archived screen shows 33.7 °C / 32.8 °C and Tracker stopped, not continuous monitoring or medical performance.",
+      "walkthrough": {
+        "title": "Turn one SDK callback into an understandable measurement",
+        "steps": [
+          ["Check whether acquisition can start", "HealthSensorManager checks BODY_SENSORS permission, service connectivity and support for SKIN_TEMPERATURE_ON_DEMAND. Missing permission or an unsupported tracker produces an explicit state rather than an indefinite wait for data."],
+          ["Distinguish success, empty data and errors", "The callback reads the last DataPoint and extracts STATUS, OBJECT_TEMPERATURE, AMBIENT_TEMPERATURE and timestamp. Empty lists have their own state; abnormal status is not accepted as valid temperature, and missing values are not replaced with zero."],
+          ["Finish the measurement", "A data callback ends the tracker. A separate 30-second limit reports a timeout if no callback arrives. StateFlow exposes readings, callback counts and status to the UI, preserving more context than a single number."]
+        ],
+        "takeaway": "This is a focused sensor-integration project. PPG remains a disabled extension point, not a completed multi-signal health-monitoring platform."
+      }
+    }
+  },
+  "taipei-bus": {
+    "related": ["data-structures", "thermopatch"],
+    "links": [
+      {"zh": "位置模型、快取及本機執行方式", "en": "Position model, caching and local setup", "url": "https://github.com/peianchen/taipei-bus-live/blob/main/README.md"}
+    ],
+    "zh": {
+      "stage": "即時資料網頁 / Beta",
+      "card": "把官方車況、路線與站牌資料整合成互動地圖，提供搜尋、收藏、到站預估，並區分官方回報位置與最長 15 秒的動畫推估。",
+      "output": "Node.js 共用資料快取、沿線位置模型、MapLibre 地圖與手機版資訊卡。",
+      "evidence": "原始碼、位置模型說明及版本 6d9db5e 的 61 項測試紀錄。",
+      "walkthrough": {
+        "title": "兩次 GPS 回報之間，畫面上的公車位置從哪裡來？",
+        "steps": [
+          ["保存官方快照與資料年齡", "伺服器共用車況快取，避免每位使用者各自向上游重複請求。上游逾時時保留上一份快照，並標記延遲；『仍有圖示』和『資料是新的』是不同狀態。"],
+          ["沿路線估計，而非任意滑動", "位置模型參考 BusShape、方向與上一段沿線進度；新 GPS 到達後以沿線距離的 α-β 濾波修正位置及速度。低信心匹配縮短外插時間，最長不超過 15 秒，之後等待新回報。"],
+          ["分開呈現車況與到站預估", "瀏覽器只動畫更新可視車輛，快照未變時不重建標記。點選站牌取得的是該路線／站牌的官方 ETA，不應被解讀為目前選中車輛的精確抵達時間。"]
+        ],
+        "takeaway": "這個專案處理的是不連續、可能延遲的資料。平順動畫只是呈現方式；資料時間、推估上限與失敗回退，才決定讀者能否正確理解地圖。"
+      }
+    },
+    "en": {
+      "stage": "Live-data web application / Beta",
+      "card": "Combines official vehicle, route and stop data into a searchable map with favorites and arrival estimates, distinguishing reported positions from animation estimates capped at 15 seconds.",
+      "output": "Shared Node.js data cache, route-based position model, MapLibre map and mobile information cards.",
+      "evidence": "Source code, position-model documentation and a 61-test record for revision 6d9db5e.",
+      "walkthrough": {
+        "title": "Where does an animated bus position come from between GPS reports?",
+        "steps": [
+          ["Retain the official snapshot and its age", "The server shares vehicle snapshots rather than repeating upstream requests for every user. A timeout retains the previous snapshot with a delay marker. A visible marker does not mean fresh data."],
+          ["Estimate along a route", "The model uses BusShape geometry, direction and previous along-route progress. New GPS reports update position and speed through an along-route alpha-beta filter. Low-confidence matches shorten extrapolation, with an absolute 15-second cap before waiting for new data."],
+          ["Separate vehicle state from arrival estimates", "The browser animates visible vehicles only and avoids rebuilding markers for unchanged snapshots. A selected stop's official ETA describes the route/stop prediction, not an exact arrival time for the selected vehicle."]
+        ],
+        "takeaway": "The core problem is intermittent, potentially stale data. Smooth animation is presentation; timestamps, bounded extrapolation and failure fallback make that presentation interpretable."
+      }
+    }
+  },
+  "ecsnap": {
+    "related": ["pressible", "stop-flow"],
+    "links": [],
+    "zh": {
+      "stage": "可攜式電化學儀器 / 研究原型",
+      "card": "把 EmStat Pico 計時安培量測整合成單鍵儀器，協調穩定等待、UART 資料解析、TFT 狀態更新與 microSD CSV 紀錄。",
+      "output": "單鍵量測流程、MethodSCRIPT／UART 解析與 RAM 緩衝批次寫檔。",
+      "evidence": "儀器原型照片與公開工程說明；展示電流擷取系統，不宣稱濃度校正已完成。",
+      "walkthrough": {
+        "title": "量測、畫面和存檔如何同時進行？",
+        "steps": [
+          ["用狀態安排量測", "單鍵操作依序進入穩定等待與 chronoamperometry（計時安培量測）。微控制器透過 MethodSCRIPT／UART 與 EmStat Pico 交換命令和資料，TFT 提供目前步驟的回饋。"],
+          ["先接收，再批次保存", "量測資料解析後先進 RAM 緩衝，再分批寫入 microSD。這個安排將逐筆資料到達與較慢的檔案操作分開，避免每筆讀值都立即觸發完整寫檔流程。"],
+          ["協調共用 SPI", "TFT 與 SD 共用匯流排，畫面更新和儲存不能被當成互不相干的工作。平台移植從 SAMD21 轉向 nRF52840 時，也必須重新核對通訊、儲存與操作時序，而不只是讓程式編譯。"]
+        ],
+        "takeaway": "原型產出是能操作、觀察並保存電流資料的儀器流程。將電流換算為分析物濃度，仍需要對應的電極、校正曲線及實驗條件。"
+      }
+    },
+    "en": {
+      "stage": "Portable electrochemical instrument / research prototype",
+      "card": "Integrates EmStat Pico chronoamperometry into a single-button instrument, coordinating stabilization, UART parsing, TFT feedback and microSD CSV records.",
+      "output": "Single-button acquisition, MethodSCRIPT/UART parsing and RAM-buffered batch logging.",
+      "evidence": "Instrument prototype photograph and public engineering description, not a claim of completed concentration calibration.",
+      "walkthrough": {
+        "title": "How do acquisition, display updates and file storage share the instrument?",
+        "steps": [
+          ["Schedule acquisition states", "A single-button workflow proceeds through stabilization and chronoamperometry. The microcontroller exchanges commands and data with EmStat Pico through MethodSCRIPT/UART, while the TFT reports the current step."],
+          ["Receive first, save in batches", "Parsed measurements enter a RAM buffer before batch writing to microSD. This separates individual data arrivals from slower file operations instead of performing a full write sequence for every reading."],
+          ["Coordinate shared SPI access", "TFT updates and SD storage share a bus and cannot be treated as unrelated tasks. Moving from SAMD21 to nRF52840 also requires checking communication, storage and operational timing, not merely compiling the port."]
+        ],
+        "takeaway": "The prototype delivers an operable current-acquisition and recording workflow. Converting current into analyte concentration still requires the relevant electrodes, calibration curve and experimental conditions."
+      }
+    }
+  },
+  "stop-flow": {
+    "related": ["space-payload", "bioimage-analysis"],
+    "links": [],
+    "zh": {
+      "stage": "微流體控制與觀察 / 開發中原型",
+      "card": "將幫浦／微閥序列、Android 方法設定、手機取像與 ROI 分析連成一段實驗流程，並保留方法快照、控制事件及媒體索引。",
+      "output": "ESP32-S3 控制、手機操作與實驗紀錄整合，另有 PCB、機構及流體模型設計。",
+      "evidence": "已選入整合硬體照片；實際流量、混合比例與停流時間仍須濕式校正。",
+      "walkthrough": {
+        "title": "如何把一段影像對回當時的幫浦與閥門操作？",
+        "steps": [
+          ["把方法變成操作序列", "Android 設定實驗方法，ESP32-S3 以狀態機安排預壓、進樣、清洗與異常停止。BLE／Serial 負責控制連接，方法參數則需要和當次執行一起保存。"],
+          ["留下共同的事件脈絡", "Room 記錄方法快照、控制事件與媒體索引，讓後續查看影像時能回到當次操作設定，而不是只剩下一段無法對照條件的影片。"],
+          ["從 ROI 回看變化", "手機取像與逐幀 ROI 分析用於觀察選定區域的影像變化。分析時需對照照明、影格時間與控制事件；發出停止命令的時間不等於液體真正停止流動的時間。"]
+        ],
+        "takeaway": "目前的實體整合與資料流程讓控制、觀察和紀錄有了共同入口。流量精度、混合效率或反應速率必須由對應濕式實驗支持，不能由 App 畫面或模擬取代。"
+      }
+    },
+    "en": {
+      "stage": "Microfluidic control and observation / prototype in development",
+      "card": "Connects pump/valve sequencing, Android method setup, phone imaging and ROI analysis, retaining method snapshots, control events and media indexes for each experiment.",
+      "output": "Integrated ESP32-S3 control, phone operation and experiment records, with PCB, mechanical and fluid-model design work.",
+      "evidence": "An integrated hardware photograph is available. Flow, mixing ratio and actual stopping time still require wet calibration.",
+      "walkthrough": {
+        "title": "How can a recorded video be traced back to pump and valve operations?",
+        "steps": [
+          ["Turn a method into a sequence", "Android configures the method; an ESP32-S3 state machine schedules precharge, delivery, flushing and fault stops. BLE/Serial provides the control connection, while parameters need to remain attached to that run."],
+          ["Preserve the event context", "Room stores method snapshots, control events and media indexes. Reviewing an image can therefore lead back to the settings used for that run rather than an isolated video with unknown conditions."],
+          ["Inspect changes through an ROI", "Phone imaging and per-frame ROI analysis expose changes in a selected region. Interpretation requires lighting, frame times and control events. The timestamp of a stop command is not the physical fluid stopping time."]
+        ],
+        "takeaway": "The hardware and data workflow connect control, observation and records. Flow accuracy, mixing efficiency and reaction rates require corresponding wet experiments, not app screenshots or simulations alone."
+      }
+    }
+  },
+  "gravity-controller": {
+    "related": ["space-payload", "spacecellcam"],
+    "links": [],
+    "zh": {
+      "stage": "雙軸運動控制 / 模型分析",
+      "card": "以雙軸回授伺服、速度估測與前饋／PID 執行旋轉排程，並用時間平均向量分析旋轉方向，而非把旋轉直接宣稱為失重。",
+      "output": "ESP32-C3 雙軸閉迴路、零點確認與時間平均重力向量模型。",
+      "evidence": "已提供既有 running-mean 模擬圖；圖中數值屬模型輸出，不是實際重力降低的量測。",
+      "walkthrough": {
+        "title": "從兩個馬達的角度，到時間平均向量",
+        "steps": [
+          ["建立共同參考", "開機確認零點後，由排程產生兩軸目標。角度回授與速度估測必須共享時間基準，否則即使兩軸各自轉動，也無法重建同一時刻的空間方向。"],
+          ["閉迴路追蹤目標", "前饋提供基礎驅動，PID 依回授修正偏差。比較控制模式時，需要保留機構、負載與取樣條件，才能分辨策略變化和硬體條件變化的影響。"],
+          ["先平均向量，再取量值", "running-mean 圖關注方向隨時間改變後的向量平均，而不是把每一時刻的重力量值直接平均。不同方向的向量可以部分抵銷，因此模型的平均量值可能下降，但這不代表地球重力被關掉。"]
+        ],
+        "takeaway": "控制器描述機構怎麼轉，模型描述如何解讀方向時間序列。樣品位置、離心效應及生物反應，仍需要各自的實驗或模型，不能由一張平均向量曲線代替。"
+      }
+    },
+    "en": {
+      "stage": "Dual-axis motion control / model analysis",
+      "card": "Runs rotation schedules using two feedback servos, speed estimation and feedforward/PID control, then analyzes time-averaged direction vectors without equating rotation with weightlessness.",
+      "output": "ESP32-C3 dual-axis feedback control, zero-reference checks and a running-mean gravity-vector model.",
+      "evidence": "An archived running-mean simulation is shown. Its values are model outputs, not measurements of reduced physical gravity.",
+      "walkthrough": {
+        "title": "From two motor angles to a time-averaged vector",
+        "steps": [
+          ["Establish a shared reference", "After startup zero-reference checks, a scheduler generates targets for both axes. Angle feedback and speed estimates need a shared time base to reconstruct orientation at the same instant."],
+          ["Track the motion target", "Feedforward supplies the base drive and PID corrects feedback error. Comparing control modes requires consistent mechanics, loads and sampling conditions so hardware changes are not mistaken for strategy improvements."],
+          ["Average vectors before taking magnitude", "The running-mean plot concerns the average of changing direction vectors, not the average of instantaneous gravity magnitudes. Directions can partially cancel in the model, reducing the mean magnitude without removing Earth's gravity."]
+        ],
+        "takeaway": "The controller describes motion; the model interprets the orientation time series. Sample position, centrifugal effects and biological responses require their own experiments or models, not a running-mean plot alone."
+      }
+    }
+  },
+  "pressible": {
+    "related": ["thermopatch", "ecsnap"],
+    "links": [],
+    "zh": {
+      "stage": "穿戴式汗壓資料鏈 / 研究原型",
+      "card": "串接 nRF52840 感測、BLE 傳輸、Android 趨勢與 CSV 匯出，保留汗壓相關電訊號及 baseline，供後續校正和跨次比較。",
+      "output": "裝置量測時序、baseline 正規化、手機資料檢視與匯出流程。",
+      "evidence": "歷史電子模組照片與 ver2 操作畫面；兩者版本不同，不當作同一次受測系統。",
+      "walkthrough": {
+        "title": "一條趨勢曲線，如何保留它的量測條件？",
+        "steps": [
+          ["留下原始值與基準", "韌體依量測時序取得汗壓相關電訊號及溫度，保留 baseline。不同貼片或初始狀態可能改變基線，單看正規化曲線無法知道差異來自壓力還是量測起點。"],
+          ["把資料綁回裝置與時間", "BLE 將讀值送到 Android，裝置識別與時間讓趨勢有明確來源。連線中斷、缺值與重連狀態需要和讀值一起理解，不能把沒有收到封包的區間補成穩定訊號。"],
+          ["匯出後再依校正分析", "CSV 與雲端紀錄支援後續比對。跨次分析需對照原始值、baseline、貼片及環境條件；訊號可接收與可匯出，僅能確認資料流程，不能直接換算成可靠汗壓分級。"]
+        ],
+        "takeaway": "平台把量測來源、手機操作與分析資料接起來。感測性能的結論仍取決於獨立校正，不能用通訊成功或漂亮的曲線代替。"
+      }
+    },
+    "en": {
+      "stage": "Wearable sweat-pressure data chain / research prototype",
+      "card": "Connects nRF52840 sensing, BLE, Android trends and CSV export, retaining pressure-related electrical signals and baselines for calibration and between-run comparisons.",
+      "output": "Device acquisition timing, baseline normalization, mobile data inspection and export.",
+      "evidence": "Archived electronics and a ver2 interface are shown as different versions, not one tested system.",
+      "walkthrough": {
+        "title": "How does a trend retain the conditions under which it was measured?",
+        "steps": [
+          ["Retain raw values and the baseline", "Firmware schedules pressure-related electrical and temperature measurements and retains a baseline. Different patches or initial states can shift that baseline, so a normalized curve alone cannot explain where a change originated."],
+          ["Bind data to device and time", "BLE delivers readings to Android with device identity and timing context. Disconnections, missing values and reconnections matter; a period without packets cannot be filled in as a stable signal."],
+          ["Interpret exports using calibration", "CSV and cloud records support later comparisons. Cross-run analysis needs raw values, baseline, patch and environmental conditions. Receiving and exporting data establishes the pipeline, not calibrated sweat-pressure categories."]
+        ],
+        "takeaway": "The platform connects measurement provenance, phone operation and analysis data. Sensor-performance conclusions still depend on independent calibration, not successful communication or an attractive curve."
+      }
+    }
+  },
+  "space-payload": {
+    "related": ["spacecellcam", "stop-flow"],
+    "links": [],
+    "zh": {
+      "stage": "太空微流體載荷 / 地面原型整合",
+      "card": "面向太空生醫實驗，整合樣品處理需求、幫浦／微閥序列、流體與電氣介面，以及晶片／機構 CAD；目前展示地面原型。",
+      "output": "子系統介面、控制測試流程、晶片／機構配置與地面微閥歧管組裝。",
+      "evidence": "可公開的地面歧管實體照片；不含任務參數，不宣稱已完成飛行資格驗證。",
+      "walkthrough": {
+        "title": "一段樣品操作，如何跨越流體、電氣與機構介面？",
+        "steps": [
+          ["把需求落到連接點", "樣品從哪裡進入、經過哪段流路、由哪個閥切換，必須和電源、控制訊號及接頭位置一起定義。介面文件讓不同子系統能對照同一個操作步驟。"],
+          ["以地面原型檢查操作", "幫浦／微閥序列與控制測試程式對應樣品處理流程。公開照片中的歧管呈現實體流路連接，支持組裝配置的說明，但單張照片不能證明密封、流量或耐壓。"],
+          ["讓 CAD 與測試對應版本", "晶片、機構及控制版本需要一起記錄，才能知道一次地面測試使用哪套配置。若接頭、管路或控制條件改變，既有結論不能直接套用到下一版。"]
+        ],
+        "takeaway": "這項工作的核心是跨子系統整合。地面功能、環境測試與飛行資格是不同層級；目前公開內容停留在可披露的原型與設計範圍。"
+      }
+    },
+    "en": {
+      "stage": "Space microfluidic payload / ground prototype integration",
+      "card": "Integrates sample-handling requirements, pump/valve sequences, fluid and electrical interfaces, and chip/mechanical CAD for space biology experiments. Public evidence covers ground prototypes.",
+      "output": "Subsystem interfaces, control-test workflows, chip/mechanical layouts and a ground valve-manifold assembly.",
+      "evidence": "A ground-manifold photograph is public. Mission parameters and claims of flight qualification are excluded.",
+      "walkthrough": {
+        "title": "How does one sample-handling step cross fluid, electrical and mechanical interfaces?",
+        "steps": [
+          ["Translate requirements into connections", "Sample entry, fluid paths and valve switching need to be defined alongside power, control signals and connector locations. Interface documentation lets subsystems refer to the same operation."],
+          ["Inspect the operation on a ground prototype", "Pump/valve sequences and control-test programs correspond to sample-handling steps. The public manifold photograph documents physical fluid connections, but cannot establish sealing, flow or pressure tolerance."],
+          ["Keep CAD and tests tied to a revision", "Chip, mechanical and control revisions need to identify the configuration used in a ground test. Changes to connectors, tubing or control conditions can invalidate conclusions carried over from an earlier version."]
+        ],
+        "takeaway": "The work centers on subsystem integration. Ground functionality, environmental testing and flight qualification are distinct levels; the public material covers the disclosable prototype and design scope."
+      }
+    }
+  },
+  "bioimage-analysis": {
+    "related": ["spacecellcam", "medical-imaging"],
+    "links": [],
+    "zh": {
+      "stage": "生物影像分析 / Python 工具",
+      "card": "以 OpenCV 前處理、分割和配準整理實驗影像，搭配 PyQt5 操作介面，將原圖、輪廓與量化輸出放在同一分析流程。",
+      "output": "可操作的影像分析流程，以及可回看原圖的輪廓、面積與運動分析輸出。",
+      "evidence": "植物輪廓與面積標註圖；不把單張結果推廣成所有生物影像的準確率。",
+      "walkthrough": {
+        "title": "從一條輪廓到一個面積數字，中間需要檢查什麼？",
+        "steps": [
+          ["先對齊與確認尺度", "原始影像的順序、取像時間與像素尺度決定後續數值的意義。整體位移應先檢查或配準，避免把相機晃動當成目標運動。"],
+          ["保留分割的中間結果", "閾值與形態處理會改變連通區域和輪廓。把原圖、二值圖與疊圖對照，可以看見目標被合併、切斷或漏掉的位置，而不只得到一張看似乾淨的遮罩。"],
+          ["回到圖上解釋數字", "公開圖的面積標註應連同輪廓位置閱讀。只有像素數時只能比較像素面積；轉成物理面積需要空間校正。跨影格變化也需確認是同一目標，而不是分割參數改變。"]
+        ],
+        "takeaway": "工具的價值在於讓分析步驟可以回查。取像韌體、影像分析程式與泛化評估是不同工作，本頁不將它們合併成未經驗證的全自動辨識系統。"
+      }
+    },
+    "en": {
+      "stage": "Biological image analysis / Python tools",
+      "card": "Uses OpenCV preprocessing, segmentation and registration with a PyQt5 interface to connect source images, contours and quantitative outputs in one reviewable workflow.",
+      "output": "An operable analysis workflow with contours, area annotations and motion outputs that can be checked against source images.",
+      "evidence": "A plant-contour and area-annotation example, not a generalized accuracy claim across biological images.",
+      "walkthrough": {
+        "title": "What needs checking between a contour and an area number?",
+        "steps": [
+          ["Align frames and establish scale", "Frame order, acquisition times and pixel scale determine what later numbers mean. Global movement needs inspection or registration so camera movement is not mistaken for target motion."],
+          ["Keep intermediate segmentation outputs", "Thresholding and morphology change connected regions and contours. Comparing source, binary mask and overlay reveals merges, splits and missed targets that a clean-looking mask can conceal."],
+          ["Interpret numbers on the image", "Area annotations in the public example should be read alongside their contours. Pixel counts support pixel-area comparisons; physical area requires spatial calibration. Across frames, confirm target identity rather than attributing a parameter change to growth or motion."]
+        ],
+        "takeaway": "The tool makes analysis steps inspectable. Acquisition firmware, image-analysis software and generalization evaluation remain separate work, not an unverified fully automatic recognition system."
+      }
+    }
+  },
+  "pva-pump": {
+    "related": ["stop-flow", "space-payload"],
+    "links": [],
+    "zh": {
+      "stage": "被動式微流體輸送 / 研究原型",
+      "card": "結合手指啟動進樣、PDMS 微流道與 PVA 海綿吸液，以毛細作用和高度差驅動液體，研究不依賴電動幫浦的操作方式。",
+      "output": "手指進樣、PDMS 液路與 PVA 吸液端的被動輸送原型。",
+      "evidence": "液路連接照片與被動驅動流程說明，照片來源為一般研究進度資料。",
+      "walkthrough": {
+        "title": "不使用馬達時，液體為什麼仍會移動？",
+        "steps": [
+          ["啟動並建立連續液路", "手指啟動進樣讓樣品進入 PDMS 微流道。進樣端、流道和吸液端必須形成連續路徑，才能觀察後續被動輸送；連接照片主要用來說明這個配置。"],
+          ["用材料狀態提供驅動", "PVA 海綿吸液的毛細作用與液面高度差共同影響流動。驅動不來自固定轉速的馬達，而與海綿初始含液狀態、液體性質及裝置擺放相關。"],
+          ["把時間納入結果", "海綿逐漸吸液後，初始與後期的流動不一定相同。比較裝置條件時應觀察連續填充或流動紀錄，不能從一張已充滿的照片推論流量穩定性。"]
+        ],
+        "takeaway": "被動驅動減少電源與控制電子的需求，但控制手段轉向材料、幾何與初始條件。這個取捨適合用來討論便攜式微流體，而不是宣稱可取代所有精密幫浦。"
+      }
+    },
+    "en": {
+      "stage": "Passive microfluidic transport / research prototype",
+      "card": "Combines finger-actuated loading, PDMS channels and PVA sponge absorption, using capillary action and height differences to investigate transport without an electric pump.",
+      "output": "A passive transport prototype connecting finger loading, a PDMS fluid path and a PVA absorption end.",
+      "evidence": "Fluid-connection photograph and passive-drive explanation, using general research progress material.",
+      "walkthrough": {
+        "title": "Why can liquid move without a motor?",
+        "steps": [
+          ["Establish a continuous fluid path", "Finger-actuated loading introduces the sample into PDMS microchannels. Inlet, channels and absorption end need a continuous path before passive transport can be observed. The connection photograph illustrates this arrangement."],
+          ["Use material state as the drive", "Capillary absorption in the PVA sponge and liquid-level differences both affect flow. Unlike a motor with a speed setting, the drive depends on initial sponge wetting, liquid properties and device orientation."],
+          ["Include time in the result", "As the sponge fills, later flow need not match initial flow. Comparing conditions requires a filling or flow time series; a photograph of a filled channel cannot establish stable flow rate."]
+        ],
+        "takeaway": "Passive drive reduces power and control-electronics requirements, but moves control toward materials, geometry and initial conditions. It is a portable microfluidic design tradeoff, not a replacement claim for every precision pump."
+      }
+    }
+  },
+  "afpga": {
+    "related": ["space-bmc", "data-structures"],
+    "links": [
+      {"zh": "八組 Lab 的目的、工程與結果索引", "en": "Eight-lab purpose, project and result index", "url": "https://github.com/peianchen/NYCU-AFPGA-Labs/blob/main/docs/LABS.md"},
+      {"zh": "Lab 8：HPS 到 LED／七段顯示", "en": "Lab 8: HPS to LEDs and seven-segment displays", "url": "https://github.com/peianchen/NYCU-AFPGA-Labs/blob/main/labs/lab08/README.md"},
+      {"zh": "重建與驗證範圍", "en": "Rebuild and verification scope", "url": "https://github.com/peianchen/NYCU-AFPGA-Labs/blob/main/docs/VALIDATION.md"}
+    ],
+    "zh": {
+      "stage": "八組數位設計實驗 / DE1-SoC",
+      "card": "八組 Lab 從組合邏輯、計數器與 FSM，走到 RAM、簡易處理器及 HPS/Qsys 整合；每組附原始工程、測試說明與歷史結果。",
+      "output": "Verilog／Quartus 工程、HPS Linux C 程式，以及逐 Lab 的設計與驗證文件。",
+      "evidence": "Lab 8 實機照片與 Lab 01 Part 01 重建紀錄；不代表八組 Lab 已全部重新上板。",
+      "walkthrough": {
+        "title": "Lab 8：一筆 Linux 寫入如何變成板上的 LED？",
+        "steps": [
+          ["硬體定義可存取的周邊", "Qsys／Platform Designer 的 address map 定義 HPS 可存取的 FPGA 周邊。FPGA top-level 將周邊輸出接到實體 LED 與七段顯示腳位；位址正確與接腳正確是兩個不同檢查點。"],
+          ["軟體對照同一份位址", "Linux userspace C 程式經 HPS-to-FPGA bridge 存取對應暫存器，hps_0.h 必須與硬體生成內容一致。軟體編譯成功，不代表載入的 FPGA 映像使用相同的 address map。"],
+          ["用輸出回查程式行為", "歷史照片呈現 LED one-hot 往返移動；七段顯示的是完整往返次數，不是 LED 位置。每步同時包含 100 ms 與 1 s 的等待，合計約 1.1 s，應讀完整程式而非只看單一註解。"]
+        ],
+        "takeaway": "Lab 1–6 建立邏輯與資料路徑基礎，Lab 7–8 再把軟體、位址空間與實體輸出串起來。代表工程重建可說明工具相容性，但沒有時序約束就不能宣稱 timing closure。"
+      }
+    },
+    "en": {
+      "stage": "Eight digital-design labs / DE1-SoC",
+      "card": "Eight labs progress from combinational logic, counters and FSMs to RAM, a simple processor and HPS/Qsys integration, with source projects, test explanations and archived results.",
+      "output": "Verilog/Quartus projects, HPS Linux C programs and lab-by-lab design and verification notes.",
+      "evidence": "Lab 8 board photographs and a Lab 01 Part 01 rebuild record, not a fresh hardware run of all eight labs.",
+      "walkthrough": {
+        "title": "Lab 8: how does a Linux write reach a physical LED?",
+        "steps": [
+          ["Define the hardware peripheral", "The Qsys/Platform Designer address map defines FPGA peripherals accessible to HPS. The FPGA top level connects outputs to physical LEDs and seven-segment pins. Address correctness and pin correctness are separate checks."],
+          ["Match the software address map", "Linux userspace C accesses registers through the HPS-to-FPGA bridge. hps_0.h must match the generated hardware. A successful software build does not establish that the loaded FPGA image uses the same map."],
+          ["Read program behavior through the outputs", "Archived photographs show one-hot LED movement in both directions. The seven-segment display counts complete round trips, not LED position. Each step includes both a 100 ms and a 1 s wait, approximately 1.1 s together."]
+        ],
+        "takeaway": "Labs 1–6 establish logic and datapaths; Labs 7–8 connect software, address space and physical outputs. A representative rebuild demonstrates tool compatibility, not timing closure without timing constraints."
+      }
+    }
+  },
+  "medical-imaging": {
+    "related": ["bioimage-analysis", "data-structures"],
+    "links": [
+      {"zh": "五份作業與模型索引", "en": "Five assignments and model index", "url": "https://github.com/peianchen/NYCU-Deep-Learning-Medical-Image-Analysis/blob/main/README.md"},
+      {"zh": "歷史結果與資料切分分析", "en": "Historical metrics and data-split analysis", "url": "https://github.com/peianchen/NYCU-Deep-Learning-Medical-Image-Analysis/blob/main/docs/RESULTS_ANALYSIS.md"},
+      {"zh": "Notebook 與 RLE 驗證紀錄", "en": "Notebook and RLE verification record", "url": "https://github.com/peianchen/NYCU-Deep-Learning-Medical-Image-Analysis/blob/main/docs/VERIFICATION.md"}
+    ],
+    "zh": {
+      "stage": "五份深度學習作業 / 歷史實驗分析",
+      "card": "以 PyTorch 完成分類、超音波分割與 X 光偵測作業；公開清理後的 Notebook、學習曲線與評估分析，說明高分背後的資料切分和泛化限制。",
+      "output": "五份作業、八份 Notebook，涵蓋 MLP、遷移學習、U-Net／FCN 與 Faster R-CNN。",
+      "evidence": "歷史統計與學習曲線，不含病患影像；分數不是重新訓練或外部臨床驗證。",
+      "walkthrough": {
+        "title": "分類、分割與偵測，為什麼不能排成同一張分數榜？",
+        "steps": [
+          ["分類看類別，不只看 accuracy", "SPECT oversampling 的歷史 validation accuracy 為 51.52%，macro-F1 為 21.59%。兩者差距反映類別表現不均，不能用整體 accuracy 掩蓋少數類別；MRI 93.75% 的 validation 也只有 16 人。"],
+          ["分割看像素，也要看切分單位", "HW4 U-Net 最後紀錄 mean IoU 97.26%、Dice 98.60%。作業採影格隨機切分，鄰近影格可能相似；高重疊分數並不直接證明跨受試者泛化。遮罩輸出的 RLE 相容性另有獨立測例。"],
+          ["偵測同時檢查定位與輸出格式", "HW5 Faster R-CNN validation AP50 為 0.396，AP@[.50:.95] 為 0.222。更嚴格的定位門檻會影響 AP；此外還有 train-validation gap 與 CSV 座標問題，模型評分和可交付輸出必須分開檢查。"]
+        ],
+        "takeaway": "每份作業有不同標籤、切分方式和指標。這個專案的分析不只列最高分，也說明哪些比較成立、哪些結果仍受資料或程式限制。"
+      }
+    },
+    "en": {
+      "stage": "Five deep-learning assignments / archived experiment analysis",
+      "card": "Implements PyTorch classification, ultrasound segmentation and X-ray detection assignments, with sanitized notebooks, learning curves and analysis of data splits and generalization limits.",
+      "output": "Five assignments and eight notebooks covering MLPs, transfer learning, U-Net/FCN and Faster R-CNN.",
+      "evidence": "Archived aggregate metrics and learning curves without patient images; no new training or external clinical validation is claimed.",
+      "walkthrough": {
+        "title": "Why not put classification, segmentation and detection on one leaderboard?",
+        "steps": [
+          ["For classification, inspect more than accuracy", "The archived SPECT oversampling run has 51.52% validation accuracy and 21.59% macro-F1. Their gap exposes uneven class performance. The MRI result of 93.75% validation accuracy also comes from only 16 people."],
+          ["For segmentation, inspect the split unit", "HW4 U-Net ends with mean IoU 97.26% and Dice 98.60%. Random frame splitting can place similar neighboring frames on both sides, so high overlap does not establish cross-subject generalization. RLE output compatibility has separate tests."],
+          ["For detection, check localization and export", "HW5 Faster R-CNN reports validation AP50 of 0.396 and AP@[.50:.95] of 0.222. Stricter localization thresholds change AP. A train-validation gap and CSV coordinate issue also require model scoring and deliverable output to be checked separately."]
+        ],
+        "takeaway": "Each assignment uses different labels, splits and metrics. The analysis explains which comparisons are meaningful and which remain limited by data or code, rather than listing only the highest scores."
+      }
+    }
+  },
+  "data-structures": {
+    "related": ["taipei-bus", "afpga"],
+    "links": [
+      {"zh": "九份作業與主程式索引", "en": "Nine assignments and main-program index", "url": "https://github.com/peianchen/NYCU-Data-Structures-Graph-Algorithms/blob/main/README.md"},
+      {"zh": "Dijkstra：資料結構與結果", "en": "Dijkstra: data structures and results", "url": "https://github.com/peianchen/NYCU-Data-Structures-Graph-Algorithms/blob/main/assignments/assignment09-shortest-path/README.md"},
+      {"zh": "編譯、測例與已知限制", "en": "Builds, test cases and known limitations", "url": "https://github.com/peianchen/NYCU-Data-Structures-Graph-Algorithms/blob/main/docs/VERIFICATION.md"}
+    ],
+    "zh": {
+      "stage": "九份 C 語言作業 / 演算法實作",
+      "card": "以 C 實作排序、BFS、稀疏矩陣、Segment Tree、Huffman 和圖論演算法，保存主版本、演進草稿、輸出圖與複雜度分析。",
+      "output": "九份作業的程式／結果索引、Graphviz 圖形，以及可重新執行的代表性驗證工具。",
+      "evidence": "2026-10-05 紀錄：主程式 14/14 編譯、代表測例 18/18 通過；不是所有規格均已完成。",
+      "walkthrough": {
+        "title": "同一張加權圖，最短路徑樹與最小生成樹差在哪裡？",
+        "steps": [
+          ["先定義要最小化的量", "Dijkstra 固定一個起點，求它到其他頂點的最短距離；Kruskal 則選出連接所有頂點、總邊權重最小的樹。兩者都可能輸出一棵樹，但解決的問題不同。"],
+          ["對照實際資料結構", "此版 Dijkstra 以鄰接串列表示圖，透過線性搜尋選擇下一個頂點並進行距離鬆弛，不是 heap 版本。Kruskal 則先排序邊，透過 Union-Find 避免形成迴圈。複雜度必須依實作分析。"],
+          ["用圖與小測例核對", "Graphviz 輸出讓原圖與不同起點的最短路徑樹可以並排比較。代表測例用來核對特定行為，歷史耗時則需要連同輸入規模和環境閱讀，不應當作目前電腦的新效能量測。"]
+        ],
+        "takeaway": "九份作業將輸入表示、演算法、輸出與限制串在一起。Huffman 未保存解碼樹、計算器將未定義變數當 0 等問題仍明列，沒有用編譯成功代替完整規格驗證。"
+      }
+    },
+    "en": {
+      "stage": "Nine C assignments / algorithm implementations",
+      "card": "Implements sorting, BFS, sparse matrices, segment trees, Huffman coding and graph algorithms in C, preserving main versions, drafts, output figures and complexity analysis.",
+      "output": "Program/result indexes for nine assignments, Graphviz outputs and rerunnable representative verification tools.",
+      "evidence": "2026-10-05 record: 14/14 main builds and 18/18 representative checks passed, not full specification coverage.",
+      "walkthrough": {
+        "title": "On the same weighted graph, how do shortest-path and minimum spanning trees differ?",
+        "steps": [
+          ["Define the objective first", "Dijkstra fixes a source and minimizes distance from it to other vertices. Kruskal connects all vertices with minimum total edge weight. Both can produce a tree, but they solve different problems."],
+          ["Inspect the actual data structures", "This Dijkstra version uses adjacency lists, linear selection of the next vertex and edge relaxation, not a heap. Kruskal sorts edges and uses Union-Find to avoid cycles. Complexity must follow these implementations."],
+          ["Check figures against small cases", "Graphviz outputs support side-by-side inspection of the original graph and shortest-path trees from different sources. Representative cases check specific behavior; historical timings require their original input sizes and environment."]
+        ],
+        "takeaway": "The nine assignments connect representation, algorithm, output and limitations. Missing Huffman decoding-tree storage and the calculator's zero fallback for undefined variables remain documented; successful compilation is not full specification verification."
+      }
+    }
+  }
+}

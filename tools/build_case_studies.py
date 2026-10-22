@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / 'site'
 BASE = 'https://peianchen.github.io/peian-chen/'
 PROJECTS = json.loads((ROOT / 'content/case_studies.json').read_text(encoding='utf-8'))
+BRIEFS = json.loads((ROOT / 'content/project_briefs.json').read_text(encoding='utf-8'))
 
 
 def svg_text(text, x, y, size=20, fill='#eff6ff', width=22):
@@ -36,6 +37,7 @@ def notes(entries):
 def render(p,lang):
     en=lang=='en'
     c=p[lang]
+    brief=BRIEFS[p['slug']][lang]
     prefix='../../../' if en else '../../'
     home='../../'
     route=('en/' if en else '')+f"projects/{p['slug']}/"
@@ -46,6 +48,7 @@ def render(p,lang):
         'workflow':'Operating workflow' if en else '操作流程',
         'decisions':'Design decisions' if en else '設計選擇',
         'evidence':'Results and images' if en else '成果與圖像',
+        'walkthrough':'Implementation in focus' if en else '實作拆解',
         'analysis':'Analysis and interpretation' if en else '分析與判讀',
         'reproduce':'Explore and reproduce' if en else '閱讀與重現',
         'limits':'Scope and limitations' if en else '範圍與限制',
@@ -56,14 +59,6 @@ def render(p,lang):
     def section(anchor,body,classes=''):
         toc.append((anchor,labels[anchor]))
         sections.append(f'<section class="case-section {classes}" id="{anchor}"><p class="section-index">{len(toc):02} / {anchor.upper()}</p><h2>{labels[anchor]}</h2>{body}</section>')
-
-    section('purpose',f'<p class="case-context">{e(c["purpose"])}</p>')
-    architecture=''.join(f'<lumen-card class="architecture-part" variant="muted"><small>0{i+1}</small><h3>{e(title)}</h3><p>{e(text)}</p></lumen-card>' for i,(title,text) in enumerate(c['architecture']))
-    section('architecture',f'<div class="architecture-parts">{architecture}</div>')
-    flow=''.join(f'<details class="flow-step" {"open" if i==0 else ""}><summary><span>0{i+1}</span>{e(title)}</summary><p>{e(text)}</p></details>' for i,(title,text) in enumerate(c['steps']))
-    section('workflow',f'<div class="flow-explorer">{flow}</div>')
-    if c.get('decisions'):
-        section('decisions',f'<div class="case-note-grid">{notes(c["decisions"])}</div>')
 
     gallery=[]
     kinds={
@@ -85,24 +80,36 @@ def render(p,lang):
         label=f"{v['date']} / {v['tool']}: {v['checks']} checks, 0 failures." if en else f"{v['date']} / {v['tool']}：{v['checks']} 項檢查通過。"
         results=f'<div class="validation-record"><strong>{e(label)}</strong><p>{"Functional simulation. " if en else "功能模擬。"}<a href="https://github.com/peianchen/{p["repo"]}/blob/{p["branch"]}/{v["report"]}">{"Run record" if en else "執行紀錄"} ↗</a></p></div>'+results
     if gallery:
-        results+='<div class="result-gallery">'+''.join(gallery)+'</div>'
-    else:
-        results+=f'<p class="media-availability">{e(c["media_note"])}</p>'
+        results='<div class="result-gallery">'+''.join(gallery)+'</div>'+results
     section('evidence',results)
+    example=brief['walkthrough']
+    stages=''.join(f'<li><h4>{e(title)}</h4><p>{e(body)}</p></li>' for title,body in example['steps'])
+    reading=''.join(f'<li><a href="{e(link["url"])}">{e(link[lang])} ↗</a></li>' for link in BRIEFS[p['slug']]['links'])
+    reading=f'<div class="case-reading"><h3>{"Inspect the implementation" if en else "直接查看實作資料"}</h3><ul>{reading}</ul></div>' if reading else ''
+    section('walkthrough',f'<article class="implementation-case"><h3>{e(example["title"])}</h3><ol class="implementation-steps">{stages}</ol><p class="implementation-takeaway">{e(example["takeaway"])}</p></article>{reading}')
+    section('purpose',f'<p class="case-context">{e(c["purpose"])}</p>')
+    architecture=''.join(f'<lumen-card class="architecture-part" variant="muted"><small>0{i+1}</small><h3>{e(title)}</h3><p>{e(text)}</p></lumen-card>' for i,(title,text) in enumerate(c['architecture']))
+    diagram_html=f'<figure class="case-figure"><img src="{prefix}img/projects/{p["slug"]}.svg" width="1200" height="450" loading="lazy" alt="{e(" → ".join(p["nodes"]))}"><figcaption>{e(c["caption"])} <a href="{prefix}img/projects/{p["slug"]}.svg" target="_blank" rel="noreferrer">{"Open architecture diagram" if en else "查看架構圖原尺寸"} ↗</a></figcaption></figure>'
+    section('architecture',diagram_html+f'<div class="architecture-parts">{architecture}</div>')
+    flow=''.join(f'<details class="flow-step" {"open" if i==0 else ""}><summary><span>0{i+1}</span>{e(title)}</summary><p>{e(text)}</p></details>' for i,(title,text) in enumerate(c['steps']))
+    section('workflow',f'<div class="flow-explorer">{flow}</div>')
+    if c.get('decisions'):
+        section('decisions',f'<div class="case-note-grid">{notes(c["decisions"])}</div>')
     section('analysis',f'<div class="analysis-grid">{notes(c["analysis"])}</div>')
     section('reproduce','<ol class="case-checklist">'+''.join(f'<li>{e(step)}</li>' for step in c['reproduce'])+'</ol>')
     section('limits',f'<p>{e(c["limits"])}</p>','case-limits')
     source_links=''.join(f'<li><a href="{e(s["url"])}">{e(s["label"])} ↗</a></li>' for s in p['sources'])
-    provenance='Selected images retain their visual content. Captions distinguish prototype photographs, application interfaces, archived records, analysis and simulations.' if en else '入選圖像保留原始畫面內容，圖說分別註明原型照片、操作介面、歷史紀錄、分析輸出或模擬。'
+    provenance=('Selected images retain their visual content. Captions distinguish prototype photographs, application interfaces, archived records, analysis and simulations.' if en else '入選圖像保留原始畫面內容，圖說分別註明原型照片、操作介面、歷史紀錄、分析輸出或模擬。') if gallery else ('This page documents source code, interfaces and existing records; it does not use illustrative images as result evidence.' if en else '本頁以原始碼、介面規格與既有紀錄說明，不以裝飾圖片代替成果證據。')
     section('sources',f'<ul class="case-sources">{source_links}</ul><p>{provenance}</p>')
 
-    candidates=[q for q in PROJECTS if q!=p and q['group']==p['group']]
-    candidates+=(q for q in PROJECTS if q!=p and q not in candidates)
+    by_slug={q['slug']:q for q in PROJECTS}
+    candidates=[by_slug[slug] for slug in BRIEFS[p['slug']]['related']]
     related=''.join(f'<a class="related-project" href="../{q["slug"]}/"><small>{e(q["domain"])}</small><strong>{e(q["name"])}</strong><span>{"Explore project" if en else "閱讀專案介紹"} →</span></a>' for q in candidates[:2])
     tags=''.join(f'<lumen-badge variant="outline">{e(tag.strip())}</lumen-badge>' for tag in p['tags'].split('/'))
     repo_url=f'https://github.com/peianchen/{p["repo"]}' if p['repo'] else home+'#contact'
     action=('Explore source code' if en else '查看公開原始碼') if p['repo'] else ('Discuss this project' if en else '聯絡討論專案')
-    status={'engineering':('工程實作','Engineering project'),'research':('研究專案','Research project'),'coursework':('課程實作','Coursework')}[p['group']][1 if en else 0]
+    status=e(brief['stage'])
+    brief_html=f'<dl class="case-brief"><div><dt>{"Built output" if en else "實作產出"}</dt><dd>{e(brief["output"])}</dd></div><div><dt>{"Available evidence" if en else "可查核內容"}</dt><dd>{e(brief["evidence"])}</dd></div></dl>'
     section_links=''.join(f'<a href="#{anchor}">{label}</a>' for anchor,label in toc)
     fonts='https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=Noto+Sans+TC:wght@400;500;700;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap'
     return f'''<!doctype html>
@@ -117,7 +124,7 @@ def render(p,lang):
 <nav class="case-header-nav" aria-label="{'Navigation' if en else '導覽'}"><a href="{home}#projects">{'All projects' if en else '全部專案'}</a><a href="{home}#contact">{'Contact' if en else '聯絡'}</a></nav>
 <div class="header-actions"><a class="language-switch" href="{other}" lang="{'zh-Hant' if en else 'en'}" aria-label="{'切換至中文' if en else 'Switch to English'}">{'中文' if en else 'EN'}</a><button class="theme-toggle" aria-label="{'Toggle theme' if en else '切換明暗主題'}" aria-pressed="false"><span class="theme-toggle__track"><span class="theme-toggle__knob"></span></span><span class="theme-toggle__label">MODE</span></button></div></header>
 <main id="main" class="section-shell"><div class="case-hero"><a class="case-back" href="{home}#projects">← {'All projects' if en else '返回專案列表'}</a><div class="case-meta"><span class="section-index">{e(p['domain'])}</span><lumen-badge variant="outline">{status}</lumen-badge></div><p class="case-name">{e(p['name'])}</p><h1>{e(c['title'])}</h1><p class="case-lead">{e(c['summary'])}</p><div class="case-tags">{tags}</div><div class="case-actions"><a class="button button--primary" href="#evidence">{'Explore results' if en else '查看成果與圖像'} ↓</a><a class="button button--ghost" href="{repo_url}">{action} ↗</a></div></div>
-<figure class="case-figure"><img src="{prefix}img/projects/{p['slug']}.svg" width="1200" height="450" alt="{e(' → '.join(p['nodes']))}"><figcaption>{e(c['caption'])} <a href="{prefix}img/projects/{p['slug']}.svg" target="_blank" rel="noreferrer">{'Open architecture diagram' if en else '查看架構圖原尺寸'} ↗</a></figcaption></figure>
+{brief_html}
 <div class="case-layout"><nav class="case-toc" aria-label="{'On this page' if en else '頁面目錄'}">{section_links}</nav><div class="case-body">{''.join(sections)}</div></div>
 <section class="case-related"><h2>{'Continue exploring' if en else '繼續探索'}</h2><div>{related}</div></section></main>
 <footer class="site-footer"><span>© 2026 PEI AN CHEN</span><a href="{home}#projects">{'All 16 projects' if en else '查看全部 16 個專案'} ↗</a></footer></body></html>'''
@@ -134,6 +141,12 @@ def update_home():
             card=match[0]
             p=PROJECTS[index]
             index+=1
+            brief=BRIEFS[p['slug']][lang]
+            card,count=re.subn(r'(<h3>.*?</h3>)<p>.*?</p>',lambda m:m[1]+f'<p>{e(brief["card"])}</p>',card,count=1,flags=re.S)
+            assert count==1, p['slug']
+            proof=f'<p class="project-proof"><strong>{"Evidence" if lang=="en" else "可看內容"}</strong>{e(brief["evidence"])}</p>'
+            card=re.sub(r'<p class="project-proof">.*?</p>\s*','',card,flags=re.S)
+            card=card.replace('<ul class="tag-list">',proof+'\n          <ul class="tag-list">',1)
             existing_link = re.compile(r'<a\b[^>]*href="'+re.escape(prefix+'projects/'+p['slug']+'/')+r'"[^>]*>.*?</a>', re.S)
             matches = list(existing_link.finditer(card))
             if matches:

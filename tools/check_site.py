@@ -73,12 +73,41 @@ def main():
         page = Page()
         page.feed(source)
         assert not [key for key, count in Counter(page.ids).items() if count > 1]
-        assert {'purpose', 'architecture', 'workflow', 'evidence', 'analysis', 'reproduce', 'limits', 'sources'} <= set(page.ids)
+        assert {'purpose', 'architecture', 'workflow', 'evidence', 'walkthrough', 'analysis', 'reproduce', 'limits', 'sources'} <= set(page.ids)
+        assert page.ids.index('evidence') < page.ids.index('walkthrough') < page.ids.index('architecture')
+        assert source.count('class="case-brief"') == 1
+        assert source.count('class="implementation-case"') == 1
         assert source.count('<h1>') == 1
         assert 'og:image' in source and 'hreflang="en"' in source
         assert not re.search(r'INTERVIEW_GUIDE|面試|展現能力|C:/Users|vno=', source)
         parsed[path.resolve()] = page
     projects = json.loads((root.parent / 'content/case_studies.json').read_text(encoding='utf-8'))
+    briefs = json.loads((root.parent / 'content/project_briefs.json').read_text(encoding='utf-8'))
+    assert set(briefs) == {project['slug'] for project in projects}
+    for slug, brief in briefs.items():
+        assert len(brief['related']) == len(set(brief['related'])) == 2
+        assert slug not in brief['related'] and set(brief['related']) <= set(briefs)
+        for link in brief['links']:
+            assert link['zh'] and link['en']
+            assert urlsplit(link['url']).scheme == 'https'
+            assert urlsplit(link['url']).netloc == 'github.com'
+        for lang, folder in [('zh', ''), ('en', 'en')]:
+            content = brief[lang]
+            assert all(content[field].strip() for field in ('stage', 'card', 'output', 'evidence'))
+            example = content['walkthrough']
+            assert len(example['steps']) == 3 and example['title'] and example['takeaway']
+            assert len({title for title, _ in example['steps']}) == 3
+            rendered = (root / folder / 'projects' / slug / 'index.html').read_text(encoding='utf-8')
+            for field in ('output', 'evidence', 'stage'):
+                assert escape(content[field]) in rendered, (slug, lang, field)
+            for title, body in example['steps']:
+                assert title.strip() and body.strip()
+                assert escape(title) in rendered and escape(body) in rendered
+            assert escape(example['takeaway']) in rendered
+            for link in brief['links']:
+                assert escape(link[lang]) in rendered and escape(link['url']) in rendered
+            for related in brief['related']:
+                assert f'href="../{related}/"' in rendered
     assert len(projects) == 16 and len(parsed) == 34
     for project in projects:
         assert (root / 'img/projects' / (project['slug'] + '-share.png')).is_file()
@@ -108,6 +137,10 @@ def main():
         cards = re.findall(r'<article class="project-card\b.*?</article>', homepage, re.S)
         for project, card in zip(projects,cards):
             assert card.count(f'href="./projects/{project["slug"]}/"') == 1, project['slug']
+            lang = 'en' if relative.startswith('en/') else 'zh'
+            assert card.count('class="project-proof"') == 1
+            assert escape(briefs[project['slug']][lang]['card']) in card
+            assert escape(briefs[project['slug']][lang]['evidence']) in card
     for path, page in parsed.items():
         checked = 0
         for link in page.links:
