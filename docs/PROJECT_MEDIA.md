@@ -18,16 +18,23 @@ Only source images that remain useful and readable at page size are included.
 | PressiBLE | Device-readout screenshot from the ver2 manual | App interaction and displayed states, not an experiment or clinical conclusion |
 | SpaceCellCam | Archived on-board imaging integration photograph | Physical mounting with a rotating sample platform; not current AF/standby firmware validation |
 | Space Microfluidic Payload | Ground-preparation microvalve manifold photograph | Physical fluid-interface assembly, not flight hardware or qualification |
+| ThermoPatch | Archived Android monitoring screen | One populated body-location card and separate BLE connection states; not six simultaneous measurements |
+| Galaxy Watch Sensor Monitor | Archived on-demand reading screen | SDK output and stopped tracker state; not core temperature or accuracy validation |
+| Smart Stop-Flow | Labeled open-enclosure integration photograph | Pumps, reservoirs, pressure chambers, valves and chip; not calibrated fluid performance |
+| Passive PVA Sponge Pump | Microchannel connected to sponge absorber | Physical passive-pump arrangement from a general progress report; not a flow-rate measurement |
+| Space BMC Core | Plot of a saved Questa waveform | Actual archived transitions with N=5 and a 10 ns clock; not a new simulation or board measurement |
 
-There are eleven selected images across nine projects. All retain their source
-visual contents. Three of the four newly selected Office images are byte-for-byte
+There are sixteen selected images across fourteen projects. The photographs and
+screenshots retain their source pixels. The BMC plot is a new presentation of
+stored simulation data, explicitly labeled as an archived run.
+Three of the four images from the earlier Office review are byte-for-byte
 copies. The camera-platform JPEG contained GPS metadata: its EXIF/XMP/IPTC/comment
 segments were removed without re-encoding the JPEG scan. Decoded pixel equality
 was checked against the source. No GPS metadata is published in that asset.
 
 `content/media-sources.json` records source labels, slide/document context and
-published SHA-256 hashes. It additionally records the source hash for the
-metadata-cleaned JPEG. Full local paths, extracted contact sheets, review manifests
+published SHA-256 hashes. It additionally records source hashes for
+metadata-cleaned images and the archived BMC waveform. Full local paths, extracted contact sheets, review manifests
 and complete research documents remain outside the published repository.
 
 ## Deeper Office review
@@ -49,15 +56,43 @@ Chinese and English captions state what each image shows and which conclusions
 it cannot support. The old wearable hardware and newer app view are not presented
 as one matched test revision. No new sensing, imaging or fluid experiment was run.
 
+## Additional folder review
+
+The next pass indexed media/document filenames under the owner-provided ChatGPT,
+Codex, PlatformIO and home folders, then inspected relevant candidates. A filename
+inventory is not a visual review of every file. Six general progress, experiment
+and project-poster packages were opened, alongside standalone device screenshots
+and the Stop-Flow integration photograph. Source documents remain local.
+
+Theses and oral-defense presentations, including figures extracted from them,
+are excluded from publication. The PVA photograph comes from a general progress
+report's microchannel-fabrication section (slides 12 and 21), not a thesis or
+defense deck. Borrowed literature figures and biological-subject results in the
+same report were not selected.
+
+The ThermoPatch July screenshot belongs to the older Android interface; it is not
+presented as ThermoPatchV2, nRF54L15 firmware validation or the v1.0.1 test revision.
+The Galaxy Watch screenshot was selected from four near-duplicate on-demand views.
+The Stop-Flow photograph was checked against its project assets and progress-report
+context. Photos/screenshots were exported with text/EXIF/XMP/IPTC/comment metadata
+removed where present; decoded pixel equality was verified after export.
+
+For BMC, the existing WLF was converted with the installed Questa `wlf2vcd` tool.
+The plot uses the saved VCD transitions over 140-352 ns; final stored counters are
+15 checks and 0 errors. The testbench uses N=5 and a 10 ns clock. Timeout transitions
+at 205/235, 285/295 and 345/351 ns were checked against the VCD. The conversion date
+is not a simulation-run date. No RTL was rerun for this image, and the testbench
+time scale is not the default 500 ms hardware configuration.
+
 ## Remaining image gaps
 
-Seven pages still have no selected photograph or screenshot: ThermoPatch, Space
-BMC Core, nRF54L15/MLX90614, Galaxy Watch Sensor Monitor, Taipei Bus Live, Smart
-Stop-Flow and Passive PVA Sponge Pump. Their purpose, architecture, workflow,
-results, analysis and scope remain available in both languages. The folder search
-did not identify suitable, reliably attributable result images for these pages.
-Similar-looking apparatus and later sperm-sorting devices are not substituted
-for the Stop-Flow or PVA projects.
+Two pages still have no selected photograph or screenshot: nRF54L15/MLX90614 and
+Taipei Bus Live. Their purpose, architecture, workflow, results, analysis and scope
+remain available in both languages. nRF54 candidates were mainly dense wiring,
+very long UI captures, stale companion-app states and later CAD candidates that
+do not match the documented public firmware revision. No suitable own-project
+Taipei Bus screenshot was found; images from unrelated commercial bus apps are
+not substituted. These gaps are retained rather than filled with weak evidence.
 
 ## Not selected
 
@@ -95,8 +130,10 @@ The unchanged Taipei Bus snapshot's Node test suite was executed in the earlier 
 position or arrival accuracy. No device flashing, acquisition experiment, model
 training or new clinical evaluation was performed.
 
-The seven owner-provided research images were inspected individually against
-their documents and captions. No patient images or personal profiles were selected.
+Selected photographs and screenshots were inspected individually against their
+source context and bilingual captions. No patient images or personal profiles
+were selected. The BMC visualization was additionally checked against stored
+signal transitions and final test counters.
 
 ## Maintenance
 

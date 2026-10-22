@@ -81,5 +81,51 @@
     "sha256": "8df15f6177b3cb95bc35e00ee2766421bb78a696ff55b896bfa77c1c5a4de96d",
     "kind": "prototype",
     "project": "space-payload"
+  },
+  {
+    "asset": "img/evidence/thermopatch-monitor-archived.png",
+    "source_label": "Screenshot_20260702_182806_ThermoPatch.png",
+    "source_context": "Owner-supplied archived Android capture; older ThermoPatch interface, not ThermoPatchV2 or a v1.0.1 release test",
+    "sha256": "f67dc3d974e2f7e1a43a7fbdbf00e56b430a0435bb16068dea6ccc7199f69277",
+    "kind": "interface",
+    "project": "thermopatch",
+    "source_sha256": "0092f0c573868b564a0aea6e527e5ff5f08ccff0253db6149ce82b4ebb11125d",
+    "metadata_removed": true
+  },
+  {
+    "asset": "img/evidence/galaxy-watch-on-demand.png",
+    "source_label": "Screenshot_20260610_141200_galaxywatchsensormonitor.png",
+    "source_context": "Owner-supplied watch interface capture; on-demand reading followed by Tracker stopped",
+    "sha256": "40ba6aaea833dc85e0f6984a711acef1b183cc1e7e9e109ef02de08811f8dabe",
+    "kind": "interface",
+    "project": "galaxy-watch"
+  },
+  {
+    "asset": "img/evidence/stop-flow-integrated-prototype.png",
+    "source_label": "01_實機內部整合.png",
+    "source_context": "Stop-Flow project poster assets, 2026-10-09; existing physical integration also discussed in the 2026-10-15 progress report",
+    "sha256": "7e961d5f00cf90cec7376d28a4dd43a65af9a4de20bb2ef36d6859ed058fde34",
+    "kind": "prototype",
+    "project": "stop-flow"
+  },
+  {
+    "asset": "img/evidence/pva-pump-fluidic-connection.jpg",
+    "source_label": "General research progress report / ppt/media/image42.jpg",
+    "source_context": "Microchannel fabrication and fluid-path prototype, slides 12 and 21; not extracted from a thesis or defense presentation",
+    "sha256": "1bbcbecf0fd7feb70324796cd7e5a2f1ead12f235421c86e0ee8c4e76f27ea3b",
+    "kind": "prototype",
+    "project": "pva-pump",
+    "source_sha256": "2befea868885c8ed99f48ffe44c4f7162cbac69b3916faffdf5476705db0165b",
+    "metadata_removed": true
+  },
+  {
+    "asset": "img/evidence/space-bmc-archived-waveform.png",
+    "source_label": "Saved heartbeat_monitor/vsim.wlf -> VCD -> plotted transitions",
+    "source_context": "Archived functional simulation, 140-352 ns window; N=5, 10 ns clock; final stored counters 15 checks and 0 errors; no new RTL simulation",
+    "sha256": "12e0c3fbc2a9084d2af79e2116af5277226fda2fb4a13991268cd0d5e7023eb8",
+    "kind": "simulation",
+    "project": "space-bmc",
+    "source_sha256": "d022be47e51b80a6ba5528ee9741d2b76e90c3494bf936fd700b69148414a462",
+    "archive_sha256": "109323dcc2e17cb07d06c68aef38f6030b8ef84ef0c3b1a4b0d49ea7521a44df"
   }
 ]

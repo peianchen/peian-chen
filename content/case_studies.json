@@ -196,7 +196,22 @@
     "group": "engineering",
     "card_index": 0,
     "branch": "main",
-    "gallery": [],
+    "gallery": [
+      {
+        "src": "img/evidence/thermopatch-monitor-archived.png",
+        "width": 1440,
+        "height": 3088,
+        "kind": "interface",
+        "zh": {
+          "title": "部位資料與 BLE 連線狀態",
+          "caption": "2026 年 7 月保存的 ThermoPatch Android 畫面：六個部位欄位中，頭部欄位顯示 29.8 °C，其餘為尚無讀值的「--」；下方分開呈現已連線與未連線的感測器。這張截圖說明資料與連線狀態的呈現方式，不代表六裝置同時完成量測，也不是溫度校正或 v1.0.1 測試的證據。"
+        },
+        "en": {
+          "title": "Body-location data and BLE connection state",
+          "caption": "An archived ThermoPatch Android view from July 2026. The head card shows 29.8 °C; the other five locations show \"--\" for unavailable readings. Connected and disconnected sensors are listed separately below. The screenshot illustrates data and connection states, not six simultaneous measurements, temperature calibration or a v1.0.1 test result."
+        }
+      }
+    ],
     "sources": [
       {
         "label": "Repository / README",
@@ -643,7 +658,22 @@
     "group": "engineering",
     "card_index": 2,
     "branch": "main",
-    "gallery": [],
+    "gallery": [
+      {
+        "src": "img/evidence/space-bmc-archived-waveform.png",
+        "width": 2100,
+        "height": 1080,
+        "kind": "simulation",
+        "zh": {
+          "title": "逾時鎖存與三種清除事件",
+          "caption": "從保存的 Questa WLF 轉出 VCD，再依實際訊號轉換繪製 140–352 ns 區段。此 testbench 使用 N = 5、10 ns 時脈：205 ns 逾時、235 ns 由 heartbeat 清除，295 ns 由 clear_timeout 清除，351 ns 由非同步 reset 清除。完整保存波形的最終計數為 15 checks、0 errors；本次僅重繪紀錄，未重新執行 RTL。圖中時間不等於預設 500 ms 設定或板上量測。"
+        },
+        "en": {
+          "title": "Latched timeout and three recovery events",
+          "caption": "Actual signal transitions from a saved Questa WLF, converted to VCD and plotted over 140–352 ns. This testbench uses N = 5 and a 10 ns clock: timeout asserts at 205 ns, heartbeat clears it at 235 ns, clear_timeout clears it at 295 ns, and asynchronous reset clears it at 351 ns. The full saved trace ends at 15 checks and 0 errors. This is a rendering of an archived run, not a new RTL execution, the default 500 ms configuration or a board measurement."
+        }
+      }
+    ],
     "sources": [
       {
         "label": "Repository / README",
@@ -898,11 +928,11 @@
         ],
         [
           "資料欄位",
-          "結果畫面以皮膚溫度、環境溫度、時間與狀態共同描述一次量測。"
+          "操作畫面並列皮膚溫度、環境溫度與 tracker 狀態，讓單次讀值和量測是否結束可以一起閱讀。"
         ],
         [
           "目前公開資料",
-          "repository 沒有提供可核對的實機量測截圖或統計結果，本頁以程式流程與輸出欄位說明。"
+          "本頁補入保存的手錶介面截圖，可對照讀值欄位及 Tracker stopped 狀態；單張紀錄不構成準確度、重複性或臨床評估。"
         ]
       ],
       "analysis": [
@@ -977,11 +1007,11 @@
         ],
         [
           "Output fields",
-          "Skin temperature, ambient temperature, time and tracker status describe one measurement together."
+          "The interface presents skin temperature, ambient temperature and tracker state together, so a reading can be interpreted alongside acquisition status."
         ],
         [
           "Available public material",
-          "The repository does not include a verifiable physical-watch result screenshot or statistical evaluation. This page explains the source workflow and output fields."
+          "An archived watch-interface screenshot now accompanies the reading fields and Tracker stopped state. A single saved view does not establish accuracy, repeatability or clinical performance."
         ]
       ],
       "analysis": [
@@ -1009,7 +1039,22 @@
     "group": "engineering",
     "card_index": 4,
     "branch": "master",
-    "gallery": [],
+    "gallery": [
+      {
+        "src": "img/evidence/galaxy-watch-on-demand.png",
+        "width": 432,
+        "height": 432,
+        "kind": "interface",
+        "zh": {
+          "title": "單次讀值完成後停止 tracker",
+          "caption": "保存於 2026 年 6 月 10 日的介面截圖，顯示 Wrist skin Temperature 33.7、Ambient Temperature 32.8，以及 Tracker stopped。MEASURE 按鈕對應下一次量測請求。這是 SDK 輸出欄位與操作狀態的紀錄，不能據此換算核心體溫，或判定感測準確度。"
+        },
+        "en": {
+          "title": "Tracker stopped after an on-demand reading",
+          "caption": "A saved interface capture from June 10, 2026 shows Wrist skin Temperature 33.7, Ambient Temperature 32.8 and Tracker stopped. MEASURE initiates the next request. This records SDK output fields and interaction state; it does not establish core body temperature or sensor accuracy."
+        }
+      }
+    ],
     "sources": [
       {
         "label": "Repository / README",
@@ -1575,7 +1620,22 @@
     "group": "research",
     "card_index": 7,
     "branch": "main",
-    "gallery": [],
+    "gallery": [
+      {
+        "src": "img/evidence/stop-flow-integrated-prototype.png",
+        "width": 1280,
+        "height": 720,
+        "kind": "prototype",
+        "zh": {
+          "title": "幫浦、儲液與三閥模組的整機配置",
+          "caption": "專案保存的開蓋實機照片，標出壓電微幫浦、試劑與廢液儲槽、PDMS 壓力腔、三閥控制模組及微流體晶片。管路與分區可用來理解驅動端、控制端和反應端如何整合；照片本身不證明流量、混合比例、停流時間或密封性能。"
+        },
+        "en": {
+          "title": "Integrated pumps, reservoirs and three-valve module",
+          "caption": "An archived open-enclosure photograph identifies the piezoelectric micropumps, reagent and waste reservoirs, PDMS pressure chambers, three-valve control module and microfluidic chip. Tubing and compartments show how actuation, control and reaction hardware fit together. The photograph does not establish flow rate, mixing ratio, stop time or sealing performance."
+        }
+      }
+    ],
     "sources": [
       {
         "label": "Public engineering background",
@@ -2572,7 +2632,22 @@
     "group": "research",
     "card_index": 12,
     "branch": "main",
-    "gallery": [],
+    "gallery": [
+      {
+        "src": "img/evidence/pva-pump-fluidic-connection.jpg",
+        "width": 1920,
+        "height": 1080,
+        "kind": "prototype",
+        "zh": {
+          "title": "海綿吸液端與微流道的連接原型",
+          "caption": "取自一般研究進度報告的原型照片：上方是含紅色液體的微流道，下方是藍色三角形海綿吸液端，兩者以管路連接。照片呈現被動吸液元件與流路的實體配置；單一畫面無法量化流量、持續時間、驅動力分量或封裝可靠度。"
+        },
+        "en": {
+          "title": "Sponge absorber connected to a microchannel",
+          "caption": "A prototype photograph from a general research progress report shows a red-liquid microchannel above and a blue triangular sponge absorber below, joined by tubing. It documents the physical arrangement of the passive absorber and fluid path. A single frame cannot quantify flow rate, operating duration, driving-force contributions or packaging reliability."
+        }
+      }
+    ],
     "sources": [
       {
         "label": "Public engineering background",

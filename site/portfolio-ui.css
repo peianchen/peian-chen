@@ -194,6 +194,9 @@ lumen-card.architecture-part { padding: var(--space-6); border: 1px solid var(--
 .result-image { display: flex; align-items: center; justify-content: center; min-height: 200px; border-radius: var(--radius-lg) var(--radius-lg) 0 0; background: hsl(var(--white)); padding: var(--space-4); border-bottom: 1px solid var(--border-color); }
 .result-image img { object-fit: contain; width: 100%; height: auto; max-height: 460px; }
 .result-figure--interface .result-image { background: var(--panel-bg); }
+.result-figure--interface:only-child { display: grid; grid-template-columns: minmax(240px, 0.9fr) minmax(0, 1.1fr); align-items: center; }
+.result-figure--interface:only-child .result-image { border-bottom: 0; border-right: 1px solid var(--border-color); border-radius: var(--radius-lg) 0 0 var(--radius-lg); }
+.result-figure--interface:only-child .result-image img { max-height: 560px; }
 .result-figure figcaption { padding: var(--space-6); }
 .result-figure figcaption h3 { margin: var(--space-4) 0 var(--space-3); font-size: 19px; line-height: 1.5; }
 .result-figure figcaption p { margin: 0 0 var(--space-4); font-size: 14px; line-height: 1.9; }
@@ -218,6 +221,8 @@ lumen-card.architecture-part { padding: var(--space-6); border: 1px solid var(--
   .case-back { margin-bottom: var(--space-6); }
   .case-body .case-section { padding-bottom: var(--space-12); }
   .result-image { min-height: 0; padding: var(--space-3); }
+  .result-figure--interface:only-child { grid-template-columns: 1fr; }
+  .result-figure--interface:only-child .result-image { border-right: 0; border-bottom: 1px solid var(--border-color); border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
   .result-figure figcaption { padding: var(--space-6); }
   .case-page .case-hero h1 { font-size: clamp(30px,8vw,42px); }
 }
