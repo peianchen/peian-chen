@@ -1,0 +1,16 @@
+{
+  "name": "peian-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:ui": "node tools/build-ui.mjs",
+    "test": "node tools/check_interactions.cjs"
+  },
+  "dependencies": {
+    "@santi020k/lumen-elements": "4.2.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  }
+}

@@ -9,16 +9,19 @@ The website introduces projects and their engineering decisions. GitHub reposito
 - `tools/build_case_studies.py`: generates six static project pages and their explanatory SVG architecture diagrams.
 - `tools/build_share_images.py`: generates PNG social previews from project names and system stages. Requires Pillow and a monospace font.
 - `site/style.css` and `site/case-studies.css`: shared space-blue design, accessible reading layouts and responsive components.
+- `site/design-tokens.css` and `site/portfolio-ui.css`: three-layer Lumen theme and product styling; see [Design system](DESIGN_SYSTEM.md).
+- `site/ui-entry.js`: selective Lumen registration and progressive control enhancement. Rebuild with `npm ci --ignore-scripts` and `npm run build:ui` after editing this entry or `site/site.js`.
 
 After editing the case-study source:
 
 ```sh
 python tools/build_case_studies.py
 python tools/check_site.py
+python tools/check_design.py
 node tools/check_interactions.cjs
 ```
 
-Commit the generated pages alongside their source. The deployment workflow checks HTML references and interactions before uploading `site/`. No frontend package installation or browser JavaScript is needed to read project content.
+Commit generated pages and `site/assets/` alongside their source. The deployment workflow rebuilds pinned Lumen assets and checks HTML references, token contrast and interactions before uploading `site/`. Visitors do not need a package installation; project content remains readable without browser JavaScript.
 
 ## Evidence rules
 

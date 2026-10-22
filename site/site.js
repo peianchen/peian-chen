@@ -1,4 +1,8 @@
 const root = document.documentElement;
+root.classList.add('js-ready');
+root.dataset.input = 'pointer';
+document.addEventListener('pointerdown', () => { root.dataset.input = 'pointer'; }, { passive: true });
+document.addEventListener('keydown', () => { root.dataset.input = 'keyboard'; });
 const themeButton = document.querySelector(".theme-toggle");
 const menuButton = document.querySelector(".menu-toggle");
 const navigation = document.querySelector(".primary-nav");
@@ -6,6 +10,7 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").match
 
 const setTheme = (theme) => {
   root.dataset.theme = theme;
+  root.dataset.lumenScheme = theme === 'blueprint' ? 'light' : 'dark';
   themeButton?.setAttribute("aria-pressed", String(theme === "blueprint"));
   document.querySelector('meta[name="theme-color"]')?.setAttribute(
     "content",
@@ -45,7 +50,16 @@ navigation?.addEventListener("click", (event) => {
 });
 
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") setMenu(false);
+  if (event.key === "Escape" && menuButton?.getAttribute('aria-expanded') === 'true') {
+    setMenu(false);
+    menuButton.focus();
+  }
+});
+document.addEventListener('click', (event) => {
+  if (menuButton?.getAttribute('aria-expanded') === 'true' && !event.target.closest('.site-header')) setMenu(false);
+});
+document.addEventListener('focusin', (event) => {
+  if (menuButton?.getAttribute('aria-expanded') === 'true' && !event.target.closest('.site-header')) setMenu(false);
 });
 
 const filterButtons = [...document.querySelectorAll(".filter-button")];
@@ -159,7 +173,7 @@ if (reduceMotion || !("IntersectionObserver" in window)) {
   revealItems.forEach((item) => revealObserver.observe(item));
 }
 
-const navLinks = [...document.querySelectorAll('.primary-nav a[href^="#"]')];
+const navLinks = [...document.querySelectorAll('.primary-nav a[href^="#"], .case-toc a[href^="#"]')];
 const sections = navLinks
   .map((link) => document.querySelector(link.getAttribute("href")))
   .filter(Boolean);
@@ -170,7 +184,10 @@ if ("IntersectionObserver" in window) {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
         navLinks.forEach((link) => {
-          link.classList.toggle("is-active", link.getAttribute("href") === `#${entry.target.id}`);
+          const active = link.getAttribute("href") === `#${entry.target.id}`;
+          link.classList.toggle("is-active", active);
+          if (active) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
         });
       });
     },
@@ -214,17 +231,24 @@ setInterval(updateTime, 1000);
 const copyButton = document.querySelector(".copy-handle");
 const toast = document.querySelector(".toast");
 let toastTimer;
+const isEnglish = root.lang === 'en';
+const copyLabel = copyButton?.textContent;
+const showCopyFeedback = (message) => {
+  if (toast) toast.textContent = message;
+  toast?.classList.add('is-visible');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
+    toast?.classList.remove('is-visible');
+    if (toast) toast.textContent = '';
+    if (copyButton) copyButton.textContent = copyLabel;
+  }, 4000);
+};
 copyButton?.addEventListener("click", async () => {
   try {
     await navigator.clipboard.writeText(copyButton.dataset.copy);
-    toast?.classList.add("is-visible");
-    copyButton.textContent = "COPIED";
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => {
-      toast?.classList.remove("is-visible");
-      copyButton.textContent = "COPY HANDLE";
-    }, 1800);
+    copyButton.textContent = isEnglish ? 'COPIED' : '已複製';
+    showCopyFeedback(isEnglish ? 'GitHub address copied.' : '已複製 GitHub 網址。');
   } catch {
-    window.location.href = "https://github.com/peianchen";
+    showCopyFeedback(isEnglish ? 'Copy unavailable. Address: github.com/peianchen' : '無法存取剪貼簿。網址：github.com/peianchen');
   }
 });

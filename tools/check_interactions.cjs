@@ -22,12 +22,13 @@ function element(properties = {}) {
     setAttribute(name, value) { this[name] = value; },
     getAttribute(name) { return this[name]; },
     addEventListener(name, handler) { events[name] = handler; },
-    dispatch(name) { events[name]?.({ target: this }); },
+    dispatch(name, extra = {}) { return events[name]?.({ target: this, ...extra }); },
     focus() { this.focused = true; },
     ...properties,
   };
 }
 
+(async () => {
 for (const storageBlocked of [false, true]) {
   const root = element({ scrollHeight: 1200 });
   const input = element({ value: "" });
@@ -36,6 +37,16 @@ for (const storageBlocked of [false, true]) {
   const empty = element();
   const grid = element();
   const theme = element();
+  const menu = element({ 'aria-expanded': 'false' });
+  const navigation = element();
+  const copy = element({ dataset: { copy: 'github.com/peianchen' }, textContent: 'COPY HANDLE' });
+  const toast = element();
+  const course = element();
+  const language = element({ href: './en/' });
+  const documentEvents = {};
+  let clipboardFails = false;
+  let copiedValue;
+  const location = { href: 'https://peianchen.github.io/peian-chen/?q=MRI&filter=imaging#projects', hash: '#projects', search: '?q=MRI&filter=imaging' };
   const cards = [
     element({ dataset: { category: "research imaging" }, textContent: "MRI SPECT PyTorch" }),
     element({ dataset: { category: "algorithms" }, textContent: "C BFS Huffman" }),
@@ -49,21 +60,40 @@ for (const storageBlocked of [false, true]) {
     "#visible-count": count,
     ".search-empty": empty,
     "#project-grid": grid,
+    '.menu-toggle': menu,
+    '.primary-nav': navigation,
+    '.copy-handle': copy,
+    '.toast': toast,
+    '.language-switch': language,
+    '.primary-nav a[href="#coursework"]': course,
   };
   vm.runInNewContext(source, {
     document: {
       documentElement: root,
       querySelector: (selector) => selectors[selector] || null,
       querySelectorAll: (selector) => ({ ".filter-button": filters, ".project-card": cards }[selector] || []),
-      addEventListener() {},
+      addEventListener(name, handler) { (documentEvents[name] ||= []).push(handler); },
     },
-    window: { matchMedia: () => ({ matches: true }), innerHeight: 800, scrollY: 0, addEventListener() {} },
+    window: {
+      location, history: { replaceState(_state, _title, url) {
+        location.href = url.href; location.hash = url.hash; location.search = url.search;
+      } },
+      matchMedia: () => ({ matches: true }), innerHeight: 800, scrollY: 0, addEventListener() {},
+    },
+    navigator: { clipboard: { async writeText(value) {
+      if (clipboardFails) throw new Error('denied');
+      copiedValue = value;
+    } } },
     localStorage: {
       getItem() { if (storageBlocked) throw new Error("blocked"); return null; },
       setItem() { if (storageBlocked) throw new Error("blocked"); },
     },
-    Intl, Date, setInterval() {}, requestAnimationFrame() {},
+    URL, Intl, Date, setInterval() {}, setTimeout() {}, clearTimeout() {}, requestAnimationFrame() {},
   });
+  assert.equal(count.textContent, '1');
+  assert.equal(input.value, 'MRI');
+  assert.match(language.href, /en\/\?q=MRI&filter=imaging#projects/);
+  course.dispatch('click');
   assert.equal(count.textContent, "3");
   input.value = "ＭＲＩ spect";
   input.dispatch("input");
@@ -82,5 +112,21 @@ for (const storageBlocked of [false, true]) {
   assert.equal(grid.classList.contains("is-single-result"), false);
   theme.dispatch("click");
   assert.equal(root.dataset.theme, "blueprint");
-  console.log(`Search, filter, clear, count, theme: OK (storageBlocked=${storageBlocked})`);
+  assert.equal(root.dataset.lumenScheme, 'light');
+  menu.dispatch('click');
+  assert.equal(menu['aria-expanded'], 'true');
+  for (const handler of documentEvents.keydown) handler({ key: 'Escape' });
+  assert.equal(menu['aria-expanded'], 'false');
+  assert.equal(menu.focused, true);
+  assert.equal(root.dataset.input, 'keyboard');
+  await copy.dispatch('click');
+  assert.equal(copiedValue, 'github.com/peianchen');
+  assert.equal(toast.textContent, '已複製 GitHub 網址。');
+  clipboardFails = true;
+  const beforeCopyFailure = location.href;
+  await copy.dispatch('click');
+  assert.match(toast.textContent, /github.com\/peianchen/);
+  assert.equal(location.href, beforeCopyFailure, 'Clipboard denial must not navigate away');
+  console.log(`Search, URL restoration, course reset, theme, Escape focus, clipboard: OK (storageBlocked=${storageBlocked})`);
 }
+})().catch(error => { console.error(error); process.exitCode = 1; });

@@ -16,7 +16,17 @@ Then open `http://localhost:8000`.
 - `site/style.css`: responsive engineering-console visual system
 - `site/en/index.html`: complete English version with shared assets
 - `site/site.js`: theme, combined search/filtering, navigation, reveal, clock, and clipboard interactions
+- `site/ui-entry.js`: selective Lumen Web Component registration; bundles the shared application script
+- `site/design-tokens.css`: primitive, semantic and component tokens for both themes
+- `site/portfolio-ui.css`: portfolio-specific layout, component states and motion rules
 - `.github/workflows/deploy.yml`: static GitHub Pages deployment
+
+The interface uses Lumen Elements 4.2.0 with a small local bundle, refined with
+`emil-design-eng`, `ui-ux-pro-max` and `design-system` practices. See the
+[design system and component contracts](docs/DESIGN_SYSTEM.md).
+
+After editing JavaScript, run `npm ci --ignore-scripts` and `npm run build:ui`.
+The committed static assets keep a fresh checkout directly previewable.
 
 Live site: <https://peianchen.github.io/peian-chen/>
 
