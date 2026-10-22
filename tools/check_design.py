@@ -51,4 +51,4 @@ for path in ('style.css', 'case-studies.css', 'portfolio-ui.css'):
     assert not re.search(r'#[\da-fA-F]{3,8}\b|rgba?\(', (SITE / path).read_text(encoding='utf-8')), path
 assert (SITE / 'assets/ui.js').stat().st_size < 25000
 assert (SITE / 'assets/LICENSES.txt').is_file()
-print('Eight pages: one local Lumen entry, preserved badges/cards, motion/fallback rules, token-only product CSS')
+print('All project pages: one local Lumen entry, preserved badges/cards, motion/fallback rules, token-only product CSS')

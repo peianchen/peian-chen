@@ -6,7 +6,7 @@ The website introduces projects and their engineering decisions. GitHub reposito
 
 - `site/index.html` and `site/en/index.html`: the bilingual home pages, complete project index, research archive and profile.
 - `content/case_studies.json`: paired Chinese/English case-study content, source repository and optional verification record.
-- `tools/build_case_studies.py`: generates six static project pages and their explanatory SVG architecture diagrams.
+- `tools/build_case_studies.py`: generates 32 static project pages for all sixteen projects, their explanatory SVG architecture diagrams and homepage detail links.
 - `tools/build_share_images.py`: generates PNG social previews from project names and system stages. Requires Pillow and a monospace font.
 - `site/style.css` and `site/case-studies.css`: shared space-blue design, accessible reading layouts and responsive components.
 - `site/design-tokens.css` and `site/portfolio-ui.css`: three-layer Lumen theme and product styling; see [Design system](DESIGN_SYSTEM.md).
@@ -26,6 +26,8 @@ Commit generated pages and `site/assets/` alongside their source. The deployment
 ## Evidence rules
 
 Every result needs an identified source and scope. Distinguish a configured target, a calculation, an archived test, a new simulation and a hardware measurement. Diagrams explain system behavior and must not look like fabricated screenshots or measured waveforms.
+
+See [project media selection](PROJECT_MEDIA.md) for accepted images, exclusions and source revisions. Prefer a small useful gallery over repeated or unreadable figures. A project without an appropriate result image can keep its architecture and analysis complete without adding decorative evidence.
 
 Keep public ThermoPatch separate from private V2 research. The BMC case covers the heartbeat monitor, not a complete recovery controller. SpaceCellCam configuration and the project name do not establish optical, thermal or orbital qualification.
 

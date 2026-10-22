@@ -30,15 +30,17 @@ The committed static assets keep a fresh checkout directly previewable.
 
 Live site: <https://peianchen.github.io/peian-chen/>
 
-## Featured case studies
+## Project introductions
 
-Three systems have independent Chinese and English pages, with architecture diagrams, purpose, workflows, design decisions, results, reproduction notes and limitations:
+All sixteen homepage projects have independent Chinese and English pages, with architecture diagrams, purpose, workflows, results, analysis, source links and limitations. Selected original result images include clear captions and full-size links. The three featured systems remain:
 
 - [ThermoPatch](https://peianchen.github.io/peian-chen/en/projects/thermopatch/)
 - [SpaceCellCam](https://peianchen.github.io/peian-chen/en/projects/spacecellcam/)
 - [Space BMC Core](https://peianchen.github.io/peian-chen/en/projects/space-bmc/)
 
 Their editable source is `content/case_studies.json`. Run `python tools/build_case_studies.py` after editing it. See [maintenance instructions](docs/PORTFOLIO_MAINTENANCE.md).
+
+The complete collection includes engineering systems, seven research projects and three graduate course projects. Read the [image selection and provenance](docs/PROJECT_MEDIA.md) for the editorial criteria and verification scope.
 
 ## Content
 

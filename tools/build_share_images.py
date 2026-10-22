@@ -18,7 +18,7 @@ for name,domain,nodes,path in items:
     def text(x,y,value,size,fill):
         d.text((x,y),value,font=ImageFont.truetype(str(FONT),size),fill=fill)
     text(50,55,'PEIAN.LAB / ENGINEERING SYSTEMS',22,'#69b7ff')
-    text(50,180,name,62,'#eff6ff')
+    text(50,180,name,62 if len(name) < 28 else 38,'#eff6ff')
     text(50,280,domain,24,'#a4b9d6')
     for i,node in enumerate(nodes):
         x=50+i*280
@@ -27,4 +27,4 @@ for name,domain,nodes,path in items:
     text(50,555,'peianchen.github.io/peian-chen',22,'#a4b9d6')
     path.parent.mkdir(parents=True,exist_ok=True)
     canvas.save(path,optimize=True)
-print('Rendered four 1200 x 630 social preview cards.')
+print(f'Rendered {len(items)} social preview cards.')

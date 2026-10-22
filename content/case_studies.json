@@ -5,81 +5,3106 @@
     "repo": "ThermoPatch",
     "domain": "01 / CONNECTED SENSING",
     "tags": "nRF52840 / BLE / Android / Firebase",
-    "nodes": ["SENSOR PATCH", "BLE / GATT", "ANDROID", "FIREBASE"],
+    "nodes": [
+      "SENSOR PATCH",
+      "BLE / GATT",
+      "ANDROID",
+      "FIREBASE"
+    ],
     "zh": {
       "title": "讓多個感測裝置，成為一套可操作的系統。",
       "summary": "串接 BLE 溫度貼片、六部位顯示、電量狀態與手機端韌體更新，處理從裝置連線到資料呈現的完整流程。",
       "purpose": "多部位量測需要同時處理裝置身分、部位對應、連線狀態和更新目標。ThermoPatch 將這些操作集中在 Android App，讓使用者能從同一個介面連接裝置、觀察讀值並選擇要更新的貼片。",
-      "steps": [["感測與傳輸", "配套 nRF52840 韌體透過自訂溫度服務、標準 Battery Service 與 Nordic DFU 提供資料及更新介面。公開 repository 主要保存 Android App，韌體另行維護。"], ["狀態與部位", "BluetoothViewModel 管理掃描、GATT 連線與通知；DeviceViewModel 將資料轉為裝置狀態與身體部位讀值，提供頭、胸、左右手臂及左右腿六個顯示位置。"], ["顯示與同步", "Jetpack Compose 顯示讀值、電量與充電狀態，聚合資料後串接 Firebase Realtime Database。連線、顯示與雲端保存是不同階段，應分別確認。"], ["更新維護", "在設定頁選擇連線裝置與 DFU ZIP，再由 MyDfuService 與 Nordic 回呼呈現進度。明確選擇目標可降低多裝置情境下更新錯誤對象的風險。"]],
-      "decisions": [["部位對應與裝置連線分開", "畫面需要回答量測來自哪個部位，BLE 層則管理實際連線。兩者分開有助於追蹤裝置替換與斷線。"], ["DFU 是獨立操作流程", "將檔案、目標和進度集中在設定頁，讓日常監看不與維護操作混雜。"], ["公開版與後續研究分開", "本頁說明公開 nRF52840 App；後續 V2 的 Room、待傳佇列與多裝置同步研究不視為此版本已具備的功能。"]],
-      "results": [["公開實作", "可閱讀掃描、通知、部位資料、電量及 DFU 的 App 程式碼與操作流程。"], ["既有測試紀錄", "repository 保存 v1.0.1 單元測試摘要：1 個測試、0 失敗。這份摘要不能證明 BLE 多裝置、實機 DFU 或溫度準確度。"], ["仍需實機確認", "連線穩定度、感測校正、斷線恢復、更新中斷和長時間記錄，需要指定手機、韌體與裝置條件的測試。"]],
-      "reproduce": ["依 repository 的 Android SDK、JDK 與 Gradle 設定準備環境，使用自己的 Firebase 專案設定。", "執行 assembleDebug 與 testDebugUnitTest，分別確認建置與軟體測試。", "在相容的實體裝置上核對通知格式、部位對應與電量；DFU 僅使用與目標板及 bootloader 相符的套件。"],
+      "steps": [
+        [
+          "感測與傳輸",
+          "配套 nRF52840 韌體透過自訂溫度服務、標準 Battery Service 與 Nordic DFU 提供資料及更新介面。公開 repository 主要保存 Android App，韌體另行維護。"
+        ],
+        [
+          "狀態與部位",
+          "BluetoothViewModel 管理掃描、GATT 連線與通知；DeviceViewModel 將資料轉為裝置狀態與身體部位讀值，提供頭、胸、左右手臂及左右腿六個顯示位置。"
+        ],
+        [
+          "顯示與同步",
+          "Jetpack Compose 顯示讀值、電量與充電狀態，聚合資料後串接 Firebase Realtime Database。連線、顯示與雲端保存是不同階段，應分別確認。"
+        ],
+        [
+          "更新維護",
+          "在設定頁選擇連線裝置與 DFU ZIP，再由 MyDfuService 與 Nordic 回呼呈現進度。明確選擇目標可降低多裝置情境下更新錯誤對象的風險。"
+        ]
+      ],
+      "decisions": [
+        [
+          "部位對應與裝置連線分開",
+          "畫面需要回答量測來自哪個部位，BLE 層則管理實際連線。兩者分開有助於追蹤裝置替換與斷線。"
+        ],
+        [
+          "DFU 是獨立操作流程",
+          "將檔案、目標和進度集中在設定頁，讓日常監看不與維護操作混雜。"
+        ],
+        [
+          "公開版與後續研究分開",
+          "本頁說明公開 nRF52840 App；後續 V2 的 Room、待傳佇列與多裝置同步研究不視為此版本已具備的功能。"
+        ]
+      ],
+      "results": [
+        [
+          "公開實作",
+          "可閱讀掃描、通知、部位資料、電量及 DFU 的 App 程式碼與操作流程。"
+        ],
+        [
+          "既有測試紀錄",
+          "repository 保存 v1.0.1 單元測試摘要：1 個測試、0 失敗。這份摘要不能證明 BLE 多裝置、實機 DFU 或溫度準確度。"
+        ],
+        [
+          "仍需實機確認",
+          "連線穩定度、感測校正、斷線恢復、更新中斷和長時間記錄，需要指定手機、韌體與裝置條件的測試。"
+        ]
+      ],
+      "reproduce": [
+        "依 repository 的 Android SDK、JDK 與 Gradle 設定準備環境，使用自己的 Firebase 專案設定。",
+        "執行 assembleDebug 與 testDebugUnitTest，分別確認建置與軟體測試。",
+        "在相容的實體裝置上核對通知格式、部位對應與電量；DFU 僅使用與目標板及 bootloader 相符的套件。"
+      ],
       "limits": "這是研究型感測整合專案；六個顯示位置不代表六台裝置並行可靠度已通過驗證，也不代表具備臨床用途或醫療量測精度。",
-      "caption": "依公開程式職責繪製的系統架構圖；不是 App 截圖或實測數據。"
+      "caption": "依公開程式職責繪製的系統架構圖；不是 App 截圖或實測數據。",
+      "architecture": [
+        [
+          "感測裝置",
+          "nRF52840 配套韌體提供溫度、Battery Service 與 DFU。"
+        ],
+        [
+          "連線與狀態",
+          "BluetoothViewModel 管理 GATT，DeviceViewModel 對應裝置與身體部位。"
+        ],
+        [
+          "操作介面",
+          "Compose 將數值、電量與連線狀態呈現在六個身體位置。"
+        ],
+        [
+          "同步與維護",
+          "Firebase 保存聚合資料，設定頁另外選擇 DFU 檔案與目標。"
+        ]
+      ],
+      "analysis": [
+        [
+          "裝置身分決定資料意義",
+          "多部位畫面需要明確知道讀值來自哪個貼片。更換、斷線與重新連接時，部位對應比單純收到溫度值更重要。"
+        ],
+        [
+          "測試摘要應對應版本",
+          "v1.0.1 的一項單元測試支持該測例的軟體行為；37 項 lint warnings 亦需連同版本閱讀，並不構成手機與貼片的完整接受測試。"
+        ],
+        [
+          "更新目標要可辨識",
+          "多裝置同時連線時，韌體維護必須能辨識檔案與裝置的對應，更新進度也應與日常感測狀態分開呈現。"
+        ]
+      ],
+      "media_note": "本頁以架構、流程與可核對紀錄說明成果；目前未選入足以清楚呈現結果的照片或畫面。"
     },
     "en": {
       "title": "Connecting sensor patches into one usable system.",
       "summary": "BLE temperature patches, six body-location views, battery status and phone-based firmware updates, connected through an Android workflow.",
       "purpose": "Multi-location sensing requires device identity, location mapping, connection state and an unambiguous update target. ThermoPatch brings these operations into one Android application for connecting patches, observing readings and selecting a device for maintenance.",
-      "steps": [["Acquire and transmit", "Companion nRF52840 firmware exposes temperature, standard Battery Service and Nordic DFU interfaces. The public repository primarily contains the Android app; firmware is maintained separately."], ["Track state and location", "BluetoothViewModel manages scanning, GATT connections and notifications. DeviceViewModel transforms payloads into device state and six body locations: head, chest, both arms and both legs."], ["Display and synchronize", "Jetpack Compose presents readings, battery and charging state; aggregated data is sent to Firebase Realtime Database. Connection, display and cloud persistence are separate stages to verify."], ["Maintain firmware", "Settings provides a connected-device selector and DFU ZIP selection. MyDfuService and Nordic callbacks report update progress. Explicit targeting reduces ambiguity when multiple devices are connected."]],
-      "decisions": [["Separate body location from connectivity", "The UI answers where a reading comes from; the BLE layer manages the physical connection. Keeping these responsibilities distinct helps diagnose replacement and disconnection."], ["Give DFU its own workflow", "Keep file selection, target selection and progress together so maintenance is separate from everyday monitoring."], ["Keep release boundaries clear", "This page describes the public nRF52840 app. Room persistence and queued multi-device synchronization in the later private V2 research are not attributed to this release."]],
-      "results": [["Public implementation", "Source and procedures cover scanning, notifications, body-location data, battery state and DFU."], ["Archived test evidence", "The repository includes a v1.0.1 unit-test summary with 1 test and 0 failures. That summary does not establish multi-device BLE stability, physical DFU reliability or temperature accuracy."], ["Hardware verification needed", "Connection stability, calibration, recovery, interrupted updates and long-duration recording require tests with identified phones, firmware and sensor nodes."]],
-      "reproduce": ["Prepare the Android SDK, JDK and Gradle environment specified by the repository and configure your own Firebase project.", "Run assembleDebug and testDebugUnitTest to check the build and software tests separately.", "Use compatible physical devices to inspect payloads, location mapping and battery state. DFU packages must match the target board and bootloader."],
+      "steps": [
+        [
+          "Acquire and transmit",
+          "Companion nRF52840 firmware exposes temperature, standard Battery Service and Nordic DFU interfaces. The public repository primarily contains the Android app; firmware is maintained separately."
+        ],
+        [
+          "Track state and location",
+          "BluetoothViewModel manages scanning, GATT connections and notifications. DeviceViewModel transforms payloads into device state and six body locations: head, chest, both arms and both legs."
+        ],
+        [
+          "Display and synchronize",
+          "Jetpack Compose presents readings, battery and charging state; aggregated data is sent to Firebase Realtime Database. Connection, display and cloud persistence are separate stages to verify."
+        ],
+        [
+          "Maintain firmware",
+          "Settings provides a connected-device selector and DFU ZIP selection. MyDfuService and Nordic callbacks report update progress. Explicit targeting reduces ambiguity when multiple devices are connected."
+        ]
+      ],
+      "decisions": [
+        [
+          "Separate body location from connectivity",
+          "The UI answers where a reading comes from; the BLE layer manages the physical connection. Keeping these responsibilities distinct helps diagnose replacement and disconnection."
+        ],
+        [
+          "Give DFU its own workflow",
+          "Keep file selection, target selection and progress together so maintenance is separate from everyday monitoring."
+        ],
+        [
+          "Keep release boundaries clear",
+          "This page describes the public nRF52840 app. Room persistence and queued multi-device synchronization in the later private V2 research are not attributed to this release."
+        ]
+      ],
+      "results": [
+        [
+          "Public implementation",
+          "Source and procedures cover scanning, notifications, body-location data, battery state and DFU."
+        ],
+        [
+          "Archived test evidence",
+          "The repository includes a v1.0.1 unit-test summary with 1 test and 0 failures. That summary does not establish multi-device BLE stability, physical DFU reliability or temperature accuracy."
+        ],
+        [
+          "Hardware verification needed",
+          "Connection stability, calibration, recovery, interrupted updates and long-duration recording require tests with identified phones, firmware and sensor nodes."
+        ]
+      ],
+      "reproduce": [
+        "Prepare the Android SDK, JDK and Gradle environment specified by the repository and configure your own Firebase project.",
+        "Run assembleDebug and testDebugUnitTest to check the build and software tests separately.",
+        "Use compatible physical devices to inspect payloads, location mapping and battery state. DFU packages must match the target board and bootloader."
+      ],
       "limits": "This is a research sensing integration project. Six display locations do not establish reliable concurrent operation of six devices, clinical suitability or medical measurement accuracy.",
-      "caption": "System diagram derived from public code responsibilities, not an app screenshot or measured data."
-    }
+      "caption": "System diagram derived from public code responsibilities, not an app screenshot or measured data.",
+      "architecture": [
+        [
+          "Sensor nodes",
+          "Companion nRF52840 firmware exposes temperature, Battery Service and DFU."
+        ],
+        [
+          "Connection and state",
+          "BluetoothViewModel manages GATT and DeviceViewModel maps nodes to body locations."
+        ],
+        [
+          "Interface",
+          "Compose presents readings, battery and connection state at six body positions."
+        ],
+        [
+          "Sync and maintenance",
+          "Firebase retains aggregated data; settings separately selects a DFU file and target."
+        ]
+      ],
+      "analysis": [
+        [
+          "Identity gives data meaning",
+          "Multi-location views need a traceable patch identity. Replacement, disconnect and reconnection make location mapping as important as receiving a number."
+        ],
+        [
+          "Read test summaries by version",
+          "The v1.0.1 unit result supports one software case. Its 37 lint warnings belong to the same release record; neither establishes full phone-and-patch acceptance."
+        ],
+        [
+          "Make maintenance targets explicit",
+          "With several nodes connected, a firmware file must be associated with a recognizable device, and update progress kept distinct from sensing state."
+        ]
+      ],
+      "media_note": "Architecture, workflow and inspectable records explain the outcomes. No photograph or screenshot meeting the presentation criteria has been selected for this page."
+    },
+    "group": "engineering",
+    "card_index": 0,
+    "branch": "main",
+    "gallery": [],
+    "sources": [
+      {
+        "label": "Repository / README",
+        "url": "https://github.com/peianchen/ThermoPatch/blob/main/README.md"
+      },
+      {
+        "label": "Archived v1.0.1 release checks",
+        "url": "https://github.com/peianchen/ThermoPatch/blob/main/releases/v1.0.1/RELEASE_NOTES.md"
+      }
+    ]
   },
   {
-    "slug": "spacecellcam", "name": "SpaceCellCam", "repo": "SpaceCellCam", "domain": "02 / EXPERIMENTAL IMAGING", "tags": "ESP32-S3 / OV5640 / PSRAM / microSD",
-    "nodes": ["WAKE + LIGHT", "FOCUS + JPEG", "PSRAM + STANDBY", "SD + VERIFY"],
+    "slug": "spacecellcam",
+    "name": "SpaceCellCam",
+    "repo": "SpaceCellCam",
+    "domain": "02 / EXPERIMENTAL IMAGING",
+    "tags": "ESP32-S3 / OV5640 / PSRAM / microSD",
+    "nodes": [
+      "WAKE + LIGHT",
+      "FOCUS + JPEG",
+      "PSRAM + STANDBY",
+      "SD + VERIFY"
+    ],
     "zh": {
       "title": "把一次拍照，整理成可追蹤的取像週期。",
       "summary": "以 ESP32-S3 與 OV5640 AF 控制定時照明、對焦重用、JPEG 擷取與 microSD 寫入，讓實驗取像流程可觀察、可追查。",
       "purpose": "長時間生物觀察需要穩定的取像順序與可保存的影像。這個韌體將相機、LED、記憶體和 SD 儲存排成明確週期，並透過日誌區分對焦、取像、待機與寫檔問題。",
-      "steps": [["喚醒與照明", "目前設定目標週期為 10 秒、XCLK 為 20 MHz，先喚醒感測器並開啟 LED，等待 300 ms 讓照明與曝光穩定。這些是設定值。"], ["對焦與擷取", "第一次使用中央區域自動對焦並鎖定；後續擷取重用焦點，丟棄一張過渡影格，再取得 QSXGA JPEG。"], ["歸還緩衝區", "先將 JPEG 複製到 PSRAM，再歸還 camera frame buffer，讓相機能進入 standby，之後才處理 SD 寫入。"], ["寫入與檢查", "影像先寫暫存檔，再重新命名並確認檔案大小。每個 bucket 保存 500 張；開機時回復編號以避免覆寫既有影像。"]],
-      "decisions": [["重用焦點的取捨", "固定場景可省去每次重新搜尋焦點，但目標距離變動時可能失焦，需以照片與日誌一起判讀。"], ["記憶體換取流程解耦", "PSRAM 的 JPEG 副本增加暫時記憶體需求，讓 SD 寫入不必延長 LED 點亮及相機活躍時間。"], ["保存失敗的線索", "對焦失敗、frame timeout、短寫入與大小不符各有日誌，方便定位問題發生在哪一層。"]],
-      "results": [["可確認的設定", "公開 README 與韌體描述 10 秒週期、focus-lock reuse、sensor standby 及暫存檔驗證流程。"], ["結果判讀方式", "使用 reuse locked focus、standby enter/wake 與 SD 驗證紀錄，對照實際照片判斷各階段是否完成。"], ["尚未建立的結論", "本頁沒有新增取像實驗，不以程式設定推論實際準時率、功耗、光學品質或長時間資料完整率。"]],
-      "reproduce": ["準備 XIAO ESP32S3、OV5640 AF、microSD 與穩定供電，依 repository 的 platformio.ini 建置。", "記錄首次及後續擷取日誌，確認 AF 搜尋與重用路徑不同。", "固定場景後改變目標距離，比對照片清晰度與日誌；另檢查 SD 檔案大小、編號及重新開機後是否覆寫。"],
+      "steps": [
+        [
+          "喚醒與照明",
+          "目前設定目標週期為 10 秒、XCLK 為 20 MHz，先喚醒感測器並開啟 LED，等待 300 ms 讓照明與曝光穩定。這些是設定值。"
+        ],
+        [
+          "對焦與擷取",
+          "第一次使用中央區域自動對焦並鎖定；後續擷取重用焦點，丟棄一張過渡影格，再取得 QSXGA JPEG。"
+        ],
+        [
+          "歸還緩衝區",
+          "先將 JPEG 複製到 PSRAM，再歸還 camera frame buffer，讓相機能進入 standby，之後才處理 SD 寫入。"
+        ],
+        [
+          "寫入與檢查",
+          "影像先寫暫存檔，再重新命名並確認檔案大小。每個 bucket 保存 500 張；開機時回復編號以避免覆寫既有影像。"
+        ]
+      ],
+      "decisions": [
+        [
+          "重用焦點的取捨",
+          "固定場景可省去每次重新搜尋焦點，但目標距離變動時可能失焦，需以照片與日誌一起判讀。"
+        ],
+        [
+          "記憶體換取流程解耦",
+          "PSRAM 的 JPEG 副本增加暫時記憶體需求，讓 SD 寫入不必延長 LED 點亮及相機活躍時間。"
+        ],
+        [
+          "保存失敗的線索",
+          "對焦失敗、frame timeout、短寫入與大小不符各有日誌，方便定位問題發生在哪一層。"
+        ]
+      ],
+      "results": [
+        [
+          "可確認的設定",
+          "公開 README 與韌體描述 10 秒週期、focus-lock reuse、sensor standby 及暫存檔驗證流程。"
+        ],
+        [
+          "結果判讀方式",
+          "使用 reuse locked focus、standby enter/wake 與 SD 驗證紀錄，對照實際照片判斷各階段是否完成。"
+        ],
+        [
+          "尚未建立的結論",
+          "本頁沒有新增取像實驗，不以程式設定推論實際準時率、功耗、光學品質或長時間資料完整率。"
+        ]
+      ],
+      "reproduce": [
+        "準備 XIAO ESP32S3、OV5640 AF、microSD 與穩定供電，依 repository 的 platformio.ini 建置。",
+        "記錄首次及後續擷取日誌，確認 AF 搜尋與重用路徑不同。",
+        "固定場景後改變目標距離，比對照片清晰度與日誌；另檢查 SD 檔案大小、編號及重新開機後是否覆寫。"
+      ],
       "limits": "standby／wake 時的 VCM 聲音不等於重新對焦；ESP32-S3 內部溫度也不是 OV5640 或馬達溫度。專案名稱不表示已完成太空環境或在軌驗證。",
-      "caption": "依韌體順序繪製的取像流程；方塊寬度不代表耗時比例。"
+      "caption": "依韌體順序繪製的取像流程；方塊寬度不代表耗時比例。",
+      "architecture": [
+        [
+          "照明與時序",
+          "LED 預熱和相機 wake 決定開始擷取前的狀態。"
+        ],
+        [
+          "光學與相機",
+          "OV5640 AF 在第一次取像建立焦點，後續沿用鎖定狀態。"
+        ],
+        [
+          "記憶體",
+          "PSRAM 保存 JPEG 副本，讓 frame buffer 可先歸還。"
+        ],
+        [
+          "儲存",
+          "microSD 暫存檔、rename 與大小檢查完成影像保存。"
+        ]
+      ],
+      "analysis": [
+        [
+          "寫檔與取像分開的好處",
+          "先歸還 frame buffer 並待機，能讓較慢的 SD 寫入與相機資源解耦；代價是 JPEG 副本佔用 PSRAM。"
+        ],
+        [
+          "固定焦點依賴固定場景",
+          "reuse locked focus 紀錄說明走了重用路徑；仍需看照片清晰度，才能知道目標距離與實際焦點是否相符。"
+        ],
+        [
+          "檔案完整性有不同層次",
+          "寫入大小檢查能識別短寫入，但無法單獨證明 JPEG 可解碼、影像清楚或長時間沒有漏拍。"
+        ]
+      ],
+      "media_note": "本頁以架構、流程與可核對紀錄說明成果；目前未選入足以清楚呈現結果的照片或畫面。"
     },
     "en": {
       "title": "Turning a camera capture into a traceable cycle.",
       "summary": "ESP32-S3 and OV5640 AF firmware coordinates lighting, focus reuse, JPEG capture and microSD storage for observable experimental imaging.",
       "purpose": "Long-running biological observation needs an explicit capture sequence and recoverable images. This firmware schedules the camera, LED, memory and storage as one cycle, with logs that distinguish focus, capture, standby and file errors.",
-      "steps": [["Wake and illuminate", "Current configuration targets a 10-second period and 20 MHz XCLK. The sensor wakes and the LED settles for 300 ms before capture. These are configuration values."], ["Focus and capture", "The first capture uses center autofocus and locks it. Later captures reuse that lock, discard one transition frame and acquire a QSXGA JPEG."], ["Release the frame buffer", "The JPEG is copied into PSRAM before returning the camera buffer. The sensor can then enter standby before SD writing begins."], ["Save and verify", "A temporary file is written, renamed and checked for size. Each bucket holds 500 images; numbering is recovered at boot to avoid overwriting previous captures."]],
-      "decisions": [["Reuse focus with a scene constraint", "A fixed scene can avoid repeated autofocus searches. A changing target distance may instead produce blur, so images and logs must be interpreted together."], ["Trade memory for decoupled work", "A PSRAM copy requires temporary memory but lets SD writes happen after LED off and sensor standby."], ["Preserve failure clues", "Focus failure, frame timeout, short writes and size mismatches have distinct logs to localize the failing stage."]],
-      "results": [["Documented configuration", "The public README and firmware describe the 10-second target, focus reuse, standby and temporary-file verification."], ["How to interpret a run", "Compare reuse-locked-focus, standby enter/wake and SD verification messages against the actual captured images."], ["Limits of this review", "No new capture experiment was performed for this page. Configuration alone cannot establish achieved timing, power, optical quality or long-run data completeness."]],
-      "reproduce": ["Prepare a XIAO ESP32S3, OV5640 AF, microSD and stable power, then build with the repository's platformio.ini.", "Record first and subsequent captures and distinguish the autofocus-search and focus-reuse log paths.", "Change target distance after establishing a fixed scene, compare sharpness and logs, and inspect file sizes, numbering and restart behavior."],
+      "steps": [
+        [
+          "Wake and illuminate",
+          "Current configuration targets a 10-second period and 20 MHz XCLK. The sensor wakes and the LED settles for 300 ms before capture. These are configuration values."
+        ],
+        [
+          "Focus and capture",
+          "The first capture uses center autofocus and locks it. Later captures reuse that lock, discard one transition frame and acquire a QSXGA JPEG."
+        ],
+        [
+          "Release the frame buffer",
+          "The JPEG is copied into PSRAM before returning the camera buffer. The sensor can then enter standby before SD writing begins."
+        ],
+        [
+          "Save and verify",
+          "A temporary file is written, renamed and checked for size. Each bucket holds 500 images; numbering is recovered at boot to avoid overwriting previous captures."
+        ]
+      ],
+      "decisions": [
+        [
+          "Reuse focus with a scene constraint",
+          "A fixed scene can avoid repeated autofocus searches. A changing target distance may instead produce blur, so images and logs must be interpreted together."
+        ],
+        [
+          "Trade memory for decoupled work",
+          "A PSRAM copy requires temporary memory but lets SD writes happen after LED off and sensor standby."
+        ],
+        [
+          "Preserve failure clues",
+          "Focus failure, frame timeout, short writes and size mismatches have distinct logs to localize the failing stage."
+        ]
+      ],
+      "results": [
+        [
+          "Documented configuration",
+          "The public README and firmware describe the 10-second target, focus reuse, standby and temporary-file verification."
+        ],
+        [
+          "How to interpret a run",
+          "Compare reuse-locked-focus, standby enter/wake and SD verification messages against the actual captured images."
+        ],
+        [
+          "Limits of this review",
+          "No new capture experiment was performed for this page. Configuration alone cannot establish achieved timing, power, optical quality or long-run data completeness."
+        ]
+      ],
+      "reproduce": [
+        "Prepare a XIAO ESP32S3, OV5640 AF, microSD and stable power, then build with the repository's platformio.ini.",
+        "Record first and subsequent captures and distinguish the autofocus-search and focus-reuse log paths.",
+        "Change target distance after establishing a fixed scene, compare sharpness and logs, and inspect file sizes, numbering and restart behavior."
+      ],
       "limits": "VCM noise during standby/wake does not by itself mean a new autofocus search. ESP32-S3 internal temperature is not camera or VCM temperature. The project name does not establish space-environment or orbital qualification.",
-      "caption": "Capture sequence derived from firmware; block width does not represent elapsed time."
-    }
+      "caption": "Capture sequence derived from firmware; block width does not represent elapsed time.",
+      "architecture": [
+        [
+          "Lighting and timing",
+          "LED preheat and sensor wake establish the pre-capture state."
+        ],
+        [
+          "Optics and camera",
+          "OV5640 AF establishes a first focus and reuses its locked state."
+        ],
+        [
+          "Memory",
+          "A PSRAM JPEG copy releases the camera frame buffer earlier."
+        ],
+        [
+          "Storage",
+          "Temporary SD files, rename and size checks organize saving."
+        ]
+      ],
+      "analysis": [
+        [
+          "Decouple saving from acquisition",
+          "Returning the frame buffer and entering standby separates slower SD work from camera resource ownership, at the cost of temporary PSRAM."
+        ],
+        [
+          "Focus reuse assumes a scene",
+          "A reuse-locked-focus log identifies the code path. Image sharpness is still needed to assess whether the target distance matches the focus."
+        ],
+        [
+          "File integrity has layers",
+          "Size verification can detect short writes, but alone does not prove JPEG decoding, sharpness or capture completeness over time."
+        ]
+      ],
+      "media_note": "Architecture, workflow and inspectable records explain the outcomes. No photograph or screenshot meeting the presentation criteria has been selected for this page."
+    },
+    "group": "engineering",
+    "card_index": 1,
+    "branch": "main",
+    "gallery": [],
+    "sources": [
+      {
+        "label": "Repository / README",
+        "url": "https://github.com/peianchen/SpaceCellCam/blob/main/README.md"
+      }
+    ]
   },
   {
-    "slug": "space-bmc", "name": "Space BMC Core", "repo": "Space-BMC-Core-SEMC", "domain": "03 / DIGITAL VERIFICATION", "tags": "Verilog-2001 / Questa / Self-checking testbench",
-    "nodes": ["CLOCK + HEARTBEAT", "ELAPSED COUNTER", "TIMEOUT LATCH", "CLEAR + RESTART"],
-    "validation": {"date": "2026-10-22", "checks": 15, "tool": "Questa 2025.2", "report": "docs/VALIDATION-2026-10-22.md"},
+    "slug": "space-bmc",
+    "name": "Space BMC Core",
+    "repo": "Space-BMC-Core-SEMC",
+    "domain": "03 / DIGITAL VERIFICATION",
+    "tags": "Verilog-2001 / Questa / Self-checking testbench",
+    "nodes": [
+      "CLOCK + HEARTBEAT",
+      "ELAPSED COUNTER",
+      "TIMEOUT LATCH",
+      "CLEAR + RESTART"
+    ],
+    "validation": {
+      "date": "2026-10-22",
+      "checks": 15,
+      "tool": "Questa 2025.2",
+      "report": "docs/VALIDATION-2026-10-22.md"
+    },
     "zh": {
       "title": "把逾時條件，定義到每一個時脈邊緣。",
       "summary": "參數化 Verilog 心跳監測核心，搭配自動檢查 testbench，將逾時、鎖存、清除與重新計時變成可重複驗證的行為。",
       "purpose": "監測系統必須明確定義多久未收到心跳才算逾時、故障訊號是否保持，以及恢復後何時重新計時。本專案先獨立實作這個基本模組，讓時間邊界能在模擬中逐週期檢查。",
-      "steps": [["輸入與取樣", "heartbeat 與 clear_timeout 在 clk 上升緣取樣；rst_n 為非同步低有效 reset。輸入跨時脈同步需由整合層另行處理。"], ["計算等待週期", "TIMEOUT_CYCLES 表示連續未取樣到 heartbeat 的上升緣數；預設 25,000,000，在 50 MHz 時脈假設下對應 500 ms。"], ["鎖存逾時", "計數達門檻時將 timeout 設為 1 並保持，不因單純等待而自行清除。"], ["清除與重新開始", "reset、heartbeat 或 clear_timeout 可清除 timeout 並重設計數器；testbench 使用較小門檻加快邊界與重啟檢查。"]],
-      "decisions": [["先固定行為契約", "明確寫出取樣邊緣與門檻定義，避免對第 N 或 N+1 個週期的不同理解造成 off-by-one 問題。"], ["用參數縮短模擬", "硬體與測試採用相同 RTL，只改門檻。小參數讓邊界案例容易觀察，但仍需涵蓋不同參數範圍。"], ["監測與恢復分層", "目前只產生鎖存的逾時狀態；Recovery FSM、電源重啟及完整 BMC 功能不包含在此里程碑。"]],
-      "results": [["公開實作", "RTL、testbench 與 Questa PowerShell 執行入口均可閱讀，測試入口要求 TEST PASSED 且程序正常結束。"], ["時間換算", "500 ms 是 25,000,000 / 50,000,000 的推導值，不是板上延遲量測。"], ["驗證範圍", "功能模擬不等於 timing closure、板上穩定性或太空環境驗證；這些需要另行記錄。"]],
-      "reproduce": ["安裝相容 Questa 工具，於 repository 根目錄執行 scripts/run_heartbeat_sim.ps1。", "檢查 TEST PASSED 與 exit code，並用 open_heartbeat_wave.ps1 觀察計數、timeout 及測試檢查器。", "整合到 FPGA 前確認時脈、reset、跨時脈輸入同步與 constraints；再獨立進行 synthesis、timing 與上板驗證。"],
+      "steps": [
+        [
+          "輸入與取樣",
+          "heartbeat 與 clear_timeout 在 clk 上升緣取樣；rst_n 為非同步低有效 reset。輸入跨時脈同步需由整合層另行處理。"
+        ],
+        [
+          "計算等待週期",
+          "TIMEOUT_CYCLES 表示連續未取樣到 heartbeat 的上升緣數；預設 25,000,000，在 50 MHz 時脈假設下對應 500 ms。"
+        ],
+        [
+          "鎖存逾時",
+          "計數達門檻時將 timeout 設為 1 並保持，不因單純等待而自行清除。"
+        ],
+        [
+          "清除與重新開始",
+          "reset、heartbeat 或 clear_timeout 可清除 timeout 並重設計數器；testbench 使用較小門檻加快邊界與重啟檢查。"
+        ]
+      ],
+      "decisions": [
+        [
+          "先固定行為契約",
+          "明確寫出取樣邊緣與門檻定義，避免對第 N 或 N+1 個週期的不同理解造成 off-by-one 問題。"
+        ],
+        [
+          "用參數縮短模擬",
+          "硬體與測試採用相同 RTL，只改門檻。小參數讓邊界案例容易觀察，但仍需涵蓋不同參數範圍。"
+        ],
+        [
+          "監測與恢復分層",
+          "目前只產生鎖存的逾時狀態；Recovery FSM、電源重啟及完整 BMC 功能不包含在此里程碑。"
+        ]
+      ],
+      "results": [
+        [
+          "公開實作",
+          "RTL、testbench 與 Questa PowerShell 執行入口均可閱讀，測試入口要求 TEST PASSED 且程序正常結束。"
+        ],
+        [
+          "時間換算",
+          "500 ms 是 25,000,000 / 50,000,000 的推導值，不是板上延遲量測。"
+        ],
+        [
+          "驗證範圍",
+          "功能模擬不等於 timing closure、板上穩定性或太空環境驗證；這些需要另行記錄。"
+        ]
+      ],
+      "reproduce": [
+        "安裝相容 Questa 工具，於 repository 根目錄執行 scripts/run_heartbeat_sim.ps1。",
+        "檢查 TEST PASSED 與 exit code，並用 open_heartbeat_wave.ps1 觀察計數、timeout 及測試檢查器。",
+        "整合到 FPGA 前確認時脈、reset、跨時脈輸入同步與 constraints；再獨立進行 synthesis、timing 與上板驗證。"
+      ],
       "limits": "本頁的互動圖是行為說明，不是模擬器輸出。模組假設同步取樣介面；非同步 heartbeat 需要額外的 CDC 設計。",
-      "caption": "依 RTL 繪製的行為架構；互動說明不取代 testbench 或實測。"
+      "caption": "依 RTL 繪製的行為架構；互動說明不取代 testbench 或實測。",
+      "architecture": [
+        [
+          "輸入契約",
+          "clk 取樣 heartbeat 和 clear_timeout，rst_n 提供非同步清除。"
+        ],
+        [
+          "週期計數",
+          "elapsed counter 計算連續未收到心跳的週期。"
+        ],
+        [
+          "鎖存狀態",
+          "timeout 在門檻上升緣成立後保持，直到明確清除。"
+        ],
+        [
+          "自動檢查",
+          "testbench 以小參數檢查邊界、恢復、清除與重啟。"
+        ]
+      ],
+      "analysis": [
+        [
+          "邊界測試針對最常見錯誤",
+          "N−1 不逾時、N 逾時的成對檢查，直接辨識計數器比較及更新順序造成的 off-by-one。"
+        ],
+        [
+          "清除之後也要檢查",
+          "只看到 timeout 下降還不夠；接下來的完整等待區間才能證明計數器確實重新開始。"
+        ],
+        [
+          "整合時要補時脈條件",
+          "RTL 契約是同步取樣。若心跳來自另一時脈或外部訊號，需另外處理 CDC，並評估脈波是否能被取樣。"
+        ]
+      ],
+      "media_note": "本頁以架構、流程與可核對紀錄說明成果；目前未選入足以清楚呈現結果的照片或畫面。"
     },
     "en": {
       "title": "Defining a timeout at the clock-edge level.",
       "summary": "A parameterized Verilog heartbeat monitor with a self-checking testbench for timeout boundaries, latching, clearing and interval restart.",
       "purpose": "A monitor needs an explicit contract: how many missing heartbeats constitute a timeout, whether that output stays asserted and when counting restarts. This project isolates that module so cycle boundaries can be checked repeatedly in simulation.",
-      "steps": [["Sample the inputs", "heartbeat and clear_timeout are sampled on rising clk edges; rst_n is asynchronous and active low. Cross-clock synchronization belongs in the integration layer."], ["Count elapsed edges", "TIMEOUT_CYCLES counts consecutive rising edges without a sampled heartbeat. The default 25,000,000 corresponds to 500 ms under a 50 MHz clock assumption."], ["Latch timeout", "The output asserts at the threshold and remains high. Waiting alone does not clear it."], ["Clear and restart", "Reset, a heartbeat or clear_timeout clears the output and resets the counter. The testbench uses a smaller threshold for fast boundary and restart checks."]],
-      "decisions": [["Specify behavior before integration", "Document the sampling edge and threshold to avoid disagreement about whether assertion belongs at edge N or N+1."], ["Shorten simulation through parameters", "The hardware and test share the same RTL with different thresholds. Small values make boundaries observable; parameter ranges still need coverage."], ["Separate monitoring from recovery", "This milestone produces a latched timeout. Recovery FSM, power sequencing and a complete BMC are outside its scope."]],
-      "results": [["Public implementation", "RTL, testbench and a Questa PowerShell entry point are available. The runner requires TEST PASSED and normal process termination."], ["Timing interpretation", "500 ms is derived from 25,000,000 / 50,000,000, not measured board latency."], ["Verification boundary", "Functional simulation does not establish timing closure, board reliability or space qualification; those require separate evidence."]],
-      "reproduce": ["Install a compatible Questa toolchain and run scripts/run_heartbeat_sim.ps1 from the repository root.", "Check TEST PASSED and the exit code, then use open_heartbeat_wave.ps1 to inspect the counter, timeout and checker state.", "Before FPGA integration, review clock, reset, input synchronization and constraints; perform synthesis, timing and board verification separately."],
+      "steps": [
+        [
+          "Sample the inputs",
+          "heartbeat and clear_timeout are sampled on rising clk edges; rst_n is asynchronous and active low. Cross-clock synchronization belongs in the integration layer."
+        ],
+        [
+          "Count elapsed edges",
+          "TIMEOUT_CYCLES counts consecutive rising edges without a sampled heartbeat. The default 25,000,000 corresponds to 500 ms under a 50 MHz clock assumption."
+        ],
+        [
+          "Latch timeout",
+          "The output asserts at the threshold and remains high. Waiting alone does not clear it."
+        ],
+        [
+          "Clear and restart",
+          "Reset, a heartbeat or clear_timeout clears the output and resets the counter. The testbench uses a smaller threshold for fast boundary and restart checks."
+        ]
+      ],
+      "decisions": [
+        [
+          "Specify behavior before integration",
+          "Document the sampling edge and threshold to avoid disagreement about whether assertion belongs at edge N or N+1."
+        ],
+        [
+          "Shorten simulation through parameters",
+          "The hardware and test share the same RTL with different thresholds. Small values make boundaries observable; parameter ranges still need coverage."
+        ],
+        [
+          "Separate monitoring from recovery",
+          "This milestone produces a latched timeout. Recovery FSM, power sequencing and a complete BMC are outside its scope."
+        ]
+      ],
+      "results": [
+        [
+          "Public implementation",
+          "RTL, testbench and a Questa PowerShell entry point are available. The runner requires TEST PASSED and normal process termination."
+        ],
+        [
+          "Timing interpretation",
+          "500 ms is derived from 25,000,000 / 50,000,000, not measured board latency."
+        ],
+        [
+          "Verification boundary",
+          "Functional simulation does not establish timing closure, board reliability or space qualification; those require separate evidence."
+        ]
+      ],
+      "reproduce": [
+        "Install a compatible Questa toolchain and run scripts/run_heartbeat_sim.ps1 from the repository root.",
+        "Check TEST PASSED and the exit code, then use open_heartbeat_wave.ps1 to inspect the counter, timeout and checker state.",
+        "Before FPGA integration, review clock, reset, input synchronization and constraints; perform synthesis, timing and board verification separately."
+      ],
       "limits": "The interactive diagram is an explanation, not simulator output. The module assumes a synchronous sampled interface; asynchronous heartbeats require additional CDC design.",
-      "caption": "Behavioral architecture derived from RTL; the interactive guide does not replace testbench or hardware evidence."
-    }
+      "caption": "Behavioral architecture derived from RTL; the interactive guide does not replace testbench or hardware evidence.",
+      "architecture": [
+        [
+          "Input contract",
+          "clk samples heartbeat and clear_timeout; rst_n provides asynchronous reset."
+        ],
+        [
+          "Cycle counter",
+          "The elapsed counter tracks consecutive samples without heartbeat."
+        ],
+        [
+          "Latched status",
+          "timeout asserts at the boundary and remains until an explicit clearing event."
+        ],
+        [
+          "Self-checking testbench",
+          "Small parameters exercise boundaries, recovery, clearing and restart."
+        ]
+      ],
+      "analysis": [
+        [
+          "Test the boundary as a pair",
+          "Checking no timeout at N−1 and assertion at N directly exposes comparison/update-order off-by-one errors."
+        ],
+        [
+          "Inspect the interval after clearing",
+          "A falling timeout is only part of recovery. A complete new waiting interval demonstrates that counting actually restarted."
+        ],
+        [
+          "Add clock assumptions at integration",
+          "The RTL assumes synchronous sampling. External or cross-domain heartbeats require CDC handling and pulse-capture analysis."
+        ]
+      ],
+      "media_note": "Architecture, workflow and inspectable records explain the outcomes. No photograph or screenshot meeting the presentation criteria has been selected for this page."
+    },
+    "group": "engineering",
+    "card_index": 2,
+    "branch": "main",
+    "gallery": [],
+    "sources": [
+      {
+        "label": "Repository / README",
+        "url": "https://github.com/peianchen/Space-BMC-Core-SEMC/blob/main/README.md"
+      }
+    ]
+  },
+  {
+    "slug": "nrf54l15-mlx90614",
+    "name": "nRF54L15 × MLX90614",
+    "repo": "nRF54L15_MLX90614",
+    "domain": "LOW-POWER SENSING",
+    "tags": "C / Zephyr / nRF54L15",
+    "nodes": [
+      "IR SENSOR",
+      "I2C + NCS",
+      "SAMPLE TASK",
+      "BLE CLIENT"
+    ],
+    "zh": {
+      "title": "nRF54L15 × MLX90614",
+      "summary": "以 Zephyr／nRF Connect SDK 在 XIAO nRF54L15 上讀取紅外線溫度，透過 BLE 傳送資料，支援每 60 秒取樣及手機要求即時量測。",
+      "purpose": "在保留手機連線與操作的條件下，安排間歇取樣及低功耗等待。",
+      "decisions": [],
+      "limits": "使用 System ON idle 保留 BLE，不是 System OFF。電池壽命估算、實際電流與量測準確度需分別判讀。",
+      "caption": "依專案職責整理的架構示意。",
+      "architecture": [
+        [
+          "感測介面",
+          "MLX90614 透過 i2c22 讀取環境與物體溫度；overlay 將 SDA／SCL 對應到 P1.10／P1.11。"
+        ],
+        [
+          "取樣工作",
+          "Zephyr 主執行緒以 semaphore timeout 等待，定期或收到手機命令時執行一次讀值。"
+        ],
+        [
+          "通訊服務",
+          "自訂溫度、狀態與控制特徵分別處理讀值通知及即時量測要求，保持資料與命令方向清楚。"
+        ],
+        [
+          "電源管理",
+          "讀值前後 resume／suspend I²C，關閉預設診斷輸出；BLE 保留在 System ON idle 的操作流程。"
+        ]
+      ],
+      "steps": [
+        [
+          "啟動周邊與廣播",
+          "檢查 I²C 裝置並建立 BLE 服務，等待手機連線。"
+        ],
+        [
+          "等待取樣事件",
+          "正常週期為 60 秒；寫入 sample 或 measure 可提前喚醒工作，不改變週期設定。"
+        ],
+        [
+          "取得並傳送溫度",
+          "喚醒 I²C、讀取感測器，將攝氏數值以 ASCII payload 提供給手機。"
+        ],
+        [
+          "返回等待",
+          "暫停 I²C 並阻塞執行緒，讓作業系統在 BLE 可用的條件下安排省電。"
+        ]
+      ],
+      "results": [
+        [
+          "已提供的實作",
+          "公開原始碼包含接腳配置、BLE 特徵、週期取樣與即時量測控制。"
+        ],
+        [
+          "既有功耗紀錄",
+          "LOW_POWER_ANALYSIS 記錄起始測試約 5.02 V、3.5 mA。此數值屬當時供電與設定，不能視為目前版本優化後的電流。"
+        ],
+        [
+          "估算的用途",
+          "以 0.66 Wh／720 h 換算約 0.92 mW，說明 30 天目標的平均功率預算；電池容量與負載條件會影響可用能量。"
+        ]
+      ],
+      "analysis": [
+        [
+          "取樣頻率不是唯一耗電來源",
+          "將 10 秒改為 60 秒可降低讀值事件頻率，但無線連線、感測器待機與板上電源電路仍可能主導平均耗電。比較版本時應保持供電位置和量測設定一致。"
+        ],
+        [
+          "可連線與最深睡眠的取捨",
+          "手機即時命令需要 BLE 持續可用，因此以阻塞等待搭配 System ON idle。實際續航需同時觀察廣播、連線和讀值三種狀態。"
+        ],
+        [
+          "溫度值的意義",
+          "物體溫度與環境溫度是不同量；感測距離、視野與目標表面會影響讀值，通訊成功本身不代表校正完成。"
+        ]
+      ],
+      "reproduce": [
+        "依 README 連接 XIAO nRF54L15 與 MLX90614，核對感測器位址及 pull-up。",
+        "使用相容 NCS 環境建置 xiao_nrf54l15/nrf54l15/cpuapp，核對 overlay。",
+        "以相容 BLE client 觀察通知並寫入 sample，比對週期取樣和即時取樣路徑。",
+        "分別量測廣播、連線與讀值時的電流，記錄供電端與韌體設定。"
+      ],
+      "media_note": "本頁以架構、流程與可核對紀錄說明成果；目前未選入足以清楚呈現結果的照片或畫面。"
+    },
+    "en": {
+      "title": "nRF54L15 × MLX90614",
+      "summary": "Zephyr/nRF Connect SDK infrared-temperature firmware for XIAO nRF54L15, with BLE data delivery, 60-second sampling, and immediate measurements requested from a phone.",
+      "purpose": "Schedule intermittent sensing and low-power waiting while retaining phone connectivity and control.",
+      "decisions": [],
+      "limits": "System ON idle retains BLE; this is not System OFF. Battery-life estimates, measured current, and measurement accuracy must be interpreted separately.",
+      "caption": "Architecture explanation based on documented project responsibilities.",
+      "architecture": [
+        [
+          "Sensor interface",
+          "MLX90614 ambient and object temperatures are read on i2c22, with SDA/SCL mapped to P1.10/P1.11 in the overlay."
+        ],
+        [
+          "Sampling task",
+          "A Zephyr thread waits on a semaphore timeout and reads once for a scheduled or phone-triggered event."
+        ],
+        [
+          "Communication",
+          "Temperature, status and control characteristics separate measurement notifications from immediate-sample requests."
+        ],
+        [
+          "Power management",
+          "I2C resumes around reads and suspends afterward. Diagnostics are off by default; BLE remains available during System ON idle."
+        ]
+      ],
+      "steps": [
+        [
+          "Initialize and advertise",
+          "Check the I2C device, register BLE services and wait for a client."
+        ],
+        [
+          "Wait for an event",
+          "The normal period is 60 seconds. A sample or measure write wakes the task without changing that setting."
+        ],
+        [
+          "Acquire and notify",
+          "Resume I2C, read the sensor and expose an ASCII Celsius payload to the phone."
+        ],
+        [
+          "Return to waiting",
+          "Suspend I2C and block the thread so the operating system can idle while keeping BLE available."
+        ]
+      ],
+      "results": [
+        [
+          "Available implementation",
+          "Public source includes pin configuration, BLE characteristics, periodic sampling and immediate measurement control."
+        ],
+        [
+          "Recorded starting point",
+          "LOW_POWER_ANALYSIS records approximately 5.02 V and 3.5 mA in an earlier setup. This is not a post-optimization measurement of the current revision."
+        ],
+        [
+          "Power-budget calculation",
+          "0.66 Wh divided by 720 hours gives about 0.92 mW for a 30-day target. Usable battery energy depends on capacity and loading conditions."
+        ]
+      ],
+      "analysis": [
+        [
+          "Sampling is only one load",
+          "Changing a 10-second interval to 60 seconds reduces read events, but radio activity, sensor standby and board power circuitry may still dominate. Compare revisions at the same supply point and settings."
+        ],
+        [
+          "Connectivity constrains sleep",
+          "Immediate phone commands require BLE availability. Blocking waits and System ON idle support that workflow; lifetime estimates must include advertising, connection and acquisition states."
+        ],
+        [
+          "Interpret both temperatures",
+          "Object and ambient temperatures have different meanings. Distance, field of view and target surface affect readings, so a successful transfer alone does not establish calibration."
+        ]
+      ],
+      "reproduce": [
+        "Wire the XIAO and MLX90614 as documented; check the address and pull-ups.",
+        "Build for xiao_nrf54l15/nrf54l15/cpuapp in a compatible NCS environment and inspect the overlay.",
+        "Observe notifications and send sample from a compatible BLE client to compare scheduled and immediate reads.",
+        "Measure advertising, connected and sampling current separately, recording the supply point and firmware settings."
+      ],
+      "media_note": "Architecture, workflow and inspectable records explain the outcomes. No photograph or screenshot meeting the presentation criteria has been selected for this page."
+    },
+    "group": "engineering",
+    "card_index": 3,
+    "branch": "master",
+    "gallery": [],
+    "sources": [
+      {
+        "label": "Repository / README",
+        "url": "https://github.com/peianchen/nRF54L15_MLX90614/blob/master/README.md"
+      },
+      {
+        "label": "Power measurements and estimates",
+        "url": "https://github.com/peianchen/nRF54L15_MLX90614/blob/master/LOW_POWER_ANALYSIS.md"
+      }
+    ]
+  },
+  {
+    "slug": "galaxy-watch",
+    "name": "Galaxy Watch Sensor Monitor",
+    "repo": "GalaxyWatchSensorMonitor",
+    "domain": "PHYSIOLOGICAL DATA",
+    "tags": "Kotlin / Wear OS / Sensor SDK",
+    "nodes": [
+      "MEASURE ACTION",
+      "HEALTH PLATFORM",
+      "TRACKER CALLBACK",
+      "WEAR OS VIEW"
+    ],
+    "zh": {
+      "title": "Galaxy Watch Sensor Monitor",
+      "summary": "Wear OS／Kotlin 感測 App，透過 Samsung Health Sensor SDK 進行單次皮膚溫度量測，顯示手腕溫度、環境溫度、時間與感測狀態。",
+      "purpose": "建立可操作的手錶端量測入口，觀察感測值、回呼與錯誤狀態。",
+      "decisions": [],
+      "limits": "依 README 以 Galaxy Watch6 或更新實機為目標，需另行提供 SDK AAR 並符合權限與平台政策；不作醫療診斷用途。",
+      "caption": "依專案職責整理的架構示意。",
+      "architecture": [
+        [
+          "操作介面",
+          "Kotlin 畫面提供單次量測入口，顯示溫度、單位、時間與狀態。"
+        ],
+        [
+          "服務連線",
+          "HealthSensorManager 協調 Samsung Health Platform 的連線、權限及 tracker 可用性。"
+        ],
+        [
+          "量測生命週期",
+          "使用 SKIN_TEMPERATURE_ON_DEMAND，收到一次回呼後停止 tracker，避免介面持續佔用量測資源。"
+        ],
+        [
+          "擴充邊界",
+          "PPG green／red／IR 保留程式入口但預設停用；不能當成已完成的連續 PPG 產品。"
+        ]
+      ],
+      "steps": [
+        [
+          "確認平台",
+          "使用相容實體 Galaxy Watch 與 Samsung SDK，先處理服務及權限狀態。"
+        ],
+        [
+          "提出單次要求",
+          "按下 Measure 啟動 on-demand tracker，畫面轉為等待資料。"
+        ],
+        [
+          "處理回呼",
+          "接收手腕與環境溫度，同時呈現回呼時間或錯誤資訊。"
+        ],
+        [
+          "停止並顯示",
+          "停止 tracker，保留本次讀值供查看，再等待下一次操作。"
+        ]
+      ],
+      "results": [
+        [
+          "可閱讀的流程",
+          "原始碼與 README 說明按鍵觸發、一次回呼及停止 tracker 的完整操作。"
+        ],
+        [
+          "資料欄位",
+          "結果畫面以皮膚溫度、環境溫度、時間與狀態共同描述一次量測。"
+        ],
+        [
+          "目前公開資料",
+          "repository 沒有提供可核對的實機量測截圖或統計結果，本頁以程式流程與輸出欄位說明。"
+        ]
+      ],
+      "analysis": [
+        [
+          "狀態與讀值應一起看",
+          "無資料可能來自權限、服務、tracker 支援或接觸條件。保留錯誤與狀態，才能區分沒有完成量測與有效數值。"
+        ],
+        [
+          "單次量測的優點與限制",
+          "一次回呼即停止使操作邊界明確；它不構成長時間連續溫度紀錄，也不能推導日夜趨勢。"
+        ],
+        [
+          "重現依賴實體平台",
+          "Samsung AAR 與平台政策是執行條件。一般模擬器的 UI 顯示不能替代手錶感測器的驗證。"
+        ]
+      ],
+      "reproduce": [
+        "依 SDK 授權取得 AAR 並置於 app/libs，準備 Android SDK 35。",
+        "使用相容 Galaxy Watch，確認 Health Platform 版本及 tracker 支援。",
+        "授權後執行單次量測，觀察回呼與 tracker 停止。",
+        "記錄成功、權限拒絕與服務錯誤情境；連同手錶型號與版本保存。"
+      ],
+      "media_note": "本頁以架構、流程與可核對紀錄說明成果；目前未選入足以清楚呈現結果的照片或畫面。"
+    },
+    "en": {
+      "title": "Galaxy Watch Sensor Monitor",
+      "summary": "A Wear OS/Kotlin app using Samsung Health Sensor SDK for on-demand skin-temperature measurement, displaying wrist and ambient temperatures, timestamps, and tracker status.",
+      "purpose": "Provide a watch-side measurement workflow with visible readings, callbacks, and errors.",
+      "decisions": [],
+      "limits": "The README targets Galaxy Watch6 or newer physical devices. The SDK AAR, permissions, and platform policy requirements must be satisfied separately. Not for medical diagnosis.",
+      "caption": "Architecture explanation based on documented project responsibilities.",
+      "architecture": [
+        [
+          "User interface",
+          "A Kotlin screen exposes a single measurement action and displays temperatures, units, time and status."
+        ],
+        [
+          "Service connection",
+          "HealthSensorManager coordinates Samsung Health Platform connectivity, permissions and tracker support."
+        ],
+        [
+          "Measurement lifecycle",
+          "SKIN_TEMPERATURE_ON_DEMAND stops after one callback, giving the operation an explicit resource boundary."
+        ],
+        [
+          "Extension scope",
+          "Green, red and infrared PPG entry points are retained but disabled by default."
+        ]
+      ],
+      "steps": [
+        [
+          "Check the platform",
+          "Use a compatible physical Galaxy Watch and SDK; resolve service and permission state."
+        ],
+        [
+          "Request one reading",
+          "Measure starts the on-demand tracker and the view waits for data."
+        ],
+        [
+          "Handle the callback",
+          "Receive wrist and ambient temperatures with a callback timestamp or error."
+        ],
+        [
+          "Stop and present",
+          "Stop the tracker and retain the reading for inspection until the next action."
+        ]
+      ],
+      "results": [
+        [
+          "Inspectable workflow",
+          "Source and README document the button request, one callback and tracker shutdown."
+        ],
+        [
+          "Output fields",
+          "Skin temperature, ambient temperature, time and tracker status describe one measurement together."
+        ],
+        [
+          "Available public material",
+          "The repository does not include a verifiable physical-watch result screenshot or statistical evaluation. This page explains the source workflow and output fields."
+        ]
+      ],
+      "analysis": [
+        [
+          "Read status alongside values",
+          "Missing data can originate in permissions, service state, tracker support or contact conditions. Status distinguishes an unfinished operation from a valid reading."
+        ],
+        [
+          "An explicit single-shot boundary",
+          "Stopping after one callback simplifies operation, but does not establish continuous logging or day-night trends."
+        ],
+        [
+          "Physical-platform dependencies",
+          "The Samsung AAR and platform policy are runtime requirements. An emulator UI cannot verify the watch sensor."
+        ]
+      ],
+      "reproduce": [
+        "Obtain the licensed SDK AAR, place it in app/libs and prepare Android SDK 35.",
+        "Check Health Platform and tracker support on a compatible Galaxy Watch.",
+        "Grant permissions and observe a single callback followed by tracker shutdown.",
+        "Record success, denied permission and service-error cases with device and software versions."
+      ],
+      "media_note": "Architecture, workflow and inspectable records explain the outcomes. No photograph or screenshot meeting the presentation criteria has been selected for this page."
+    },
+    "group": "engineering",
+    "card_index": 4,
+    "branch": "master",
+    "gallery": [],
+    "sources": [
+      {
+        "label": "Repository / README",
+        "url": "https://github.com/peianchen/GalaxyWatchSensorMonitor/blob/master/README.md"
+      }
+    ]
+  },
+  {
+    "slug": "taipei-bus",
+    "name": "Taipei Bus Live",
+    "repo": "taipei-bus-live",
+    "domain": "LIVE TRANSPORT DATA",
+    "tags": "JavaScript / Node.js / MapLibre GL JS",
+    "nodes": [
+      "OFFICIAL SNAPSHOT",
+      "SHARED CACHE",
+      "ROUTE MATCH",
+      "MAP + ARRIVALS"
+    ],
+    "zh": {
+      "title": "台北公車 Live",
+      "summary": "以臺北市官方動態資料建立公車地圖，提供路線與車牌搜尋、標記聚合、站牌到站預估、收藏，以及依路線線形呈現的短時間位置推估。",
+      "purpose": "把官方車況快照、路線與站牌資料整合成可互動查詢的地圖。",
+      "decisions": [],
+      "limits": "開發中。位置推估最長 15 秒，會受回報延遲及匹配信心影響；到站預估不是所選車輛的精確抵達時間。",
+      "caption": "依專案職責整理的架構示意。",
+      "architecture": [
+        [
+          "官方資料入口",
+          "Node.js 伺服器取得臺北市公車車況、路線、站序與到站預估，對上游請求設定逾時。"
+        ],
+        [
+          "共用快取",
+          "車況使用 1 秒快取，路線／站序索引保存 6 小時，到站預估共用 15 秒快取。"
+        ],
+        [
+          "位置模型",
+          "沿官方 BusShape 匹配進度，以 α-β 濾波修正位置與速度，依信心縮短外插。"
+        ],
+        [
+          "地圖呈現",
+          "MapLibre GL JS 聚合遠景標記，更新可視車點，提供搜尋、收藏、分享及手機資訊卡。"
+        ]
+      ],
+      "steps": [
+        [
+          "取得快照",
+          "伺服器共用上游資料，失敗時保留上一份並標示延遲。"
+        ],
+        [
+          "匹配行駛方向",
+          "根據線形、方向與上一段進度建立車輛模型，限制離群資料的影響。"
+        ],
+        [
+          "平順呈現",
+          "瀏覽器沿短路線折線呈現位置；推估最長 15 秒，之後等待新回報。"
+        ],
+        [
+          "查詢路線與站牌",
+          "選車後按需載入路線與站序，站牌預估另以官方結果顯示。"
+        ]
+      ],
+      "results": [
+        [
+          "已實作的互動",
+          "路線／車牌搜尋、標記聚合、收藏、路線分享及官方站牌預估均有公開程式。"
+        ],
+        [
+          "更新成本控制",
+          "快照不變時不重建標記，動畫只處理可視車輛與變動車點。"
+        ],
+        [
+          "位置顯示範圍",
+          "平順移動是依官方回報建立的短時間推估，回報年齡與推估狀態需與地圖一起閱讀。"
+        ],
+        [
+          "本次軟體檢查",
+          "公開版本 6d9db5e 的 Node 測試套件重新執行，61 項通過、0 失敗。測試涵蓋資料、軌跡、站序、介面及上游處理，不是道路定位精度量測。"
+        ]
+      ],
+      "analysis": [
+        [
+          "平順不等於更新更快",
+          "動畫改善讀取連續性，但不增加官方資料的採樣頻率。資料回報時間和畫面重繪頻率必須分開解讀。"
+        ],
+        [
+          "共用快取降低重複工作",
+          "多個瀏覽器可以讀取同一份快照，讓上游請求數不直接隨訪客數增加。保留舊快照時也需呈現其年齡。"
+        ],
+        [
+          "站牌預估屬另一種資料",
+          "路線／站牌 ETA 不等於目前選取公車的精確抵達時間；方向、班次與路況會影響結果。"
+        ]
+      ],
+      "reproduce": [
+        "安裝 Node.js 20 以上及依賴，於 repository 執行 npm test。",
+        "以 npm start 啟動伺服器，開啟 localhost:5180。",
+        "搜尋路線、選擇車輛與站牌，核對方向、時間與來源署名。",
+        "比較遠景、近景與 reduced-motion；確認資料延遲時仍能辨識快照年齡。"
+      ],
+      "media_note": "本頁以架構、流程與可核對紀錄說明成果；目前未選入足以清楚呈現結果的照片或畫面。"
+    },
+    "en": {
+      "title": "Taipei Bus Live",
+      "summary": "An interactive map built on official Taipei bus snapshots, with route and vehicle search, marker clustering, stop arrival estimates, favorites, and short-term position estimation along route geometry.",
+      "purpose": "Bring official vehicle snapshots, route geometry, and stops into an interactive map.",
+      "decisions": [],
+      "limits": "Beta. Position extrapolation is capped at 15 seconds and depends on report age and matching confidence. Arrival estimates do not give an exact arrival time for the selected vehicle.",
+      "caption": "Architecture explanation based on documented project responsibilities.",
+      "architecture": [
+        [
+          "Official data",
+          "A Node.js server fetches Taipei bus positions, routes, stop order and arrivals with upstream timeouts."
+        ],
+        [
+          "Shared cache",
+          "Positions use a 1-second cache, route/stop indices six hours and arrival estimates a shared 15-second cache."
+        ],
+        [
+          "Position model",
+          "Official BusShape matching and an alpha-beta filter update route progress and speed, with confidence-limited extrapolation."
+        ],
+        [
+          "Map interface",
+          "MapLibre GL JS clusters overview markers and updates visible changes, with search, favorites, sharing and mobile information cards."
+        ]
+      ],
+      "steps": [
+        [
+          "Fetch a snapshot",
+          "Share upstream responses and retain a visibly aged snapshot during temporary failures."
+        ],
+        [
+          "Match direction and progress",
+          "Use geometry, direction and earlier progress to constrain the vehicle model and reject outliers."
+        ],
+        [
+          "Present continuous motion",
+          "Move along a short route polyline for at most 15 seconds, then await a new report."
+        ],
+        [
+          "Inspect routes and stops",
+          "Load geometry and stop order on selection, and present official arrival estimates separately."
+        ]
+      ],
+      "results": [
+        [
+          "Implemented interactions",
+          "Public code provides route/plate search, clustering, favorites, route sharing and stop-arrival queries."
+        ],
+        [
+          "Bounded update work",
+          "Unchanged snapshots do not rebuild markers; animation handles visible vehicles and changed points."
+        ],
+        [
+          "Interpret displayed position",
+          "Smooth movement is a short extrapolation from official reports. Read report age and estimation state alongside the map."
+        ],
+        [
+          "Software checks in this review",
+          "The Node suite at public revision 6d9db5e was rerun: 61 passed, 0 failed. It covers data, motion, stop order, presentation and upstream handling, not road-position accuracy."
+        ]
+      ],
+      "analysis": [
+        [
+          "Smooth motion is not fresher data",
+          "Animation improves visual continuity without increasing the official sampling rate. Distinguish report time from rendering frequency."
+        ],
+        [
+          "Share repeated work",
+          "Multiple clients can read one cached snapshot instead of independently increasing upstream requests. Retained snapshots must still show their age."
+        ],
+        [
+          "Arrivals answer a different question",
+          "Route/stop ETA is not the exact arrival time of the selected vehicle. Direction, service and traffic affect the interpretation."
+        ]
+      ],
+      "reproduce": [
+        "Install Node.js 20 or newer and dependencies, then run npm test.",
+        "Run npm start and open localhost:5180.",
+        "Search a route and inspect a vehicle and stop, checking direction, timestamps and attribution.",
+        "Compare overview, close-up and reduced-motion states, including delayed snapshots."
+      ],
+      "media_note": "Architecture, workflow and inspectable records explain the outcomes. No photograph or screenshot meeting the presentation criteria has been selected for this page."
+    },
+    "group": "engineering",
+    "card_index": 5,
+    "branch": "main",
+    "gallery": [],
+    "sources": [
+      {
+        "label": "Repository / README",
+        "url": "https://github.com/peianchen/taipei-bus-live/blob/main/README.md"
+      }
+    ]
+  },
+  {
+    "slug": "ecsnap",
+    "name": "ECsnap Electrochemical Instrument",
+    "repo": null,
+    "domain": "ELECTROCHEMISTRY",
+    "tags": "EmStat Pico / CA / SD Logging",
+    "nodes": [
+      "ONE-BUTTON RUN",
+      "METHODSCRIPT",
+      "CURRENT RECORD",
+      "TFT + CSV"
+    ],
+    "zh": {
+      "title": "ECsnap 電化學儀器",
+      "summary": "整合 EmStat Pico、微控制器、TFT 與 microSD，以單鍵流程完成穩定等待、計時安培量測、狀態回饋與 CSV 資料保存。",
+      "purpose": "把電化學電流量測轉成便於操作及保存資料的可攜式研究儀器。",
+      "decisions": [],
+      "limits": "研究程式未公開。電流擷取與濃度換算分開處理，分析物校正及醫療診斷效能未視為已完成。",
+      "caption": "依專案職責整理的架構示意。",
+      "architecture": [
+        [
+          "量測核心",
+          "EmStat Pico 執行電化學方法，透過 MethodSCRIPT／UART 與微控制器交換資料。"
+        ],
+        [
+          "控制與解析",
+          "嵌入式程式將啟動、等待穩定與量測結束組成狀態流程，解析回傳電流與狀態。"
+        ],
+        [
+          "操作回饋",
+          "TFT 顯示階段與資料，讓使用者能辨識儀器是否仍在等待或已完成。"
+        ],
+        [
+          "資料保存",
+          "RAM 緩衝與 SPI 共用管理協調 TFT 和 microSD，將結果保存成 CSV。"
+        ]
+      ],
+      "steps": [
+        [
+          "開始一次量測",
+          "單鍵進入既定方法，將操作者動作轉成可追蹤的儀器狀態。"
+        ],
+        [
+          "等待與執行",
+          "安排穩定等待及計時安培法，透過串列介面接收量測回傳。"
+        ],
+        [
+          "解析與更新",
+          "將有效資料轉為顯示與記錄項目，協調畫面刷新和儲存工作。"
+        ],
+        [
+          "完成與保存",
+          "結束量測後保留 CSV，供後續檢查時間序列與分析條件。"
+        ]
+      ],
+      "results": [
+        [
+          "儀器整合",
+          "已整理 EmStat Pico、微控制器、TFT 與 microSD 的操作與資料流程。"
+        ],
+        [
+          "平台移植",
+          "研究工作涵蓋 SAMD21 至 nRF52840 的平台移植，重點包括串列解析、周邊管理與資料保存。"
+        ],
+        [
+          "可展示內容",
+          "本頁以儀器原型與操作架構說明整合成果；濃度校正需搭配指定分析物與實驗方法。"
+        ]
+      ],
+      "analysis": [
+        [
+          "讓儀器狀態可見",
+          "電化學量測包含等待與執行階段。清楚的狀態回饋能協助定位未啟動、仍穩定中或資料未保存的差異。"
+        ],
+        [
+          "共享匯流排需要排程",
+          "TFT 更新和 SD 寫入若同時爭用 SPI，可能影響資料服務時機；緩衝與批次寫入讓量測接收和畫面更新更易協調。"
+        ],
+        [
+          "由電流走到濃度",
+          "CSV 量測鏈完成後，仍需以空白、標準品及指定電極條件建立校正，才能討論分析物濃度與檢出能力。"
+        ]
+      ],
+      "reproduce": [
+        "從儀器組成與操作流程閱讀量測鏈。",
+        "檢查方法設定、時間欄位及狀態回傳是否對應。",
+        "分析 CSV 時先確認單位與量測條件，再進行校正或比較。"
+      ],
+      "media_note": "本頁圖像以已核對的架構與輸出說明為主；實際結果照片將於有合適素材時補充。"
+    },
+    "en": {
+      "title": "ECsnap Electrochemical Instrument",
+      "summary": "An EmStat Pico, MCU, TFT, and microSD instrument with a single-button workflow for stabilization, chronoamperometry, status feedback, and CSV recording.",
+      "purpose": "Make electrochemical current measurements easier to operate and record in a portable research instrument.",
+      "decisions": [],
+      "limits": "Research code is private. Current acquisition and concentration conversion are separate tasks; complete analyte calibration and diagnostic performance are not claimed.",
+      "caption": "Architecture explanation based on documented project responsibilities.",
+      "architecture": [
+        [
+          "Measurement core",
+          "EmStat Pico executes electrochemical methods and exchanges data with the controller over MethodSCRIPT/UART."
+        ],
+        [
+          "Control and parsing",
+          "Firmware organizes start, stabilization and completion states and parses returned current and status."
+        ],
+        [
+          "Operator feedback",
+          "A TFT presents the current stage and data so waiting and completion are distinguishable."
+        ],
+        [
+          "Storage",
+          "RAM buffering and shared-SPI management coordinate TFT updates and microSD CSV recording."
+        ]
+      ],
+      "steps": [
+        [
+          "Start a measurement",
+          "One button enters the defined method and makes the operation traceable as instrument state."
+        ],
+        [
+          "Wait and acquire",
+          "Schedule stabilization and chronoamperometry while receiving serial measurement data."
+        ],
+        [
+          "Parse and update",
+          "Convert valid responses into display and recording items while coordinating storage."
+        ],
+        [
+          "Finish and retain",
+          "Keep the CSV for later time-series inspection and analysis."
+        ]
+      ],
+      "results": [
+        [
+          "Instrument integration",
+          "The project organizes the EmStat Pico, controller, TFT and microSD into one operating and data workflow."
+        ],
+        [
+          "Platform migration",
+          "Research includes migration from SAMD21 to nRF52840, covering serial parsing, peripheral management and storage."
+        ],
+        [
+          "Presented material",
+          "Prototype imagery and architecture explain integration. Concentration calibration depends on the specified analyte and experimental method."
+        ]
+      ],
+      "analysis": [
+        [
+          "Make measurement state visible",
+          "Electrochemical operation includes waiting as well as acquisition. Status helps distinguish an unstarted method, stabilization and a missing saved record."
+        ],
+        [
+          "Schedule shared resources",
+          "TFT refresh and SD writes compete for SPI service. Buffering and batch writes help coordinate acquisition reception with display work."
+        ],
+        [
+          "From current to concentration",
+          "A recorded current trace still needs blanks, standards and defined electrode conditions before concentration or detection performance can be assessed."
+        ]
+      ],
+      "reproduce": [
+        "Follow the instrument components and operating sequence to understand the acquisition chain.",
+        "Compare method settings, time fields and returned status.",
+        "Check CSV units and conditions before calibration or cross-run comparisons."
+      ],
+      "media_note": "Images explain the reviewed architecture and outputs. Suitable result photographs can be added when available."
+    },
+    "group": "research",
+    "card_index": 6,
+    "branch": "main",
+    "gallery": [
+      {
+        "src": "img/evidence/ecsnap-prototype.jpg",
+        "width": 2034,
+        "height": 1525,
+        "kind": "prototype",
+        "zh": {
+          "title": "ECsnap 儀器原型",
+          "caption": "原簡報中的儀器照片。可觀察螢幕、外殼與電極連接端；照片本身不代表濃度校正結果。"
+        },
+        "en": {
+          "title": "ECsnap instrument prototype",
+          "caption": "Instrument photograph from the owner-provided presentation. Display, enclosure and electrode interface are visible; the photo does not establish concentration calibration."
+        }
+      }
+    ],
+    "sources": [
+      {
+        "label": "Public engineering background",
+        "url": "https://github.com/peianchen/peianchen/blob/main/docs/ENGINEERING_BACKGROUND.md"
+      },
+      {
+        "label": "ECsnap instrument prototype / owner-provided source",
+        "url": "https://peianchen.github.io/peian-chen/img/evidence/ecsnap-prototype.jpg"
+      }
+    ]
+  },
+  {
+    "slug": "stop-flow",
+    "name": "Smart Stop-Flow",
+    "repo": null,
+    "domain": "MICROFLUIDIC CONTROL",
+    "tags": "Micropumps / Valves / Android",
+    "nodes": [
+      "METHOD SETUP",
+      "PUMP + VALVES",
+      "CAMERA + ROI",
+      "RUN RECORD"
+    ],
+    "zh": {
+      "title": "Smart Stop-Flow",
+      "summary": "開發中的微流體整合原型，串接 ESP32-S3 幫浦／微閥控制、Android 方法設定、手機取像、ROI 分析與實驗紀錄。",
+      "purpose": "讓進樣控制、停流觀察與資料保存能對應同一段實驗時間序列。",
+      "decisions": [],
+      "limits": "未公開、開發中。流量、配比及實際停流時間仍需濕式校正；仿生微流體平台的獎項不移用為本專案成果。",
+      "caption": "依專案職責整理的架構示意。",
+      "architecture": [
+        [
+          "方法設定",
+          "Android 端設定實驗步驟，保存方法與操作所需的參數。"
+        ],
+        [
+          "流體控制",
+          "ESP32-S3 以狀態機安排幫浦與微閥序列，包含預壓、進樣、清洗和異常停止。"
+        ],
+        [
+          "觀察分析",
+          "手機端串接照明、錄影、ROI 與逐幀分析，讓控制事件可對照影像。"
+        ],
+        [
+          "實驗紀錄",
+          "Room 保存方法快照、事件與媒體索引，支援回看一次實驗實際用了什麼流程。"
+        ]
+      ],
+      "steps": [
+        [
+          "建立方法",
+          "設定步驟與時間，保存本次使用的方法快照。"
+        ],
+        [
+          "進樣與停流",
+          "控制幫浦／閥件執行流體步驟，同時追蹤當前狀態。"
+        ],
+        [
+          "同步觀察",
+          "錄影並在指定 ROI 分析，將畫面對應控制階段。"
+        ],
+        [
+          "回看實驗",
+          "以事件、媒體索引與方法快照整理一次實驗的紀錄。"
+        ]
+      ],
+      "results": [
+        [
+          "整合方向",
+          "原型串接方法設定、控制、影像與記錄；專案仍在開發。"
+        ],
+        [
+          "跨領域資料",
+          "工程工作另整合 KiCad、SolidWorks 與 COMSOL 設計資料，用於裝置與微流體介面。"
+        ],
+        [
+          "流體結果",
+          "實際流量、配比及停流時間需依晶片、管路與溶液條件校正。"
+        ]
+      ],
+      "analysis": [
+        [
+          "控制事件是影像的背景",
+          "同一張影像可能位於進樣、等待或清洗。保留事件時間能讓 ROI 結果對應當時的實驗條件。"
+        ],
+        [
+          "方法快照避免設定漂移",
+          "只保存目前的方法名稱不足以還原舊實驗；將當次步驟保存為快照，可以解釋不同次執行的差異。"
+        ],
+        [
+          "命令完成與液體到位",
+          "幫浦命令完成後，液體仍可能受到死體積、彈性與背壓影響。停流效果應配合實際觀察與校正。"
+        ]
+      ],
+      "reproduce": [
+        "先閱讀方法、控制、影像和紀錄四層的對應。",
+        "檢查同一實驗的事件與影像時間是否一致。",
+        "比較流體結果時，保留晶片、管路和溶液條件。"
+      ],
+      "media_note": "本頁以架構、流程與可核對紀錄說明成果；目前未選入足以清楚呈現結果的照片或畫面。"
+    },
+    "en": {
+      "title": "Smart Stop-Flow",
+      "summary": "An in-development microfluidic prototype connecting ESP32-S3 pump/valve control, Android methods, phone imaging, ROI analysis, and experiment records.",
+      "purpose": "Align sample delivery, stop-flow observation, and stored records on one experimental timeline.",
+      "decisions": [],
+      "limits": "Private and in development. Flow, ratios, and physical stopping times require wet calibration. Awards for the biomimetic platform are not attributed to this project.",
+      "caption": "Architecture explanation based on documented project responsibilities.",
+      "architecture": [
+        [
+          "Method setup",
+          "Android defines experiment steps and stores the parameters used for an operation."
+        ],
+        [
+          "Fluid control",
+          "An ESP32-S3 state machine sequences pumps and microvalves through pre-pressure, loading, cleaning and abnormal stop."
+        ],
+        [
+          "Observation",
+          "Lighting, video, ROI and frame analysis connect images to controller events."
+        ],
+        [
+          "Run records",
+          "Room stores method snapshots, events and media indices so a run can be reviewed in context."
+        ]
+      ],
+      "steps": [
+        [
+          "Define a method",
+          "Configure steps and timing, then retain a snapshot for the run."
+        ],
+        [
+          "Load and stop flow",
+          "Operate pumps and valves while recording controller state."
+        ],
+        [
+          "Observe the sequence",
+          "Record video and analyze a selected ROI in relation to control stages."
+        ],
+        [
+          "Review the run",
+          "Bring events, media references and the method snapshot together."
+        ]
+      ],
+      "results": [
+        [
+          "Integration direction",
+          "The developing prototype connects method setup, fluid control, imaging and records."
+        ],
+        [
+          "Engineering inputs",
+          "KiCad, SolidWorks and COMSOL work supports device and microfluidic interfaces."
+        ],
+        [
+          "Fluid results",
+          "Flow, mixing ratio and stop time require calibration for the actual chip, tubing and fluid."
+        ]
+      ],
+      "analysis": [
+        [
+          "Events give images context",
+          "An image may belong to loading, waiting or cleaning. Event timing connects ROI output to the experimental stage."
+        ],
+        [
+          "Snapshots explain change",
+          "A method name alone cannot reconstruct an earlier run. Preserving its actual steps helps explain differences across executions."
+        ],
+        [
+          "A command is not fluid arrival",
+          "Dead volume, compliance and back pressure can affect fluid behavior after a pump command. Assess stopping with observation and calibration."
+        ]
+      ],
+      "reproduce": [
+        "Read the relationship between method, controller, image and record layers.",
+        "Check event and media timing for the same run.",
+        "Retain chip, tubing and fluid conditions when comparing outcomes."
+      ],
+      "media_note": "Architecture, workflow and inspectable records explain the outcomes. No photograph or screenshot meeting the presentation criteria has been selected for this page."
+    },
+    "group": "research",
+    "card_index": 7,
+    "branch": "main",
+    "gallery": [],
+    "sources": [
+      {
+        "label": "Public engineering background",
+        "url": "https://github.com/peianchen/peianchen/blob/main/docs/ENGINEERING_BACKGROUND.md"
+      }
+    ]
+  },
+  {
+    "slug": "gravity-controller",
+    "name": "Dual-Axis Gravity Controller",
+    "repo": null,
+    "domain": "REDUCED-GRAVITY MOTION",
+    "tags": "ESP32-C3 / Feedback 360 / PID",
+    "nodes": [
+      "MOTION SCHEDULE",
+      "FEEDFORWARD + PID",
+      "TWO AXES",
+      "ANGLE FEEDBACK"
+    ],
+    "zh": {
+      "title": "Dual-Axis Gravity Controller",
+      "summary": "以角度回授、速度估測、feedforward 與 PID 控制雙軸連續旋轉伺服，研究重力向量方向隨時間變化的運動控制。",
+      "purpose": "控制雙軸旋轉的角度與速度，供重力向量時間平均相關研究使用。",
+      "decisions": [],
+      "limits": "研究程式未公開；旋轉不等同真正失重，控制設定不代表已實測達成特定重力條件。",
+      "caption": "依專案職責整理的架構示意。",
+      "architecture": [
+        [
+          "運動排程",
+          "以目標角度與速度描述雙軸運動，區分不同研究模式。"
+        ],
+        [
+          "控制器",
+          "前饋與 PID 根據回授修正輸出，協調目標與實際運動。"
+        ],
+        [
+          "致動端",
+          "ESP32-C3 驅動雙軸 Feedback 360 連續旋轉伺服，開機確認零點。"
+        ],
+        [
+          "回授分析",
+          "角度回授與速度估測提供控制誤差及運動行為的觀察入口。"
+        ]
+      ],
+      "steps": [
+        [
+          "確認零點",
+          "啟動後建立初始參考，再進入指定排程。"
+        ],
+        [
+          "產生目標",
+          "依研究模式更新兩軸的目標運動。"
+        ],
+        [
+          "閉迴路修正",
+          "由回授計算角度與速度，結合前饋／PID 調整驅動。"
+        ],
+        [
+          "記錄與分析",
+          "對照目標、回授及時間序列，分析追蹤誤差與邊界行為。"
+        ]
+      ],
+      "results": [
+        [
+          "控制整合",
+          "公開介紹包含角度／速度解算、前饋／PID、運動排程與零點確認。"
+        ],
+        [
+          "研究應用",
+          "平台用於重力向量隨時間改變的研究；不同控制模式屬同一研究脈絡。"
+        ],
+        [
+          "解讀邊界",
+          "旋轉條件與實際重力環境不同，特定等效條件需另有模型與量測支持。"
+        ],
+        [
+          "模擬圖的解讀",
+          "既有圖顯示時間平均重力向量量值逐漸接近設定目標；曲線屬模型輸出，並非裝置直接量得的物理重力降低。"
+        ]
+      ],
+      "analysis": [
+        [
+          "兩軸運動需要共同時間基準",
+          "分別觀察馬達轉動不足以描述空間方向的變化。排程、角度與時間必須能對照，才能分析整體運動。"
+        ],
+        [
+          "回授揭露實際偏差",
+          "前饋提供驅動基礎，回授修正負載與速度差異。比較控制策略時應固定機構、負載與取樣條件。"
+        ],
+        [
+          "由運動到生物條件",
+          "控制器先回答機構如何運動；樣品感受到的條件仍與位置、旋轉中心和實驗配置相關。"
+        ]
+      ],
+      "reproduce": [
+        "從排程、控制與回授資料理解平台行為。",
+        "檢查初始參考、單位及兩軸時間對齊。",
+        "比較模式時保存負載與樣品位置，連同模型或量測方式解讀。"
+      ],
+      "media_note": "本頁圖像以已核對的架構與輸出說明為主；實際結果照片將於有合適素材時補充。"
+    },
+    "en": {
+      "title": "Dual-Axis Gravity Controller",
+      "summary": "Dual-axis continuous-rotation servo control using angle feedback, velocity estimation, feedforward, and PID to study motion that changes the gravity-vector direction over time.",
+      "purpose": "Control dual-axis rotation for research involving time-averaged gravity-vector orientation.",
+      "decisions": [],
+      "limits": "Research code is private. Rotation is not true weightlessness, and control settings do not establish measured gravity conditions.",
+      "caption": "Architecture explanation based on documented project responsibilities.",
+      "architecture": [
+        [
+          "Motion schedule",
+          "Targets describe the angle and speed of both axes for each research mode."
+        ],
+        [
+          "Controller",
+          "Feedforward and PID use feedback to reconcile commanded and actual motion."
+        ],
+        [
+          "Actuation",
+          "An ESP32-C3 controls two Feedback 360 continuous-rotation servos after startup reference checks."
+        ],
+        [
+          "Feedback analysis",
+          "Angle feedback and speed estimates expose tracking error and motion behavior."
+        ]
+      ],
+      "steps": [
+        [
+          "Establish a reference",
+          "Confirm the initial position before running a schedule."
+        ],
+        [
+          "Generate targets",
+          "Update both axis targets according to the selected mode."
+        ],
+        [
+          "Close the loop",
+          "Estimate angle and speed, then combine feedforward and PID corrections."
+        ],
+        [
+          "Record and inspect",
+          "Compare target and feedback time series to understand error and boundary behavior."
+        ]
+      ],
+      "results": [
+        [
+          "Controller integration",
+          "The public description covers angle/speed processing, feedforward/PID, schedules and startup reference checks."
+        ],
+        [
+          "Research use",
+          "The platform supports time-varying gravity-direction research. Related control modes belong to the same research line."
+        ],
+        [
+          "Interpretation",
+          "Rotation settings differ from physical gravity conditions; an equivalent condition needs an identified model and measurements."
+        ],
+        [
+          "Reading the simulation",
+          "The saved curve approaches its configured time-averaged vector target. It is a model output, not a measured reduction in physical gravity."
+        ]
+      ],
+      "analysis": [
+        [
+          "Use a shared time reference",
+          "Separate motor motion does not describe the spatial direction history. Schedule, angle and time need to be comparable."
+        ],
+        [
+          "Feedback exposes deviations",
+          "Feedforward supplies baseline drive while feedback corrects load and speed differences. Compare strategies with the same mechanism, load and sampling."
+        ],
+        [
+          "Connect motion to sample conditions",
+          "The controller describes mechanism motion. Sample conditions additionally depend on position, rotation center and experimental setup."
+        ]
+      ],
+      "reproduce": [
+        "Read schedule, control and feedback together.",
+        "Check startup reference, units and time alignment between axes.",
+        "Retain load and sample position when comparing modes, with the model or measurement used."
+      ],
+      "media_note": "Images explain the reviewed architecture and outputs. Suitable result photographs can be added when available."
+    },
+    "group": "research",
+    "card_index": 8,
+    "branch": "main",
+    "gallery": [
+      {
+        "src": "img/evidence/gravity-running-mean.png",
+        "width": 2400,
+        "height": 1500,
+        "kind": "simulation",
+        "zh": {
+          "title": "歷史模擬：時間平均向量收斂",
+          "caption": "原進度報告保存的 running |mean(g)| 曲線，目標線為 0.380 G。此為模型模擬，需連同時間平均定義與初始暫態解讀。"
+        },
+        "en": {
+          "title": "Archived simulation: running vector mean",
+          "caption": "The progress-report curve shows running |mean(g)| against a 0.380 G target. This is model simulation, interpreted with the averaging definition and startup transient."
+        }
+      }
+    ],
+    "sources": [
+      {
+        "label": "Public engineering background",
+        "url": "https://github.com/peianchen/peianchen/blob/main/docs/ENGINEERING_BACKGROUND.md"
+      },
+      {
+        "label": "Archived simulation: running vector mean / owner-provided source",
+        "url": "https://peianchen.github.io/peian-chen/img/evidence/gravity-running-mean.png"
+      }
+    ]
+  },
+  {
+    "slug": "pressible",
+    "name": "PressiBLE Sweat-Pressure Platform",
+    "repo": null,
+    "domain": "WEARABLE SWEAT PRESSURE",
+    "tags": "nRF52840 / BLE / Android / Calibration",
+    "nodes": [
+      "SENSOR + BASELINE",
+      "nRF52840 + BLE",
+      "ANDROID TREND",
+      "CSV + SYNC"
+    ],
+    "zh": {
+      "title": "PressiBLE 汗液壓力平台",
+      "summary": "以 nRF52840、BLE 與 Android 串接汗壓相關電訊號、溫度、即時趨勢與 CSV 紀錄，研究穿戴式感測資料的判讀與保存。",
+      "purpose": "把汗液壓力相關量測串接至可觀察、匯出與追蹤的手機資料流程。",
+      "decisions": [],
+      "limits": "程式未公開。汗壓分級仍須依貼片、汗液與實驗條件校正，通訊正常不等於感測性能已驗證。",
+      "caption": "依專案職責整理的架構示意。",
+      "architecture": [
+        [
+          "訊號取得",
+          "韌體安排汗壓相關電訊號與溫度的量測時序，保存有效讀值與 baseline。"
+        ],
+        [
+          "通訊協定",
+          "nRF52840 經 BLE 與手機交換控制及資料，裝置識別連結至正確的記錄來源。"
+        ],
+        [
+          "手機介面",
+          "Android 顯示即時趨勢並提供資料檢視，支援量測操作與韌體維護。"
+        ],
+        [
+          "資料保存",
+          "CSV 與 Firebase 串接後續分析，Nordic DFU 及選用 Health Connect 屬不同操作路徑。"
+        ]
+      ],
+      "steps": [
+        [
+          "建立基準",
+          "確認裝置狀態與量測 baseline，保留當次條件。"
+        ],
+        [
+          "擷取與傳輸",
+          "依韌體時序取得訊號，透過 BLE 傳送至手機。"
+        ],
+        [
+          "呈現趨勢",
+          "將讀值、時間與裝置狀態放在同一操作介面中查看。"
+        ],
+        [
+          "保存資料",
+          "匯出或同步資料，供後續依校正條件分析。"
+        ]
+      ],
+      "results": [
+        [
+          "整合內容",
+          "工程範圍涵蓋感測韌體、BLE 格式、baseline 正規化、手機趨勢與資料匯出。"
+        ],
+        [
+          "操作成果",
+          "裝置與手機流程可用原型照片、操作畫面及序列紀錄對照。"
+        ],
+        [
+          "量測意義",
+          "訊號變化與汗壓分級的關係，需依貼片、汗液和實驗條件校正。"
+        ]
+      ],
+      "analysis": [
+        [
+          "基準影響跨次比較",
+          "不同貼片與初始狀態可能改變訊號基線。保留原始值與 baseline 有助於解釋正規化後的差異。"
+        ],
+        [
+          "資料身分與時間",
+          "趨勢必須能追溯至特定裝置與量測時間。資料匯出時，連線狀態與缺值也影響分析。"
+        ],
+        [
+          "感測與通訊分別判讀",
+          "穩定接收封包可以確認資料鏈；汗壓辨識能力則取決於獨立的校正與感測實驗。"
+        ]
+      ],
+      "reproduce": [
+        "從裝置、App 與記錄欄位理解一次量測。",
+        "比對原始讀值、baseline、時間和匯出欄位。",
+        "跨實驗比較前保留貼片與環境條件，使用對應校正方式。"
+      ],
+      "media_note": "本頁以架構、流程與可核對紀錄說明成果；目前未選入足以清楚呈現結果的照片或畫面。"
+    },
+    "en": {
+      "title": "PressiBLE Sweat-Pressure Platform",
+      "summary": "An nRF52840, BLE, and Android workflow connecting sweat-pressure-related signals, temperature, live trends, and CSV records for wearable sensing research.",
+      "purpose": "Connect sweat-pressure-related measurements to an observable, exportable phone data workflow.",
+      "decisions": [],
+      "limits": "Code is private. Pressure categories require calibration for the patch, sweat, and test conditions; working communication does not establish sensing performance.",
+      "caption": "Architecture explanation based on documented project responsibilities.",
+      "architecture": [
+        [
+          "Acquisition",
+          "Firmware schedules sweat-pressure-related electrical signals and temperature, retaining valid values and baseline context."
+        ],
+        [
+          "Communication",
+          "nRF52840 BLE exchanges control and data while associating records with the correct device."
+        ],
+        [
+          "Phone interface",
+          "Android presents trends and measurement operations, with a separate firmware-maintenance workflow."
+        ],
+        [
+          "Storage",
+          "CSV and Firebase support later analysis. Nordic DFU and optional Health Connect are distinct paths."
+        ]
+      ],
+      "steps": [
+        [
+          "Establish a baseline",
+          "Check device state and retain the baseline and run conditions."
+        ],
+        [
+          "Acquire and transmit",
+          "Sample according to firmware timing and transfer data over BLE."
+        ],
+        [
+          "View the trend",
+          "Read values, timestamps and device state together."
+        ],
+        [
+          "Retain the record",
+          "Export or synchronize data for analysis under the appropriate calibration."
+        ]
+      ],
+      "results": [
+        [
+          "Integration scope",
+          "Work covers sensing firmware, BLE payloads, baseline normalization, phone trends and export."
+        ],
+        [
+          "Operating artifacts",
+          "Prototype photographs, application views and serial records illustrate the device-to-phone workflow."
+        ],
+        [
+          "Measurement meaning",
+          "The relationship between electrical signals and pressure categories depends on patch, sweat and experimental calibration."
+        ]
+      ],
+      "analysis": [
+        [
+          "Baseline changes matter",
+          "Patch and initial-state differences can shift the baseline. Retaining raw and baseline values helps explain normalized results."
+        ],
+        [
+          "Identity and time",
+          "A trend needs a traceable device and measurement time. Connection state and missing data also affect exported records."
+        ],
+        [
+          "Inspect sensing and transport separately",
+          "Reliable packets establish the data path; pressure discrimination depends on independent calibration and sensing experiments."
+        ]
+      ],
+      "reproduce": [
+        "Follow one operation through the device, application and record fields.",
+        "Compare raw value, baseline, timestamps and exported columns.",
+        "Retain patch and environmental conditions and apply the matching calibration before comparing runs."
+      ],
+      "media_note": "Architecture, workflow and inspectable records explain the outcomes. No photograph or screenshot meeting the presentation criteria has been selected for this page."
+    },
+    "group": "research",
+    "card_index": 9,
+    "branch": "main",
+    "gallery": [],
+    "sources": [
+      {
+        "label": "Public engineering background",
+        "url": "https://github.com/peianchen/peianchen/blob/main/docs/ENGINEERING_BACKGROUND.md"
+      }
+    ]
+  },
+  {
+    "slug": "space-payload",
+    "name": "Space Microfluidic Payload",
+    "repo": null,
+    "domain": "SPACE MICROFLUIDICS",
+    "tags": "System Interfaces / Fluid Sequencing / CAD",
+    "nodes": [
+      "SYSTEM NEEDS",
+      "FLUID INTERFACES",
+      "CONTROL SEQUENCE",
+      "GROUND RECORD"
+    ],
+    "zh": {
+      "title": "太空微流體 Payload",
+      "summary": "面向預計太空實驗的樣品處理與載荷整合開發，整理系統需求、子系統介面、幫浦／微閥序列控制及晶片／機構 CAD。",
+      "purpose": "分層規劃地面準備、樣品承載與任務資料需求，建立可供原型整合的設計基線。",
+      "decisions": [],
+      "limits": "未公開、開發中；未宣稱完成發射、在軌操作或振動／環境資格驗證，不公開任務細節與設計參數。",
+      "caption": "依專案職責整理的架構示意。",
+      "architecture": [
+        [
+          "需求層",
+          "整理樣品處理、地面準備與任務資料需求，建立整合設計的共同基線。"
+        ],
+        [
+          "介面層",
+          "以子系統介面描述流體、電氣與機構之間的連接責任。"
+        ],
+        [
+          "控制層",
+          "幫浦／微閥序列與地面測試程式對應操作步驟。"
+        ],
+        [
+          "整合層",
+          "晶片與機構 CAD 支援裝配討論，驗證規劃依版本記錄地面與飛行端要求。"
+        ]
+      ],
+      "steps": [
+        [
+          "整理需求",
+          "將樣品、操作和資料需求轉成可核對的介面問題。"
+        ],
+        [
+          "配置子系統",
+          "對齊流體、控制與機構的連接方式。"
+        ],
+        [
+          "原型整合",
+          "以地面控制和測試流程檢查步驟與資料回饋。"
+        ],
+        [
+          "記錄版本",
+          "保存已完成的原型範圍與後續驗證條件。"
+        ]
+      ],
+      "results": [
+        [
+          "工程產出",
+          "目前工作包含架構與介面文件、控制測試程式、晶片／機構整合及驗證規劃。"
+        ],
+        [
+          "開發階段",
+          "專案處於開發與原型整合階段，地面設備與飛行端需求依版本區分。"
+        ],
+        [
+          "展示內容",
+          "公開介紹聚焦系統職責與整合方法，不公開任務細節與設計參數。"
+        ]
+      ],
+      "analysis": [
+        [
+          "介面先於整體性能",
+          "子系統能單獨運作後，仍需確認供電、流體接頭、控制訊號與資料格式能共同配合。介面文件讓整合差異可被追蹤。"
+        ],
+        [
+          "原型與環境條件",
+          "地面原型可以支持功能討論；振動、溫度或任務環境中的表現需要指定條件的獨立驗證。"
+        ],
+        [
+          "版本保留設計脈絡",
+          "將需求、原型與測試結果對應到版本，有助於辨識哪些結論可以沿用，哪些必須重新確認。"
+        ]
+      ],
+      "reproduce": [
+        "依本頁架構理解子系統責任與資料方向。",
+        "閱讀公開範圍內的整合說明，對照不同版本的用途。",
+        "針對特定環境需求，另行定義測試條件與判讀標準。"
+      ],
+      "media_note": "本頁以架構、流程與可核對紀錄說明成果；目前未選入足以清楚呈現結果的照片或畫面。"
+    },
+    "en": {
+      "title": "Space Microfluidic Payload",
+      "summary": "Sample-processing and payload-integration development for a planned space experiment, covering requirements, subsystem interfaces, pump/valve sequencing, and chip/mechanical CAD.",
+      "purpose": "Separate ground preparation, sample containment, and mission-data requirements into a prototype design baseline.",
+      "decisions": [],
+      "limits": "Private and in development. No completed launch, orbital operation, or vibration/environmental qualification is claimed. Mission details and design parameters are not disclosed.",
+      "caption": "Architecture explanation based on documented project responsibilities.",
+      "architecture": [
+        [
+          "Requirements",
+          "Organize sample handling, ground preparation and mission-data needs into a shared integration baseline."
+        ],
+        [
+          "Interfaces",
+          "Define the responsibilities between fluid, electrical and mechanical subsystems."
+        ],
+        [
+          "Control",
+          "Pump and microvalve sequences connect ground test programs to operating stages."
+        ],
+        [
+          "Integration",
+          "Chip and mechanical CAD support assembly discussions, with versioned ground and flight-side requirements."
+        ]
+      ],
+      "steps": [
+        [
+          "Frame requirements",
+          "Turn sample, operation and data needs into interface questions."
+        ],
+        [
+          "Align subsystems",
+          "Connect fluid, control and mechanical responsibilities."
+        ],
+        [
+          "Integrate a prototype",
+          "Use ground control and test workflows to inspect sequence and feedback."
+        ],
+        [
+          "Record the revision",
+          "Retain the completed scope and later verification conditions."
+        ]
+      ],
+      "results": [
+        [
+          "Engineering outputs",
+          "Work includes architecture and interface documents, control test programs, chip/mechanical integration and verification planning."
+        ],
+        [
+          "Development stage",
+          "The project remains in development and prototype integration, with ground and flight-side needs tracked by revision."
+        ],
+        [
+          "Public presentation",
+          "The page presents subsystem responsibilities and integration methods while keeping mission details and design parameters private."
+        ]
+      ],
+      "analysis": [
+        [
+          "Interfaces precede system performance",
+          "Working subsystems still need compatible power, fluid connections, control signals and data formats. Interface records make integration differences traceable."
+        ],
+        [
+          "Prototype and environment",
+          "Ground prototypes support functional discussion. Vibration, thermal and mission-environment behavior need separately defined tests."
+        ],
+        [
+          "Revisions preserve context",
+          "Linking requirements, prototypes and tests to revisions clarifies which conclusions remain applicable and which need rechecking."
+        ]
+      ],
+      "reproduce": [
+        "Use the architecture to understand responsibilities and data direction.",
+        "Read the public integration scope and distinguish revision purposes.",
+        "Define specific conditions and acceptance criteria for any target environment."
+      ],
+      "media_note": "Architecture, workflow and inspectable records explain the outcomes. No photograph or screenshot meeting the presentation criteria has been selected for this page."
+    },
+    "group": "research",
+    "card_index": 10,
+    "branch": "main",
+    "gallery": [],
+    "sources": [
+      {
+        "label": "Public engineering background",
+        "url": "https://github.com/peianchen/peianchen/blob/main/docs/ENGINEERING_BACKGROUND.md"
+      }
+    ]
+  },
+  {
+    "slug": "bioimage-analysis",
+    "name": "Bioimage & Motion Analysis",
+    "repo": null,
+    "domain": "BIOLOGICAL IMAGE ANALYSIS",
+    "tags": "Python / OpenCV / PyQt5",
+    "nodes": [
+      "IMAGE SEQUENCE",
+      "PREPROCESS + ALIGN",
+      "SEGMENT + TRACK",
+      "GUI + METRICS"
+    ],
+    "zh": {
+      "title": "生物影像與運動分析",
+      "summary": "以 Python、OpenCV 與 PyQt5 建立影像前處理、分割、配準和運動分析工具，將實驗取像延伸至可操作的分析流程。",
+      "purpose": "協助生物實驗整理影像、觀察運動行為並比對分析結果。",
+      "decisions": [],
+      "limits": "這是研究分析工具介紹，不等同公開 SpaceCellCam 取像韌體內建功能；不提供未發表影像或研究程式。",
+      "caption": "依專案職責整理的架構示意。",
+      "architecture": [
+        [
+          "資料入口",
+          "以實驗影像或影片為輸入，保留影格順序與空間尺度資訊。"
+        ],
+        [
+          "影像前處理",
+          "Python／OpenCV 進行前處理、分割與配準，改善後續比對的一致性。"
+        ],
+        [
+          "量化分析",
+          "從區域或運動變化整理可比較的分析輸出，與人工標註比對。"
+        ],
+        [
+          "操作介面",
+          "PyQt5 將參數、影像與結果呈現集中，便於反覆檢查分析行為。"
+        ]
+      ],
+      "steps": [
+        [
+          "選取影像",
+          "確認來源、影格時間及像素尺度。"
+        ],
+        [
+          "前處理與配準",
+          "處理背景與影像偏移，建立可比較的影格。"
+        ],
+        [
+          "分割與分析",
+          "抽出目標區域並量化變化，檢查參數對結果的影響。"
+        ],
+        [
+          "人工比對",
+          "將標註與輸出並排檢視，追蹤錯誤來源與適用條件。"
+        ]
+      ],
+      "results": [
+        [
+          "工具流程",
+          "研究工作串接前處理、分割、配準、運動量化與操作介面。"
+        ],
+        [
+          "圖像輸出",
+          "可透過原影像、二值化及輪廓疊圖觀察分析各階段的變化。"
+        ],
+        [
+          "評估範圍",
+          "結果應依標註、尺度和資料條件解讀；本頁不補造泛化準確率。"
+        ]
+      ],
+      "analysis": [
+        [
+          "對齊影格再談變化",
+          "相機或樣品的整體位移可能被誤認為目標運動。配準與背景檢查可幫助釐清兩者。"
+        ],
+        [
+          "分割參數影響量化",
+          "閾值與形態處理會改變輪廓、面積及連通區域。參數需與圖像一起保存，不能只保留最後數值。"
+        ],
+        [
+          "以人工標註檢查錯誤",
+          "並排查看原圖與輸出有助於辨識漏檢、合併或切割錯誤，再決定是否適合比較不同實驗。"
+        ]
+      ],
+      "reproduce": [
+        "先確認影像來源與尺度，再逐階段查看處理結果。",
+        "對照原圖、分割與輪廓，保留使用的參數。",
+        "以人工標註或代表性影格檢查量化輸出的適用性。"
+      ],
+      "media_note": "本頁圖像以已核對的架構與輸出說明為主；實際結果照片將於有合適素材時補充。"
+    },
+    "en": {
+      "title": "Bioimage & Motion Analysis",
+      "summary": "Python, OpenCV, and PyQt5 tools for preprocessing, segmentation, registration, and motion analysis, extending experimental images into an operable analysis workflow.",
+      "purpose": "Organize experimental images, observe biological motion, and compare analysis outputs.",
+      "decisions": [],
+      "limits": "This research workflow is separate from the public SpaceCellCam capture firmware. Unpublished images and research code are not provided.",
+      "caption": "Architecture explanation based on documented project responsibilities.",
+      "architecture": [
+        [
+          "Input",
+          "Experimental images or video retain frame order and spatial scale."
+        ],
+        [
+          "Image processing",
+          "Python/OpenCV preprocessing, segmentation and registration make frame comparisons more consistent."
+        ],
+        [
+          "Quantification",
+          "Region and motion changes become outputs that can be compared with manual annotation."
+        ],
+        [
+          "Interface",
+          "PyQt5 brings parameters, images and results together for iterative inspection."
+        ]
+      ],
+      "steps": [
+        [
+          "Select images",
+          "Check source, frame timing and pixel scale."
+        ],
+        [
+          "Preprocess and align",
+          "Address background and displacement before comparison."
+        ],
+        [
+          "Segment and quantify",
+          "Extract regions and inspect how parameters affect measured changes."
+        ],
+        [
+          "Compare annotations",
+          "Inspect labels and output together to identify errors and applicable conditions."
+        ]
+      ],
+      "results": [
+        [
+          "Tool workflow",
+          "The research connects preprocessing, segmentation, registration, motion analysis and an operating interface."
+        ],
+        [
+          "Image outputs",
+          "Original, binary and contour-overlay views illustrate changes across analysis stages."
+        ],
+        [
+          "Evaluation scope",
+          "Interpret results under the annotation, scale and data conditions; no generalization accuracy is invented here."
+        ]
+      ],
+      "analysis": [
+        [
+          "Align before interpreting change",
+          "Whole-frame camera or sample displacement can resemble target motion. Registration and background inspection help distinguish them."
+        ],
+        [
+          "Parameters affect quantities",
+          "Thresholds and morphology change contours, areas and connected regions. Save parameters with images, not only final numbers."
+        ],
+        [
+          "Inspect errors with labels",
+          "Original/output comparisons expose misses, merges and split errors before deciding whether experiments are comparable."
+        ]
+      ],
+      "reproduce": [
+        "Confirm image source and scale, then inspect each processing stage.",
+        "Compare original, segmented and contour views while retaining parameters.",
+        "Use manual labels or representative frames to assess the output's intended use."
+      ],
+      "media_note": "Images explain the reviewed architecture and outputs. Suitable result photographs can be added when available."
+    },
+    "group": "research",
+    "card_index": 11,
+    "branch": "main",
+    "gallery": [
+      {
+        "src": "img/evidence/plant-contour-analysis.png",
+        "width": 1870,
+        "height": 1053,
+        "kind": "analysis",
+        "zh": {
+          "title": "植物影像輪廓與面積標記",
+          "caption": "原分析輸出顯示目標輪廓、尺規與面積標記。標記依賴當時的像素尺度與分割參數，不以此圖推論處理效應。"
+        },
+        "en": {
+          "title": "Plant contours and annotated area",
+          "caption": "The saved analysis shows contours, a ruler and area annotations. Values depend on the original scale and segmentation settings; no treatment effect is inferred."
+        }
+      }
+    ],
+    "sources": [
+      {
+        "label": "Public engineering background",
+        "url": "https://github.com/peianchen/peianchen/blob/main/docs/ENGINEERING_BACKGROUND.md"
+      },
+      {
+        "label": "Plant contours and annotated area / owner-provided source",
+        "url": "https://peianchen.github.io/peian-chen/img/evidence/plant-contour-analysis.png"
+      }
+    ]
+  },
+  {
+    "slug": "pva-pump",
+    "name": "Passive PVA Sponge Pump",
+    "repo": null,
+    "domain": "PASSIVE MICROFLUIDICS",
+    "tags": "PVA / PDMS / Capillary Flow",
+    "nodes": [
+      "FINGER LOADING",
+      "PDMS CHANNEL",
+      "PVA CAPILLARITY",
+      "FLOW OBSERVATION"
+    ],
+    "zh": {
+      "title": "被動式 PVA 海綿幫浦",
+      "summary": "碩士研究結合手指啟動進樣、PVA 海綿毛細作用、高度差與 PDMS 封裝，研究不需電力驅動的微流體輸送方案。",
+      "purpose": "降低微流體系統對大型外接電動幫浦的依賴，評估便攜式流體驅動原型。",
+      "decisions": [],
+      "limits": "已完成原型與碩士論文；此處依履歷摘要介紹，不新增流量或臨床效益宣稱，也不將後續仿生平台獎項歸於此研究。",
+      "caption": "依專案職責整理的架構示意。",
+      "architecture": [
+        [
+          "進樣方式",
+          "以手指啟動進樣，降低外部驅動設備需求。"
+        ],
+        [
+          "流道與封裝",
+          "PDMS 封裝形成微流體路徑，連接樣品與吸液端。"
+        ],
+        [
+          "被動驅動",
+          "PVA 海綿的毛細吸液與高度差共同影響流動。"
+        ],
+        [
+          "觀察分析",
+          "由液體移動、填充與吸液狀態理解輸送過程，依原實驗條件比較。"
+        ]
+      ],
+      "steps": [
+        [
+          "準備與進樣",
+          "確認流道與海綿狀態，使用手指啟動樣品進入。"
+        ],
+        [
+          "建立液路",
+          "液體通過 PDMS 微流道到達吸液端。"
+        ],
+        [
+          "持續吸液",
+          "PVA 毛細作用與高度差維持被動輸送。"
+        ],
+        [
+          "觀察變化",
+          "記錄填充與流動過程，分析不同條件對輸送的影響。"
+        ]
+      ],
+      "results": [
+        [
+          "研究產出",
+          "碩士研究完成手指進樣、PVA 吸液與 PDMS 封裝的原型研究。"
+        ],
+        [
+          "設計價值",
+          "以被動驅動降低電力與控制器需求，適合討論簡化微流體操作。"
+        ],
+        [
+          "條件依賴",
+          "流量及可操作時間與海綿含液狀態、幾何及液體性質相關。"
+        ]
+      ],
+      "analysis": [
+        [
+          "驅動會隨狀態改變",
+          "毛細作用取決於吸液端狀態，海綿逐漸濕潤時可能改變流動行為。應觀察時間序列而非只看單張照片。"
+        ],
+        [
+          "高度差是實驗條件",
+          "裝置擺放與液面高度影響壓差，跨次比較時需保留相同參考。"
+        ],
+        [
+          "操作簡化與控制彈性",
+          "被動方案減少電子硬體，但調整流量的方式轉向材料、幾何與初始條件；適用情境需依操作需求判斷。"
+        ]
+      ],
+      "reproduce": [
+        "從進樣端、流道與海綿吸液端理解原型。",
+        "比較條件時記錄海綿初始含液狀態、液面與裝置擺放。",
+        "連續觀察填充與輸送過程，再討論流動穩定性。"
+      ],
+      "media_note": "本頁以架構、流程與可核對紀錄說明成果；目前未選入足以清楚呈現結果的照片或畫面。"
+    },
+    "en": {
+      "title": "Passive PVA Sponge Pump",
+      "summary": "Master's research combining finger-initiated loading, PVA sponge capillarity, height differences, and PDMS packaging to study electricity-free microfluidic pumping.",
+      "purpose": "Reduce dependence on large external electric pumps and assess a portable fluid-driving prototype.",
+      "decisions": [],
+      "limits": "A prototype and master's thesis were completed. This resume-based summary adds no flow-rate or clinical-benefit claims and does not attribute later biomimetic-platform awards to this study.",
+      "caption": "Architecture explanation based on documented project responsibilities.",
+      "architecture": [
+        [
+          "Loading",
+          "Finger-actuated loading reduces dependence on external drive equipment."
+        ],
+        [
+          "Channel and packaging",
+          "PDMS packaging connects the sample path to the absorbing end."
+        ],
+        [
+          "Passive drive",
+          "PVA capillary uptake and height difference jointly influence transport."
+        ],
+        [
+          "Observation",
+          "Liquid movement, filling and absorption are interpreted under the original experiment conditions."
+        ]
+      ],
+      "steps": [
+        [
+          "Prepare and load",
+          "Check the channel and sponge state, then start loading by finger actuation."
+        ],
+        [
+          "Connect the liquid path",
+          "Liquid travels through the PDMS channel to the absorbing end."
+        ],
+        [
+          "Sustain uptake",
+          "PVA capillarity and height difference support passive transport."
+        ],
+        [
+          "Observe change",
+          "Record filling and flow to understand differences between conditions."
+        ]
+      ],
+      "results": [
+        [
+          "Research output",
+          "The master's research developed a prototype combining finger loading, PVA absorption and PDMS packaging."
+        ],
+        [
+          "Design value",
+          "Passive drive reduces electrical and controller requirements for simplified microfluidic operation."
+        ],
+        [
+          "Condition dependence",
+          "Flow and operating duration depend on sponge wetting, geometry and fluid properties."
+        ]
+      ],
+      "analysis": [
+        [
+          "Drive changes with state",
+          "Capillary uptake depends on the absorber state. Progressive wetting can change transport, making a time sequence more informative than one photograph."
+        ],
+        [
+          "Height is an experimental condition",
+          "Placement and liquid-level differences affect pressure. Retain the same reference for cross-run comparisons."
+        ],
+        [
+          "Simplicity changes the control variables",
+          "A passive design reduces electronics while making material, geometry and initial conditions central to flow adjustment."
+        ]
+      ],
+      "reproduce": [
+        "Follow the loading end, channel and PVA absorber through the prototype.",
+        "Record initial wetting, liquid levels and placement when comparing conditions.",
+        "Observe filling and transport over time before assessing stability."
+      ],
+      "media_note": "Architecture, workflow and inspectable records explain the outcomes. No photograph or screenshot meeting the presentation criteria has been selected for this page."
+    },
+    "group": "research",
+    "card_index": 12,
+    "branch": "main",
+    "gallery": [],
+    "sources": [
+      {
+        "label": "Public engineering background",
+        "url": "https://github.com/peianchen/peianchen/blob/main/docs/ENGINEERING_BACKGROUND.md"
+      }
+    ]
+  },
+  {
+    "slug": "afpga",
+    "name": "NYCU-AFPGA",
+    "repo": "NYCU-AFPGA-Labs",
+    "domain": "DIGITAL SYSTEM DESIGN",
+    "tags": "Verilog / Quartus / Qsys",
+    "nodes": [
+      "VERILOG + FSM",
+      "RAM + CPU",
+      "QSYS + BRIDGE",
+      "HPS + BOARD"
+    ],
+    "zh": {
+      "title": "NYCU-AFPGA",
+      "summary": "從組合邏輯、FSM、RAM、簡易處理器到 DE1-SoC HPS/Qsys 整合的八組詳細實驗文件。",
+      "purpose": "循序理解數位邏輯、記憶體與處理器架構，再延伸至 HPS 與 FPGA 的軟硬體介面。",
+      "decisions": [],
+      "limits": "公開版本排除整份作業報告與個資。歷史實驗照片、代表工程編譯與尚未重做的驗證分別記錄。",
+      "caption": "依專案職責整理的架構示意。",
+      "architecture": [
+        [
+          "數位邏輯",
+          "Lab 1–4 從組合與循序邏輯走到算術、暫存器及 FSM。"
+        ],
+        [
+          "資料與指令",
+          "Lab 5–6 整合 RAM、ROM 與簡易處理器，觀察資料路徑與控制。"
+        ],
+        [
+          "SoC 介面",
+          "Lab 7–8 將 Linux userspace、Qsys address map 與 HPS-to-FPGA bridge 連接。"
+        ],
+        [
+          "可觀察輸出",
+          "LED、七段顯示、RTL Viewer 與歷史波形提供不同層次的驗證線索。"
+        ]
+      ],
+      "steps": [
+        [
+          "確認實驗與來源",
+          "由八組 Lab 索引定位 Quartus 專案、top-level 與說明。"
+        ],
+        [
+          "理解邏輯",
+          "將輸入、控制與輸出對照測試矩陣及 HDL。"
+        ],
+        [
+          "工具建置",
+          "核對裝置、腳位與 IP 路徑，依工具相容性進行 synthesis 或 compilation。"
+        ],
+        [
+          "對照結果",
+          "用波形與原報告照片解釋輸出，SoC 實驗另核對軟硬體位址。"
+        ]
+      ],
+      "results": [
+        [
+          "八組實驗",
+          "公開版保存詳細說明、Quartus／Verilog／HPS source 與經審查的歷史結果圖片。"
+        ],
+        [
+          "代表工程重建",
+          "README 記錄 Lab 01 Part 01 以 Quartus 25.1 full compilation 完成，0 errors、248 warnings。"
+        ],
+        [
+          "Lab 8 控制結果",
+          "照片顯示 LED one-hot 移動與往返計數，與 HPS C 程式的暫存器寫入流程對應。"
+        ]
+      ],
+      "analysis": [
+        [
+          "從 LED 看見整條資料鏈",
+          "Lab 8 的結果串起 Linux 程式、bridge、Avalon peripheral 與實體腳位。七段顯示的是完整往返次數，並非當前 LED 位置。"
+        ],
+        [
+          "等待時間要看全部呼叫",
+          "Lab 8 每步同時包含 100 ms 與 1 s 的等待，合計約 1.1 s。只讀單一註解會誤判執行速度。"
+        ],
+        [
+          "建置與時序",
+          "代表工程可以重建是工具相容性的證據，但該紀錄沒有 SDC／clock constraint，不能由編譯成功推論時序收斂。"
+        ]
+      ],
+      "reproduce": [
+        "開啟 Lab 索引並選擇一個完整子專案。",
+        "使用相容 Quartus，先檢查 top-level、device、腳位及相對 IP 路徑。",
+        "依 Lab 測試矩陣對照輸入與輸出；重建時可使用短 ASCII 工作路徑。",
+        "Lab 8 需確認 Qsys 與 hps_0.h 位址一致，再分別驗證硬體與 Linux 軟體。"
+      ],
+      "media_note": "本頁圖像以已核對的架構與輸出說明為主；實際結果照片將於有合適素材時補充。"
+    },
+    "en": {
+      "title": "NYCU-AFPGA",
+      "summary": "Eight documented labs covering combinational logic, FSMs, RAM, a simple processor, and DE1-SoC HPS/Qsys integration.",
+      "purpose": "Study digital logic, memory and processors before exploring HPS-to-FPGA interfaces.",
+      "decisions": [],
+      "limits": "The public edition excludes full assignment reports and personal details. Archived photographs, a representative build and verification still to be repeated are distinguished.",
+      "caption": "Architecture explanation based on documented project responsibilities.",
+      "architecture": [
+        [
+          "Digital logic",
+          "Labs 1–4 progress through combinational/sequential logic, arithmetic, registers and FSMs."
+        ],
+        [
+          "Data and instructions",
+          "Labs 5–6 combine RAM, ROM and a small processor to expose datapath/control relationships."
+        ],
+        [
+          "SoC interface",
+          "Labs 7–8 connect Linux userspace, the Qsys address map and HPS-to-FPGA bridge."
+        ],
+        [
+          "Observable output",
+          "LEDs, seven-segment displays, RTL views and archived waveforms provide different evidence levels."
+        ]
+      ],
+      "steps": [
+        [
+          "Locate an experiment",
+          "Use the eight-lab index to find projects, top-level files and explanations."
+        ],
+        [
+          "Read the logic",
+          "Compare inputs, control and outputs with the HDL and test matrix."
+        ],
+        [
+          "Build with the tools",
+          "Inspect device, pins and IP paths before synthesis or compilation."
+        ],
+        [
+          "Interpret outputs",
+          "Read waveforms and archived photos; verify software/hardware addresses for SoC exercises."
+        ]
+      ],
+      "results": [
+        [
+          "Eight documented labs",
+          "The public edition preserves explanations, Quartus/Verilog/HPS sources and reviewed archived images."
+        ],
+        [
+          "Representative rebuild",
+          "The README records a Quartus 25.1 full compilation of Lab 01 Part 01 with 0 errors and 248 warnings."
+        ],
+        [
+          "Lab 8 control output",
+          "Photos show one-hot LED movement and round-trip counting, consistent with HPS register writes."
+        ]
+      ],
+      "analysis": [
+        [
+          "LEDs expose the whole chain",
+          "Lab 8 connects a Linux program, bridge, Avalon peripheral and physical pins. The display counts complete round trips, not LED position."
+        ],
+        [
+          "Read all timing calls",
+          "A Lab 8 step includes both a 100 ms and a 1 s wait, totaling about 1.1 seconds. A single comment does not describe total delay."
+        ],
+        [
+          "Build and timing evidence",
+          "A rebuild establishes tool compatibility. The record lacks SDC/clock constraints, so successful compilation does not establish timing closure."
+        ]
+      ],
+      "reproduce": [
+        "Select a complete subproject from the lab index.",
+        "Inspect top-level, device, pins and IP paths in a compatible Quartus version.",
+        "Compare results with the lab test matrix; a short ASCII work path can help rebuilds.",
+        "For Lab 8, match Qsys addresses with hps_0.h and verify hardware and Linux software separately."
+      ],
+      "media_note": "Images explain the reviewed architecture and outputs. Suitable result photographs can be added when available."
+    },
+    "group": "coursework",
+    "card_index": 13,
+    "branch": "main",
+    "gallery": [
+      {
+        "src": "img/evidence/afpga-hps-result.jpg",
+        "width": 810,
+        "height": 608,
+        "kind": "historical",
+        "zh": {
+          "title": "Lab 8：HPS 控制 FPGA 輸出",
+          "caption": "原報告照片記錄 LED 與往返計數 1。需配合 main.c 的 led_mask 與 loop_count 解讀，非本次重新上板。"
+        },
+        "en": {
+          "title": "Lab 8: HPS-controlled FPGA output",
+          "caption": "The archived photo records LEDs and round-trip count 1. Interpret with main.c led_mask and loop_count; this is not a new board run."
+        }
+      }
+    ],
+    "sources": [
+      {
+        "label": "Repository / README",
+        "url": "https://github.com/peianchen/NYCU-AFPGA-Labs/blob/main/README.md"
+      }
+    ]
+  },
+  {
+    "slug": "medical-imaging",
+    "name": "Deep Learning for Medical Imaging",
+    "repo": "NYCU-Deep-Learning-Medical-Image-Analysis",
+    "domain": "MEDICAL IMAGE ANALYSIS",
+    "tags": "PyTorch / MRI / SPECT / U-Net / Faster R-CNN",
+    "nodes": [
+      "DATA + SPLITS",
+      "PREPROCESS",
+      "PYTORCH MODELS",
+      "METRICS + REVIEW"
+    ],
+    "zh": {
+      "title": "醫學影像深度學習",
+      "summary": "五份作業涵蓋 SPECT 與 MRI 分類、超音波頸動脈分割、胸腔 X 光異常區域偵測，整理前處理、PyTorch 模型、訓練結果與分析。公開程式與彙整圖表，不含病患資料。",
+      "purpose": "比較分類、影像分割與物件偵測如何對應不同的醫學影像任務。",
+      "decisions": [],
+      "limits": "結果以原作業留下的紀錄為依據，未宣稱重新訓練或臨床驗證；公開內容不含病患資料。",
+      "caption": "依專案職責整理的架構示意。",
+      "architecture": [
+        [
+          "資料任務",
+          "五份作業涵蓋數字、SPECT／MRI、超音波及 X 光，對應分類、分割與偵測。"
+        ],
+        [
+          "前處理",
+          "依任務處理切片、體積、影像與標註，並注意切分單位。"
+        ],
+        [
+          "模型",
+          "比較 MLP、遷移學習分類器、U-Net／FCN 及 Faster R-CNN。"
+        ],
+        [
+          "評估",
+          "使用 accuracy、macro-F1、IoU／Dice 及 AP 等不同指標，連同資料條件解讀。"
+        ]
+      ],
+      "steps": [
+        [
+          "定義預測問題",
+          "先決定標籤是類別、像素遮罩或框，再建立資料切分。"
+        ],
+        [
+          "訓練與保存",
+          "由 DataLoader、增強與模型迴圈保留訓練及驗證紀錄。"
+        ],
+        [
+          "比較指標",
+          "以符合任務的指標觀察訓練／驗證差距。"
+        ],
+        [
+          "核對來源",
+          "將保存的曲線、checkpoint 與評估集合相互對照，記錄限制。"
+        ]
+      ],
+      "results": [
+        [
+          "數字分類",
+          "歷史第 25 epoch validation accuracy 98.08%、macro-F1 97.87%，不是另一次獨立測試集結果。"
+        ],
+        [
+          "分割與偵測",
+          "HW4 最後 mean IoU 97.26%、Dice 98.60%；HW5 validation AP50 0.396、AP@[.50:.95] 0.222。兩項任務與資料切分不同。"
+        ],
+        [
+          "泛化問題",
+          "SPECT oversampling 的 validation accuracy 51.52%、macro-F1 21.59%，顯示平均正確率不足以描述少數類別表現。"
+        ]
+      ],
+      "analysis": [
+        [
+          "高分必須連同切分方式",
+          "HW4 採影格隨機分割，鄰近影格可能高度相似；因此其高 Dice 不應當作跨受試者泛化。MRI 的 93.75% validation 也僅來自 16 人。"
+        ],
+        [
+          "不平衡資料需要更多指標",
+          "SPECT 的 accuracy 與 macro-F1 差距指出類別表現不均。重取樣有助訓練分布調整，但不能由訓練高分推論泛化改善。"
+        ],
+        [
+          "保存輸出仍需程式核對",
+          "HW5 有 train-validation gap 與 CSV 座標待修正問題；結果曲線應連同評估與輸出格式檢查一起閱讀。"
+        ]
+      ],
+      "reproduce": [
+        "從五份作業 README、FILES 與 RESULTS 理解資料與模型。",
+        "依 ENVIRONMENT 準備環境及有權使用的資料，公開版不含病患影像或模型權重。",
+        "先核對資料切分、標籤與指標，再嘗試重建訓練流程。",
+        "將新的訓練紀錄與歷史結果分開保存，特別記錄受試者與影格的切分單位。"
+      ],
+      "media_note": "本頁圖像以已核對的架構與輸出說明為主；實際結果照片將於有合適素材時補充。"
+    },
+    "en": {
+      "title": "Deep Learning for Medical Imaging",
+      "summary": "Five assignments covering SPECT and MRI classification, carotid ultrasound segmentation, and chest X-ray abnormality detection, with preprocessing, PyTorch models, training results, and analysis. Public code and aggregate figures; no patient data.",
+      "purpose": "Explore how classification, segmentation, and object detection address different medical-imaging tasks.",
+      "decisions": [],
+      "limits": "Results are based on retained coursework records, not a claim of fresh training or clinical validation. Public material contains no patient data.",
+      "caption": "Architecture explanation based on documented project responsibilities.",
+      "architecture": [
+        [
+          "Tasks",
+          "Five assignments cover digits, SPECT/MRI, ultrasound and X-rays across classification, segmentation and detection."
+        ],
+        [
+          "Preprocessing",
+          "Task-specific handling covers slices, volumes, images and annotations, with attention to split units."
+        ],
+        [
+          "Models",
+          "Work includes MLPs, transfer-learning classifiers, U-Net/FCN and Faster R-CNN."
+        ],
+        [
+          "Evaluation",
+          "Accuracy, macro-F1, IoU/Dice and AP answer different questions and are interpreted with data conditions."
+        ]
+      ],
+      "steps": [
+        [
+          "Define the prediction",
+          "Choose class labels, pixel masks or boxes before constructing splits."
+        ],
+        [
+          "Train and retain",
+          "Keep training/validation records from loaders, augmentation and model loops."
+        ],
+        [
+          "Compare metrics",
+          "Use task-appropriate measures to inspect the training-validation gap."
+        ],
+        [
+          "Check provenance",
+          "Relate saved curves to checkpoints and evaluation sets, retaining limitations."
+        ]
+      ],
+      "results": [
+        [
+          "Digit classification",
+          "Archived epoch-25 validation accuracy is 98.08% and macro-F1 97.87%; these are not independent test-set results."
+        ],
+        [
+          "Segmentation and detection",
+          "HW4 ends at mean IoU 97.26% and Dice 98.60%. HW5 validation AP50 is 0.396 and AP@[.50:.95] 0.222. Tasks and splits differ."
+        ],
+        [
+          "Generalization",
+          "SPECT oversampling records 51.52% validation accuracy and 21.59% macro-F1, exposing uneven class performance."
+        ]
+      ],
+      "analysis": [
+        [
+          "Read scores with the split",
+          "HW4 randomly splits frames, which may be highly correlated; high Dice is not cross-subject evidence. MRI's 93.75% validation result also uses only 16 people."
+        ],
+        [
+          "Imbalance needs multiple metrics",
+          "The accuracy/macro-F1 gap exposes uneven SPECT class performance. Resampling changes training distribution without proving better generalization."
+        ],
+        [
+          "Check evaluation and exports",
+          "HW5 has a train-validation gap and a known CSV-coordinate issue. Read curves alongside evaluator behavior and output-format checks."
+        ]
+      ],
+      "reproduce": [
+        "Read each assignment's README, FILES and RESULTS.",
+        "Prepare the documented environment and authorized data; public files exclude patient images and weights.",
+        "Check split units, labels and metrics before rebuilding training.",
+        "Keep new runs separate from historical results and identify subject-level versus frame-level splits."
+      ],
+      "media_note": "Images explain the reviewed architecture and outputs. Suitable result photographs can be added when available."
+    },
+    "group": "coursework",
+    "card_index": 14,
+    "branch": "main",
+    "gallery": [
+      {
+        "src": "img/evidence/digits-validation-accuracy.png",
+        "width": 504,
+        "height": 468,
+        "kind": "historical",
+        "zh": {
+          "title": "數字分類歷史 accuracy 曲線",
+          "caption": "來源：HW1 Notebook 的歷史圖表。訓練與 validation 曲線需連同選模方式及評估集合閱讀。"
+        },
+        "en": {
+          "title": "Archived digit-classification accuracy",
+          "caption": "Source: archived HW1 notebook plot. Read training/validation curves with checkpoint selection and evaluation-set definitions."
+        }
+      },
+      {
+        "src": "img/evidence/digits-training-loss.png",
+        "width": 508,
+        "height": 468,
+        "kind": "historical",
+        "zh": {
+          "title": "數字分類歷史 loss 曲線",
+          "caption": "與 accuracy 搭配觀察訓練趨勢；loss 最低的 checkpoint 不一定是最後一個 epoch。"
+        },
+        "en": {
+          "title": "Archived digit-classification loss",
+          "caption": "Use with accuracy to interpret training. The minimum-loss checkpoint need not be the final epoch."
+        }
+      }
+    ],
+    "sources": [
+      {
+        "label": "Repository / README",
+        "url": "https://github.com/peianchen/NYCU-Deep-Learning-Medical-Image-Analysis/blob/main/README.md"
+      },
+      {
+        "label": "Historical results and interpretation",
+        "url": "https://github.com/peianchen/NYCU-Deep-Learning-Medical-Image-Analysis/blob/main/docs/RESULTS_ANALYSIS.md"
+      }
+    ]
+  },
+  {
+    "slug": "data-structures",
+    "name": "Data Structures & Graph Algorithms",
+    "repo": "NYCU-Data-Structures-Graph-Algorithms",
+    "domain": "DATA STRUCTURES + GRAPHS",
+    "tags": "C / BFS / Huffman / Graph Algorithms",
+    "nodes": [
+      "INPUT MODEL",
+      "C DATA STRUCTURE",
+      "ALGORITHM",
+      "CHECK + OUTPUT"
+    ],
+    "zh": {
+      "title": "資料結構與圖論演算法",
+      "summary": "以 C 實作九份作業，從排序、BFS 迷宮搜尋與稀疏矩陣，到 Segment Tree、Huffman、最小生成樹與 Dijkstra，附結果圖片及複雜度分析。",
+      "purpose": "理解資料結構如何影響記憶體使用、操作成本與演算法選擇。",
+      "decisions": [],
+      "limits": "保留舊版程式與已知限制；歷史效能數據不是目前硬體上的新量測，測例通過也不代表完整規格已滿足。",
+      "caption": "依專案職責整理的架構示意。",
+      "architecture": [
+        [
+          "問題表示",
+          "九份作業以日期、序列、迷宮、矩陣、運算式、文字與圖作為輸入。"
+        ],
+        [
+          "資料結構",
+          "C 實作佇列、鏈結串列、堆疊、Segment Tree、Min-Heap 與鄰接串列。"
+        ],
+        [
+          "演算法",
+          "依問題使用排序、BFS、Huffman、Kruskal 或 Dijkstra。"
+        ],
+        [
+          "結果輸出",
+          "文字、壓縮檔與 Graphviz 圖形幫助觀察結果，另有代表性驗證工具。"
+        ]
+      ],
+      "steps": [
+        [
+          "建模輸入",
+          "定義輸入格式與資料結構的不變條件。"
+        ],
+        [
+          "執行演算法",
+          "依操作成本選擇搜尋、排序、鬆弛或合併方式。"
+        ],
+        [
+          "輸出結果",
+          "保存路徑、矩陣、編碼或圖形，對照小型範例。"
+        ],
+        [
+          "分析成本",
+          "結合複雜度、歷史耗時與已知規格落差評估使用情境。"
+        ]
+      ],
+      "results": [
+        [
+          "主要版本",
+          "2026-10-05 的紀錄顯示主要程式 14／14 編譯成功，代表性行為檢查 18／18 通過。"
+        ],
+        [
+          "保留歷史",
+          "全部 C 程式含草稿為 67／68 編譯成功；稀疏矩陣 input.c 草稿的斷裂名稱造成失敗。"
+        ],
+        [
+          "圖形與說明",
+          "九份作業保存 162 張報告圖，圖論另有原圖與不同起點的最短路徑樹。"
+        ]
+      ],
+      "analysis": [
+        [
+          "樹的問題定義不同",
+          "最短路徑樹最小化指定起點到各點的距離；最小生成樹最小化連接所有頂點的總邊權重。相似的樹形輸出不能互換解釋。"
+        ],
+        [
+          "複雜度要看實際實作",
+          "此版 Dijkstra 使用線性搜尋，不應直接套用 heap 版本的時間複雜度；排序程式也含 GNU C 巢狀函式相容性條件。"
+        ],
+        [
+          "測例通過與格式完整性",
+          "Huffman 檔案未保存解碼樹、計算器將未定義變數當 0 等限制，會影響可攜性與錯誤行為，不能由代表測例通過忽略。"
+        ]
+      ],
+      "reproduce": [
+        "從九份作業索引選擇主程式，先閱讀 FILES 與已知限制。",
+        "使用 GCC GNU C11 編譯，在獨立目錄執行會寫檔的圖論或 Huffman 程式。",
+        "執行 tools/verify_course.py，對照原本的驗證條件。",
+        "分析歷史圖時保留資料大小與環境，勿直接當作目前電腦的效能數字。"
+      ],
+      "media_note": "本頁圖像以已核對的架構與輸出說明為主；實際結果照片將於有合適素材時補充。"
+    },
+    "en": {
+      "title": "Data Structures & Graph Algorithms",
+      "summary": "Nine C assignments covering sorting, BFS maze search, sparse matrices, segment trees, Huffman coding, minimum spanning trees, and Dijkstra, with report figures and complexity analysis.",
+      "purpose": "Understand how data structures affect memory usage, operation costs, and algorithm choices.",
+      "decisions": [],
+      "limits": "Earlier code and known limitations remain visible. Historical timings are not new measurements, and passing samples does not establish complete specification coverage.",
+      "caption": "Architecture explanation based on documented project responsibilities.",
+      "architecture": [
+        [
+          "Problem representation",
+          "Nine assignments model dates, sequences, mazes, matrices, expressions, text and graphs."
+        ],
+        [
+          "Data structures",
+          "C implementations use queues, linked lists, stacks, segment trees, min-heaps and adjacency lists."
+        ],
+        [
+          "Algorithms",
+          "Sorting, BFS, Huffman, Kruskal and Dijkstra match different problem requirements."
+        ],
+        [
+          "Outputs",
+          "Text, compressed files and Graphviz views expose results, supported by representative verification tools."
+        ]
+      ],
+      "steps": [
+        [
+          "Model the input",
+          "Define the format and data-structure invariants."
+        ],
+        [
+          "Execute the algorithm",
+          "Choose search, sorting, relaxation or merging according to operation cost."
+        ],
+        [
+          "Inspect output",
+          "Compare paths, matrices, codes or graphs against small examples."
+        ],
+        [
+          "Analyze cost",
+          "Read complexity, archived timings and known specification gaps together."
+        ]
+      ],
+      "results": [
+        [
+          "Primary versions",
+          "The 2026-10-05 record reports 14/14 primary builds and 18/18 representative behavior checks passing."
+        ],
+        [
+          "Retained history",
+          "Including drafts, 67/68 C files compile. A broken function name in the sparse-matrix input.c draft is the remaining failure."
+        ],
+        [
+          "Visual records",
+          "Nine assignments retain 162 report figures, with original graphs and shortest-path trees for multiple sources."
+        ]
+      ],
+      "analysis": [
+        [
+          "Trees solve different objectives",
+          "A shortest-path tree minimizes distance from one source; an MST minimizes total weight connecting all vertices. Similar-looking tree outputs are not interchangeable."
+        ],
+        [
+          "Analyze the actual implementation",
+          "This Dijkstra uses linear selection, so heap-based complexity does not apply. The sorting source also relies on GNU nested functions."
+        ],
+        [
+          "Checks do not remove format gaps",
+          "Huffman files do not store their decoding tree and undefined calculator variables become zero. These limitations affect portability and error behavior despite passing examples."
+        ]
+      ],
+      "reproduce": [
+        "Select a primary source from the assignment index and read FILES and limitations.",
+        "Compile with GCC GNU C11 and isolate file-writing graph or Huffman runs.",
+        "Run tools/verify_course.py and compare the documented conditions.",
+        "Retain input size and environment when interpreting archived timing figures."
+      ],
+      "media_note": "Images explain the reviewed architecture and outputs. Suitable result photographs can be added when available."
+    },
+    "group": "coursework",
+    "card_index": 15,
+    "branch": "main",
+    "gallery": [
+      {
+        "src": "img/evidence/graph-shortest-path.png",
+        "width": 847,
+        "height": 1023,
+        "kind": "historical",
+        "zh": {
+          "title": "起點 0 的最短路徑樹",
+          "caption": "與原圖配對閱讀，觀察指定起點到各點的路徑；不是最小生成樹，也不保證與其他歷史輸入檔是同一次執行。"
+        },
+        "en": {
+          "title": "Shortest-path tree from source 0",
+          "caption": "Compare with the original graph to inspect paths from source 0. This is not an MST, and is not assumed to be the same run as other archived input files."
+        }
+      }
+    ],
+    "sources": [
+      {
+        "label": "Repository / README",
+        "url": "https://github.com/peianchen/NYCU-Data-Structures-Graph-Algorithms/blob/main/README.md"
+      },
+      {
+        "label": "Archived graph and shortest-path trees",
+        "url": "https://github.com/peianchen/NYCU-Data-Structures-Graph-Algorithms/blob/main/assignments/assignment09-shortest-path/examples/6x12/README.md"
+      }
+    ]
   }
 ]

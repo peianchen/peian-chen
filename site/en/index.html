@@ -157,6 +157,8 @@
           <ul class="tag-list"><li>C</li><li>Zephyr</li><li>nRF54L15</li></ul>
           <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>Schedule intermittent sensing and low-power waiting while retaining phone connectivity and control.</dd></div><div><dt>Approach</dt><dd>Read ambient and object temperatures over I²C, expose BLE read/notify and measurement-control characteristics, and wait on semaphore timeouts. UART and diagnostic LEDs are disabled by default.</dd></div><div><dt>Scope</dt><dd>System ON idle retains BLE; this is not System OFF. Battery-life estimates, measured current, and measurement accuracy must be interpreted separately.</dd></div></dl></details>
           <a class="project-link" href="https://github.com/peianchen/nRF54L15_MLX90614" target="_blank" rel="noreferrer" aria-label="View nRF54L15 MLX90614 on GitHub">VIEW SOURCE <span>↗</span></a>
+        <a class="project-link project-link--case" href="./projects/nrf54l15-mlx90614/">Explore the complete project →</a>
+
         </article>
         <article class="project-card reveal" data-category="bio embedded" data-delay="2">
           <div class="project-card__top"><span class="project-number">P.06</span><lumen-badge class="project-state" variant="outline">PUBLIC / WEAR OS</lumen-badge></div>
@@ -164,6 +166,8 @@
           <ul class="tag-list"><li>Kotlin</li><li>Wear OS</li><li>Sensor SDK</li></ul>
           <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>Provide a watch-side measurement workflow with visible readings, callbacks, and errors.</dd></div><div><dt>Approach</dt><dd>Start an on-demand tracker on request, stop after one callback, and update the display. Green/red/infrared PPG interfaces remain present but disabled by default.</dd></div><div><dt>Scope</dt><dd>The README targets Galaxy Watch6 or newer physical devices. The SDK AAR, permissions, and platform policy requirements must be satisfied separately. Not for medical diagnosis.</dd></div></dl></details>
           <a class="project-link" href="https://github.com/peianchen/GalaxyWatchSensorMonitor" target="_blank" rel="noreferrer" aria-label="View Galaxy Watch Sensor Monitor on GitHub">VIEW SOURCE <span>↗</span></a>
+        <a class="project-link project-link--case" href="./projects/galaxy-watch/">Explore the complete project →</a>
+
         </article>
         <article class="project-card reveal" id="taipei-bus" data-category="web algorithms">
           <div class="project-card__top"><span class="project-number">P.09</span><lumen-badge class="project-state" variant="outline">PUBLIC / BETA</lumen-badge></div>
@@ -171,48 +175,64 @@
           <ul class="tag-list"><li>JavaScript</li><li>Node.js</li><li>MapLibre GL JS</li></ul>
           <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>Bring official vehicle snapshots, route geometry, and stops into an interactive map.</dd></div><div><dt>Approach</dt><dd>Share server caches and timeout handling, match vehicles to official BusShape geometry, and smoothly correct positions. Update changed map points with mobile cards and reduced-motion support.</dd></div><div><dt>Scope</dt><dd>Beta. Position extrapolation is capped at 15 seconds and depends on report age and matching confidence. Arrival estimates do not give an exact arrival time for the selected vehicle.</dd></div></dl></details>
           <a class="project-link" href="https://github.com/peianchen/taipei-bus-live" target="_blank" rel="noreferrer" aria-label="View Taipei Bus Live source and documentation">VIEW SOURCE <span aria-hidden="true">↗</span></a>
+        <a class="project-link project-link--case" href="./projects/taipei-bus/">Explore the complete project →</a>
+
         </article>
         <article class="project-card project-card--system reveal" data-category="research bio">
           <div class="project-card__top"><span class="project-number">S.01</span><lumen-badge class="project-state" variant="outline">RESEARCH SYSTEM</lumen-badge></div>
           <div><p class="project-domain">ELECTROCHEMISTRY</p><h3>ECsnap Electrochemical Instrument</h3><p>An EmStat Pico, MCU, TFT, and microSD instrument with a single-button workflow for stabilization, chronoamperometry, status feedback, and CSV recording.</p></div>
           <ul class="tag-list"><li>EmStat Pico</li><li>CA</li><li>SD Logging</li></ul>
           <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>Make electrochemical current measurements easier to operate and record in a portable research instrument.</dd></div><div><dt>Approach</dt><dd>Parse MethodSCRIPT/UART responses in C/C++, use RAM-buffered batch writes and shared-SPI management to coordinate TFT and SD activity, and migrate the firmware from SAMD21 to nRF52840.</dd></div><div><dt>Scope</dt><dd>Research code is private. Current acquisition and concentration conversion are separate tasks; complete analyte calibration and diagnostic performance are not claimed.</dd></div></dl></details>
+        <a class="project-link project-link--case" href="./projects/ecsnap/">Explore the complete project →</a>
+
         </article>
         <article class="project-card project-card--system reveal" data-category="research embedded" data-delay="1">
           <div class="project-card__top"><span class="project-number">S.02</span><lumen-badge class="project-state" variant="outline">RESEARCH SYSTEM</lumen-badge></div>
           <div><p class="project-domain">MICROFLUIDIC CONTROL</p><h3>Smart Stop-Flow</h3><p>An in-development microfluidic prototype connecting ESP32-S3 pump/valve control, Android methods, phone imaging, ROI analysis, and experiment records.</p></div>
           <ul class="tag-list"><li>Micropumps</li><li>Valves</li><li>Android</li></ul>
           <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>Align sample delivery, stop-flow observation, and stored records on one experimental timeline.</dd></div><div><dt>Approach</dt><dd>Use state machines for precharge, delivery, flushing, and fault stops. Android coordinates BLE/Serial, illumination, video, and frame analysis; Room stores method snapshots, events, and media indexes, alongside KiCad, SolidWorks, and COMSOL design inputs.</dd></div><div><dt>Scope</dt><dd>Private and in development. Flow, ratios, and physical stopping times require wet calibration. Awards for the biomimetic platform are not attributed to this project.</dd></div></dl></details>
+        <a class="project-link project-link--case" href="./projects/stop-flow/">Explore the complete project →</a>
+
         </article>
         <article class="project-card project-card--system reveal" data-category="research embedded" data-delay="2">
           <div class="project-card__top"><span class="project-number">S.03</span><lumen-badge class="project-state" variant="outline">CONTROL SYSTEM</lumen-badge></div>
           <div><p class="project-domain">REDUCED-GRAVITY MOTION</p><h3>Dual-Axis Gravity Controller</h3><p>Dual-axis continuous-rotation servo control using angle feedback, velocity estimation, feedforward, and PID to study motion that changes the gravity-vector direction over time.</p></div>
           <ul class="tag-list"><li>ESP32-C3</li><li>Feedback 360</li><li>PID</li></ul>
           <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>Control dual-axis rotation for research involving time-averaged gravity-vector orientation.</dd></div><div><dt>Approach</dt><dd>Independently integrate motor feedback, angle/velocity estimation, PID/feedforward, scheduling, and startup zero checks. Microgravity and partial-gravity control are related versions, not separate duplicate achievements.</dd></div><div><dt>Scope</dt><dd>Research code is private. Rotation is not true weightlessness, and control settings do not establish measured gravity conditions.</dd></div></dl></details>
+        <a class="project-link project-link--case" href="./projects/gravity-controller/">Explore the complete project →</a>
+
         </article>
         <article class="project-card project-card--system reveal" id="pressible" data-category="research bio embedded">
           <div class="project-card__top"><span class="project-number">S.04</span><lumen-badge class="project-state" variant="outline">RESEARCH / PRIVATE CODE</lumen-badge></div>
           <div><p class="project-domain">WEARABLE SWEAT PRESSURE</p><h3>PressiBLE Sweat-Pressure Platform</h3><p>An nRF52840, BLE, and Android workflow connecting sweat-pressure-related signals, temperature, live trends, and CSV records for wearable sensing research.</p></div>
           <ul class="tag-list"><li>nRF52840</li><li>BLE</li><li>Android</li><li>Calibration</li></ul>
           <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>Connect sweat-pressure-related measurements to an observable, exportable phone data workflow.</dd></div><div><dt>Approach</dt><dd>Independently develop sensing firmware, BLE control/data formats, timing, signal validity, and baseline normalization, with trends, Firebase, Nordic DFU, and optional Health Connect integration.</dd></div><div><dt>Scope</dt><dd>Code is private. Pressure categories require calibration for the patch, sweat, and test conditions; working communication does not establish sensing performance.</dd></div></dl></details>
+        <a class="project-link project-link--case" href="./projects/pressible/">Explore the complete project →</a>
+
         </article>
         <article class="project-card project-card--system reveal" id="space-payload" data-category="research embedded">
           <div class="project-card__top"><span class="project-number">S.05</span><lumen-badge class="project-state" variant="outline">IN DEVELOPMENT</lumen-badge></div>
           <div><p class="project-domain">SPACE MICROFLUIDICS</p><h3>Space Microfluidic Payload</h3><p>Sample-processing and payload-integration development for a planned space experiment, covering requirements, subsystem interfaces, pump/valve sequencing, and chip/mechanical CAD.</p></div>
           <ul class="tag-list"><li>System Interfaces</li><li>Fluid Sequencing</li><li>CAD</li></ul>
           <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>Separate ground preparation, sample containment, and mission-data requirements into a prototype design baseline.</dd></div><div><dt>Approach</dt><dd>Independently develop architecture/interface documents, fluid-control test code, chip/mechanical integration, and verification plans, distinguishing ground equipment from flight-side requirements by version.</dd></div><div><dt>Scope</dt><dd>Private and in development. No completed launch, orbital operation, or vibration/environmental qualification is claimed. Mission details and design parameters are not disclosed.</dd></div></dl></details>
+        <a class="project-link project-link--case" href="./projects/space-payload/">Explore the complete project →</a>
+
         </article>
         <article class="project-card project-card--system reveal" id="bioimage-analysis" data-category="research imaging">
           <div class="project-card__top"><span class="project-number">S.06</span><lumen-badge class="project-state" variant="outline">RESEARCH WORKFLOW</lumen-badge></div>
           <div><p class="project-domain">BIOLOGICAL IMAGE ANALYSIS</p><h3>Bioimage &amp; Motion Analysis</h3><p>Python, OpenCV, and PyQt5 tools for preprocessing, segmentation, registration, and motion analysis, extending experimental images into an operable analysis workflow.</p></div>
           <ul class="tag-list"><li>Python</li><li>OpenCV</li><li>PyQt5</li></ul>
           <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>Organize experimental images, observe biological motion, and compare analysis outputs.</dd></div><div><dt>Approach</dt><dd>Connect preprocessing, segmentation, image registration, motion quantification, and a user interface, checking behavior against manual annotation and output comparisons.</dd></div><div><dt>Scope</dt><dd>This research workflow is separate from the public SpaceCellCam capture firmware. Unpublished images and research code are not provided.</dd></div></dl></details>
+        <a class="project-link project-link--case" href="./projects/bioimage-analysis/">Explore the complete project →</a>
+
         </article>
         <article class="project-card project-card--system reveal" id="pva-pump" data-category="research bio">
           <div class="project-card__top"><span class="project-number">S.07</span><lumen-badge class="project-state" variant="outline">MASTER'S RESEARCH / 2022</lumen-badge></div>
           <div><p class="project-domain">PASSIVE MICROFLUIDICS</p><h3>Passive PVA Sponge Pump</h3><p>Master's research combining finger-initiated loading, PVA sponge capillarity, height differences, and PDMS packaging to study electricity-free microfluidic pumping.</p></div>
           <ul class="tag-list"><li>PVA</li><li>PDMS</li><li>Capillary Flow</li></ul>
           <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>Reduce dependence on large external electric pumps and assess a portable fluid-driving prototype.</dd></div><div><dt>Approach</dt><dd>Build the pump and packaging, compare sponge preparation/geometry and channel/height conditions, observe and measure flow, and integrate with an existing laboratory sorting chip.</dd></div><div><dt>Scope</dt><dd>A prototype and master's thesis were completed. This resume-based summary adds no flow-rate or clinical-benefit claims and does not attribute later biomimetic-platform awards to this study.</dd></div></dl></details>
+        <a class="project-link project-link--case" href="./projects/pva-pump/">Explore the complete project →</a>
+
         </article>
 <div class="catalog-heading course-heading" id="coursework"><img src="../img/projects/afpga-board.jpg" alt="Original Lab 01 experiment photograph: DE1-SoC seven-segment output" width="1172" height="878" loading="lazy"><div><h3>Graduate coursework / Methods &amp; results</h3><p>FPGA, medical imaging and graph algorithms, with source, procedures and traceable results.</p><small>Image: archived AFPGA Lab 01 experiment, not a new board test.</small></div></div>
         <article class="project-card reveal" data-category="fpga" data-delay="1">
@@ -221,6 +241,8 @@
           <ul class="tag-list"><li>Verilog</li><li>Quartus</li><li>Qsys</li></ul>
           <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>Study digital logic, memory and processors before exploring HPS-to-FPGA interfaces.</dd></div><div><dt>Approach</dt><dd>Eight labs document purpose, methods, results and analysis, alongside Quartus projects, original experiment photographs and reproduction notes.</dd></div><div><dt>Scope</dt><dd>The public edition excludes full assignment reports and personal details. Archived photographs, a representative build and verification still to be repeated are distinguished.</dd></div></dl></details>
           <a class="project-link" href="https://github.com/peianchen/NYCU-AFPGA-Labs">EXPLORE EIGHT LABS AND RESULTS ↗</a>
+        <a class="project-link project-link--case" href="./projects/afpga/">Explore the complete project →</a>
+
         </article>
         <article class="project-card reveal" id="medical-imaging" data-category="research imaging">
           <div class="project-card__top"><span class="project-number">P.07</span><lumen-badge class="project-state" variant="outline">PUBLIC / COURSEWORK</lumen-badge></div>
@@ -228,6 +250,8 @@
           <ul class="tag-list"><li>PyTorch</li><li>MRI / SPECT</li><li>U-Net</li><li>Faster R-CNN</li></ul>
           <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>Explore how classification, segmentation, and object detection address different medical-imaging tasks.</dd></div><div><dt>Approach</dt><dd>Organize preprocessing, models, training curves, and evaluations from five assignments covering SPECT/MRI, ultrasound, and chest X-rays.</dd></div><div><dt>Scope</dt><dd>Results are based on retained coursework records, not a claim of fresh training or clinical validation. Public material contains no patient data.</dd></div></dl></details>
           <a class="project-link" href="https://github.com/peianchen/NYCU-Deep-Learning-Medical-Image-Analysis" target="_blank" rel="noreferrer" aria-label="View medical imaging project code and documentation">VIEW PROJECT <span aria-hidden="true">↗</span></a>
+        <a class="project-link project-link--case" href="./projects/medical-imaging/">Explore the complete project →</a>
+
         </article>
         <article class="project-card reveal" id="data-structures" data-category="algorithms">
           <div class="project-card__top"><span class="project-number">P.08</span><lumen-badge class="project-state" variant="outline">PUBLIC / COURSEWORK</lumen-badge></div>
@@ -235,6 +259,8 @@
           <ul class="tag-list"><li>C</li><li>BFS</li><li>Huffman</li><li>Graph Algorithms</li></ul>
           <details class="project-details"><summary>Purpose, approach, and scope</summary><dl><div><dt>Purpose</dt><dd>Understand how data structures affect memory usage, operation costs, and algorithm choices.</dd></div><div><dt>Approach</dt><dd>Document each problem, main implementation, historical results, complexity, and use cases, with compilation and representative behavior checks.</dd></div><div><dt>Scope</dt><dd>Earlier code and known limitations remain visible. Historical timings are not new measurements, and passing samples does not establish complete specification coverage.</dd></div></dl></details>
           <a class="project-link" href="https://github.com/peianchen/NYCU-Data-Structures-Graph-Algorithms" target="_blank" rel="noreferrer" aria-label="View data structures and graph algorithms code and documentation">VIEW PROJECT <span aria-hidden="true">↗</span></a>
+        <a class="project-link project-link--case" href="./projects/data-structures/">Explore the complete project →</a>
+
         </article>
       </div>
       <p class="search-empty" hidden>No projects match. Try another keyword or switch to ALL SYSTEMS.</p>

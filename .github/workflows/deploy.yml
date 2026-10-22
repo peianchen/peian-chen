@@ -37,6 +37,8 @@ jobs:
           git diff --exit-code -- site/assets
       - name: Check static pages
         run: |
+          python3 tools/build_case_studies.py
+          git diff --exit-code -- site/index.html site/en/index.html site/projects site/en/projects site/img/projects
           python3 tools/check_site.py
           python3 tools/check_design.py
       - name: Check interactions

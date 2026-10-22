@@ -1,0 +1,51 @@
+[
+  {
+    "asset": "img/evidence/ecsnap-prototype.jpg",
+    "source_label": "ecsnap-image14.jpg",
+    "sha256": "e3c3a7428909177c6ff3cfe9910d8a2f70dd968109cce5621938aa9c2911dd86",
+    "kind": "prototype",
+    "project": "ecsnap"
+  },
+  {
+    "asset": "img/evidence/gravity-running-mean.png",
+    "source_label": "rpm-image34.png",
+    "sha256": "153f48ac4b0d4716f0973ef1ac09c96f28a653d78dc4d7765e50339844dd51a7",
+    "kind": "simulation",
+    "project": "gravity-controller"
+  },
+  {
+    "asset": "img/evidence/plant-contour-analysis.png",
+    "source_label": "contour_with_filtered_area_mm2.png",
+    "sha256": "cc320c53044fffb31edf3e1805f024dae63ca8c5bfb86de20a07c1b23d9ee888",
+    "kind": "analysis",
+    "project": "bioimage-analysis"
+  },
+  {
+    "asset": "img/evidence/digits-validation-accuracy.png",
+    "source_label": "digits__cell37__out02.png",
+    "sha256": "2025ad34556544980dfbc7f0f62233359d01f717d807befd6d72cc1ac3865a46",
+    "kind": "historical",
+    "project": "medical-imaging"
+  },
+  {
+    "asset": "img/evidence/digits-training-loss.png",
+    "source_label": "digits__cell37__out01.png",
+    "sha256": "6ba1bdfcc91c449701473bf4c09ffc39ac17b42b6e9321645ec4b35870a717d4",
+    "kind": "historical",
+    "project": "medical-imaging"
+  },
+  {
+    "asset": "img/evidence/graph-shortest-path.png",
+    "source_label": "shortest_path_tree_0.png",
+    "sha256": "8a9b05f10828b12fc2649a4a2bd65fe6588ba5fbb1dfef08901ca5690df54454",
+    "kind": "historical",
+    "project": "data-structures"
+  },
+  {
+    "asset": "img/evidence/afpga-hps-result.jpg",
+    "source_label": "result-03.jpg",
+    "sha256": "2ed4c41e473fb379c91e3506198cc77752a906923f2fa21f706b1662e3f14e3f",
+    "kind": "historical",
+    "project": "afpga"
+  }
+]

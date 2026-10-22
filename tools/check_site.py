@@ -4,6 +4,8 @@ from collections import Counter
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
+import json
+import hashlib
 import re
 
 
@@ -70,12 +72,28 @@ def main():
         page = Page()
         page.feed(source)
         assert not [key for key, count in Counter(page.ids).items() if count > 1]
-        assert {'purpose', 'workflow', 'decisions', 'evidence', 'reproduce', 'limits', 'sources'} <= set(page.ids)
+        assert {'purpose', 'architecture', 'workflow', 'evidence', 'analysis', 'reproduce', 'limits', 'sources'} <= set(page.ids)
         assert source.count('<h1>') == 1
         assert 'og:image' in source and 'hreflang="en"' in source
         assert not re.search(r'INTERVIEW_GUIDE|面試|展現能力|C:/Users|vno=', source)
         parsed[path.resolve()] = page
-    assert len(parsed) == 8
+    projects = json.loads((root.parent / 'content/case_studies.json').read_text(encoding='utf-8'))
+    assert len(projects) == 16 and len(parsed) == 34
+    for project in projects:
+        assert (root / 'img/projects' / (project['slug'] + '-share.png')).is_file()
+        assert len(project['zh']['architecture']) == len(project['en']['architecture']) == 4
+        assert len(project['zh']['analysis']) == len(project['en']['analysis']) >= 3
+        for image in project['gallery']:
+            assert image['zh']['caption'] and image['en']['caption']
+    media = json.loads((root.parent / 'content/media-sources.json').read_text(encoding='utf-8'))
+    assert {m['asset'] for m in media} == {i['src'] for p in projects for i in p['gallery']}
+    for item in media:
+        assert hashlib.sha256((root / item['asset']).read_bytes()).hexdigest() == item['sha256']
+    for relative in ('index.html', 'en/index.html'):
+        homepage = (root / relative).read_text(encoding='utf-8')
+        cards = re.findall(r'<article class="project-card\b.*?</article>', homepage, re.S)
+        for project, card in zip(projects,cards):
+            assert card.count(f'href="./projects/{project["slug"]}/"') == 1, project['slug']
     for path, page in parsed.items():
         checked = 0
         for link in page.links:
