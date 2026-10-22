@@ -48,6 +48,16 @@ lumen-card.featured-surface { display: flex; min-width: 0; padding: 0; gap: 0; b
 .featured-card small { font-size: 10px; letter-spacing: .04em; }
 .featured-card strong { padding-top: var(--space-3); font-size: var(--type-small); }
 .featured-card:hover { transform: none; }
+.research-focus-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); margin-bottom: var(--space-16); }
+.research-focus-card { display: flex; flex-direction: column; min-width: 0; padding: var(--card-inset); border: 1px solid var(--border-color); border-radius: var(--radius-lg); background: var(--panel-bg); }
+.research-focus-card .section-index { color: var(--signal); margin: 0 0 var(--space-6); }
+.research-focus-card h3 { margin: 0 0 var(--space-4); font: 600 clamp(24px, 2.5vw, 32px)/1.4 var(--font-display); text-wrap: balance; }
+.research-focus-card > p:not(.section-index), .research-focus-card li { color: var(--muted); font-size: var(--type-small); line-height: 1.9; }
+.research-focus-card > p:not(.section-index) { margin: 0; }
+.research-focus-card ul { padding-left: var(--space-6); margin: var(--space-6) 0 var(--space-8); }
+.research-focus-card li + li { margin-top: var(--space-3); }
+.research-project-links { display: grid; gap: var(--space-2); margin-top: auto; padding-top: var(--space-4); border-top: 1px solid var(--border-color); }
+.research-project-links a { display: flex; align-items: center; min-height: 44px; color: var(--signal); font-size: var(--type-small); line-height: 1.6; text-underline-offset: .25em; }
 .project-grid { gap: var(--space-6); border: 0; }
 .project-card { border: 1px solid var(--border-color); border-radius: var(--radius-md); background: var(--panel-bg); padding: var(--card-inset); gap: var(--space-6); justify-content: flex-start; }
 .project-card:hover { transform: none; box-shadow: none; background: var(--panel-bg); }
@@ -130,6 +140,7 @@ html[data-input="keyboard"] .reveal { opacity: 1; transform: none; }
   html:not(.js-ready) .menu-toggle { display: none; }
 }
 @media (max-width: 760px) {
+  .research-focus-grid { grid-template-columns: 1fr; }
   :root { --card-inset: var(--space-6); --shell: calc(100% - 32px); }
   .site-header { gap: var(--space-2); }
   .theme-toggle { padding: 0; min-width: 44px; }

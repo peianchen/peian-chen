@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="陳沛安，國立陽明交通大學電機工程博士生。投入嵌入式生醫感測、研究儀器、BLE 與 Android 整合、FPGA 邏輯設計及資料視覺化。">
+  <meta name="description" content="陳沛安，國立陽明交通大學電機工程博士生。主要研究低功耗穿戴式感測、BLE 裝置與手機整合，以及太空生醫實驗的取像、微流體載荷與地面控制系統。">
   <meta name="theme-color" content="#060d1c">
   <meta property="og:title" content="Pei An Chen | Engineering Portfolio">
-  <meta property="og:description" content="嵌入式生醫感測、研究儀器與 FPGA 系統：裝置韌體、通訊介面、操作軟體及資料處理。">
+  <meta property="og:description" content="穿戴式裝置與太空研究系統：溫度與汗壓感測、BLE 資料流程、實驗取像、微流體載荷及地面控制。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://peianchen.github.io/peian-chen/">
   <meta property="og:image" content="https://peianchen.github.io/peian-chen/img/portfolio-share.png">
@@ -43,7 +43,7 @@
     <nav class="primary-nav" id="primary-nav" aria-label="主要導覽">
       <a href="#featured">代表作品</a>
       <a href="#projects">專案</a>
-      <a href="#research">研究</a>
+      <a href="#research">主要研究</a>
       <a href="#profile">關於我</a>
       <a href="#coursework">課程實作</a>
       <a href="#contact">聯絡</a>
@@ -61,10 +61,10 @@
     <section class="hero section-shell" aria-labelledby="hero-title">
       <div class="hero-copy reveal">
         <div class="eyebrow"><span class="status-dot"></span> ENGINEERING PORTFOLIO <span id="taipei-time">UTC+08:00</span></div>
-        <p class="hero-kicker">EMBEDDED BIOMEDICAL SENSING / FPGA / RESEARCH INSTRUMENTATION</p>
-        <h1 id="hero-title">嵌入式生醫感測，<br><span>研究系統開發。</span></h1>
-        <p class="hero-lead">我是陳沛安，陽明交通大學電機工程博士生。我從實驗中的量測與控制需求出發，開發感測裝置、韌體與操作軟體。</p>
-        <p class="hero-note">穿戴式感測 · 研究儀器 · FPGA 數位系統</p>
+        <p class="hero-kicker">WEARABLE DEVICES / SPACE RESEARCH SYSTEMS</p>
+        <h1 id="hero-title">穿戴式感測，<br><span>太空研究系統。</span></h1>
+        <p class="hero-lead">我是陳沛安，陽明交通大學電機工程博士生。主要投入穿戴式裝置與太空生醫實驗系統，串接感測硬體、低功耗韌體、操作軟體與實驗資料。</p>
+        <p class="hero-note">穿戴式裝置 · 太空生醫實驗 · 軟硬體整合</p>
         <div class="hero-actions">
           <a class="button button--primary" href="#featured">探索代表作品 <span aria-hidden="true">↘</span></a>
           <a class="button button--ghost" href="https://github.com/peianchen" target="_blank" rel="noreferrer">GitHub / peianchen</a>
@@ -96,11 +96,11 @@
     </section>
 
     <section id="featured" class="featured-work section-shell" aria-labelledby="featured-title">
-      <div class="section-heading"><p class="section-index">01 / SELECTED WORK</p><h2 id="featured-title">三個系統，三種工程問題。</h2><p>從感測資料、實驗取像到逐週期驗證，從用途開始，理解架構、取捨與結果。</p></div>
+      <div class="section-heading"><p class="section-index">01 / SELECTED WORK</p><h2 id="featured-title">從穿戴式裝置，<br>到太空實驗平台。</h2><p>從感測貼片的資料連線，到實驗取像與微流體載荷整合，了解兩條研究主線中的裝置、流程與結果。</p></div>
       <div class="featured-grid">
         <lumen-card class="featured-surface" variant="default"><a class="featured-card" href="./projects/thermopatch/"><img src="./img/projects/thermopatch.svg" width="1200" height="450" loading="lazy" alt="ThermoPatch：感測貼片經 BLE 連接 Android 與 Firebase"><div class="featured-card__copy"><small>01 / CONNECTED SENSING</small><h3>ThermoPatch</h3><p>多個 BLE 感測貼片，如何共用清楚的監看與韌體維護流程？</p><strong>閱讀完整專案介紹 →</strong></div></a></lumen-card>
         <lumen-card class="featured-surface" variant="default"><a class="featured-card" href="./projects/spacecellcam/"><img src="./img/projects/spacecellcam.svg" width="1200" height="450" loading="lazy" alt="SpaceCellCam：照明、對焦、取像與儲存流程"><div class="featured-card__copy"><small>02 / EXPERIMENTAL IMAGING</small><h3>SpaceCellCam</h3><p>照明、對焦、記憶體與 SD 寫入，如何安排為可追蹤的取像週期？</p><strong>閱讀完整專案介紹 →</strong></div></a></lumen-card>
-        <lumen-card class="featured-surface" variant="default"><a class="featured-card" href="./projects/space-bmc/"><img src="./img/projects/space-bmc.svg" width="1200" height="450" loading="lazy" alt="Space BMC：心跳取樣、計數、逾時與清除流程"><div class="featured-card__copy"><small>03 / DIGITAL VERIFICATION</small><h3>Space BMC Core</h3><p>心跳中斷後，哪一個時脈邊緣應觸發逾時，又由什麼條件清除？</p><strong>閱讀完整專案介紹 →</strong></div></a></lumen-card>
+        <lumen-card class="featured-surface" variant="default"><a class="featured-card" href="./projects/space-payload/"><img src="./img/projects/space-payload.svg" width="1200" height="450" loading="lazy" alt="太空微流體載荷：實驗腔體、流體控制、感測與資料紀錄"><div class="featured-card__copy"><small>03 / SPACE MICROFLUIDICS</small><h3>太空微流體載荷</h3><p>如何將微流體、感測與控制整合成具備操作時序的地面研究原型？</p><strong>閱讀完整專案介紹 →</strong></div></a></lumen-card>
       </div>
     </section>
 
@@ -319,9 +319,43 @@
 
         <section class="research section-shell" id="research" aria-labelledby="research-title">
       <div class="section-heading reveal">
-        <p class="section-index">04 / RESEARCH TRACK</p>
-        <h2 id="research-title">感測、控制與<br>生醫實驗平台。</h2>
-        <p>研究工作圍繞穿戴式感測、微流體與多軸運動平台，包含裝置開發、量測流程及影像擷取，並透過展覽與研討會交流成果。</p>
+        <p class="section-index">04 / RESEARCH FOCUS</p>
+        <h2 id="research-title">主要研究：穿戴式裝置<br>與太空實驗系統。</h2>
+        <p>以兩個應用方向串接感測、韌體與資料流程：讓穿戴式裝置的讀值可追蹤，也讓太空生醫研究的地面實驗能協調控制、取像與紀錄。</p>
+      </div>
+      <div class="research-focus-grid">
+        <article class="research-focus-card" aria-labelledby="wearable-focus-title">
+          <p class="section-index">01 / WEARABLE DEVICES</p>
+          <h3 id="wearable-focus-title">低功耗穿戴式感測</h3>
+          <p>以溫度貼片與汗液壓力平台為核心，研究裝置端取樣、BLE 通訊、手機操作與資料保存。從單一感測器延伸到多裝置管理，關注每筆讀值的來源、時間與有效狀態。</p>
+          <ul>
+            <li>裝置開發：Nordic nRF、感測介面、週期取樣與功耗分析。</li>
+            <li>行動整合：Android／Wear OS、部位對應、連線與韌體維護。</li>
+            <li>資料流程：本機紀錄、同步與趨勢呈現，依專案版本說明實作範圍。</li>
+          </ul>
+          <nav class="research-project-links" aria-label="穿戴式研究專案">
+            <a href="./projects/thermopatch/">ThermoPatch 溫度貼片 →</a>
+            <a href="./projects/pressible/">PressiBLE 汗壓平台 →</a>
+            <a href="./projects/nrf54l15-mlx90614/">nRF54L15 感測韌體 →</a>
+            <a href="./projects/galaxy-watch/">Galaxy Watch 感測 →</a>
+          </nav>
+        </article>
+        <article class="research-focus-card" aria-labelledby="space-focus-title">
+          <p class="section-index">02 / SPACE RESEARCH SYSTEMS</p>
+          <h3 id="space-focus-title">太空生醫實驗與載荷整合</h3>
+          <p>圍繞太空生醫研究的實驗需求，整合微流體、影像擷取與多軸運動控制。以地面原型建立操作時序與資料紀錄，再分別檢查控制行為、影像流程及數位邏輯。</p>
+          <ul>
+            <li>實驗載荷：微閥、流路、感測與控制介面的整合。</li>
+            <li>取像與運動：SpaceCellCam、雙軸平台及實驗資料擷取。</li>
+            <li>驗證紀錄：區分地面實驗、模型模擬與 RTL 功能檢查；目前不宣稱飛行驗證。</li>
+          </ul>
+          <nav class="research-project-links" aria-label="太空相關研究專案">
+            <a href="./projects/space-payload/">太空微流體載荷 →</a>
+            <a href="./projects/spacecellcam/">SpaceCellCam 取像 →</a>
+            <a href="./projects/gravity-controller/">雙軸重力控制平台 →</a>
+            <a href="./projects/space-bmc/">Space BMC 數位邏輯 →</a>
+          </nav>
+        </article>
       </div>
       <div class="milestone-layout">
         <div class="milestone-rail reveal">
@@ -345,8 +379,8 @@
       <div class="research-platforms reveal" aria-labelledby="platforms-title">
         <div class="research-subhead">
           <p class="section-index">PLATFORM ARCHIVE</p>
-          <h3 id="platforms-title">研究平台與應用方向</h3>
-          <p>三個持續串接的研究方向：運動控制、穿戴式感測，以及微流體生醫分析。以下整理各平台的目的與組成。</p>
+          <h3 id="platforms-title">相關平台與研究基礎</h3>
+          <p>運動控制、穿戴式 IoT 與微流體生醫分析累積的研究基礎，支援目前的穿戴式裝置及太空實驗系統開發。</p>
         </div>
         <div class="platform-grid">
           <article>
@@ -426,12 +460,12 @@
       <div class="profile-grid">
         <article class="profile-intro reveal">
           <p class="profile-label">CURRENT FOCUS</p>
-          <h3>Embedded systems × FPGA × intelligent sensing</h3>
+          <h3>Wearable devices × Space research systems</h3>
           <p>博士與近期研發專案由我獨立開發，依專案範圍負責需求、架構、韌體與操作軟體、系統整合及測試文件；現有成果與開發中項目分別說明。</p>
           <p>我從宜蘭大學生物機電工程，進入陽明交通大學生醫工程碩士班，再延伸至電機工程博士研究。這條路徑讓我同時接觸生物實驗需求、感測控制與軟硬體開發。</p>
           <p>實作涵蓋 Nordic nRF、ESP32、Raspberry Pi、Android／Wear OS 與 FPGA。除了讓裝置取得資料，我也處理離線保存、裝置識別、資料同步與異常紀錄，讓實驗流程更容易操作和追蹤。</p>
           <p>ThermoPatch 的後續 V2 平台進一步以 Room 保存本機歷史和各裝置同步進度，將 BLE 取回資料與 Firebase 上傳分開，處理待傳佇列、背景重試和多裝置輪流同步。V2 與汗壓研究程式未公開，網站僅介紹用途與工程工作。</p>
-          <p>目前聚焦低功耗穿戴式感測、BLE 多裝置資料流程及 Verilog RTL，並持續研究邊緣運算與 TinyML。設計選擇會連同測試條件、模擬結果和未完成項目一起記錄。</p>
+          <p>目前以低功耗穿戴式裝置與太空生醫實驗系統為主要研究方向，涵蓋 BLE 多裝置資料流程、微流體載荷、取像與控制；Verilog RTL、邊緣運算與 TinyML 則作為持續深化的工程方法。設計選擇會連同測試條件、模擬結果和未完成項目一起記錄。</p>
           <dl class="profile-meta">
             <div><dt>LOCATION</dt><dd>Taiwan / UTC+08</dd></div>
             <div><dt>LANGUAGES</dt><dd>Chinese / English / Japanese (basic)</dd></div>
