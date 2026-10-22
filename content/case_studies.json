@@ -1,0 +1,85 @@
+[
+  {
+    "slug": "thermopatch",
+    "name": "ThermoPatch",
+    "repo": "ThermoPatch",
+    "domain": "01 / CONNECTED SENSING",
+    "tags": "nRF52840 / BLE / Android / Firebase",
+    "nodes": ["SENSOR PATCH", "BLE / GATT", "ANDROID", "FIREBASE"],
+    "zh": {
+      "title": "讓多個感測裝置，成為一套可操作的系統。",
+      "summary": "串接 BLE 溫度貼片、六部位顯示、電量狀態與手機端韌體更新，處理從裝置連線到資料呈現的完整流程。",
+      "purpose": "多部位量測需要同時處理裝置身分、部位對應、連線狀態和更新目標。ThermoPatch 將這些操作集中在 Android App，讓使用者能從同一個介面連接裝置、觀察讀值並選擇要更新的貼片。",
+      "steps": [["感測與傳輸", "配套 nRF52840 韌體透過自訂溫度服務、標準 Battery Service 與 Nordic DFU 提供資料及更新介面。公開 repository 主要保存 Android App，韌體另行維護。"], ["狀態與部位", "BluetoothViewModel 管理掃描、GATT 連線與通知；DeviceViewModel 將資料轉為裝置狀態與身體部位讀值，提供頭、胸、左右手臂及左右腿六個顯示位置。"], ["顯示與同步", "Jetpack Compose 顯示讀值、電量與充電狀態，聚合資料後串接 Firebase Realtime Database。連線、顯示與雲端保存是不同階段，應分別確認。"], ["更新維護", "在設定頁選擇連線裝置與 DFU ZIP，再由 MyDfuService 與 Nordic 回呼呈現進度。明確選擇目標可降低多裝置情境下更新錯誤對象的風險。"]],
+      "decisions": [["部位對應與裝置連線分開", "畫面需要回答量測來自哪個部位，BLE 層則管理實際連線。兩者分開有助於追蹤裝置替換與斷線。"], ["DFU 是獨立操作流程", "將檔案、目標和進度集中在設定頁，讓日常監看不與維護操作混雜。"], ["公開版與後續研究分開", "本頁說明公開 nRF52840 App；後續 V2 的 Room、待傳佇列與多裝置同步研究不視為此版本已具備的功能。"]],
+      "results": [["公開實作", "可閱讀掃描、通知、部位資料、電量及 DFU 的 App 程式碼與操作流程。"], ["既有測試紀錄", "repository 保存 v1.0.1 單元測試摘要：1 個測試、0 失敗。這份摘要不能證明 BLE 多裝置、實機 DFU 或溫度準確度。"], ["仍需實機確認", "連線穩定度、感測校正、斷線恢復、更新中斷和長時間記錄，需要指定手機、韌體與裝置條件的測試。"]],
+      "reproduce": ["依 repository 的 Android SDK、JDK 與 Gradle 設定準備環境，使用自己的 Firebase 專案設定。", "執行 assembleDebug 與 testDebugUnitTest，分別確認建置與軟體測試。", "在相容的實體裝置上核對通知格式、部位對應與電量；DFU 僅使用與目標板及 bootloader 相符的套件。"],
+      "limits": "這是研究型感測整合專案；六個顯示位置不代表六台裝置並行可靠度已通過驗證，也不代表具備臨床用途或醫療量測精度。",
+      "caption": "依公開程式職責繪製的系統架構圖；不是 App 截圖或實測數據。"
+    },
+    "en": {
+      "title": "Connecting sensor patches into one usable system.",
+      "summary": "BLE temperature patches, six body-location views, battery status and phone-based firmware updates, connected through an Android workflow.",
+      "purpose": "Multi-location sensing requires device identity, location mapping, connection state and an unambiguous update target. ThermoPatch brings these operations into one Android application for connecting patches, observing readings and selecting a device for maintenance.",
+      "steps": [["Acquire and transmit", "Companion nRF52840 firmware exposes temperature, standard Battery Service and Nordic DFU interfaces. The public repository primarily contains the Android app; firmware is maintained separately."], ["Track state and location", "BluetoothViewModel manages scanning, GATT connections and notifications. DeviceViewModel transforms payloads into device state and six body locations: head, chest, both arms and both legs."], ["Display and synchronize", "Jetpack Compose presents readings, battery and charging state; aggregated data is sent to Firebase Realtime Database. Connection, display and cloud persistence are separate stages to verify."], ["Maintain firmware", "Settings provides a connected-device selector and DFU ZIP selection. MyDfuService and Nordic callbacks report update progress. Explicit targeting reduces ambiguity when multiple devices are connected."]],
+      "decisions": [["Separate body location from connectivity", "The UI answers where a reading comes from; the BLE layer manages the physical connection. Keeping these responsibilities distinct helps diagnose replacement and disconnection."], ["Give DFU its own workflow", "Keep file selection, target selection and progress together so maintenance is separate from everyday monitoring."], ["Keep release boundaries clear", "This page describes the public nRF52840 app. Room persistence and queued multi-device synchronization in the later private V2 research are not attributed to this release."]],
+      "results": [["Public implementation", "Source and procedures cover scanning, notifications, body-location data, battery state and DFU."], ["Archived test evidence", "The repository includes a v1.0.1 unit-test summary with 1 test and 0 failures. That summary does not establish multi-device BLE stability, physical DFU reliability or temperature accuracy."], ["Hardware verification needed", "Connection stability, calibration, recovery, interrupted updates and long-duration recording require tests with identified phones, firmware and sensor nodes."]],
+      "reproduce": ["Prepare the Android SDK, JDK and Gradle environment specified by the repository and configure your own Firebase project.", "Run assembleDebug and testDebugUnitTest to check the build and software tests separately.", "Use compatible physical devices to inspect payloads, location mapping and battery state. DFU packages must match the target board and bootloader."],
+      "limits": "This is a research sensing integration project. Six display locations do not establish reliable concurrent operation of six devices, clinical suitability or medical measurement accuracy.",
+      "caption": "System diagram derived from public code responsibilities, not an app screenshot or measured data."
+    }
+  },
+  {
+    "slug": "spacecellcam", "name": "SpaceCellCam", "repo": "SpaceCellCam", "domain": "02 / EXPERIMENTAL IMAGING", "tags": "ESP32-S3 / OV5640 / PSRAM / microSD",
+    "nodes": ["WAKE + LIGHT", "FOCUS + JPEG", "PSRAM + STANDBY", "SD + VERIFY"],
+    "zh": {
+      "title": "把一次拍照，整理成可追蹤的取像週期。",
+      "summary": "以 ESP32-S3 與 OV5640 AF 控制定時照明、對焦重用、JPEG 擷取與 microSD 寫入，讓實驗取像流程可觀察、可追查。",
+      "purpose": "長時間生物觀察需要穩定的取像順序與可保存的影像。這個韌體將相機、LED、記憶體和 SD 儲存排成明確週期，並透過日誌區分對焦、取像、待機與寫檔問題。",
+      "steps": [["喚醒與照明", "目前設定目標週期為 10 秒、XCLK 為 20 MHz，先喚醒感測器並開啟 LED，等待 300 ms 讓照明與曝光穩定。這些是設定值。"], ["對焦與擷取", "第一次使用中央區域自動對焦並鎖定；後續擷取重用焦點，丟棄一張過渡影格，再取得 QSXGA JPEG。"], ["歸還緩衝區", "先將 JPEG 複製到 PSRAM，再歸還 camera frame buffer，讓相機能進入 standby，之後才處理 SD 寫入。"], ["寫入與檢查", "影像先寫暫存檔，再重新命名並確認檔案大小。每個 bucket 保存 500 張；開機時回復編號以避免覆寫既有影像。"]],
+      "decisions": [["重用焦點的取捨", "固定場景可省去每次重新搜尋焦點，但目標距離變動時可能失焦，需以照片與日誌一起判讀。"], ["記憶體換取流程解耦", "PSRAM 的 JPEG 副本增加暫時記憶體需求，讓 SD 寫入不必延長 LED 點亮及相機活躍時間。"], ["保存失敗的線索", "對焦失敗、frame timeout、短寫入與大小不符各有日誌，方便定位問題發生在哪一層。"]],
+      "results": [["可確認的設定", "公開 README 與韌體描述 10 秒週期、focus-lock reuse、sensor standby 及暫存檔驗證流程。"], ["結果判讀方式", "使用 reuse locked focus、standby enter/wake 與 SD 驗證紀錄，對照實際照片判斷各階段是否完成。"], ["尚未建立的結論", "本頁沒有新增取像實驗，不以程式設定推論實際準時率、功耗、光學品質或長時間資料完整率。"]],
+      "reproduce": ["準備 XIAO ESP32S3、OV5640 AF、microSD 與穩定供電，依 repository 的 platformio.ini 建置。", "記錄首次及後續擷取日誌，確認 AF 搜尋與重用路徑不同。", "固定場景後改變目標距離，比對照片清晰度與日誌；另檢查 SD 檔案大小、編號及重新開機後是否覆寫。"],
+      "limits": "standby／wake 時的 VCM 聲音不等於重新對焦；ESP32-S3 內部溫度也不是 OV5640 或馬達溫度。專案名稱不表示已完成太空環境或在軌驗證。",
+      "caption": "依韌體順序繪製的取像流程；方塊寬度不代表耗時比例。"
+    },
+    "en": {
+      "title": "Turning a camera capture into a traceable cycle.",
+      "summary": "ESP32-S3 and OV5640 AF firmware coordinates lighting, focus reuse, JPEG capture and microSD storage for observable experimental imaging.",
+      "purpose": "Long-running biological observation needs an explicit capture sequence and recoverable images. This firmware schedules the camera, LED, memory and storage as one cycle, with logs that distinguish focus, capture, standby and file errors.",
+      "steps": [["Wake and illuminate", "Current configuration targets a 10-second period and 20 MHz XCLK. The sensor wakes and the LED settles for 300 ms before capture. These are configuration values."], ["Focus and capture", "The first capture uses center autofocus and locks it. Later captures reuse that lock, discard one transition frame and acquire a QSXGA JPEG."], ["Release the frame buffer", "The JPEG is copied into PSRAM before returning the camera buffer. The sensor can then enter standby before SD writing begins."], ["Save and verify", "A temporary file is written, renamed and checked for size. Each bucket holds 500 images; numbering is recovered at boot to avoid overwriting previous captures."]],
+      "decisions": [["Reuse focus with a scene constraint", "A fixed scene can avoid repeated autofocus searches. A changing target distance may instead produce blur, so images and logs must be interpreted together."], ["Trade memory for decoupled work", "A PSRAM copy requires temporary memory but lets SD writes happen after LED off and sensor standby."], ["Preserve failure clues", "Focus failure, frame timeout, short writes and size mismatches have distinct logs to localize the failing stage."]],
+      "results": [["Documented configuration", "The public README and firmware describe the 10-second target, focus reuse, standby and temporary-file verification."], ["How to interpret a run", "Compare reuse-locked-focus, standby enter/wake and SD verification messages against the actual captured images."], ["Limits of this review", "No new capture experiment was performed for this page. Configuration alone cannot establish achieved timing, power, optical quality or long-run data completeness."]],
+      "reproduce": ["Prepare a XIAO ESP32S3, OV5640 AF, microSD and stable power, then build with the repository's platformio.ini.", "Record first and subsequent captures and distinguish the autofocus-search and focus-reuse log paths.", "Change target distance after establishing a fixed scene, compare sharpness and logs, and inspect file sizes, numbering and restart behavior."],
+      "limits": "VCM noise during standby/wake does not by itself mean a new autofocus search. ESP32-S3 internal temperature is not camera or VCM temperature. The project name does not establish space-environment or orbital qualification.",
+      "caption": "Capture sequence derived from firmware; block width does not represent elapsed time."
+    }
+  },
+  {
+    "slug": "space-bmc", "name": "Space BMC Core", "repo": "Space-BMC-Core-SEMC", "domain": "03 / DIGITAL VERIFICATION", "tags": "Verilog-2001 / Questa / Self-checking testbench",
+    "nodes": ["CLOCK + HEARTBEAT", "ELAPSED COUNTER", "TIMEOUT LATCH", "CLEAR + RESTART"],
+    "validation": {"date": "2026-10-22", "checks": 15, "tool": "Questa 2025.2", "report": "docs/VALIDATION-2026-10-22.md"},
+    "zh": {
+      "title": "把逾時條件，定義到每一個時脈邊緣。",
+      "summary": "參數化 Verilog 心跳監測核心，搭配自動檢查 testbench，將逾時、鎖存、清除與重新計時變成可重複驗證的行為。",
+      "purpose": "監測系統必須明確定義多久未收到心跳才算逾時、故障訊號是否保持，以及恢復後何時重新計時。本專案先獨立實作這個基本模組，讓時間邊界能在模擬中逐週期檢查。",
+      "steps": [["輸入與取樣", "heartbeat 與 clear_timeout 在 clk 上升緣取樣；rst_n 為非同步低有效 reset。輸入跨時脈同步需由整合層另行處理。"], ["計算等待週期", "TIMEOUT_CYCLES 表示連續未取樣到 heartbeat 的上升緣數；預設 25,000,000，在 50 MHz 時脈假設下對應 500 ms。"], ["鎖存逾時", "計數達門檻時將 timeout 設為 1 並保持，不因單純等待而自行清除。"], ["清除與重新開始", "reset、heartbeat 或 clear_timeout 可清除 timeout 並重設計數器；testbench 使用較小門檻加快邊界與重啟檢查。"]],
+      "decisions": [["先固定行為契約", "明確寫出取樣邊緣與門檻定義，避免對第 N 或 N+1 個週期的不同理解造成 off-by-one 問題。"], ["用參數縮短模擬", "硬體與測試採用相同 RTL，只改門檻。小參數讓邊界案例容易觀察，但仍需涵蓋不同參數範圍。"], ["監測與恢復分層", "目前只產生鎖存的逾時狀態；Recovery FSM、電源重啟及完整 BMC 功能不包含在此里程碑。"]],
+      "results": [["公開實作", "RTL、testbench 與 Questa PowerShell 執行入口均可閱讀，測試入口要求 TEST PASSED 且程序正常結束。"], ["時間換算", "500 ms 是 25,000,000 / 50,000,000 的推導值，不是板上延遲量測。"], ["驗證範圍", "功能模擬不等於 timing closure、板上穩定性或太空環境驗證；這些需要另行記錄。"]],
+      "reproduce": ["安裝相容 Questa 工具，於 repository 根目錄執行 scripts/run_heartbeat_sim.ps1。", "檢查 TEST PASSED 與 exit code，並用 open_heartbeat_wave.ps1 觀察計數、timeout 及測試檢查器。", "整合到 FPGA 前確認時脈、reset、跨時脈輸入同步與 constraints；再獨立進行 synthesis、timing 與上板驗證。"],
+      "limits": "本頁的互動圖是行為說明，不是模擬器輸出。模組假設同步取樣介面；非同步 heartbeat 需要額外的 CDC 設計。",
+      "caption": "依 RTL 繪製的行為架構；互動說明不取代 testbench 或實測。"
+    },
+    "en": {
+      "title": "Defining a timeout at the clock-edge level.",
+      "summary": "A parameterized Verilog heartbeat monitor with a self-checking testbench for timeout boundaries, latching, clearing and interval restart.",
+      "purpose": "A monitor needs an explicit contract: how many missing heartbeats constitute a timeout, whether that output stays asserted and when counting restarts. This project isolates that module so cycle boundaries can be checked repeatedly in simulation.",
+      "steps": [["Sample the inputs", "heartbeat and clear_timeout are sampled on rising clk edges; rst_n is asynchronous and active low. Cross-clock synchronization belongs in the integration layer."], ["Count elapsed edges", "TIMEOUT_CYCLES counts consecutive rising edges without a sampled heartbeat. The default 25,000,000 corresponds to 500 ms under a 50 MHz clock assumption."], ["Latch timeout", "The output asserts at the threshold and remains high. Waiting alone does not clear it."], ["Clear and restart", "Reset, a heartbeat or clear_timeout clears the output and resets the counter. The testbench uses a smaller threshold for fast boundary and restart checks."]],
+      "decisions": [["Specify behavior before integration", "Document the sampling edge and threshold to avoid disagreement about whether assertion belongs at edge N or N+1."], ["Shorten simulation through parameters", "The hardware and test share the same RTL with different thresholds. Small values make boundaries observable; parameter ranges still need coverage."], ["Separate monitoring from recovery", "This milestone produces a latched timeout. Recovery FSM, power sequencing and a complete BMC are outside its scope."]],
+      "results": [["Public implementation", "RTL, testbench and a Questa PowerShell entry point are available. The runner requires TEST PASSED and normal process termination."], ["Timing interpretation", "500 ms is derived from 25,000,000 / 50,000,000, not measured board latency."], ["Verification boundary", "Functional simulation does not establish timing closure, board reliability or space qualification; those require separate evidence."]],
+      "reproduce": ["Install a compatible Questa toolchain and run scripts/run_heartbeat_sim.ps1 from the repository root.", "Check TEST PASSED and the exit code, then use open_heartbeat_wave.ps1 to inspect the counter, timeout and checker state.", "Before FPGA integration, review clock, reset, input synchronization and constraints; perform synthesis, timing and board verification separately."],
+      "limits": "The interactive diagram is an explanation, not simulator output. The module assumes a synchronous sampled interface; asynchronous heartbeats require additional CDC design.",
+      "caption": "Behavioral architecture derived from RTL; the interactive guide does not replace testbench or hardware evidence."
+    }
+  }
+]

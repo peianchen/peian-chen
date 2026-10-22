@@ -9,6 +9,8 @@
   <meta property="og:description" content="嵌入式生醫感測、研究儀器與 FPGA 系統：裝置韌體、通訊介面、操作軟體及資料處理。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://peianchen.github.io/peian-chen/">
+  <meta property="og:image" content="https://peianchen.github.io/peian-chen/img/portfolio-share.png">
+  <meta name="twitter:card" content="summary_large_image">
   <title>Pei An Chen | Engineering Portfolio</title>
   <link rel="canonical" href="https://peianchen.github.io/peian-chen/">
   <link rel="alternate" hreflang="zh-Hant" href="https://peianchen.github.io/peian-chen/">
@@ -19,6 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./case-studies.css">
   <script src="./site.js" defer></script>
 </head>
 <body>
@@ -35,11 +38,11 @@
       <span></span><span></span><span></span><span class="sr-only">開啟選單</span>
     </button>
     <nav class="primary-nav" id="primary-nav" aria-label="主要導覽">
-      <a href="#systems">系統</a>
+      <a href="#featured">代表作品</a>
       <a href="#projects">專案</a>
       <a href="#research">研究</a>
       <a href="#profile">關於我</a>
-      <a href="#capabilities">技術</a>
+      <a href="#coursework">課程實作</a>
       <a href="#contact">聯絡</a>
     </nav>
     <div class="header-actions">
@@ -57,10 +60,10 @@
         <div class="eyebrow"><span class="status-dot"></span> SYSTEMS ONLINE <span id="taipei-time">UTC+08:00</span></div>
         <p class="hero-kicker">EMBEDDED BIOMEDICAL SENSING / FPGA / RESEARCH INSTRUMENTATION</p>
         <h1 id="hero-title">嵌入式生醫感測，<br><span>研究系統開發。</span></h1>
-        <p class="hero-lead">我是陳沛安，目前就讀國立陽明交通大學電機工程博士班。我從實驗中的量測與控制需求出發，開發感測裝置韌體、通訊介面、操作軟體與資料處理流程，研究方向涵蓋穿戴式感測、微流體儀器及 FPGA 數位系統。</p>
-        <p class="hero-note">博士與近期研發專案由我獨立開發，依專案範圍負責需求、架構、韌體與操作軟體、系統整合及測試文件；現有成果與開發中項目分別說明。</p>
+        <p class="hero-lead">我是陳沛安，陽明交通大學電機工程博士生。我從實驗中的量測與控制需求出發，開發感測裝置、韌體與操作軟體。</p>
+        <p class="hero-note">穿戴式感測 · 研究儀器 · FPGA 數位系統</p>
         <div class="hero-actions">
-          <a class="button button--primary" href="#projects">探索工程專案 <span aria-hidden="true">↘</span></a>
+          <a class="button button--primary" href="#featured">探索代表作品 <span aria-hidden="true">↘</span></a>
           <a class="button button--ghost" href="https://github.com/peianchen" target="_blank" rel="noreferrer">GitHub / peianchen</a>
         </div>
         <dl class="hero-stats" aria-label="網站內容導覽">
@@ -89,9 +92,155 @@
       </div>
     </section>
 
+    <section id="featured" class="featured-work section-shell" aria-labelledby="featured-title">
+      <div class="section-heading"><p class="section-index">01 / SELECTED WORK</p><h2 id="featured-title">三個系統，三種工程問題。</h2><p>從感測資料、實驗取像到逐週期驗證，從用途開始，理解架構、取捨與結果。</p></div>
+      <div class="featured-grid">
+        <a class="featured-card" href="./projects/thermopatch/"><img src="./img/projects/thermopatch.svg" width="1200" height="450" loading="lazy" alt="ThermoPatch：感測貼片經 BLE 連接 Android 與 Firebase"><div class="featured-card__copy"><small>01 / CONNECTED SENSING</small><h3>ThermoPatch</h3><p>多個 BLE 感測貼片，如何共用清楚的監看與韌體維護流程？</p><strong>閱讀完整專案介紹 →</strong></div></a>
+        <a class="featured-card" href="./projects/spacecellcam/"><img src="./img/projects/spacecellcam.svg" width="1200" height="450" loading="lazy" alt="SpaceCellCam：照明、對焦、取像與儲存流程"><div class="featured-card__copy"><small>02 / EXPERIMENTAL IMAGING</small><h3>SpaceCellCam</h3><p>照明、對焦、記憶體與 SD 寫入，如何安排為可追蹤的取像週期？</p><strong>閱讀完整專案介紹 →</strong></div></a>
+        <a class="featured-card" href="./projects/space-bmc/"><img src="./img/projects/space-bmc.svg" width="1200" height="450" loading="lazy" alt="Space BMC：心跳取樣、計數、逾時與清除流程"><div class="featured-card__copy"><small>03 / DIGITAL VERIFICATION</small><h3>Space BMC Core</h3><p>心跳中斷後，哪一個時脈邊緣應觸發逾時，又由什麼條件清除？</p><strong>閱讀完整專案介紹 →</strong></div></a>
+      </div>
+    </section>
+
+    <section class="projects section-shell" id="projects" aria-labelledby="projects-title">
+      <div class="section-heading section-heading--row reveal">
+        <div><p class="section-index">02 / PROJECT INDEX</p><h2 id="projects-title">工程專案矩陣</h2></div>
+        <p>感測裝置、取像韌體、數位邏輯、醫學影像與交通資料應用。各專案整理開發目的、實作流程及目前範圍。</p>
+      </div>
+      <div class="project-search reveal">
+        <label for="project-search">尋找專案 <span>SEARCH INDEX</span></label>
+        <div><input id="project-search" type="search" placeholder="搜尋 BLE、FPGA、醫學影像、演算法…" autocomplete="off" aria-controls="project-grid"><button class="search-clear" type="button" hidden>清除搜尋</button></div>
+      </div>
+      <div class="project-toolbar reveal" role="group" aria-label="專案分類篩選">
+        <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">ALL SYSTEMS</button>
+        <button class="filter-button" type="button" data-filter="bio" aria-pressed="false">BIOSENSING</button>
+        <button class="filter-button" type="button" data-filter="embedded" aria-pressed="false">EMBEDDED</button>
+        <button class="filter-button" type="button" data-filter="fpga" aria-pressed="false">FPGA</button>
+        <button class="filter-button" type="button" data-filter="imaging" aria-pressed="false">AI / IMAGING</button>
+        <button class="filter-button" type="button" data-filter="algorithms" aria-pressed="false">ALGORITHMS</button>
+        <button class="filter-button" type="button" data-filter="web" aria-pressed="false">WEB / DATA</button>
+        <button class="filter-button" type="button" data-filter="research" aria-pressed="false">RESEARCH</button>
+      </div>
+      <p class="project-reading-note">展開卡片可讀取目的、方法與限制。「公開程式」可直接查看 GitHub；研究介紹不代表相關原始碼已公開。軟體測試、模擬結果與實體驗證依各專案紀錄分別說明。</p>
+
+      <div class="project-grid" id="project-grid">
+<h3 class="catalog-heading" id="engineering-work">工程與研究系統</h3>
+        <article class="project-card project-card--feature reveal" data-category="bio embedded">
+          <div class="project-card__top"><span class="project-number">P.01</span><span class="project-state">PUBLIC / ANDROID</span></div>
+          <div><p class="project-domain">WEARABLE BIOSENSING</p><h3>ThermoPatch</h3><p>以 nRF52840 感測貼片搭配 Android App，整合多裝置連線、六個身體部位的溫度顯示、電量狀態、Firebase 同步及手機端 OTA 更新。</p></div>
+          <ul class="tag-list"><li>Kotlin</li><li>BLE</li><li>Firebase</li><li>nRF52840</li></ul>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>集中觀察多部位體表溫度，並讓感測貼片可從手機維護與更新。</dd></div><div><dt>實作</dt><dd>以 Jetpack Compose、ViewModel 與 BLE client 管理連線及資料；OTA 使用 Nordic DFU，更新前需明確選擇目標裝置。</dd></div><div><dt>範圍</dt><dd>公開版本包含即時讀值、部位對應與更新流程；長期歷史分析及韌體版本相容性檢查仍有限。研究用途，非診斷工具。</dd></div></dl></details>
+          <a class="project-link" href="https://github.com/peianchen/ThermoPatch" target="_blank" rel="noreferrer" aria-label="在 GitHub 查看 ThermoPatch">VIEW SOURCE <span>↗</span></a>
+        <a class="project-link" href="./projects/thermopatch/">完整專案介紹 →</a>
+        </article>
+        <article class="project-card reveal" data-category="research embedded" data-delay="1">
+          <div class="project-card__top"><span class="project-number">P.02</span><span class="project-state">PUBLIC / IMAGING</span></div>
+          <div><p class="project-domain">BIOLOGICAL IMAGING</p><h3>SpaceCellCam</h3><p>XIAO ESP32S3 與 OV5640 AF 定時取像韌體，預設每 10 秒擷取 QSXGA JPEG，整合 LED 照明、焦點鎖定重用、感測器待機與 microSD 儲存。</p></div>
+          <ul class="tag-list"><li>C++</li><li>ESP32-S3</li><li>OV5640</li><li>microSD</li></ul>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>持續記錄生物實驗影像，並降低每次重新對焦及長時間照明造成的負擔。</dd></div><div><dt>實作</dt><dd>首次對焦後重用鎖定狀態；影像先複製到 PSRAM，釋放 frame buffer 並讓相機待機，再以暫存檔、重新命名與檔案大小檢查完成寫入。</dd></div><div><dt>範圍</dt><dd>目前公開核心是取像與儲存韌體。對焦、溫升與供電表現需依實際光學配置測試，未宣稱完成飛行或環境認證。</dd></div></dl></details>
+          <a class="project-link" href="https://github.com/peianchen/SpaceCellCam" target="_blank" rel="noreferrer" aria-label="在 GitHub 查看 SpaceCellCam">VIEW SOURCE <span>↗</span></a>
+        <a class="project-link" href="./projects/spacecellcam/">完整專案介紹 →</a>
+        </article>
+        <article class="project-card reveal" data-category="fpga" data-delay="2">
+          <div class="project-card__top"><span class="project-number">P.03</span><span class="project-state">PUBLIC / RTL</span></div>
+          <div><p class="project-domain">RELIABILITY LOGIC</p><h3>Space BMC Core</h3><p>參數化 Verilog 心跳逾時監測核心，搭配自動檢查 testbench，驗證逾時週期邊界、輸出鎖存、清除與重新計時行為。</p></div>
+          <ul class="tag-list"><li>Verilog</li><li>Questa</li><li>DE10</li></ul>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>以時脈週期定義心跳缺失的逾時條件，作為後續系統監測邏輯的基礎。</dd></div><div><dt>實作</dt><dd>逾時後鎖存輸出；reset、有效心跳或 clear_timeout 可清除並重新計時。以 Questa 執行小參數、逐週期的自動檢查。</dd></div><div><dt>範圍</dt><dd>目前里程碑不含恢復時序或 Recovery FSM。功能模擬不代表已完成板上、時序收斂或太空等級驗證。</dd></div></dl></details>
+          <a class="project-link" href="https://github.com/peianchen/Space-BMC-Core-SEMC" target="_blank" rel="noreferrer" aria-label="在 GitHub 查看 Space BMC Core">VIEW SOURCE <span>↗</span></a>
+        <a class="project-link" href="./projects/space-bmc/">完整專案介紹 →</a>
+        </article>
+        <article class="project-card reveal" data-category="embedded bio">
+          <div class="project-card__top"><span class="project-number">P.04</span><span class="project-state">PUBLIC / ZEPHYR</span></div>
+          <div><p class="project-domain">LOW-POWER SENSING</p><h3>nRF54L15 × MLX90614</h3><p>以 Zephyr／nRF Connect SDK 在 XIAO nRF54L15 上讀取紅外線溫度，透過 BLE 傳送資料，支援每 60 秒取樣及手機要求即時量測。</p></div>
+          <ul class="tag-list"><li>C</li><li>Zephyr</li><li>nRF54L15</li></ul>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>在保留手機連線與操作的條件下，安排間歇取樣及低功耗等待。</dd></div><div><dt>實作</dt><dd>以 I²C 取得環境與物體溫度，提供 BLE read／notify 和量測控制特徵；取樣間以 semaphore timeout 等待，預設關閉 UART 與診斷 LED。</dd></div><div><dt>範圍</dt><dd>使用 System ON idle 保留 BLE，不是 System OFF。電池壽命估算、實際電流與量測準確度需分別判讀。</dd></div></dl></details>
+          <a class="project-link" href="https://github.com/peianchen/nRF54L15_MLX90614" target="_blank" rel="noreferrer" aria-label="在 GitHub 查看 nRF54L15 MLX90614">VIEW SOURCE <span>↗</span></a>
+        </article>
+        <article class="project-card reveal" data-category="bio embedded" data-delay="2">
+          <div class="project-card__top"><span class="project-number">P.06</span><span class="project-state">PUBLIC / WEAR OS</span></div>
+          <div><p class="project-domain">PHYSIOLOGICAL DATA</p><h3>Galaxy Watch Sensor Monitor</h3><p>Wear OS／Kotlin 感測 App，透過 Samsung Health Sensor SDK 進行單次皮膚溫度量測，顯示手腕溫度、環境溫度、時間與感測狀態。</p></div>
+          <ul class="tag-list"><li>Kotlin</li><li>Wear OS</li><li>Sensor SDK</li></ul>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>建立可操作的手錶端量測入口，觀察感測值、回呼與錯誤狀態。</dd></div><div><dt>實作</dt><dd>按下量測後啟動 on-demand tracker，收到一次回呼即停止並更新畫面；PPG 綠光、紅光與紅外線介面保留但預設停用。</dd></div><div><dt>範圍</dt><dd>依 README 以 Galaxy Watch6 或更新實機為目標，需另行提供 SDK AAR 並符合權限與平台政策；不作醫療診斷用途。</dd></div></dl></details>
+          <a class="project-link" href="https://github.com/peianchen/GalaxyWatchSensorMonitor" target="_blank" rel="noreferrer" aria-label="在 GitHub 查看 Galaxy Watch Sensor Monitor">VIEW SOURCE <span>↗</span></a>
+        </article>
+        <article class="project-card reveal" id="taipei-bus" data-category="web algorithms">
+          <div class="project-card__top"><span class="project-number">P.09</span><span class="project-state">PUBLIC / BETA</span></div>
+          <div><p class="project-domain">LIVE TRANSPORT DATA</p><h3>台北公車 Live</h3><p>以臺北市官方動態資料建立公車地圖，提供路線與車牌搜尋、標記聚合、站牌到站預估、收藏，以及依路線線形呈現的短時間位置推估。</p></div>
+          <ul class="tag-list"><li>JavaScript</li><li>Node.js</li><li>MapLibre GL JS</li></ul>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>把官方車況快照、路線與站牌資料整合成可互動查詢的地圖。</dd></div><div><dt>實作</dt><dd>伺服器共用快取與逾時處理；沿官方 BusShape 匹配路線並平順修正位置，前端僅更新變動車點，支援手機資訊卡與減少動態效果。</dd></div><div><dt>範圍</dt><dd>開發中。位置推估最長 15 秒，會受回報延遲及匹配信心影響；到站預估不是所選車輛的精確抵達時間。</dd></div></dl></details>
+          <a class="project-link" href="https://github.com/peianchen/taipei-bus-live" target="_blank" rel="noreferrer" aria-label="查看台北公車 Live 的程式與說明">VIEW SOURCE <span aria-hidden="true">↗</span></a>
+        </article>
+        <article class="project-card project-card--system reveal" data-category="research bio">
+          <div class="project-card__top"><span class="project-number">S.01</span><span class="project-state">RESEARCH SYSTEM</span></div>
+          <div><p class="project-domain">ELECTROCHEMISTRY</p><h3>ECsnap 電化學儀器</h3><p>整合 EmStat Pico、微控制器、TFT 與 microSD，以單鍵流程完成穩定等待、計時安培量測、狀態回饋與 CSV 資料保存。</p></div>
+          <ul class="tag-list"><li>EmStat Pico</li><li>CA</li><li>SD Logging</li></ul>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>把電化學電流量測轉成便於操作及保存資料的可攜式研究儀器。</dd></div><div><dt>實作</dt><dd>以 C／C++ 解析 MethodSCRIPT／UART 回傳，使用 RAM 緩衝批次寫入及 SPI 共用管理，協調 TFT 更新與 SD 儲存，並進行 SAMD21 至 nRF52840 的平台移植。</dd></div><div><dt>範圍</dt><dd>研究程式未公開。電流擷取與濃度換算分開處理，分析物校正及醫療診斷效能未視為已完成。</dd></div></dl></details>
+        </article>
+        <article class="project-card project-card--system reveal" data-category="research embedded" data-delay="1">
+          <div class="project-card__top"><span class="project-number">S.02</span><span class="project-state">RESEARCH SYSTEM</span></div>
+          <div><p class="project-domain">MICROFLUIDIC CONTROL</p><h3>Smart Stop-Flow</h3><p>開發中的微流體整合原型，串接 ESP32-S3 幫浦／微閥控制、Android 方法設定、手機取像、ROI 分析與實驗紀錄。</p></div>
+          <ul class="tag-list"><li>Micropumps</li><li>Valves</li><li>Android</li></ul>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>讓進樣控制、停流觀察與資料保存能對應同一段實驗時間序列。</dd></div><div><dt>實作</dt><dd>以狀態機安排預壓、進樣、清洗及異常停止；手機整合 BLE／Serial、照明錄影與逐幀分析，以 Room 保存方法快照、控制事件和媒體索引，另整合 KiCad、SolidWorks 與 COMSOL 設計資料。</dd></div><div><dt>範圍</dt><dd>未公開、開發中。流量、配比及實際停流時間仍需濕式校正；仿生微流體平台的獎項不移用為本專案成果。</dd></div></dl></details>
+        </article>
+        <article class="project-card project-card--system reveal" data-category="research embedded" data-delay="2">
+          <div class="project-card__top"><span class="project-number">S.03</span><span class="project-state">CONTROL SYSTEM</span></div>
+          <div><p class="project-domain">REDUCED-GRAVITY MOTION</p><h3>Dual-Axis Gravity Controller</h3><p>以角度回授、速度估測、feedforward 與 PID 控制雙軸連續旋轉伺服，研究重力向量方向隨時間變化的運動控制。</p></div>
+          <ul class="tag-list"><li>ESP32-C3</li><li>Feedback 360</li><li>PID</li></ul>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>控制雙軸旋轉的角度與速度，供重力向量時間平均相關研究使用。</dd></div><div><dt>實作</dt><dd>獨立整合馬達回授、角度／速度解算、PID／前饋、運動排程與開機零點確認。微重力與部分重力控制為相關版本，並非重複計算的獨立成果。</dd></div><div><dt>範圍</dt><dd>研究程式未公開；旋轉不等同真正失重，控制設定不代表已實測達成特定重力條件。</dd></div></dl></details>
+        </article>
+        <article class="project-card project-card--system reveal" id="pressible" data-category="research bio embedded">
+          <div class="project-card__top"><span class="project-number">S.04</span><span class="project-state">RESEARCH / PRIVATE CODE</span></div>
+          <div><p class="project-domain">WEARABLE SWEAT PRESSURE</p><h3>PressiBLE 汗液壓力平台</h3><p>以 nRF52840、BLE 與 Android 串接汗壓相關電訊號、溫度、即時趨勢與 CSV 紀錄，研究穿戴式感測資料的判讀與保存。</p></div>
+          <ul class="tag-list"><li>nRF52840</li><li>BLE</li><li>Android</li><li>Calibration</li></ul>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>把汗液壓力相關量測串接至可觀察、匯出與追蹤的手機資料流程。</dd></div><div><dt>實作</dt><dd>獨立開發感測韌體、BLE 控制及資料格式，處理量測時序、有效訊號與 baseline 正規化，串接趨勢顯示、Firebase、Nordic DFU 與選用的 Health Connect。</dd></div><div><dt>範圍</dt><dd>程式未公開。汗壓分級仍須依貼片、汗液與實驗條件校正，通訊正常不等於感測性能已驗證。</dd></div></dl></details>
+        </article>
+        <article class="project-card project-card--system reveal" id="space-payload" data-category="research embedded">
+          <div class="project-card__top"><span class="project-number">S.05</span><span class="project-state">IN DEVELOPMENT</span></div>
+          <div><p class="project-domain">SPACE MICROFLUIDICS</p><h3>太空微流體 Payload</h3><p>面向預計太空實驗的樣品處理與載荷整合開發，整理系統需求、子系統介面、幫浦／微閥序列控制及晶片／機構 CAD。</p></div>
+          <ul class="tag-list"><li>System Interfaces</li><li>Fluid Sequencing</li><li>CAD</li></ul>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>分層規劃地面準備、樣品承載與任務資料需求，建立可供原型整合的設計基線。</dd></div><div><dt>實作</dt><dd>獨立負責架構與介面文件、流體控制測試程式、晶片／機構整合及驗證規劃，依版本區分地面控制設備與飛行端需求。</dd></div><div><dt>範圍</dt><dd>未公開、開發中；未宣稱完成發射、在軌操作或振動／環境資格驗證，不公開任務細節與設計參數。</dd></div></dl></details>
+        </article>
+        <article class="project-card project-card--system reveal" id="bioimage-analysis" data-category="research imaging">
+          <div class="project-card__top"><span class="project-number">S.06</span><span class="project-state">RESEARCH WORKFLOW</span></div>
+          <div><p class="project-domain">BIOLOGICAL IMAGE ANALYSIS</p><h3>生物影像與運動分析</h3><p>以 Python、OpenCV 與 PyQt5 建立影像前處理、分割、配準和運動分析工具，將實驗取像延伸至可操作的分析流程。</p></div>
+          <ul class="tag-list"><li>Python</li><li>OpenCV</li><li>PyQt5</li></ul>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>協助生物實驗整理影像、觀察運動行為並比對分析結果。</dd></div><div><dt>實作</dt><dd>串接前處理、分割、影像配準、運動量化與操作介面，透過人工標註和結果比對檢查分析行為。</dd></div><div><dt>範圍</dt><dd>這是研究分析工具介紹，不等同公開 SpaceCellCam 取像韌體內建功能；不提供未發表影像或研究程式。</dd></div></dl></details>
+        </article>
+        <article class="project-card project-card--system reveal" id="pva-pump" data-category="research bio">
+          <div class="project-card__top"><span class="project-number">S.07</span><span class="project-state">MASTER'S RESEARCH / 2022</span></div>
+          <div><p class="project-domain">PASSIVE MICROFLUIDICS</p><h3>被動式 PVA 海綿幫浦</h3><p>碩士研究結合手指啟動進樣、PVA 海綿毛細作用、高度差與 PDMS 封裝，研究不需電力驅動的微流體輸送方案。</p></div>
+          <ul class="tag-list"><li>PVA</li><li>PDMS</li><li>Capillary Flow</li></ul>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>降低微流體系統對大型外接電動幫浦的依賴，評估便攜式流體驅動原型。</dd></div><div><dt>實作</dt><dd>製作海綿幫浦與封裝，比較海綿處理、尺寸形狀、流道幾何及高度條件；建立流場觀察、流量量測，並與實驗室既有分選晶片整合。</dd></div><div><dt>範圍</dt><dd>已完成原型與碩士論文；此處依履歷摘要介紹，不新增流量或臨床效益宣稱，也不將後續仿生平台獎項歸於此研究。</dd></div></dl></details>
+        </article>
+<div class="catalog-heading course-heading" id="coursework"><img src="./img/projects/afpga-board.jpg" alt="Lab 01 原始實驗照片：DE1-SoC 七段顯示輸出" width="1172" height="878" loading="lazy"><div><h3>研究所課程實作 / 方法與結果</h3><p>FPGA、醫學影像與圖論演算法。從原始碼、測試方法到結果分析，保留可追蹤的實作紀錄。</p><small>圖：AFPGA Lab 01 歷史實驗照片，非本次重新上板。</small></div></div>
+        <article class="project-card reveal" data-category="fpga" data-delay="1">
+          <div class="project-card__top"><span class="project-number">P.05</span><span class="project-state">PUBLIC / COURSEWORK</span></div>
+          <div><p class="project-domain">DIGITAL SYSTEM DESIGN</p><h3>NYCU-AFPGA</h3><p>從組合邏輯、FSM、RAM、簡易處理器到 DE1-SoC HPS/Qsys 整合的八組詳細實驗文件。</p></div>
+          <ul class="tag-list"><li>Verilog</li><li>Quartus</li><li>Qsys</li></ul>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>循序理解數位邏輯、記憶體與處理器架構，再延伸至 HPS 與 FPGA 的軟硬體介面。</dd></div><div><dt>實作</dt><dd>八組實驗均附目的、方法、結果與分析，並保留 Quartus 工程、原始實驗照片與重現注意事項。</dd></div><div><dt>範圍</dt><dd>公開版本排除整份作業報告與個資。歷史實驗照片、代表工程編譯與尚未重做的驗證分別記錄。</dd></div></dl></details>
+          <a class="project-link" href="https://github.com/peianchen/NYCU-AFPGA-Labs">查看八組實驗與結果圖 ↗</a>
+        </article>
+        <article class="project-card reveal" id="medical-imaging" data-category="research imaging">
+          <div class="project-card__top"><span class="project-number">P.07</span><span class="project-state">PUBLIC / COURSEWORK</span></div>
+          <div><p class="project-domain">MEDICAL IMAGE ANALYSIS</p><h3>醫學影像深度學習</h3><p>五份作業涵蓋 SPECT 與 MRI 分類、超音波頸動脈分割、胸腔 X 光異常區域偵測，整理前處理、PyTorch 模型、訓練結果與分析。公開程式與彙整圖表，不含病患資料。</p></div>
+          <ul class="tag-list"><li>PyTorch</li><li>MRI / SPECT</li><li>U-Net</li><li>Faster R-CNN</li></ul>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>比較分類、影像分割與物件偵測如何對應不同的醫學影像任務。</dd></div><div><dt>實作</dt><dd>整理五份作業的前處理、模型、訓練曲線與評估分析，包含 SPECT／MRI、超音波及胸腔 X 光。</dd></div><div><dt>範圍</dt><dd>結果以原作業留下的紀錄為依據，未宣稱重新訓練或臨床驗證；公開內容不含病患資料。</dd></div></dl></details>
+          <a class="project-link" href="https://github.com/peianchen/NYCU-Deep-Learning-Medical-Image-Analysis" target="_blank" rel="noreferrer" aria-label="查看醫學影像深度學習專案的程式與說明">VIEW PROJECT <span aria-hidden="true">↗</span></a>
+        </article>
+        <article class="project-card reveal" id="data-structures" data-category="algorithms">
+          <div class="project-card__top"><span class="project-number">P.08</span><span class="project-state">PUBLIC / COURSEWORK</span></div>
+          <div><p class="project-domain">DATA STRUCTURES + GRAPHS</p><h3>資料結構與圖論演算法</h3><p>以 C 實作九份作業，從排序、BFS 迷宮搜尋與稀疏矩陣，到 Segment Tree、Huffman、最小生成樹與 Dijkstra，附結果圖片及複雜度分析。</p></div>
+          <ul class="tag-list"><li>C</li><li>BFS</li><li>Huffman</li><li>Graph Algorithms</li></ul>
+          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>理解資料結構如何影響記憶體使用、操作成本與演算法選擇。</dd></div><div><dt>實作</dt><dd>每份作業整理問題、主要程式、歷史結果、複雜度與適用情境，另提供編譯及代表性行為檢查工具。</dd></div><div><dt>範圍</dt><dd>保留舊版程式與已知限制；歷史效能數據不是目前硬體上的新量測，測例通過也不代表完整規格已滿足。</dd></div></dl></details>
+          <a class="project-link" href="https://github.com/peianchen/NYCU-Data-Structures-Graph-Algorithms" target="_blank" rel="noreferrer" aria-label="查看資料結構與圖論演算法的程式與說明">VIEW PROJECT <span aria-hidden="true">↗</span></a>
+        </article>
+      </div>
+      <p class="search-empty" hidden>找不到符合條件的專案。試試其他關鍵字，或切回 ALL SYSTEMS。</p>
+      <p class="filter-result" role="status" aria-live="polite" aria-atomic="true">符合條件的專案：<span id="visible-count">16</span></p>
+    </section>
+
     <section class="systems section-shell" id="systems" aria-labelledby="systems-title">
       <div class="section-heading reveal">
-        <p class="section-index">01 / SYSTEM ARCHITECTURE</p>
+        <p class="section-index">03 / SYSTEM ARCHITECTURE</p>
         <h2 id="systems-title">從物理訊號，<br>到可理解的資料。</h2>
         <p>從感測器取得資料，在韌體端安排取樣與控制，再透過通訊、應用程式及分析工具完成實驗流程。我關注資料如何保存、裝置如何協作，以及異常發生時如何追查。</p>
       </div>
@@ -139,155 +288,9 @@
       </div>
     </section>
 
-    <section class="projects section-shell" id="projects" aria-labelledby="projects-title">
-      <div class="section-heading section-heading--row reveal">
-        <div><p class="section-index">02 / SELECTED WORK</p><h2 id="projects-title">工程專案矩陣</h2></div>
-        <p>感測裝置、取像韌體、數位邏輯、醫學影像與交通資料應用。各專案整理開發目的、實作流程及目前範圍。</p>
-      </div>
-      <div class="project-search reveal">
-        <label for="project-search">尋找專案 <span>SEARCH INDEX</span></label>
-        <div><input id="project-search" type="search" placeholder="搜尋 BLE、FPGA、醫學影像、演算法…" autocomplete="off" aria-controls="project-grid"><button class="search-clear" type="button" hidden>清除搜尋</button></div>
-      </div>
-      <div class="project-toolbar reveal" role="group" aria-label="專案分類篩選">
-        <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">ALL SYSTEMS</button>
-        <button class="filter-button" type="button" data-filter="bio" aria-pressed="false">BIOSENSING</button>
-        <button class="filter-button" type="button" data-filter="embedded" aria-pressed="false">EMBEDDED</button>
-        <button class="filter-button" type="button" data-filter="fpga" aria-pressed="false">FPGA</button>
-        <button class="filter-button" type="button" data-filter="imaging" aria-pressed="false">AI / IMAGING</button>
-        <button class="filter-button" type="button" data-filter="algorithms" aria-pressed="false">ALGORITHMS</button>
-        <button class="filter-button" type="button" data-filter="web" aria-pressed="false">WEB / DATA</button>
-        <button class="filter-button" type="button" data-filter="research" aria-pressed="false">RESEARCH</button>
-      </div>
-      <p class="project-reading-note">展開卡片可讀取目的、方法與限制。「公開程式」可直接查看 GitHub；研究介紹不代表相關原始碼已公開。軟體測試、模擬結果與實體驗證依各專案紀錄分別說明。</p>
-
-      <div class="project-grid" id="project-grid">
-        <article class="project-card project-card--feature reveal" data-category="bio embedded">
-          <div class="project-card__top"><span class="project-number">P.01</span><span class="project-state">PUBLIC / ANDROID</span></div>
-          <div><p class="project-domain">WEARABLE BIOSENSING</p><h3>ThermoPatch</h3><p>以 nRF52840 感測貼片搭配 Android App，整合多裝置連線、六個身體部位的溫度顯示、電量狀態、Firebase 同步及手機端 OTA 更新。</p></div>
-          <ul class="tag-list"><li>Kotlin</li><li>BLE</li><li>Firebase</li><li>nRF52840</li></ul>
-          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>集中觀察多部位體表溫度，並讓感測貼片可從手機維護與更新。</dd></div><div><dt>實作</dt><dd>以 Jetpack Compose、ViewModel 與 BLE client 管理連線及資料；OTA 使用 Nordic DFU，更新前需明確選擇目標裝置。</dd></div><div><dt>範圍</dt><dd>公開版本包含即時讀值、部位對應與更新流程；長期歷史分析及韌體版本相容性檢查仍有限。研究用途，非診斷工具。</dd></div></dl></details>
-          <a class="project-link" href="https://github.com/peianchen/ThermoPatch" target="_blank" rel="noreferrer" aria-label="在 GitHub 查看 ThermoPatch">VIEW SOURCE <span>↗</span></a>
-        </article>
-
-        <article class="project-card reveal" data-category="research embedded" data-delay="1">
-          <div class="project-card__top"><span class="project-number">P.02</span><span class="project-state">PUBLIC / IMAGING</span></div>
-          <div><p class="project-domain">BIOLOGICAL IMAGING</p><h3>SpaceCellCam</h3><p>XIAO ESP32S3 與 OV5640 AF 定時取像韌體，預設每 10 秒擷取 QSXGA JPEG，整合 LED 照明、焦點鎖定重用、感測器待機與 microSD 儲存。</p></div>
-          <ul class="tag-list"><li>C++</li><li>ESP32-S3</li><li>OV5640</li><li>microSD</li></ul>
-          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>持續記錄生物實驗影像，並降低每次重新對焦及長時間照明造成的負擔。</dd></div><div><dt>實作</dt><dd>首次對焦後重用鎖定狀態；影像先複製到 PSRAM，釋放 frame buffer 並讓相機待機，再以暫存檔、重新命名與檔案大小檢查完成寫入。</dd></div><div><dt>範圍</dt><dd>目前公開核心是取像與儲存韌體。對焦、溫升與供電表現需依實際光學配置測試，未宣稱完成飛行或環境認證。</dd></div></dl></details>
-          <a class="project-link" href="https://github.com/peianchen/SpaceCellCam" target="_blank" rel="noreferrer" aria-label="在 GitHub 查看 SpaceCellCam">VIEW SOURCE <span>↗</span></a>
-        </article>
-
-        <article class="project-card reveal" data-category="fpga" data-delay="2">
-          <div class="project-card__top"><span class="project-number">P.03</span><span class="project-state">PUBLIC / RTL</span></div>
-          <div><p class="project-domain">RELIABILITY LOGIC</p><h3>Space BMC Core</h3><p>參數化 Verilog 心跳逾時監測核心，搭配自動檢查 testbench，驗證逾時週期邊界、輸出鎖存、清除與重新計時行為。</p></div>
-          <ul class="tag-list"><li>Verilog</li><li>Questa</li><li>DE10</li></ul>
-          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>以時脈週期定義心跳缺失的逾時條件，作為後續系統監測邏輯的基礎。</dd></div><div><dt>實作</dt><dd>逾時後鎖存輸出；reset、有效心跳或 clear_timeout 可清除並重新計時。以 Questa 執行小參數、逐週期的自動檢查。</dd></div><div><dt>範圍</dt><dd>目前里程碑不含恢復時序或 Recovery FSM。功能模擬不代表已完成板上、時序收斂或太空等級驗證。</dd></div></dl></details>
-          <a class="project-link" href="https://github.com/peianchen/Space-BMC-Core-SEMC" target="_blank" rel="noreferrer" aria-label="在 GitHub 查看 Space BMC Core">VIEW SOURCE <span>↗</span></a>
-        </article>
-
-        <article class="project-card reveal" data-category="embedded bio">
-          <div class="project-card__top"><span class="project-number">P.04</span><span class="project-state">PUBLIC / ZEPHYR</span></div>
-          <div><p class="project-domain">LOW-POWER SENSING</p><h3>nRF54L15 × MLX90614</h3><p>以 Zephyr／nRF Connect SDK 在 XIAO nRF54L15 上讀取紅外線溫度，透過 BLE 傳送資料，支援每 60 秒取樣及手機要求即時量測。</p></div>
-          <ul class="tag-list"><li>C</li><li>Zephyr</li><li>nRF54L15</li></ul>
-          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>在保留手機連線與操作的條件下，安排間歇取樣及低功耗等待。</dd></div><div><dt>實作</dt><dd>以 I²C 取得環境與物體溫度，提供 BLE read／notify 和量測控制特徵；取樣間以 semaphore timeout 等待，預設關閉 UART 與診斷 LED。</dd></div><div><dt>範圍</dt><dd>使用 System ON idle 保留 BLE，不是 System OFF。電池壽命估算、實際電流與量測準確度需分別判讀。</dd></div></dl></details>
-          <a class="project-link" href="https://github.com/peianchen/nRF54L15_MLX90614" target="_blank" rel="noreferrer" aria-label="在 GitHub 查看 nRF54L15 MLX90614">VIEW SOURCE <span>↗</span></a>
-        </article>
-
-        <article class="project-card reveal" data-category="fpga" data-delay="1">
-          <div class="project-card__top"><span class="project-number">P.05</span><span class="project-state">PRIVATE / LAB ARCHIVE</span></div>
-          <div><p class="project-domain">DIGITAL SYSTEM DESIGN</p><h3>NYCU-AFPGA</h3><p>從組合邏輯、FSM、RAM、簡易處理器到 DE1-SoC HPS/Qsys 整合的八組詳細實驗文件。</p></div>
-          <ul class="tag-list"><li>Verilog</li><li>Quartus</li><li>Qsys</li></ul>
-          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>循序理解數位邏輯、記憶體與處理器架構，再延伸至 HPS 與 FPGA 的軟硬體介面。</dd></div><div><dt>實作</dt><dd>以 Verilog、Quartus 與 Qsys 整理八組實驗，對照程式、模擬與原始報告說明設計。</dd></div><div><dt>範圍</dt><dd>目前保留為非公開課程封存；此處提供主題介紹，不提供需要權限的程式連結。</dd></div></dl></details>
-          <p class="project-access">課程內容介紹 / 原始碼未公開</p>
-        </article>
-
-        <article class="project-card reveal" data-category="bio embedded" data-delay="2">
-          <div class="project-card__top"><span class="project-number">P.06</span><span class="project-state">PUBLIC / WEAR OS</span></div>
-          <div><p class="project-domain">PHYSIOLOGICAL DATA</p><h3>Galaxy Watch Sensor Monitor</h3><p>Wear OS／Kotlin 感測 App，透過 Samsung Health Sensor SDK 進行單次皮膚溫度量測，顯示手腕溫度、環境溫度、時間與感測狀態。</p></div>
-          <ul class="tag-list"><li>Kotlin</li><li>Wear OS</li><li>Sensor SDK</li></ul>
-          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>建立可操作的手錶端量測入口，觀察感測值、回呼與錯誤狀態。</dd></div><div><dt>實作</dt><dd>按下量測後啟動 on-demand tracker，收到一次回呼即停止並更新畫面；PPG 綠光、紅光與紅外線介面保留但預設停用。</dd></div><div><dt>範圍</dt><dd>依 README 以 Galaxy Watch6 或更新實機為目標，需另行提供 SDK AAR 並符合權限與平台政策；不作醫療診斷用途。</dd></div></dl></details>
-          <a class="project-link" href="https://github.com/peianchen/GalaxyWatchSensorMonitor" target="_blank" rel="noreferrer" aria-label="在 GitHub 查看 Galaxy Watch Sensor Monitor">VIEW SOURCE <span>↗</span></a>
-        </article>
-
-        <article class="project-card reveal" id="medical-imaging" data-category="research imaging">
-          <div class="project-card__top"><span class="project-number">P.07</span><span class="project-state">PUBLIC / COURSEWORK</span></div>
-          <div><p class="project-domain">MEDICAL IMAGE ANALYSIS</p><h3>醫學影像深度學習</h3><p>五份作業涵蓋 SPECT 與 MRI 分類、超音波頸動脈分割、胸腔 X 光異常區域偵測，整理前處理、PyTorch 模型、訓練結果與分析。公開程式與彙整圖表，不含病患資料。</p></div>
-          <ul class="tag-list"><li>PyTorch</li><li>MRI / SPECT</li><li>U-Net</li><li>Faster R-CNN</li></ul>
-          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>比較分類、影像分割與物件偵測如何對應不同的醫學影像任務。</dd></div><div><dt>實作</dt><dd>整理五份作業的前處理、模型、訓練曲線與評估分析，包含 SPECT／MRI、超音波及胸腔 X 光。</dd></div><div><dt>範圍</dt><dd>結果以原作業留下的紀錄為依據，未宣稱重新訓練或臨床驗證；公開內容不含病患資料。</dd></div></dl></details>
-          <a class="project-link" href="https://github.com/peianchen/NYCU-Deep-Learning-Medical-Image-Analysis" target="_blank" rel="noreferrer" aria-label="查看醫學影像深度學習專案的程式與說明">VIEW PROJECT <span aria-hidden="true">↗</span></a>
-        </article>
-
-        <article class="project-card reveal" id="data-structures" data-category="algorithms">
-          <div class="project-card__top"><span class="project-number">P.08</span><span class="project-state">PUBLIC / COURSEWORK</span></div>
-          <div><p class="project-domain">DATA STRUCTURES + GRAPHS</p><h3>資料結構與圖論演算法</h3><p>以 C 實作九份作業，從排序、BFS 迷宮搜尋與稀疏矩陣，到 Segment Tree、Huffman、最小生成樹與 Dijkstra，附結果圖片及複雜度分析。</p></div>
-          <ul class="tag-list"><li>C</li><li>BFS</li><li>Huffman</li><li>Graph Algorithms</li></ul>
-          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>理解資料結構如何影響記憶體使用、操作成本與演算法選擇。</dd></div><div><dt>實作</dt><dd>每份作業整理問題、主要程式、歷史結果、複雜度與適用情境，另提供編譯及代表性行為檢查工具。</dd></div><div><dt>範圍</dt><dd>保留舊版程式與已知限制；歷史效能數據不是目前硬體上的新量測，測例通過也不代表完整規格已滿足。</dd></div></dl></details>
-          <a class="project-link" href="https://github.com/peianchen/NYCU-Data-Structures-Graph-Algorithms" target="_blank" rel="noreferrer" aria-label="查看資料結構與圖論演算法的程式與說明">VIEW PROJECT <span aria-hidden="true">↗</span></a>
-        </article>
-
-        <article class="project-card reveal" id="taipei-bus" data-category="web algorithms">
-          <div class="project-card__top"><span class="project-number">P.09</span><span class="project-state">PUBLIC / BETA</span></div>
-          <div><p class="project-domain">LIVE TRANSPORT DATA</p><h3>台北公車 Live</h3><p>以臺北市官方動態資料建立公車地圖，提供路線與車牌搜尋、標記聚合、站牌到站預估、收藏，以及依路線線形呈現的短時間位置推估。</p></div>
-          <ul class="tag-list"><li>JavaScript</li><li>Node.js</li><li>MapLibre GL JS</li></ul>
-          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>把官方車況快照、路線與站牌資料整合成可互動查詢的地圖。</dd></div><div><dt>實作</dt><dd>伺服器共用快取與逾時處理；沿官方 BusShape 匹配路線並平順修正位置，前端僅更新變動車點，支援手機資訊卡與減少動態效果。</dd></div><div><dt>範圍</dt><dd>開發中。位置推估最長 15 秒，會受回報延遲及匹配信心影響；到站預估不是所選車輛的精確抵達時間。</dd></div></dl></details>
-          <a class="project-link" href="https://github.com/peianchen/taipei-bus-live" target="_blank" rel="noreferrer" aria-label="查看台北公車 Live 的程式與說明">VIEW SOURCE <span aria-hidden="true">↗</span></a>
-        </article>
-
-        <article class="project-card project-card--system reveal" data-category="research bio">
-          <div class="project-card__top"><span class="project-number">S.01</span><span class="project-state">RESEARCH SYSTEM</span></div>
-          <div><p class="project-domain">ELECTROCHEMISTRY</p><h3>ECsnap 電化學儀器</h3><p>整合 EmStat Pico、微控制器、TFT 與 microSD，以單鍵流程完成穩定等待、計時安培量測、狀態回饋與 CSV 資料保存。</p></div>
-          <ul class="tag-list"><li>EmStat Pico</li><li>CA</li><li>SD Logging</li></ul>
-          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>把電化學電流量測轉成便於操作及保存資料的可攜式研究儀器。</dd></div><div><dt>實作</dt><dd>以 C／C++ 解析 MethodSCRIPT／UART 回傳，使用 RAM 緩衝批次寫入及 SPI 共用管理，協調 TFT 更新與 SD 儲存，並進行 SAMD21 至 nRF52840 的平台移植。</dd></div><div><dt>範圍</dt><dd>研究程式未公開。電流擷取與濃度換算分開處理，分析物校正及醫療診斷效能未視為已完成。</dd></div></dl></details>
-        </article>
-
-        <article class="project-card project-card--system reveal" data-category="research embedded" data-delay="1">
-          <div class="project-card__top"><span class="project-number">S.02</span><span class="project-state">RESEARCH SYSTEM</span></div>
-          <div><p class="project-domain">MICROFLUIDIC CONTROL</p><h3>Smart Stop-Flow</h3><p>開發中的微流體整合原型，串接 ESP32-S3 幫浦／微閥控制、Android 方法設定、手機取像、ROI 分析與實驗紀錄。</p></div>
-          <ul class="tag-list"><li>Micropumps</li><li>Valves</li><li>Android</li></ul>
-          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>讓進樣控制、停流觀察與資料保存能對應同一段實驗時間序列。</dd></div><div><dt>實作</dt><dd>以狀態機安排預壓、進樣、清洗及異常停止；手機整合 BLE／Serial、照明錄影與逐幀分析，以 Room 保存方法快照、控制事件和媒體索引，另整合 KiCad、SolidWorks 與 COMSOL 設計資料。</dd></div><div><dt>範圍</dt><dd>未公開、開發中。流量、配比及實際停流時間仍需濕式校正；仿生微流體平台的獎項不移用為本專案成果。</dd></div></dl></details>
-        </article>
-
-        <article class="project-card project-card--system reveal" data-category="research embedded" data-delay="2">
-          <div class="project-card__top"><span class="project-number">S.03</span><span class="project-state">CONTROL SYSTEM</span></div>
-          <div><p class="project-domain">REDUCED-GRAVITY MOTION</p><h3>Dual-Axis Gravity Controller</h3><p>以角度回授、速度估測、feedforward 與 PID 控制雙軸連續旋轉伺服，研究重力向量方向隨時間變化的運動控制。</p></div>
-          <ul class="tag-list"><li>ESP32-C3</li><li>Feedback 360</li><li>PID</li></ul>
-          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>控制雙軸旋轉的角度與速度，供重力向量時間平均相關研究使用。</dd></div><div><dt>實作</dt><dd>獨立整合馬達回授、角度／速度解算、PID／前饋、運動排程與開機零點確認。微重力與部分重力控制為相關版本，並非重複計算的獨立成果。</dd></div><div><dt>範圍</dt><dd>研究程式未公開；旋轉不等同真正失重，控制設定不代表已實測達成特定重力條件。</dd></div></dl></details>
-        </article>
-        <article class="project-card project-card--system reveal" id="pressible" data-category="research bio embedded">
-          <div class="project-card__top"><span class="project-number">S.04</span><span class="project-state">RESEARCH / PRIVATE CODE</span></div>
-          <div><p class="project-domain">WEARABLE SWEAT PRESSURE</p><h3>PressiBLE 汗液壓力平台</h3><p>以 nRF52840、BLE 與 Android 串接汗壓相關電訊號、溫度、即時趨勢與 CSV 紀錄，研究穿戴式感測資料的判讀與保存。</p></div>
-          <ul class="tag-list"><li>nRF52840</li><li>BLE</li><li>Android</li><li>Calibration</li></ul>
-          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>把汗液壓力相關量測串接至可觀察、匯出與追蹤的手機資料流程。</dd></div><div><dt>實作</dt><dd>獨立開發感測韌體、BLE 控制及資料格式，處理量測時序、有效訊號與 baseline 正規化，串接趨勢顯示、Firebase、Nordic DFU 與選用的 Health Connect。</dd></div><div><dt>範圍</dt><dd>程式未公開。汗壓分級仍須依貼片、汗液與實驗條件校正，通訊正常不等於感測性能已驗證。</dd></div></dl></details>
-        </article>
-
-        <article class="project-card project-card--system reveal" id="space-payload" data-category="research embedded">
-          <div class="project-card__top"><span class="project-number">S.05</span><span class="project-state">IN DEVELOPMENT</span></div>
-          <div><p class="project-domain">SPACE MICROFLUIDICS</p><h3>太空微流體 Payload</h3><p>面向預計太空實驗的樣品處理與載荷整合開發，整理系統需求、子系統介面、幫浦／微閥序列控制及晶片／機構 CAD。</p></div>
-          <ul class="tag-list"><li>System Interfaces</li><li>Fluid Sequencing</li><li>CAD</li></ul>
-          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>分層規劃地面準備、樣品承載與任務資料需求，建立可供原型整合的設計基線。</dd></div><div><dt>實作</dt><dd>獨立負責架構與介面文件、流體控制測試程式、晶片／機構整合及驗證規劃，依版本區分地面控制設備與飛行端需求。</dd></div><div><dt>範圍</dt><dd>未公開、開發中；未宣稱完成發射、在軌操作或振動／環境資格驗證，不公開任務細節與設計參數。</dd></div></dl></details>
-        </article>
-
-        <article class="project-card project-card--system reveal" id="bioimage-analysis" data-category="research imaging">
-          <div class="project-card__top"><span class="project-number">S.06</span><span class="project-state">RESEARCH WORKFLOW</span></div>
-          <div><p class="project-domain">BIOLOGICAL IMAGE ANALYSIS</p><h3>生物影像與運動分析</h3><p>以 Python、OpenCV 與 PyQt5 建立影像前處理、分割、配準和運動分析工具，將實驗取像延伸至可操作的分析流程。</p></div>
-          <ul class="tag-list"><li>Python</li><li>OpenCV</li><li>PyQt5</li></ul>
-          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>協助生物實驗整理影像、觀察運動行為並比對分析結果。</dd></div><div><dt>實作</dt><dd>串接前處理、分割、影像配準、運動量化與操作介面，透過人工標註和結果比對檢查分析行為。</dd></div><div><dt>範圍</dt><dd>這是研究分析工具介紹，不等同公開 SpaceCellCam 取像韌體內建功能；不提供未發表影像或研究程式。</dd></div></dl></details>
-        </article>
-
-        <article class="project-card project-card--system reveal" id="pva-pump" data-category="research bio">
-          <div class="project-card__top"><span class="project-number">S.07</span><span class="project-state">MASTER'S RESEARCH / 2022</span></div>
-          <div><p class="project-domain">PASSIVE MICROFLUIDICS</p><h3>被動式 PVA 海綿幫浦</h3><p>碩士研究結合手指啟動進樣、PVA 海綿毛細作用、高度差與 PDMS 封裝，研究不需電力驅動的微流體輸送方案。</p></div>
-          <ul class="tag-list"><li>PVA</li><li>PDMS</li><li>Capillary Flow</li></ul>
-          <details class="project-details"><summary>目的、實作與使用範圍</summary><dl><div><dt>目的</dt><dd>降低微流體系統對大型外接電動幫浦的依賴，評估便攜式流體驅動原型。</dd></div><div><dt>實作</dt><dd>製作海綿幫浦與封裝，比較海綿處理、尺寸形狀、流道幾何及高度條件；建立流場觀察、流量量測，並與實驗室既有分選晶片整合。</dd></div><div><dt>範圍</dt><dd>已完成原型與碩士論文；此處依履歷摘要介紹，不新增流量或臨床效益宣稱，也不將後續仿生平台獎項歸於此研究。</dd></div></dl></details>
-        </article>
-      </div>
-      <p class="search-empty" hidden>找不到符合條件的專案。試試其他關鍵字，或切回 ALL SYSTEMS。</p>
-      <p class="filter-result" role="status" aria-live="polite" aria-atomic="true">符合條件的專案：<span id="visible-count">16</span></p>
-    </section>
-
-    <section class="research section-shell" id="research" aria-labelledby="research-title">
+        <section class="research section-shell" id="research" aria-labelledby="research-title">
       <div class="section-heading reveal">
-        <p class="section-index">03 / RESEARCH TRACK</p>
+        <p class="section-index">04 / RESEARCH TRACK</p>
         <h2 id="research-title">感測、控制與<br>生醫實驗平台。</h2>
         <p>研究工作圍繞穿戴式感測、微流體與多軸運動平台，包含裝置開發、量測流程及影像擷取，並透過展覽與研討會交流成果。</p>
       </div>
@@ -388,13 +391,14 @@
 
     <section class="profile section-shell" id="profile" aria-labelledby="profile-title">
       <div class="section-heading section-heading--row reveal">
-        <div><p class="section-index">04 / PROFILE</p><h2 id="profile-title">跨域背景，<br>聚焦研發落地。</h2></div>
+        <div><p class="section-index">05 / PROFILE</p><h2 id="profile-title">跨域背景，<br>聚焦研發落地。</h2></div>
         <p>從生物機電、生醫工程到電機工程，研究路徑持續圍繞感測、控制、數位設計與軟硬體整合。</p>
       </div>
       <div class="profile-grid">
         <article class="profile-intro reveal">
           <p class="profile-label">CURRENT FOCUS</p>
           <h3>Embedded systems × FPGA × intelligent sensing</h3>
+          <p>博士與近期研發專案由我獨立開發，依專案範圍負責需求、架構、韌體與操作軟體、系統整合及測試文件；現有成果與開發中項目分別說明。</p>
           <p>我從宜蘭大學生物機電工程，進入陽明交通大學生醫工程碩士班，再延伸至電機工程博士研究。這條路徑讓我同時接觸生物實驗需求、感測控制與軟硬體開發。</p>
           <p>實作涵蓋 Nordic nRF、ESP32、Raspberry Pi、Android／Wear OS 與 FPGA。除了讓裝置取得資料，我也處理離線保存、裝置識別、資料同步與異常紀錄，讓實驗流程更容易操作和追蹤。</p>
           <p>ThermoPatch 的後續 V2 平台進一步以 Room 保存本機歷史和各裝置同步進度，將 BLE 取回資料與 Firebase 上傳分開，處理待傳佇列、背景重試和多裝置輪流同步。V2 與汗壓研究程式未公開，網站僅介紹用途與工程工作。</p>
@@ -415,7 +419,7 @@
 
     <section class="capabilities section-shell" id="capabilities" aria-labelledby="capabilities-title">
       <div class="section-heading section-heading--row reveal">
-        <div><p class="section-index">05 / TECHNICAL PRACTICE</p><h2 id="capabilities-title">技術與實作範圍</h2></div>
+        <div><p class="section-index">06 / TECHNICAL PRACTICE</p><h2 id="capabilities-title">技術與實作範圍</h2></div>
         <p>依系統層次整理使用過的技術與持續研究的方向。各項工具在不同專案中的深度與驗證程度，以專案說明為準。</p>
       </div>
       <div class="capability-board reveal">
@@ -434,7 +438,7 @@
 
     <section class="contact section-shell" id="contact" aria-labelledby="contact-title">
       <div class="contact-panel reveal">
-        <p class="section-index">06 / CONNECTION</p>
+        <p class="section-index">07 / CONNECTION</p>
         <h2 id="contact-title">有硬體、有資料、<br>也有尚未解完的問題？</h2>
         <p>如果你對感測平台、研究儀器、韌體與 App 整合，或本頁的專案有興趣，歡迎透過電子郵件聯絡。公開程式、操作方式與結果紀錄可從 GitHub 閱讀。</p>
         <div class="contact-actions">

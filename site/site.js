@@ -60,6 +60,21 @@ const searchIndex = projectCards.map((card) => ({
   text: card.textContent.normalize("NFKC").toLocaleLowerCase(),
 }));
 let activeFilter = "all";
+const languageLink = document.querySelector('.language-switch');
+const initialUrl = window.location ? new URL(window.location.href) : null;
+if (initialUrl && searchInput) {
+  searchInput.value = initialUrl.searchParams.get('q') || '';
+  const requestedFilter = initialUrl.searchParams.get('filter');
+  if (filterButtons.some(button => button.dataset.filter === requestedFilter)) activeFilter = requestedFilter;
+}
+
+const syncLanguageLink = () => {
+  if (!languageLink || !window.location) return;
+  const target = new URL(languageLink.getAttribute('href'), window.location.href);
+  target.hash = window.location.hash;
+  target.search = window.location.search;
+  languageLink.setAttribute('href', target.href);
+};
 
 const updateProjects = () => {
   const query = (searchInput?.value || "").normalize("NFKC").trim().toLocaleLowerCase();
@@ -75,6 +90,27 @@ const updateProjects = () => {
   projectGrid?.classList.toggle("is-single-result", count === 1);
   if (emptyResult) emptyResult.hidden = count !== 0;
   if (clearSearch) clearSearch.hidden = !searchInput?.value;
+  document.querySelectorAll('.catalog-heading').forEach(heading => {
+    let next = heading.nextElementSibling;
+    let anyVisible = false;
+    while (next && !next.classList.contains('catalog-heading')) {
+      if (next.classList.contains('project-card') && !next.classList.contains('is-hidden')) anyVisible = true;
+      next = next.nextElementSibling;
+    }
+    heading.hidden = !anyVisible;
+  });
+  filterButtons.forEach(button => {
+    const selected = button.dataset.filter === activeFilter;
+    button.setAttribute('aria-pressed', String(selected));
+    button.classList.toggle('is-active', selected);
+  });
+  if (window.location && window.history && searchInput) {
+    const url = new URL(window.location.href);
+    query ? url.searchParams.set('q', searchInput.value) : url.searchParams.delete('q');
+    activeFilter === 'all' ? url.searchParams.delete('filter') : url.searchParams.set('filter', activeFilter);
+    window.history.replaceState(null, '', url);
+  }
+  syncLanguageLink();
 };
 
 filterButtons.forEach((button) => {
@@ -96,11 +132,20 @@ clearSearch?.addEventListener("click", () => {
   searchInput?.focus();
 });
 updateProjects();
+window.addEventListener('hashchange', syncLanguageLink);
+// A course deep link should stay visible even after a previous filtered view.
+const courseLink = document.querySelector('.primary-nav a[href="#coursework"]');
+courseLink?.addEventListener('click', () => {
+  activeFilter = 'all';
+  if (searchInput) searchInput.value = '';
+  updateProjects();
+});
 
 const revealItems = document.querySelectorAll(".reveal");
 if (reduceMotion || !("IntersectionObserver" in window)) {
   revealItems.forEach((item) => item.classList.add("is-visible"));
 } else {
+  root.classList.add('js-motion');
   const revealObserver = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach((entry) => {

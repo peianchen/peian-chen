@@ -20,13 +20,23 @@ Then open `http://localhost:8000`.
 
 Live site: <https://peianchen.github.io/peian-chen/>
 
+## Featured case studies
+
+Three systems have independent Chinese and English pages, with architecture diagrams, purpose, workflows, design decisions, results, reproduction notes and limitations:
+
+- [ThermoPatch](https://peianchen.github.io/peian-chen/en/projects/thermopatch/)
+- [SpaceCellCam](https://peianchen.github.io/peian-chen/en/projects/spacecellcam/)
+- [Space BMC Core](https://peianchen.github.io/peian-chen/en/projects/space-bmc/)
+
+Their editable source is `content/case_studies.json`. Run `python tools/build_case_studies.py` after editing it. See [maintenance instructions](docs/PORTFOLIO_MAINTENANCE.md).
+
 ## Content
 
 The bilingual pages cover sixteen engineering, research, and graduate-course
 projects. Undergraduate project summaries are omitted by the owner's preference.
 Each project includes an expandable purpose, implementation approach, and scope.
 Public repositories have direct links; private research/code is described without
-changing repository permissions. Historical results are not presented as fresh
+exposing private research source. AFPGA now links to a curated public edition with clean history. Historical results are not presented as fresh
 validation or clinical evidence.
 
 Copy is cross-checked against the public GitHub profile, implementation READMEs,

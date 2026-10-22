@@ -49,7 +49,9 @@ def main():
         assert len(page.filters) == len(set(page.filters))
         assert re.search(r'id="visible-count">16<', source)
         assert not re.search(r"INTERVIEW_GUIDE|面試|展現能力|REPOSITORIES MAPPED", source)
-        assert not any("NYCU-AFPGA-Labs" in link for link in page.links)
+        assert any("NYCU-AFPGA-Labs" in link for link in page.links)
+        assert {"featured", "coursework", "engineering-work"} <= set(page.ids)
+        assert source.count('class="featured-card"') == 3
         assert "mailto:chen861019@gmail.com" in page.links
         assert any("NYCU-Data-Structures-Graph-Algorithms" in link for link in page.links)
         assert "https://github.com/peianchen/taipei-bus-live" in page.links
@@ -63,6 +65,17 @@ def main():
         assert source.count("<h1 ") == 1
         assert "2019" in source and "Biosensors &amp; Bioelectronics" in source
         parsed[path.resolve()] = page
+    for path in root.glob('**/projects/*/index.html'):
+        source = path.read_text(encoding='utf-8')
+        page = Page()
+        page.feed(source)
+        assert not [key for key, count in Counter(page.ids).items() if count > 1]
+        assert {'purpose', 'workflow', 'decisions', 'evidence', 'reproduce', 'limits', 'sources'} <= set(page.ids)
+        assert source.count('<h1>') == 1
+        assert 'og:image' in source and 'hreflang="en"' in source
+        assert not re.search(r'INTERVIEW_GUIDE|面試|展現能力|C:/Users|vno=', source)
+        parsed[path.resolve()] = page
+    assert len(parsed) == 8
     for path, page in parsed.items():
         checked = 0
         for link in page.links:

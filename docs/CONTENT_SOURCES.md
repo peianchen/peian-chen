@@ -17,7 +17,21 @@ measurement, or independent validation of results.
 
 The prior research, course, awards and journal-name records are retained. No new
 publication titles, employment history, or performance claims were inferred.
-AFPGA remains private by the owner's latest choice.
+On 2026-10-22, the owner authorized publication of AFPGA. A curated edition was
+published with a clean root commit; the original repository and report history
+remain in a separately named private backup.
+
+## Case-study release: 2026-10-22
+
+The three featured repositories were cloned and their README/code reviewed before
+writing `content/case_studies.json`. New diagrams explain source-level workflows;
+they are not photographs, screenshots, measured traces or flight evidence.
+
+Space BMC's unchanged RTL/testbench passed 15 Questa 2025.2 checks on 2026-10-22
+from an ASCII-only working path. The website links its published run record.
+ThermoPatch's archived v1.0.1 test summary contains one passing test; it is not
+presented as device, DFU or multi-node acceptance. No new ThermoPatch or
+SpaceCellCam device experiments were performed for this content release.
 
 ## 104 professional-content review
 
